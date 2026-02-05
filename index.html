@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2E7D32">
+    <meta name="description" content="Find nearby Bangladeshi people, connect, chat, and help each other">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_KEY&libraries=places"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/auth.css">
+    <link rel="stylesheet" href="/src/css/home.css">
+    <link rel="stylesheet" href="/src/css/profile.css">
+    <link rel="stylesheet" href="/src/css/chat.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-hands-helping"></i>
+                <h1>হ্যালো বাংলাদেশী</h1>
+            </div>
+            <div class="loading-spinner"></div>
+            <p>লোড হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-hands-helping"></i>
+                <span>হ্যালো বাংলাদেশী</span>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="loadPage('home')" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>হোম</span>
+                </a>
+                <a href="#" onclick="loadPage('search')" class="nav-link">
+                    <i class="fas fa-search"></i>
+                    <span>খুঁজুন</span>
+                </a>
+                <a href="#" onclick="loadPage('chat')" class="nav-link">
+                    <i class="fas fa-comments"></i>
+                    <span>মেসেজ</span>
+                </a>
+                <a href="#" onclick="loadPage('profile')" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>প্রোফাইল</span>
+                </a>
+            </div>
+            
+            <div class="nav-user" id="navUser">
+                <button onclick="toggleUserMenu()" class="user-menu-btn">
+                    <img id="userAvatar" src="/assets/icons/default-avatar.png" alt="User">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="userMenu" class="user-menu">
+                    <a href="#" onclick="loadPage('profile')">প্রোফাইল</a>
+                    <a href="#" onclick="loadPage('settings')">সেটিংস</a>
+                    <hr>
+                    <a href="#" onclick="logout()">লগআউট</a>
+                </div>
+            </div>
+            
+            <button id="mobileMenuBtn" class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="mainContent" class="main-content">
+        <!-- Pages will be loaded here dynamically -->
+        <div id="pageContent"></div>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <div class="bottom-nav">
+        <a href="#" onclick="loadPage('home')" class="bottom-nav-item">
+            <i class="fas fa-home"></i>
+            <span>হোম</span>
+        </a>
+        <a href="#" onclick="loadPage('search')" class="bottom-nav-item">
+            <i class="fas fa-search"></i>
+            <span>খুঁজুন</span>
+        </a>
+        <a href="#" onclick="loadPage('chat')" class="bottom-nav-item">
+            <i class="fas fa-comments"></i>
+            <span>চ্যাট</span>
+        </a>
+        <a href="#" onclick="loadPage('profile')" class="bottom-nav-item">
+            <i class="fas fa-user"></i>
+            <span>আমি</span>
+        </a>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="/src/js/firebase.js"></script>
+    <script src="/src/js/auth.js"></script>
+    <script src="/src/js/app.js"></script>
+    <script src="/src/js/ui.js"></script>
+    <script src="/src/js/database.js"></script>
+    <script src="/src/js/location.js"></script>
+    <script src="/src/js/chat.js"></script>
+    <script src="/src/js/utils.js"></script>
+</body>
+</html>
