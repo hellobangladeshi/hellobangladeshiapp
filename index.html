@@ -3,131 +3,1773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="হ্যালো বাংলাদেশী - স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম">
+    <meta name="theme-color" content="#FF6B35">
     <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
     
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#2E7D32">
-    <meta name="description" content="Find nearby Bangladeshi people, connect, chat, and help each other">
-    <link rel="manifest" href="/manifest.json">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js"></script>
     
     <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_KEY&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
     
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="/src/css/style.css">
-    <link rel="stylesheet" href="/src/css/auth.css">
-    <link rel="stylesheet" href="/src/css/home.css">
-    <link rel="stylesheet" href="/src/css/profile.css">
-    <link rel="stylesheet" href="/src/css/chat.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            /* Primary Colors */
+            --primary: #FF6B35;
+            --primary-dark: #E85A28;
+            --primary-light: #FFB366;
+            
+            /* Secondary Colors */
+            --secondary: #004E89;
+            --secondary-light: #1A7BA1;
+            
+            /* Accent Colors */
+            --accent-green: #2ECC71;
+            --accent-orange: #F39C12;
+            --accent-red: #E74C3C;
+            
+            /* Neutral Colors */
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --border-color: #E0E0E0;
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* Typography */
+            --font-display: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.2);
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            /* Z-index */
+            --z-modal: 1000;
+            --z-dropdown: 900;
+            --z-sticky: 100;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: var(--z-sticky);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-md) var(--spacing-lg);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            font-family: var(--font-display);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: var(--spacing-xl);
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 14px;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .btn-auth {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-login:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-signup:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           SPLASH/HERO SECTION
+           ============================================ */
+
+        .splash-screen {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .splash-content {
+            text-align: center;
+            z-index: 2;
+            animation: slideUp 0.8s ease 0.3s both;
+        }
+
+        .splash-logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            margin: 0 auto var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .splash-screen h1 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .splash-screen p {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: var(--spacing-xl);
+            max-width: 500px;
+        }
+
+        .splash-button {
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 16px;
+            font-weight: 600;
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .splash-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .splash-bg-decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .splash-circle-1 {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: white;
+            top: -100px;
+            right: -100px;
+        }
+
+        .splash-circle-2 {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: white;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        /* ============================================
+           MAIN CONTENT AREA
+           ============================================ */
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-lg);
+        }
+
+        .sidebar {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-item {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .sidebar-item:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-icon {
+            font-size: 20px;
+            min-width: 20px;
+        }
+
+        /* ============================================
+           FEED/MAIN SECTION
+           ============================================ */
+
+        .feed {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feed-header {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .feed-header h2 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* ============================================
+           USER CARDS
+           ============================================ */
+
+        .user-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .user-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-card-distance {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .user-card-content {
+            padding: var(--spacing-lg);
+        }
+
+        .user-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .user-card-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .user-card-info h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .user-card-info p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .user-card-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: var(--spacing-xs);
+        }
+
+        .user-card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .btn {
+            padding: var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ============================================
+           RIGHT SIDEBAR (RECOMMENDATIONS)
+           ============================================ */
+
+        .recommendations {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .recommendations-title {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .recommendation-item {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .recommendation-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .recommendation-role {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           MODALS & DIALOGS
+           ============================================ */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: var(--z-modal);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ============================================
+           GRID LAYOUTS
+           ============================================ */
+
+        .grid-users {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .grid-jobs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* ============================================
+           JOB POST CARD
+           ============================================ */
+
+        .job-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .job-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-card-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .job-card-status {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-open {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--accent-green);
+        }
+
+        .status-closed {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--accent-red);
+        }
+
+        .job-card-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .job-card-description {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .job-card-salary {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* ============================================
+           CHAT INTERFACE
+           ============================================ */
+
+        .chat-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--spacing-lg);
+            height: calc(100vh - 100px);
+        }
+
+        .chat-list {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow-y: auto;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chat-item {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .chat-item:hover {
+            background: var(--bg-light);
+        }
+
+        .chat-item.active {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 3px solid var(--primary);
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .chat-meta h4 {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .chat-meta p {
+            font-size: 12px;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-window {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chat-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .message {
+            display: flex;
+            gap: var(--spacing-md);
+            animation: slideUp 0.3s ease;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.received .message-content {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .message.sent .message-content {
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-md);
+        }
+
+        .chat-input {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 14px;
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar,
+            .recommendations {
+                display: none;
+            }
+
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-list {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .splash-screen h1 {
+                font-size: 32px;
+            }
+
+            .grid-users {
+                grid-template-columns: 1fr;
+            }
+
+            .user-card-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .user-card-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .job-card-meta {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .message-content {
+                max-width: 100%;
+            }
+        }
+
+        /* ============================================
+           LOADING & EMPTY STATES
+           ============================================ */
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xl);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--bg-light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-dark);
+        }
+
+        /* ============================================
+           NOTIFICATIONS
+           ============================================ */
+
+        .toast {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: var(--z-modal);
+            animation: slideUp 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .toast.error {
+            border-left-color: var(--accent-red);
+        }
+
+        .toast.success {
+            border-left-color: var(--accent-green);
+        }
+    </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <i class="fas fa-hands-helping"></i>
-                <h1>হ্যালো বাংলাদেশী</h1>
-            </div>
-            <div class="loading-spinner"></div>
-            <p>লোড হচ্ছে...</p>
+    <!-- SPLASH SCREEN -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-bg-decoration splash-circle-1"></div>
+        <div class="splash-bg-decoration splash-circle-2"></div>
+        <div class="splash-content">
+            <div class="splash-logo">🇧🇩</div>
+            <h1>হ্যালো বাংলাদেশী</h1>
+            <p>স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্ক</p>
+            <button class="splash-button" onclick="app.hideSplash()">শুরু করুন</button>
         </div>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-hands-helping"></i>
-                <span>হ্যালো বাংলাদেশী</span>
-            </div>
-            
-            <div class="nav-links" id="navLinks">
-                <a href="#" onclick="loadPage('home')" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>হোম</span>
+    <!-- MAIN APPLICATION -->
+    <div id="mainApp" class="hidden">
+        <!-- HEADER -->
+        <header>
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🇧🇩</div>
+                    <span>হ্যালো</span>
                 </a>
-                <a href="#" onclick="loadPage('search')" class="nav-link">
-                    <i class="fas fa-search"></i>
-                    <span>খুঁজুন</span>
-                </a>
-                <a href="#" onclick="loadPage('chat')" class="nav-link">
-                    <i class="fas fa-comments"></i>
-                    <span>মেসেজ</span>
-                </a>
-                <a href="#" onclick="loadPage('profile')" class="nav-link">
-                    <i class="fas fa-user"></i>
-                    <span>প্রোফাইল</span>
-                </a>
-            </div>
-            
-            <div class="nav-user" id="navUser">
-                <button onclick="toggleUserMenu()" class="user-menu-btn">
-                    <img id="userAvatar" src="/assets/icons/default-avatar.png" alt="User">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="userMenu" class="user-menu">
-                    <a href="#" onclick="loadPage('profile')">প্রোফাইল</a>
-                    <a href="#" onclick="loadPage('settings')">সেটিংস</a>
-                    <hr>
-                    <a href="#" onclick="logout()">লগআউট</a>
+
+                <nav class="nav-center">
+                    <span class="nav-link active" onclick="app.navigateTo('home')">বাড়ি</span>
+                    <span class="nav-link" onclick="app.navigateTo('search')">খুঁজুন</span>
+                    <span class="nav-link" onclick="app.navigateTo('jobs')">চাকরি</span>
+                    <span class="nav-link" onclick="app.navigateTo('chat')">চ্যাট</span>
+                    <span class="nav-link" onclick="app.navigateTo('profile')">প্রোফাইল</span>
+                </nav>
+
+                <div class="nav-right">
+                    <div id="userGreeting" class="nav-link"></div>
+                    <button class="btn-auth btn-login" onclick="app.logout()">লগ আউট</button>
                 </div>
             </div>
-            
-            <button id="mobileMenuBtn" class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- LEFT SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-item active" onclick="app.navigateTo('home')">
+                    <span class="sidebar-icon">🏠</span>
+                    <span>বাড়ি</span>
+                </div>
+                <div class="sidebar-item" onclick="app.navigateTo('search')">
+                    <span class="sidebar-icon">🔍</span>
+                    <span>খুঁজুন</span>
+                </div>
+                <div class="sidebar-item" onclick="app.navigateTo('jobs')">
+                    <span class="sidebar-icon">💼</span>
+                    <span>চাকরি</span>
+                </div>
+                <div class="sidebar-item" onclick="app.navigateTo('chat')">
+                    <span class="sidebar-icon">💬</span>
+                    <span>চ্যাট</span>
+                </div>
+                <div class="sidebar-item" onclick="app.navigateTo('profile')">
+                    <span class="sidebar-icon">👤</span>
+                    <span>প্রোফাইল</span>
+                </div>
+                <hr style="margin: var(--spacing-lg) 0; border: none; border-top: 1px solid var(--border-color);">
+                <div class="sidebar-item" onclick="app.navigateTo('settings')">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span>সেটিংস</span>
+                </div>
+            </aside>
+
+            <!-- FEED/MAIN SECTION -->
+            <main class="feed">
+                <!-- HOME VIEW -->
+                <div id="homeView">
+                    <div class="feed-header">
+                        <h2>কাছাকাছি মানুষ</h2>
+                        <p style="color: var(--text-light);">আপনার এলাকায় সংযুক্ত হন</p>
+                    </div>
+                    <div id="usersList" class="grid-users"></div>
+                </div>
+
+                <!-- SEARCH VIEW -->
+                <div id="searchView" class="hidden">
+                    <div class="feed-header">
+                        <h2>অনুসন্ধান</h2>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="searchInput" class="form-input" placeholder="নাম বা পেশা খুঁজুন...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">দূরত্ব (কিমি)</label>
+                        <input type="range" id="radiusInput" class="form-input" min="1" max="50" value="5">
+                        <span id="radiusDisplay">৫ কিমি</span>
+                    </div>
+                    <div id="searchResults" class="grid-users"></div>
+                </div>
+
+                <!-- JOBS VIEW -->
+                <div id="jobsView" class="hidden">
+                    <div class="feed-header">
+                        <h2>চাকরি</h2>
+                        <button class="btn btn-primary" onclick="app.showPostJobModal()" style="margin-top: var(--spacing-md);">
+                            নতুন চাকরি পোস্ট করুন
+                        </button>
+                    </div>
+                    <div id="jobsList" class="grid-jobs"></div>
+                </div>
+
+                <!-- CHAT VIEW -->
+                <div id="chatView" class="hidden">
+                    <div class="chat-container">
+                        <div class="chat-list" id="conversationsList"></div>
+                        <div class="chat-window" id="chatWindow" style="display: none;">
+                            <div class="chat-header">
+                                <h3 id="chatTitle"></h3>
+                                <button onclick="app.closeChat()" style="background: none; border: none; cursor: pointer; font-size: 20px;">✕</button>
+                            </div>
+                            <div class="chat-messages" id="chatMessages"></div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="বার্তা লিখুন...">
+                                <button class="btn btn-primary" onclick="app.sendMessage()" style="padding: var(--spacing-md) var(--spacing-lg);">পাঠান</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFILE VIEW -->
+                <div id="profileView" class="hidden">
+                    <div class="feed-header">
+                        <h2>আমার প্রোফাইল</h2>
+                    </div>
+                    <div style="background: white; padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+                        <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+                            <div style="width: 150px; height: 150px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 60px; flex-shrink: 0;" id="profileAvatar"></div>
+                            <div>
+                                <h2 id="profileName" style="font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: var(--spacing-md);"></h2>
+                                <p id="profileProfession" style="font-size: 16px; color: var(--text-light); margin-bottom: var(--spacing-md);"></p>
+                                <div style="display: flex; gap: var(--spacing-md);">
+                                    <button class="btn btn-primary" onclick="app.navigateTo('edit-profile')">প্রোফাইল সম্পাদনা</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg);">
+                            <p id="profileBio"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS VIEW -->
+                <div id="settingsView" class="hidden">
+                    <div class="feed-header">
+                        <h2>সেটিংস</h2>
+                    </div>
+                    <div style="background: white; padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+                        <div class="form-group">
+                            <label class="form-label">বিজ্ঞপ্তি সক্ষম করুন</label>
+                            <input type="checkbox" id="notificationToggle" checked>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">অনলাইন অবস্থা দেখান</label>
+                            <input type="checkbox" id="onlineStatusToggle" checked>
+                        </div>
+                        <button class="btn btn-secondary" onclick="app.logout()">অ্যাকাউন্ট মুছুন</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="recommendations" id="recommendations">
+                <h3 class="recommendations-title">সুপারিশকৃত</h3>
+                <div id="recommendationsList"></div>
+            </aside>
         </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <main id="mainContent" class="main-content">
-        <!-- Pages will be loaded here dynamically -->
-        <div id="pageContent"></div>
-    </main>
-
-    <!-- Bottom Navigation (Mobile) -->
-    <div class="bottom-nav">
-        <a href="#" onclick="loadPage('home')" class="bottom-nav-item">
-            <i class="fas fa-home"></i>
-            <span>হোম</span>
-        </a>
-        <a href="#" onclick="loadPage('search')" class="bottom-nav-item">
-            <i class="fas fa-search"></i>
-            <span>খুঁজুন</span>
-        </a>
-        <a href="#" onclick="loadPage('chat')" class="bottom-nav-item">
-            <i class="fas fa-comments"></i>
-            <span>চ্যাট</span>
-        </a>
-        <a href="#" onclick="loadPage('profile')" class="bottom-nav-item">
-            <i class="fas fa-user"></i>
-            <span>আমি</span>
-        </a>
     </div>
 
-    <!-- JavaScript Files -->
-    <script src="/src/js/firebase.js"></script>
-    <script src="/src/js/auth.js"></script>
-    <script src="/src/js/app.js"></script>
-    <script src="/src/js/ui.js"></script>
-    <script src="/src/js/database.js"></script>
-    <script src="/src/js/location.js"></script>
-    <script src="/src/js/chat.js"></script>
-    <script src="/src/js/utils.js"></script>
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="modal active">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>স্বাগতম</h2>
+            </div>
+            <div style="margin-bottom: var(--spacing-xl);">
+                <p style="text-align: center; color: var(--text-light); margin-bottom: var(--spacing-lg);">হ্যালো বাংলাদেশীতে যোগ দিন এবং আপনার এলাকায় সংযুক্ত হন</p>
+                <div id="authTabs" style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                    <button class="btn btn-primary" style="flex: 1;" onclick="app.showLoginTab()">লগইন</button>
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="app.showSignupTab()">সাইন আপ</button>
+                </div>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">ইমেল</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="আপনার ইমেল">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">পাসওয়ার্ড</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="পাসওয়ার্ড">
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-bottom: var(--spacing-md);" onclick="app.login()">লগইন করুন</button>
+                <button class="btn btn-secondary" style="width: 100%;" onclick="app.loginWithGoogle()">গুগল দিয়ে লগইন করুন</button>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div id="signupForm" class="hidden">
+                <div class="form-group">
+                    <label class="form-label">নাম</label>
+                    <input type="text" id="signupName" class="form-input" placeholder="আপনার নাম">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">ইমেল</label>
+                    <input type="email" id="signupEmail" class="form-input" placeholder="আপনার ইমেল">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">পাসওয়ার্ড</label>
+                    <input type="password" id="signupPassword" class="form-input" placeholder="পাসওয়ার্ড">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">পেশা</label>
+                    <input type="text" id="signupProfession" class="form-input" placeholder="আপনার পেশা">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="app.signup()">সাইন আপ করুন</button>
+            </div>
+
+            <p id="authError" style="color: var(--accent-red); text-align: center; margin-top: var(--spacing-lg); display: none;"></p>
+        </div>
+    </div>
+
+    <!-- POST JOB MODAL -->
+    <div id="postJobModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>চাকরি পোস্ট করুন</h2>
+                <button class="modal-close" onclick="app.closeModal('postJobModal')">✕</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">চাকরির শিরোনাম</label>
+                <input type="text" id="jobTitle" class="form-input" placeholder="যেমন: সফটওয়্যার ডেভেলপার">
+            </div>
+            <div class="form-group">
+                <label class="form-label">বিবরণ</label>
+                <textarea id="jobDescription" class="form-textarea" placeholder="চাকরির বিবরণ লিখুন..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">অবস্থান</label>
+                <input type="text" id="jobLocation" class="form-input" placeholder="শহর/এলাকা">
+            </div>
+            <div class="form-group">
+                <label class="form-label">বেতন (ঐচ্ছিক)</label>
+                <input type="text" id="jobSalary" class="form-input" placeholder="বেতনের পরিসীমা">
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="app.postJob()">চাকরি পোস্ট করুন</button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast" style="display: none;"></div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // App State
+        const app = {
+            currentUser: null,
+            currentView: 'home',
+            
+            // Initialize app
+            init() {
+                this.setupLocationTracking();
+                this.loadCurrentUser();
+            },
+
+            // Hide splash screen
+            hideSplash() {
+                document.getElementById('splashScreen').style.display = 'none';
+                document.getElementById('mainApp').classList.remove('hidden');
+                document.getElementById('authModal').classList.add('active');
+            },
+
+            // Authentication
+            login() {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                if (!email || !password) {
+                    this.showError('সমস্ত ক্ষেত্র পূরণ করুন');
+                    return;
+                }
+
+                auth.signInWithEmailAndPassword(email, password)
+                    .then(result => {
+                        this.currentUser = result.user;
+                        this.showAuthenticatedUI();
+                        this.showToast('সফলভাবে লগইন হয়েছেন', 'success');
+                    })
+                    .catch(error => this.showError(error.message));
+            },
+
+            signup() {
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const profession = document.getElementById('signupProfession').value;
+
+                if (!name || !email || !password || !profession) {
+                    this.showError('সমস্ত ক্ষেত্র পূরণ করুন');
+                    return;
+                }
+
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(result => {
+                        const userId = result.user.uid;
+                        return db.collection('users').doc(userId).set({
+                            name,
+                            email,
+                            profession,
+                            bio: '',
+                            location: { latitude: 0, longitude: 0 },
+                            createdAt: new Date(),
+                            rating: 0,
+                            verified: false
+                        });
+                    })
+                    .then(() => {
+                        this.currentUser = auth.currentUser;
+                        this.showAuthenticatedUI();
+                        this.showToast('অ্যাকাউন্ট তৈরি সফল হয়েছে', 'success');
+                    })
+                    .catch(error => this.showError(error.message));
+            },
+
+            loginWithGoogle() {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider)
+                    .then(result => {
+                        this.currentUser = result.user;
+                        this.showAuthenticatedUI();
+                        this.showToast('গুগল দিয়ে সফলভাবে লগইন হয়েছেন', 'success');
+                    })
+                    .catch(error => this.showError(error.message));
+            },
+
+            logout() {
+                auth.signOut().then(() => {
+                    this.currentUser = null;
+                    document.getElementById('authModal').classList.add('active');
+                    document.getElementById('loginForm').classList.remove('hidden');
+                    document.getElementById('signupForm').classList.add('hidden');
+                    this.showToast('আপনি লগ আউট করেছেন', 'success');
+                });
+            },
+
+            // UI Navigation
+            navigateTo(view) {
+                // Hide all views
+                document.querySelectorAll('[id$="View"]').forEach(el => {
+                    el.classList.add('hidden');
+                });
+
+                // Show selected view
+                document.getElementById(view + 'View').classList.remove('hidden');
+
+                // Update sidebar
+                document.querySelectorAll('.sidebar-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.closest('.sidebar-item')?.classList.add('active');
+
+                this.currentView = view;
+                
+                if (view === 'home') this.loadNearbyUsers();
+                if (view === 'jobs') this.loadJobs();
+                if (view === 'chat') this.loadConversations();
+                if (view === 'profile') this.loadProfile();
+            },
+
+            // Load nearby users
+            loadNearbyUsers() {
+                const container = document.getElementById('usersList');
+                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+                db.collection('users').limit(20).get()
+                    .then(snapshot => {
+                        container.innerHTML = '';
+                        snapshot.forEach(doc => {
+                            const user = doc.data();
+                            const card = this.createUserCard(user, doc.id);
+                            container.appendChild(card);
+                        });
+                    });
+            },
+
+            // Create user card
+            createUserCard(user, userId) {
+                const div = document.createElement('div');
+                div.className = 'user-card';
+                div.innerHTML = `
+                    <div class="user-card-image">
+                        <div class="user-card-distance">${Math.random() * 10 + 1 | 0} কিমি দূর</div>
+                    </div>
+                    <div class="user-card-content">
+                        <div class="user-card-header">
+                            <div class="user-card-avatar">${user.name[0]}</div>
+                            <div class="user-card-info">
+                                <h3>${user.name}</h3>
+                                <p>${user.profession}</p>
+                            </div>
+                        </div>
+                        <div class="user-card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${user.rating || 0}</div>
+                                <div class="stat-label">রেটিং</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">পর্যালোচনা</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">98%</div>
+                                <div class="stat-label">সাড়া</div>
+                            </div>
+                        </div>
+                        <div class="user-card-actions">
+                            <button class="btn btn-primary" onclick="app.startChat('${userId}')">চ্যাট করুন</button>
+                            <button class="btn btn-secondary" onclick="app.viewProfile('${userId}')">দেখুন</button>
+                        </div>
+                    </div>
+                `;
+                return div;
+            },
+
+            // Load jobs
+            loadJobs() {
+                const container = document.getElementById('jobsList');
+                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+                db.collection('jobs').where('status', '==', 'open').limit(20).get()
+                    .then(snapshot => {
+                        container.innerHTML = '';
+                        snapshot.forEach(doc => {
+                            const job = doc.data();
+                            const card = this.createJobCard(job, doc.id);
+                            container.appendChild(card);
+                        });
+                    });
+            },
+
+            // Create job card
+            createJobCard(job, jobId) {
+                const div = document.createElement('div');
+                div.className = 'job-card';
+                div.innerHTML = `
+                    <div class="job-card-header">
+                        <div>
+                            <h3 class="job-card-title">${job.title}</h3>
+                            <span class="job-card-status ${job.status === 'open' ? 'status-open' : 'status-closed'}">
+                                ${job.status === 'open' ? 'খোলা' : 'বন্ধ'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="job-card-meta">
+                        <span>📍 ${job.location}</span>
+                        <span>📅 ${new Date(job.postedAt?.toDate()).toLocaleDateString('bn-BD')}</span>
+                    </div>
+                    <p class="job-card-description">${job.description}</p>
+                    ${job.salary ? `<div class="job-card-salary">${job.salary}</div>` : ''}
+                    <button class="btn btn-primary" style="width: 100%;" onclick="app.applyForJob('${jobId}')">আবেদন করুন</button>
+                `;
+                return div;
+            },
+
+            // Post job
+            postJob() {
+                const title = document.getElementById('jobTitle').value;
+                const description = document.getElementById('jobDescription').value;
+                const location = document.getElementById('jobLocation').value;
+                const salary = document.getElementById('jobSalary').value;
+
+                if (!title || !description || !location) {
+                    this.showError('সমস্ত প্রয়োজনীয় ক্ষেত্র পূরণ করুন');
+                    return;
+                }
+
+                db.collection('jobs').add({
+                    title,
+                    description,
+                    location,
+                    salary,
+                    employerId: this.currentUser.uid,
+                    status: 'open',
+                    postedAt: new Date(),
+                    applicantCount: 0
+                }).then(() => {
+                    this.closeModal('postJobModal');
+                    this.loadJobs();
+                    this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে', 'success');
+                    // Clear form
+                    document.getElementById('jobTitle').value = '';
+                    document.getElementById('jobDescription').value = '';
+                    document.getElementById('jobLocation').value = '';
+                    document.getElementById('jobSalary').value = '';
+                });
+            },
+
+            // Chat functions
+            loadConversations() {
+                const container = document.getElementById('conversationsList');
+                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+                db.collection('chats')
+                    .where('participantIds', 'array-contains', this.currentUser.uid)
+                    .get()
+                    .then(snapshot => {
+                        container.innerHTML = '';
+                        snapshot.forEach(doc => {
+                            const chat = doc.data();
+                            const item = this.createChatItem(chat, doc.id);
+                            container.appendChild(item);
+                        });
+                    });
+            },
+
+            createChatItem(chat, chatId) {
+                const div = document.createElement('div');
+                div.className = 'chat-item';
+                div.onclick = () => this.openChat(chatId, chat.otherUserName);
+                div.innerHTML = `
+                    <div class="chat-avatar">${chat.otherUserName[0]}</div>
+                    <div class="chat-meta">
+                        <h4>${chat.otherUserName}</h4>
+                        <p>${chat.lastMessage}</p>
+                    </div>
+                `;
+                return div;
+            },
+
+            startChat(userId) {
+                db.collection('users').doc(userId).get().then(doc => {
+                    const user = doc.data();
+                    this.navigateTo('chat');
+                    setTimeout(() => this.openChat(userId, user.name), 100);
+                });
+            },
+
+            openChat(chatId, userName) {
+                document.getElementById('chatWindow').style.display = 'flex';
+                document.getElementById('chatTitle').textContent = userName;
+                this.loadChatMessages(chatId);
+            },
+
+            closeChat() {
+                document.getElementById('chatWindow').style.display = 'none';
+            },
+
+            loadChatMessages(chatId) {
+                const container = document.getElementById('chatMessages');
+                container.innerHTML = '';
+
+                db.collection('chats').doc(chatId).collection('messages')
+                    .orderBy('timestamp')
+                    .get()
+                    .then(snapshot => {
+                        snapshot.forEach(doc => {
+                            const msg = doc.data();
+                            const div = document.createElement('div');
+                            div.className = `message ${msg.senderId === this.currentUser.uid ? 'sent' : 'received'}`;
+                            div.innerHTML = `<div class="message-content">${msg.text}</div>`;
+                            container.appendChild(div);
+                        });
+                        container.scrollTop = container.scrollHeight;
+                    });
+            },
+
+            sendMessage() {
+                const input = document.getElementById('chatInput');
+                const text = input.value.trim();
+
+                if (!text) return;
+
+                const chatId = document.getElementById('chatTitle').textContent;
+                
+                db.collection('chats').doc(chatId).collection('messages').add({
+                    senderId: this.currentUser.uid,
+                    text,
+                    timestamp: new Date(),
+                    status: 'sent'
+                }).then(() => {
+                    input.value = '';
+                    this.loadChatMessages(chatId);
+                });
+            },
+
+            // Profile functions
+            loadProfile() {
+                db.collection('users').doc(this.currentUser.uid).get().then(doc => {
+                    const user = doc.data();
+                    document.getElementById('profileAvatar').textContent = user.name[0];
+                    document.getElementById('profileName').textContent = user.name;
+                    document.getElementById('profileProfession').textContent = user.profession;
+                    document.getElementById('profileBio').textContent = user.bio || 'বায়ো যোগ করা হয়নি';
+                    document.getElementById('userGreeting').textContent = `স্বাগতম, ${user.name.split(' ')[0]}`;
+                });
+            },
+
+            viewProfile(userId) {
+                db.collection('users').doc(userId).get().then(doc => {
+                    const user = doc.data();
+                    alert(`${user.name}\n${user.profession}\n${user.bio}`);
+                });
+            },
+
+            // Modal functions
+            showPostJobModal() {
+                document.getElementById('postJobModal').classList.add('active');
+            },
+
+            closeModal(modalId) {
+                document.getElementById(modalId).classList.remove('active');
+            },
+
+            // Auth UI
+            showLoginTab() {
+                document.getElementById('loginForm').classList.remove('hidden');
+                document.getElementById('signupForm').classList.add('hidden');
+                document.querySelectorAll('#authTabs button')[0].classList.remove('btn-secondary');
+                document.querySelectorAll('#authTabs button')[0].classList.add('btn-primary');
+                document.querySelectorAll('#authTabs button')[1].classList.remove('btn-primary');
+                document.querySelectorAll('#authTabs button')[1].classList.add('btn-secondary');
+            },
+
+            showSignupTab() {
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('signupForm').classList.remove('hidden');
+                document.querySelectorAll('#authTabs button')[1].classList.remove('btn-secondary');
+                document.querySelectorAll('#authTabs button')[1].classList.add('btn-primary');
+                document.querySelectorAll('#authTabs button')[0].classList.remove('btn-primary');
+                document.querySelectorAll('#authTabs button')[0].classList.add('btn-secondary');
+            },
+
+            showAuthenticatedUI() {
+                document.getElementById('authModal').classList.remove('active');
+                this.loadProfile();
+                this.loadNearbyUsers();
+            },
+
+            showError(message) {
+                document.getElementById('authError').textContent = message;
+                document.getElementById('authError').style.display = 'block';
+            },
+
+            showToast(message, type = 'info') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.remove('error', 'success');
+                if (type !== 'info') toast.classList.add(type);
+                toast.style.display = 'block';
+                setTimeout(() => toast.style.display = 'none', 3000);
+            },
+
+            // Location tracking
+            setupLocationTracking() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.watchPosition(position => {
+                        if (this.currentUser) {
+                            db.collection('users').doc(this.currentUser.uid).update({
+                                location: {
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+
+            loadCurrentUser() {
+                auth.onAuthStateChanged(user => {
+                    this.currentUser = user;
+                    if (user) {
+                        this.showAuthenticatedUI();
+                    }
+                });
+            },
+
+            applyForJob(jobId) {
+                db.collection('applications').add({
+                    jobId,
+                    applicantId: this.currentUser.uid,
+                    appliedAt: new Date(),
+                    status: 'pending'
+                }).then(() => {
+                    this.showToast('চাকরিতে আবেদন সফল হয়েছে', 'success');
+                });
+            }
+        };
+
+        // Initialize app when page loads
+        window.addEventListener('load', () => app.init());
+    </script>
 </body>
 </html>
