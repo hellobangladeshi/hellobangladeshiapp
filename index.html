@@ -8,67 +8,89 @@
     <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js"></script>
-    
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW36hxQjl9D_WM0ZOim2EYFb_Z_CatTNU&libraries=places"></script>
     
     <style>
         :root {
-            /* Primary Colors */
-            --primary: #FF6B35;
-            --primary-dark: #E85A28;
-            --primary-light: #FFB366;
+            /* Primary Colors - Bangladeshi Theme */
+            --primary: #006A4E; /* Bangladesh Green */
+            --primary-dark: #00563D;
+            --primary-light: #008060;
             
             /* Secondary Colors */
-            --secondary: #004E89;
-            --secondary-light: #1A7BA1;
+            --secondary: #F42A41; /* Bangladesh Red */
+            --secondary-light: #FF5C72;
+            --secondary-dark: #D42034;
             
             /* Accent Colors */
-            --accent-green: #2ECC71;
+            --accent-gold: #FFD700;
+            --accent-green: #27AE60;
+            --accent-blue: #3498DB;
             --accent-orange: #F39C12;
             --accent-red: #E74C3C;
+            --accent-purple: #9B59B6;
             
             /* Neutral Colors */
             --text-dark: #1A1A1A;
-            --text-light: #666666;
-            --bg-light: #F8F9FA;
+            --text-medium: #4A5568;
+            --text-light: #718096;
+            --bg-light: #F7FAFC;
             --bg-white: #FFFFFF;
-            --border-color: #E0E0E0;
+            --bg-card: #FFFFFF;
+            --border-color: #E2E8F0;
+            --shadow-color: rgba(0, 106, 78, 0.08);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            --gradient-green: linear-gradient(135deg, #27AE60, #2ECC71);
+            --gradient-blue: linear-gradient(135deg, #3498DB, #2E86C1);
             
             /* Spacing */
-            --spacing-xs: 4px;
-            --spacing-sm: 8px;
-            --spacing-md: 16px;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
+            --spacing-xs: 6px;
+            --spacing-sm: 12px;
+            --spacing-md: 20px;
+            --spacing-lg: 30px;
+            --spacing-xl: 40px;
+            --spacing-xxl: 60px;
             
             /* Typography */
+            --font-bangla: 'Hind Siliguri', sans-serif;
             --font-display: 'Poppins', sans-serif;
             --font-body: 'Inter', sans-serif;
             
             /* Shadows */
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.2);
+            --shadow-sm: 0 2px 8px var(--shadow-color);
+            --shadow-md: 0 6px 16px var(--shadow-color);
+            --shadow-lg: 0 12px 32px var(--shadow-color);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
             
             /* Border Radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
             --radius-full: 9999px;
             
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
             /* Z-index */
+            --z-dropdown: 100;
+            --z-sticky: 200;
             --z-modal: 1000;
-            --z-dropdown: 900;
-            --z-sticky: 100;
+            --z-toast: 1100;
         }
 
         * {
@@ -78,10 +100,16 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-bangla);
             background: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            direction: ltr;
+        }
+
+        /* Bangla Typography */
+        .bangla {
+            font-family: var(--font-bangla);
         }
 
         /* ============================================
@@ -89,7 +117,7 @@
            ============================================ */
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 var(--spacing-md);
         }
@@ -110,6 +138,10 @@
             justify-content: space-between;
         }
 
+        .flex-col {
+            flex-direction: column;
+        }
+
         .grid {
             display: grid;
         }
@@ -120,6 +152,159 @@
 
         .visible {
             display: block !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .mt-1 { margin-top: var(--spacing-xs); }
+        .mt-2 { margin-top: var(--spacing-sm); }
+        .mt-3 { margin-top: var(--spacing-md); }
+        .mt-4 { margin-top: var(--spacing-lg); }
+        .mt-5 { margin-top: var(--spacing-xl); }
+
+        .mb-1 { margin-bottom: var(--spacing-xs); }
+        .mb-2 { margin-bottom: var(--spacing-sm); }
+        .mb-3 { margin-bottom: var(--spacing-md); }
+        .mb-4 { margin-bottom: var(--spacing-lg); }
+        .mb-5 { margin-bottom: var(--spacing-xl); }
+
+        .p-1 { padding: var(--spacing-xs); }
+        .p-2 { padding: var(--spacing-sm); }
+        .p-3 { padding: var(--spacing-md); }
+        .p-4 { padding: var(--spacing-lg); }
+        .p-5 { padding: var(--spacing-xl); }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-new {
+            background: var(--secondary);
+        }
+
+        .badge-popular {
+            background: var(--accent-orange);
+        }
+
+        .badge-verified {
+            background: var(--accent-green);
+        }
+
+        /* ============================================
+           SPLASH SCREEN
+           ============================================ */
+
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--gradient-primary);
+            z-index: var(--z-modal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 0.5s ease 3s forwards;
+        }
+
+        .splash-content {
+            text-align: center;
+            padding: var(--spacing-xl);
+            animation: slideUp 1s ease 0.5s both;
+        }
+
+        .splash-logo {
+            width: 140px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            margin: 0 auto var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            animation: pulse 2s ease-in-out infinite;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .splash-screen h1 {
+            font-family: var(--font-bangla);
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .splash-screen p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-xl);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .splash-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .splash-bg-decoration {
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .splash-circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+        }
+
+        .splash-circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            left: -100px;
         }
 
         /* ============================================
@@ -133,64 +318,88 @@
             top: 0;
             z-index: var(--z-sticky);
             box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
 
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--spacing-md) var(--spacing-lg);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            max-width: 1280px;
+            margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--spacing-md);
+            gap: var(--spacing-sm);
             text-decoration: none;
             font-weight: 700;
             font-size: 24px;
             color: var(--primary);
-            font-family: var(--font-display);
+            font-family: var(--font-bangla);
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-primary);
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-center {
             display: flex;
-            gap: var(--spacing-xl);
+            gap: var(--spacing-md);
             flex: 1;
             justify-content: center;
         }
 
         .nav-link {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-medium);
             font-weight: 500;
-            font-size: 14px;
+            font-size: 15px;
             padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            transition: all 0.3s ease;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-normal);
             cursor: pointer;
+            position: relative;
+            font-family: var(--font-bangla);
         }
 
         .nav-link:hover {
             color: var(--primary);
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(0, 106, 78, 0.08);
         }
 
         .nav-link.active {
             color: var(--primary);
-            border-bottom: 2px solid var(--primary);
+            background: rgba(0, 106, 78, 0.1);
+            font-weight: 600;
+        }
+
+        .nav-link .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--secondary);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(50%, -50%);
         }
 
         .nav-right {
@@ -199,125 +408,73 @@
             gap: var(--spacing-md);
         }
 
-        .btn-auth {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 14px;
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
         }
 
-        .btn-login {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+        .user-menu:hover {
+            background: var(--bg-light);
         }
 
-        .btn-login:hover {
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .user-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-dark);
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-light);
+            color: var(--text-medium);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon:hover {
             background: var(--primary);
             color: white;
-        }
-
-        .btn-signup {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-signup:hover {
-            background: var(--primary-dark);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
-        /* ============================================
-           SPLASH/HERO SECTION
-           ============================================ */
-
-        .splash-screen {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .splash-content {
-            text-align: center;
-            z-index: 2;
-            animation: slideUp 0.8s ease 0.3s both;
-        }
-
-        .splash-logo {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-lg);
-            margin: 0 auto var(--spacing-xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .splash-screen h1 {
-            font-family: var(--font-display);
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: var(--spacing-md);
-            line-height: 1.2;
-        }
-
-        .splash-screen p {
-            font-size: 18px;
-            opacity: 0.95;
-            margin-bottom: var(--spacing-xl);
-            max-width: 500px;
-        }
-
-        .splash-button {
-            padding: var(--spacing-md) var(--spacing-xl);
-            font-size: 16px;
-            font-weight: 600;
-            background: white;
-            color: var(--primary);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
             border: none;
-            border-radius: var(--radius-md);
+            font-size: 24px;
+            color: var(--text-dark);
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .splash-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .splash-bg-decoration {
-            position: absolute;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .splash-circle-1 {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: white;
-            top: -100px;
-            right: -100px;
-        }
-
-        .splash-circle-2 {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: white;
-            bottom: -50px;
-            left: -50px;
         }
 
         /* ============================================
@@ -326,59 +483,103 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 250px 1fr 320px;
+            grid-template-columns: 280px 1fr 340px;
             gap: var(--spacing-lg);
             padding: var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
+        /* ============================================
+           SIDEBAR
+           ============================================ */
+
         .sidebar {
-            background: var(--bg-white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-sm);
             height: fit-content;
             position: sticky;
             top: 100px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.5px;
         }
 
         .sidebar-item {
             padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
             border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
-            color: var(--text-dark);
+            color: var(--text-medium);
             text-decoration: none;
+            font-weight: 500;
         }
 
         .sidebar-item:hover {
             background: var(--bg-light);
             color: var(--primary);
+            transform: translateX(5px);
         }
 
         .sidebar-item.active {
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(0, 106, 78, 0.1);
             color: var(--primary);
             font-weight: 600;
         }
 
         .sidebar-icon {
             font-size: 20px;
-            min-width: 20px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-badge {
+            margin-left: auto;
+            background: var(--secondary);
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: var(--spacing-lg) 0;
+            border: none;
         }
 
         /* ============================================
-           FEED/MAIN SECTION
+           FEED SECTION
            ============================================ */
 
         .feed {
-            background: var(--bg-white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
         }
 
         .feed-header {
@@ -387,93 +588,158 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .feed-header h2 {
-            font-family: var(--font-display);
+        .feed-title {
+            font-family: var(--font-bangla);
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-dark);
+        }
+
+        .feed-subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .feed-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .feed-tab {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            background: none;
+            border: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: var(--font-bangla);
+        }
+
+        .feed-tab:hover {
+            color: var(--primary);
+            background: rgba(0, 106, 78, 0.08);
+        }
+
+        .feed-tab.active {
+            color: var(--primary);
+            background: rgba(0, 106, 78, 0.1);
+            font-weight: 600;
         }
 
         /* ============================================
-           USER CARDS
+           USER CARD
            ============================================ */
 
+        .grid-users {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
         .user-card {
-            background: var(--bg-white);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
             cursor: pointer;
             box-shadow: var(--shadow-sm);
         }
 
         .user-card:hover {
             box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
-
-        .user-card-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .user-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .user-card-distance {
-            position: absolute;
-            top: var(--spacing-md);
-            right: var(--spacing-md);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-full);
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .user-card-content {
-            padding: var(--spacing-lg);
+            transform: translateY(-8px);
+            border-color: var(--primary);
         }
 
         .user-card-header {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            position: relative;
+            height: 160px;
+            background: var(--gradient-primary);
+            overflow: hidden;
+        }
+
+        .user-card-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
         }
 
         .user-card-avatar {
-            width: 50px;
-            height: 50px;
+            position: absolute;
+            bottom: -40px;
+            left: var(--spacing-lg);
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border: 4px solid var(--bg-card);
+            background: var(--gradient-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 36px;
             font-weight: 700;
-            font-size: 20px;
-            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
         }
 
-        .user-card-info h3 {
-            font-family: var(--font-display);
-            font-size: 18px;
+        .user-card-online {
+            position: absolute;
+            bottom: -35px;
+            left: 110px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            border: 3px solid var(--bg-card);
+        }
+
+        .user-card-content {
+            padding: 60px var(--spacing-lg) var(--spacing-lg);
+        }
+
+        .user-card-name {
+            font-family: var(--font-bangla);
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: var(--spacing-xs);
+            color: var(--text-dark);
         }
 
-        .user-card-info p {
-            font-size: 13px;
+        .user-card-profession {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .user-card-location {
             color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .user-card-bio {
+            color: var(--text-medium);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .user-card-stats {
@@ -492,44 +758,52 @@
 
         .stat-value {
             font-family: var(--font-display);
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--primary);
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-light);
-            margin-top: var(--spacing-xs);
+            margin-top: 4px;
         }
 
         .user-card-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
+            gap: var(--spacing-sm);
         }
 
+        /* ============================================
+           BUTTONS
+           ============================================ */
+
         .btn {
-            padding: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
             border: none;
             border-radius: var(--radius-md);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: var(--spacing-sm);
+            font-family: var(--font-bangla);
+            outline: none;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: var(--gradient-primary);
             color: white;
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
@@ -542,101 +816,281 @@
             background: white;
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 13px;
+        }
+
+        .btn-block {
+            width: 100%;
         }
 
         /* ============================================
-           RIGHT SIDEBAR (RECOMMENDATIONS)
+           RIGHT SIDEBAR
            ============================================ */
 
-        .recommendations {
-            background: var(--bg-white);
+        .right-sidebar {
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-sm);
             height: fit-content;
             position: sticky;
             top: 100px;
+            border: 1px solid var(--border-color);
         }
 
-        .recommendations-title {
-            font-family: var(--font-display);
-            font-size: 16px;
+        .right-sidebar-title {
+            font-family: var(--font-bangla);
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: var(--spacing-lg);
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
+        /* Recommendations */
         .recommendation-item {
             padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
             background: var(--bg-light);
             border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            border: 1px solid transparent;
         }
 
         .recommendation-item:hover {
-            background: var(--primary);
-            color: white;
+            background: white;
+            border-color: var(--primary);
+            transform: translateX(5px);
         }
 
-        .recommendation-name {
+        .recommendation-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-weight: 600;
-            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .recommendation-info h4 {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .recommendation-info p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Trending Jobs */
+        .trending-job {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+
+        .trending-job:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-dark);
+        }
+
+        .job-company {
+            font-size: 13px;
+            color: var(--text-light);
             margin-bottom: var(--spacing-xs);
         }
 
-        .recommendation-role {
+        .job-salary {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        /* Events */
+        .event-item {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: white;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .event-date {
             font-size: 12px;
-            opacity: 0.7;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .event-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-dark);
+        }
+
+        .event-location {
+            font-size: 12px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
         }
 
         /* ============================================
-           MODALS & DIALOGS
+           MODALS
            ============================================ */
 
-        .modal {
-            display: none;
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             z-index: var(--z-modal);
+            display: none;
             align-items: center;
             justify-content: center;
+            padding: var(--spacing-md);
+            animation: fadeIn 0.3s ease;
         }
 
-        .modal.active {
+        .modal-overlay.active {
             display: flex;
         }
 
         .modal-content {
             background: white;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             padding: var(--spacing-xl);
             max-width: 500px;
-            width: 90%;
-            box-shadow: var(--shadow-lg);
-            animation: slideUp 0.3s ease;
+            width: 100%;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.4s ease;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-header {
-            font-family: var(--font-display);
-            font-size: 24px;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .modal-title {
+            font-family: var(--font-bangla);
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .modal-subtitle {
+            color: var(--text-light);
+            font-size: 16px;
         }
 
         .modal-close {
-            background: none;
+            position: absolute;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--bg-light);
             border: none;
-            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
-            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Auth Modal */
+        .auth-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: none;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            color: var(--text-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: var(--font-bangla);
+        }
+
+        .auth-tab:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .auth-tab.active {
+            background: var(--gradient-primary);
+            color: white;
         }
 
         .form-group {
@@ -648,119 +1102,82 @@
             margin-bottom: var(--spacing-sm);
             font-weight: 600;
             font-size: 14px;
+            color: var(--text-dark);
         }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-control {
             width: 100%;
             padding: var(--spacing-md);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: 14px;
-            transition: all 0.3s ease;
+            font-family: var(--font-bangla);
+            font-size: 15px;
+            transition: all var(--transition-normal);
+            background: var(--bg-light);
         }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
+        .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 0 4px rgba(0, 106, 78, 0.1);
+            background: white;
         }
 
         .form-textarea {
             resize: vertical;
-            min-height: 100px;
-        }
-
-        /* ============================================
-           GRID LAYOUTS
-           ============================================ */
-
-        .grid-users {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-        }
-
-        .grid-jobs {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        /* ============================================
-           JOB POST CARD
-           ============================================ */
-
-        .job-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-        .job-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary);
-        }
-
-        .job-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .job-card-title {
-            font-family: var(--font-display);
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .job-card-status {
-            display: inline-block;
-            padding: var(--spacing-xs) var(--spacing-md);
-            border-radius: var(--radius-full);
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .status-open {
-            background: rgba(46, 204, 113, 0.2);
-            color: var(--accent-green);
-        }
-
-        .status-closed {
-            background: rgba(231, 76, 60, 0.2);
-            color: var(--accent-red);
-        }
-
-        .job-card-meta {
-            display: flex;
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        .job-card-description {
-            margin-bottom: var(--spacing-md);
+            min-height: 120px;
             line-height: 1.6;
-            color: var(--text-light);
         }
 
-        .job-card-salary {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: var(--spacing-md);
+        .form-checkbox {
+            width: 18px;
+            height: 18px;
+            margin-right: var(--spacing-sm);
+        }
+
+        .form-checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn-google, .btn-facebook {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .btn-google {
+            background: #4285F4;
+            color: white;
+        }
+
+        .btn-google:hover {
+            background: #3367D6;
+        }
+
+        .btn-facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .btn-facebook:hover {
+            background: #166FE5;
         }
 
         /* ============================================
@@ -769,26 +1186,58 @@
 
         .chat-container {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 350px 1fr;
             gap: var(--spacing-lg);
-            height: calc(100vh - 100px);
+            height: calc(100vh - 180px);
+        }
+
+        .chat-sidebar {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+        }
+
+        .chat-search {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chat-search input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-family: var(--font-bangla);
+            padding-left: 40px;
+            background: var(--bg-light);
+        }
+
+        .chat-search i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
         }
 
         .chat-list {
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
+            flex: 1;
             overflow-y: auto;
-            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-sm);
         }
 
         .chat-item {
             padding: var(--spacing-md);
-            border-bottom: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all var(--transition-normal);
             display: flex;
             gap: var(--spacing-md);
             align-items: center;
+            margin-bottom: var(--spacing-xs);
         }
 
         .chat-item:hover {
@@ -796,43 +1245,66 @@
         }
 
         .chat-item.active {
-            background: rgba(255, 107, 53, 0.1);
-            border-left: 3px solid var(--primary);
+            background: rgba(0, 106, 78, 0.1);
+            border-left: 4px solid var(--primary);
         }
 
         .chat-avatar {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            flex-shrink: 0;
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 700;
-        }
-
-        .chat-meta h4 {
             font-weight: 600;
-            font-size: 14px;
-            margin-bottom: var(--spacing-xs);
+            flex-shrink: 0;
         }
 
-        .chat-meta p {
-            font-size: 12px;
+        .chat-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .chat-info h4 {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+            color: var(--text-dark);
+        }
+
+        .chat-last-message {
+            font-size: 13px;
             color: var(--text-light);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
+        .chat-time {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .chat-unread {
+            background: var(--secondary);
+            color: white;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .chat-window {
-            background: var(--bg-white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             display: flex;
             flex-direction: column;
-            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
         }
 
         .chat-header {
@@ -841,6 +1313,39 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background: var(--bg-light);
+        }
+
+        .chat-user {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .chat-user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .chat-user-info h3 {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .chat-user-status {
+            font-size: 13px;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
         }
 
         .chat-messages {
@@ -850,56 +1355,308 @@
             display: flex;
             flex-direction: column;
             gap: var(--spacing-md);
+            background: linear-gradient(180deg, rgba(0,106,78,0.02) 0%, rgba(255,255,255,1) 100%);
         }
 
         .message {
             display: flex;
-            gap: var(--spacing-md);
+            max-width: 70%;
             animation: slideUp 0.3s ease;
         }
 
+        .message.received {
+            align-self: flex-start;
+        }
+
         .message.sent {
-            justify-content: flex-end;
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: var(--spacing-xs);
+        }
+
+        .message.received .message-avatar {
+            margin-right: var(--spacing-sm);
+        }
+
+        .message.sent .message-avatar {
+            margin-left: var(--spacing-sm);
         }
 
         .message-content {
-            max-width: 70%;
             padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            font-size: 14px;
-            line-height: 1.4;
+            border-radius: var(--radius-lg);
+            font-size: 15px;
+            line-height: 1.5;
         }
 
         .message.received .message-content {
-            background: var(--bg-light);
+            background: white;
             color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-top-left-radius: var(--radius-sm);
         }
 
         .message.sent .message-content {
-            background: var(--primary);
+            background: var(--gradient-primary);
             color: white;
-            border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-md);
+            border-top-right-radius: var(--radius-sm);
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .message.sent .message-time {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .chat-input {
             padding: var(--spacing-lg);
             border-top: 1px solid var(--border-color);
+            background: white;
             display: flex;
-            gap: var(--spacing-md);
+            gap: var(--spacing-sm);
         }
 
         .chat-input input {
             flex: 1;
             padding: var(--spacing-md);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: 14px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-family: var(--font-bangla);
+            font-size: 15px;
+            transition: all var(--transition-normal);
         }
 
         .chat-input input:focus {
             outline: none;
             border-color: var(--primary);
+        }
+
+        /* ============================================
+           JOB CARDS
+           ============================================ */
+
+        .grid-jobs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .job-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .job-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-card-title {
+            font-family: var(--font-bangla);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .job-card-company {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .job-card-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-tag {
+            padding: 4px 12px;
+            background: var(--bg-light);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            color: var(--text-medium);
+        }
+
+        .job-tag-type {
+            background: rgba(0, 106, 78, 0.1);
+            color: var(--primary);
+        }
+
+        .job-card-description {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+            font-size: 15px;
+        }
+
+        .job-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .job-card-salary {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .job-card-location {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .job-featured {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 4px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           PROFILE PAGE
+           ============================================ */
+
+        .profile-header {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            color: white;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background: var(--gradient-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-bangla);
+        }
+
+        .profile-profession {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .profile-stat {
+            text-align: center;
+        }
+
+        .profile-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .profile-stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: var(--spacing-lg);
+        }
+
+        .profile-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-dark);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+            font-family: var(--font-bangla);
         }
 
         /* ============================================
@@ -909,20 +1666,11 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
             }
         }
 
@@ -935,57 +1683,37 @@
             }
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
             }
-
-            .sidebar,
-            .recommendations {
-                display: none;
-            }
-
-            .chat-container {
-                grid-template-columns: 1fr;
-            }
-
-            .chat-list {
-                display: none;
+            to {
+                opacity: 0;
+                visibility: hidden;
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-center {
-                display: none;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
             }
-
-            .splash-screen h1 {
-                font-size: 32px;
+            50% {
+                transform: scale(1.05);
             }
+        }
 
-            .grid-users {
-                grid-template-columns: 1fr;
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
             }
-
-            .user-card-stats {
-                grid-template-columns: repeat(2, 1fr);
+            50% {
+                transform: translateY(-10px);
             }
+        }
 
-            .user-card-actions {
-                grid-template-columns: 1fr;
-            }
-
-            .job-card-meta {
-                flex-direction: column;
-                gap: var(--spacing-sm);
-            }
-
-            .message-content {
-                max-width: 100%;
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
 
@@ -997,64 +1725,319 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-xl);
+            padding: var(--spacing-xxl);
+            flex-direction: column;
+            gap: var(--spacing-lg);
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--bg-light);
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
             border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         .empty-state {
             text-align: center;
-            padding: var(--spacing-xl);
+            padding: var(--spacing-xxl);
             color: var(--text-light);
         }
 
         .empty-state-icon {
-            font-size: 64px;
+            font-size: 80px;
             margin-bottom: var(--spacing-lg);
+            opacity: 0.5;
         }
 
         .empty-state h3 {
-            font-family: var(--font-display);
-            font-size: 20px;
+            font-family: var(--font-bangla);
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: var(--spacing-md);
             color: var(--text-dark);
         }
 
+        .empty-state p {
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
         /* ============================================
-           NOTIFICATIONS
+           TOAST NOTIFICATIONS
            ============================================ */
 
-        .toast {
+        .toast-container {
             position: fixed;
             bottom: var(--spacing-lg);
             right: var(--spacing-lg);
+            z-index: var(--z-toast);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .toast {
             background: white;
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            z-index: var(--z-modal);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            min-width: 300px;
+            border-left: 6px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
             animation: slideUp 0.3s ease;
-            border-left: 4px solid var(--primary);
+            transform: translateX(100%);
+            animation: slideIn 0.3s ease forwards;
+            border: 1px solid var(--border-color);
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .toast-icon {
+            font-size: 24px;
+        }
+
+        .toast.success {
+            border-left-color: var(--accent-green);
         }
 
         .toast.error {
             border-left-color: var(--accent-red);
         }
 
-        .toast.success {
-            border-left-color: var(--accent-green);
+        .toast.warning {
+            border-left-color: var(--accent-orange);
+        }
+
+        .toast.info {
+            border-left-color: var(--accent-blue);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .toast-message {
+            font-size: 14px;
+            color: var(--text-medium);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 4px;
+        }
+
+        .toast-close:hover {
+            color: var(--text-dark);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 250px 1fr;
+            }
+            
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .chat-container {
+                grid-template-columns: 1fr;
+                height: calc(100vh - 140px);
+            }
+            
+            .chat-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--spacing-sm);
+            }
+            
+            .nav-center {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-name {
+                display: none;
+            }
+            
+            .grid-users {
+                grid-template-columns: 1fr;
+            }
+            
+            .splash-screen h1 {
+                font-size: 32px;
+            }
+            
+            .splash-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .modal-content {
+                padding: var(--spacing-lg);
+            }
+            
+            .profile-stats {
+                flex-wrap: wrap;
+                gap: var(--spacing-md);
+            }
+            
+            .user-card-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-card-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: var(--spacing-sm);
+            }
+            
+            .feed {
+                padding: var(--spacing-md);
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+            
+            .chat-input {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ============================================
+           MOBILE MENU
+           ============================================ */
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: var(--z-modal);
+            display: none;
+            flex-direction: column;
+            padding: var(--spacing-xl);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .mobile-nav-item {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .mobile-nav-item:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .mobile-nav-item.active {
+            background: rgba(0, 106, 78, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .mobile-nav-icon {
+            width: 24px;
+            text-align: center;
         }
     </style>
 </head>
@@ -1064,10 +2047,28 @@
         <div class="splash-bg-decoration splash-circle-1"></div>
         <div class="splash-bg-decoration splash-circle-2"></div>
         <div class="splash-content">
-            <div class="splash-logo">🇧🇩</div>
-            <h1>হ্যালো বাংলাদেশী</h1>
-            <p>স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্ক</p>
-            <button class="splash-button" onclick="app.hideSplash()">শুরু করুন</button>
+            <div class="splash-logo">
+                <i class="fas fa-flag"></i>
+            </div>
+            <h1 class="bangla">হ্যালো বাংলাদেশী</h1>
+            <p class="bangla">স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম</p>
+            <div class="splash-stats">
+                <div>
+                    <span class="stat-number">১০,০০০+</span>
+                    <span class="stat-label bangla">সদস্য</span>
+                </div>
+                <div>
+                    <span class="stat-number">৫০০+</span>
+                    <span class="stat-label bangla">শহর</span>
+                </div>
+                <div>
+                    <span class="stat-number">১০,০০০+</span>
+                    <span class="stat-label bangla">সংযোগ</span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="app.hideSplash()" style="max-width: 200px; margin: 0 auto;">
+                <i class="fas fa-play"></i> শুরু করুন
+            </button>
         </div>
     </div>
 
@@ -1076,54 +2077,160 @@
         <!-- HEADER -->
         <header>
             <div class="navbar">
-                <a href="#" class="logo">
-                    <div class="logo-icon">🇧🇩</div>
-                    <span>হ্যালো</span>
+                <button class="mobile-menu-btn" onclick="app.toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <a href="#" class="logo" onclick="app.navigateTo('home')">
+                    <div class="logo-icon">হেবি</div>
+                    <span class="bangla">হ্যালো বাংলাদেশী</span>
                 </a>
 
                 <nav class="nav-center">
-                    <span class="nav-link active" onclick="app.navigateTo('home')">বাড়ি</span>
-                    <span class="nav-link" onclick="app.navigateTo('search')">খুঁজুন</span>
-                    <span class="nav-link" onclick="app.navigateTo('jobs')">চাকরি</span>
-                    <span class="nav-link" onclick="app.navigateTo('chat')">চ্যাট</span>
-                    <span class="nav-link" onclick="app.navigateTo('profile')">প্রোফাইল</span>
+                    <span class="nav-link active" onclick="app.navigateTo('home')">
+                        <i class="fas fa-home"></i> বাড়ি
+                    </span>
+                    <span class="nav-link" onclick="app.navigateTo('search')">
+                        <i class="fas fa-search"></i> খুঁজুন
+                    </span>
+                    <span class="nav-link" onclick="app.navigateTo('jobs')">
+                        <i class="fas fa-briefcase"></i> চাকরি
+                    </span>
+                    <span class="nav-link" onclick="app.navigateTo('chat')">
+                        <i class="fas fa-comments"></i> চ্যাট
+                        <span class="notification-badge">৩</span>
+                    </span>
+                    <span class="nav-link" onclick="app.navigateTo('profile')">
+                        <i class="fas fa-user"></i> প্রোফাইল
+                    </span>
                 </nav>
 
                 <div class="nav-right">
-                    <div id="userGreeting" class="nav-link"></div>
-                    <button class="btn-auth btn-login" onclick="app.logout()">লগ আউট</button>
+                    <button class="btn-icon" onclick="app.navigateTo('notifications')">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <div class="user-menu" onclick="app.toggleUserDropdown()" id="userMenu">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="user-name bangla" id="userName">অতিথি</div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
             </div>
         </header>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <div class="logo-icon">হেবি</div>
+                    <span class="bangla">হ্যালো বাংলাদেশী</span>
+                </div>
+                <button class="mobile-menu-close" onclick="app.toggleMobileMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="mobile-nav">
+                <a class="mobile-nav-item active" onclick="app.navigateTo('home'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-home"></i></span>
+                    <span>বাড়ি</span>
+                </a>
+                <a class="mobile-nav-item" onclick="app.navigateTo('search'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-search"></i></span>
+                    <span>খুঁজুন</span>
+                </a>
+                <a class="mobile-nav-item" onclick="app.navigateTo('jobs'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-briefcase"></i></span>
+                    <span>চাকরি</span>
+                </a>
+                <a class="mobile-nav-item" onclick="app.navigateTo('chat'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-comments"></i></span>
+                    <span>চ্যাট <span class="badge badge-new" style="margin-left: 8px;">৩</span></span>
+                </a>
+                <a class="mobile-nav-item" onclick="app.navigateTo('profile'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-user"></i></span>
+                    <span>প্রোফাইল</span>
+                </a>
+                <hr class="sidebar-divider">
+                <a class="mobile-nav-item" onclick="app.navigateTo('settings'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-cog"></i></span>
+                    <span>সেটিংস</span>
+                </a>
+                <a class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span>লগ আউট</span>
+                </a>
+            </nav>
+        </div>
 
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <!-- LEFT SIDEBAR -->
             <aside class="sidebar">
-                <div class="sidebar-item active" onclick="app.navigateTo('home')">
-                    <span class="sidebar-icon">🏠</span>
-                    <span>বাড়ি</span>
+                <div class="sidebar-section">
+                    <div class="sidebar-title">মূল মেনু</div>
+                    <div class="sidebar-item active" onclick="app.navigateTo('home')">
+                        <span class="sidebar-icon"><i class="fas fa-home"></i></span>
+                        <span>বাড়ি</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('search')">
+                        <span class="sidebar-icon"><i class="fas fa-search"></i></span>
+                        <span>খুঁজুন</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('jobs')">
+                        <span class="sidebar-icon"><i class="fas fa-briefcase"></i></span>
+                        <span>চাকরি</span>
+                        <span class="sidebar-badge">১২</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('chat')">
+                        <span class="sidebar-icon"><i class="fas fa-comments"></i></span>
+                        <span>চ্যাট</span>
+                        <span class="sidebar-badge">৩</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('profile')">
+                        <span class="sidebar-icon"><i class="fas fa-user"></i></span>
+                        <span>প্রোফাইল</span>
+                    </div>
                 </div>
-                <div class="sidebar-item" onclick="app.navigateTo('search')">
-                    <span class="sidebar-icon">🔍</span>
-                    <span>খুঁজুন</span>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">গোষ্ঠী</div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-icon"><i class="fas fa-users"></i></span>
+                        <span>বাংলাদেশী শিক্ষার্থী</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-icon"><i class="fas fa-building"></i></span>
+                        <span>আইটি পেশাজীবী</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-icon"><i class="fas fa-store"></i></span>
+                        <span>ব্যবসায়ী নেটওয়ার্ক</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-icon"><i class="fas fa-graduation-cap"></i></span>
+                        <span>প্রবাসী বাংলাদেশী</span>
+                    </div>
                 </div>
-                <div class="sidebar-item" onclick="app.navigateTo('jobs')">
-                    <span class="sidebar-icon">💼</span>
-                    <span>চাকরি</span>
-                </div>
-                <div class="sidebar-item" onclick="app.navigateTo('chat')">
-                    <span class="sidebar-icon">💬</span>
-                    <span>চ্যাট</span>
-                </div>
-                <div class="sidebar-item" onclick="app.navigateTo('profile')">
-                    <span class="sidebar-icon">👤</span>
-                    <span>প্রোফাইল</span>
-                </div>
-                <hr style="margin: var(--spacing-lg) 0; border: none; border-top: 1px solid var(--border-color);">
-                <div class="sidebar-item" onclick="app.navigateTo('settings')">
-                    <span class="sidebar-icon">⚙️</span>
-                    <span>সেটিংস</span>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-section">
+                    <div class="sidebar-item" onclick="app.navigateTo('events')">
+                        <span class="sidebar-icon"><i class="fas fa-calendar-alt"></i></span>
+                        <span>ইভেন্ট</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('help')">
+                        <span class="sidebar-icon"><i class="fas fa-question-circle"></i></span>
+                        <span>সাহায্য</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('settings')">
+                        <span class="sidebar-icon"><i class="fas fa-cog"></i></span>
+                        <span>সেটিংস</span>
+                    </div>
                 </div>
             </aside>
 
@@ -1132,52 +2239,117 @@
                 <!-- HOME VIEW -->
                 <div id="homeView">
                     <div class="feed-header">
-                        <h2>কাছাকাছি মানুষ</h2>
-                        <p style="color: var(--text-light);">আপনার এলাকায় সংযুক্ত হন</p>
+                        <h1 class="feed-title bangla">আপনার কাছাকাছি মানুষ</h1>
+                        <p class="feed-subtitle bangla">আপনার এলাকায় বাংলাদেশীদের সাথে সংযুক্ত হোন</p>
                     </div>
-                    <div id="usersList" class="grid-users"></div>
+                    
+                    <div class="feed-tabs">
+                        <button class="feed-tab active bangla" onclick="app.filterUsers('all')">সকল</button>
+                        <button class="feed-tab bangla" onclick="app.filterUsers('nearby')">কাছাকাছি</button>
+                        <button class="feed-tab bangla" onclick="app.filterUsers('online')">অনলাইন</button>
+                        <button class="feed-tab bangla" onclick="app.filterUsers('verified')">যাচাইকৃত</button>
+                    </div>
+                    
+                    <div id="usersList" class="grid-users">
+                        <!-- Users will be loaded here -->
+                    </div>
                 </div>
 
                 <!-- SEARCH VIEW -->
                 <div id="searchView" class="hidden">
                     <div class="feed-header">
-                        <h2>অনুসন্ধান</h2>
+                        <h1 class="feed-title bangla">অনুসন্ধান</h1>
+                        <p class="feed-subtitle bangla">ব্যক্তি, চাকরি বা গোষ্ঠী খুঁজুন</p>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="text" id="searchInput" class="form-input" placeholder="নাম বা পেশা খুঁজুন...">
+                        <div style="position: relative;">
+                            <input type="text" id="searchInput" class="form-control" placeholder="নাম, পেশা বা শহর লিখুন..." style="padding-left: 50px;">
+                            <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-light);"></i>
+                        </div>
                     </div>
+                    
                     <div class="form-group">
-                        <label class="form-label">দূরত্ব (কিমি)</label>
-                        <input type="range" id="radiusInput" class="form-input" min="1" max="50" value="5">
-                        <span id="radiusDisplay">৫ কিমি</span>
+                        <label class="form-label bangla">দূরত্ব (কিলোমিটার)</label>
+                        <input type="range" id="radiusInput" class="form-control" min="1" max="100" value="25" style="padding: 0;">
+                        <div class="flex-between mt-2">
+                            <span class="bangla" style="font-size: 14px; color: var(--text-light);">১ কিমি</span>
+                            <span id="radiusDisplay" class="bangla" style="font-weight: 600; color: var(--primary);">২৫ কিমি</span>
+                            <span class="bangla" style="font-size: 14px; color: var(--text-light);">১০০ কিমি</span>
+                        </div>
                     </div>
-                    <div id="searchResults" class="grid-users"></div>
+                    
+                    <div id="searchResults" class="grid-users">
+                        <!-- Search results will be loaded here -->
+                    </div>
                 </div>
 
                 <!-- JOBS VIEW -->
                 <div id="jobsView" class="hidden">
                     <div class="feed-header">
-                        <h2>চাকরি</h2>
-                        <button class="btn btn-primary" onclick="app.showPostJobModal()" style="margin-top: var(--spacing-md);">
-                            নতুন চাকরি পোস্ট করুন
+                        <h1 class="feed-title bangla">চাকরি</h1>
+                        <p class="feed-subtitle bangla">স্থানীয় চাকরির সুযোগ</p>
+                        <button class="btn btn-primary mt-3" onclick="app.showPostJobModal()">
+                            <i class="fas fa-plus"></i> নতুন চাকরি পোস্ট করুন
                         </button>
                     </div>
-                    <div id="jobsList" class="grid-jobs"></div>
+                    
+                    <div id="jobsList" class="grid-jobs">
+                        <!-- Jobs will be loaded here -->
+                    </div>
                 </div>
 
                 <!-- CHAT VIEW -->
                 <div id="chatView" class="hidden">
                     <div class="chat-container">
-                        <div class="chat-list" id="conversationsList"></div>
+                        <div class="chat-sidebar">
+                            <div class="chat-search">
+                                <div style="position: relative;">
+                                    <input type="text" placeholder="চ্যাট খুঁজুন..." class="bangla">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                            <div class="chat-list" id="conversationsList">
+                                <!-- Conversations will be loaded here -->
+                            </div>
+                        </div>
+                        
                         <div class="chat-window" id="chatWindow" style="display: none;">
                             <div class="chat-header">
-                                <h3 id="chatTitle"></h3>
-                                <button onclick="app.closeChat()" style="background: none; border: none; cursor: pointer; font-size: 20px;">✕</button>
+                                <div class="chat-user">
+                                    <div class="chat-user-avatar" id="chatUserAvatar">A</div>
+                                    <div class="chat-user-info">
+                                        <h3 id="chatUserName" class="bangla">আহমেদ হাসান</h3>
+                                        <div class="chat-user-status">
+                                            <i class="fas fa-circle" style="font-size: 8px;"></i>
+                                            <span class="bangla">অনলাইন</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn-icon" onclick="app.closeChat()">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <div class="chat-messages" id="chatMessages"></div>
+                            
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Messages will be loaded here -->
+                            </div>
+                            
                             <div class="chat-input">
-                                <input type="text" id="chatInput" placeholder="বার্তা লিখুন...">
-                                <button class="btn btn-primary" onclick="app.sendMessage()" style="padding: var(--spacing-md) var(--spacing-lg);">পাঠান</button>
+                                <input type="text" id="chatInput" placeholder="আপনার বার্তা লিখুন..." class="bangla">
+                                <button class="btn btn-primary" onclick="app.sendMessage()">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="chatEmptyState" class="empty-state" style="display: flex;">
+                            <div>
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3 class="bangla">কোন চ্যাট নির্বাচন করা হয়নি</h3>
+                                <p class="bangla">বাম দিক থেকে একটি চ্যাট নির্বাচন করুন বা নতুন চ্যাট শুরু করুন</p>
                             </div>
                         </div>
                     </div>
@@ -1185,22 +2357,64 @@
 
                 <!-- PROFILE VIEW -->
                 <div id="profileView" class="hidden">
-                    <div class="feed-header">
-                        <h2>আমার প্রোফাইল</h2>
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profileAvatar">U</div>
+                        <h1 class="profile-name bangla" id="profileName">অতিথি ব্যবহারকারী</h1>
+                        <p class="profile-profession bangla" id="profileProfession">সদস্য</p>
+                        
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profileConnections">০</span>
+                                <span class="profile-stat-label bangla">সংযোগ</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profilePosts">০</span>
+                                <span class="profile-stat-label bangla">পোস্ট</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profileRating">০.০</span>
+                                <span class="profile-stat-label bangla">রেটিং</span>
+                            </div>
+                        </div>
                     </div>
-                    <div style="background: white; padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
-                        <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
-                            <div style="width: 150px; height: 150px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 60px; flex-shrink: 0;" id="profileAvatar"></div>
-                            <div>
-                                <h2 id="profileName" style="font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: var(--spacing-md);"></h2>
-                                <p id="profileProfession" style="font-size: 16px; color: var(--text-light); margin-bottom: var(--spacing-md);"></p>
-                                <div style="display: flex; gap: var(--spacing-md);">
-                                    <button class="btn btn-primary" onclick="app.navigateTo('edit-profile')">প্রোফাইল সম্পাদনা</button>
+                    
+                    <div class="profile-content">
+                        <div>
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">আমার সম্পর্কে</h2>
+                                <p id="profileBio" class="bangla" style="line-height: 1.8;">আপনার বায়ো এখানে দেখানো হবে। বায়ো সম্পাদনা করতে প্রোফাইল সম্পাদনা বাটনে ক্লিক করুন।</p>
+                            </div>
+                            
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">পেশাগত তথ্য</h2>
+                                <div id="profileProfessionalInfo">
+                                    <!-- Professional info will be loaded here -->
                                 </div>
                             </div>
                         </div>
-                        <div style="border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg);">
-                            <p id="profileBio"></p>
+                        
+                        <div>
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">দ্রুত কাজ</h2>
+                                <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                                    <button class="btn btn-primary btn-block bangla" onclick="app.navigateTo('edit-profile')">
+                                        <i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা
+                                    </button>
+                                    <button class="btn btn-secondary btn-block bangla" onclick="app.showSettingsModal()">
+                                        <i class="fas fa-cog"></i> সেটিংস
+                                    </button>
+                                    <button class="btn btn-outline btn-block bangla" onclick="app.logout()">
+                                        <i class="fas fa-sign-out-alt"></i> লগ আউট
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">আমার গোষ্ঠী</h2>
+                                <div id="profileGroups">
+                                    <!-- Groups will be loaded here -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1208,112 +2422,306 @@
                 <!-- SETTINGS VIEW -->
                 <div id="settingsView" class="hidden">
                     <div class="feed-header">
-                        <h2>সেটিংস</h2>
+                        <h1 class="feed-title bangla">সেটিংস</h1>
+                        <p class="feed-subtitle bangla">আপনার অ্যাকাউন্ট এবং বিজ্ঞপ্তি সেটিংস</p>
                     </div>
-                    <div style="background: white; padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+                    
+                    <div class="profile-section">
+                        <h2 class="profile-section-title bangla">অ্যাকাউন্ট সেটিংস</h2>
+                        
                         <div class="form-group">
-                            <label class="form-label">বিজ্ঞপ্তি সক্ষম করুন</label>
-                            <input type="checkbox" id="notificationToggle" checked>
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="onlineStatusToggle" class="form-checkbox" checked>
+                                <span>অনলাইন অবস্থা দেখান</span>
+                            </label>
                         </div>
+                        
                         <div class="form-group">
-                            <label class="form-label">অনলাইন অবস্থা দেখান</label>
-                            <input type="checkbox" id="onlineStatusToggle" checked>
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="profileVisibilityToggle" class="form-checkbox" checked>
+                                <span>আমার প্রোফাইল অন্যান্যদের দেখান</span>
+                            </label>
                         </div>
-                        <button class="btn btn-secondary" onclick="app.logout()">অ্যাকাউন্ট মুছুন</button>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="messagePrivacyToggle" class="form-checkbox">
+                                <span>শুধু সংযুক্ত ব্যক্তিরাই বার্তা পাঠাতে পারবে</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h2 class="profile-section-title bangla">বিজ্ঞপ্তি</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="notificationToggle" class="form-checkbox" checked>
+                                <span>বিজ্ঞপ্তি সক্রিয় করুন</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="emailNotificationToggle" class="form-checkbox" checked>
+                                <span>ইমেল বিজ্ঞপ্তি</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox-label bangla">
+                                <input type="checkbox" id="pushNotificationToggle" class="form-checkbox" checked>
+                                <span>পুশ বিজ্ঞপ্তি</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h2 class="profile-section-title bangla">অ্যাকাউন্ট পরিচালনা</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                            <button class="btn btn-secondary btn-block bangla" onclick="app.changePassword()">
+                                <i class="fas fa-key"></i> পাসওয়ার্ড পরিবর্তন
+                            </button>
+                            <button class="btn btn-outline btn-block bangla" onclick="app.deactivateAccount()">
+                                <i class="fas fa-user-slash"></i> অ্যাকাউন্ট নিষ্ক্রিয় করুন
+                            </button>
+                            <button class="btn btn-danger btn-block bangla" onclick="app.deleteAccount()">
+                                <i class="fas fa-trash-alt"></i> অ্যাকাউন্ট মুছুন
+                            </button>
+                        </div>
                     </div>
                 </div>
             </main>
 
             <!-- RIGHT SIDEBAR -->
-            <aside class="recommendations" id="recommendations">
-                <h3 class="recommendations-title">সুপারিশকৃত</h3>
-                <div id="recommendationsList"></div>
+            <aside class="right-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="right-sidebar-title bangla">
+                        <span>সুপারিশকৃত ব্যক্তি</span>
+                        <a href="#" style="font-size: 14px; font-weight: normal; color: var(--primary);">সকল দেখুন</a>
+                    </h3>
+                    
+                    <div id="recommendationsList">
+                        <!-- Recommendations will be loaded here -->
+                    </div>
+                </div>
+                
+                <hr class="sidebar-divider">
+                
+                <div class="sidebar-section">
+                    <h3 class="right-sidebar-title bangla">
+                        <span>ট্রেন্ডিং চাকরি</span>
+                        <a href="#" onclick="app.navigateTo('jobs')" style="font-size: 14px; font-weight: normal; color: var(--primary);">সকল দেখুন</a>
+                    </h3>
+                    
+                    <div id="trendingJobs">
+                        <!-- Trending jobs will be loaded here -->
+                    </div>
+                </div>
+                
+                <hr class="sidebar-divider">
+                
+                <div class="sidebar-section">
+                    <h3 class="right-sidebar-title bangla">
+                        <span>আসন্ন ইভেন্ট</span>
+                        <a href="#" style="font-size: 14px; font-weight: normal; color: var(--primary);">সকল দেখুন</a>
+                    </h3>
+                    
+                    <div id="upcomingEvents">
+                        <!-- Events will be loaded here -->
+                    </div>
+                </div>
             </aside>
         </div>
     </div>
 
     <!-- AUTH MODAL -->
-    <div id="authModal" class="modal active">
+    <div id="authModal" class="modal-overlay active">
         <div class="modal-content">
+            <button class="modal-close" onclick="app.closeModal('authModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            
             <div class="modal-header">
-                <h2>স্বাগতম</h2>
+                <h1 class="modal-title bangla">হ্যালো বাংলাদেশীতে স্বাগতম</h1>
+                <p class="modal-subtitle bangla">স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হোন</p>
             </div>
-            <div style="margin-bottom: var(--spacing-xl);">
-                <p style="text-align: center; color: var(--text-light); margin-bottom: var(--spacing-lg);">হ্যালো বাংলাদেশীতে যোগ দিন এবং আপনার এলাকায় সংযুক্ত হন</p>
-                <div id="authTabs" style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
-                    <button class="btn btn-primary" style="flex: 1;" onclick="app.showLoginTab()">লগইন</button>
-                    <button class="btn btn-secondary" style="flex: 1;" onclick="app.showSignupTab()">সাইন আপ</button>
-                </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active bangla" onclick="app.showLoginTab()">লগইন</button>
+                <button class="auth-tab bangla" onclick="app.showSignupTab()">সাইন আপ</button>
             </div>
-
+            
             <!-- LOGIN FORM -->
             <div id="loginForm">
                 <div class="form-group">
-                    <label class="form-label">ইমেল</label>
-                    <input type="email" id="loginEmail" class="form-input" placeholder="আপনার ইমেল">
+                    <label class="form-label bangla">ইমেল ঠিকানা</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="আপনার ইমেল ঠিকানা">
                 </div>
+                
                 <div class="form-group">
-                    <label class="form-label">পাসওয়ার্ড</label>
-                    <input type="password" id="loginPassword" class="form-input" placeholder="পাসওয়ার্ড">
+                    <label class="form-label bangla">পাসওয়ার্ড</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="আপনার পাসওয়ার্ড">
                 </div>
-                <button class="btn btn-primary" style="width: 100%; margin-bottom: var(--spacing-md);" onclick="app.login()">লগইন করুন</button>
-                <button class="btn btn-secondary" style="width: 100%;" onclick="app.loginWithGoogle()">গুগল দিয়ে লগইন করুন</button>
+                
+                <div class="form-group">
+                    <label class="form-checkbox-label bangla">
+                        <input type="checkbox" id="rememberMe" class="form-checkbox">
+                        <span>আমাকে মনে রাখুন</span>
+                    </label>
+                </div>
+                
+                <button class="btn btn-primary btn-block bangla" onclick="app.login()">
+                    <i class="fas fa-sign-in-alt"></i> লগইন করুন
+                </button>
+                
+                <div class="social-login mt-3">
+                    <button class="btn-google bangla" onclick="app.loginWithGoogle()">
+                        <i class="fab fa-google"></i> গুগল
+                    </button>
+                    <button class="btn-facebook bangla" onclick="app.loginWithFacebook()">
+                        <i class="fab fa-facebook-f"></i> ফেসবুক
+                    </button>
+                </div>
+                
+                <p class="text-center mt-3 bangla" style="color: var(--text-light);">
+                    পাসওয়ার্ড ভুলে গেছেন? 
+                    <a href="#" style="color: var(--primary); font-weight: 600;">পাসওয়ার্ড রিসেট করুন</a>
+                </p>
             </div>
-
+            
             <!-- SIGNUP FORM -->
             <div id="signupForm" class="hidden">
                 <div class="form-group">
-                    <label class="form-label">নাম</label>
-                    <input type="text" id="signupName" class="form-input" placeholder="আপনার নাম">
+                    <label class="form-label bangla">পুরো নাম</label>
+                    <input type="text" id="signupName" class="form-control" placeholder="আপনার পুরো নাম">
                 </div>
+                
                 <div class="form-group">
-                    <label class="form-label">ইমেল</label>
-                    <input type="email" id="signupEmail" class="form-input" placeholder="আপনার ইমেল">
+                    <label class="form-label bangla">ইমেল ঠিকানা</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="আপনার ইমেল ঠিকানা">
                 </div>
+                
                 <div class="form-group">
-                    <label class="form-label">পাসওয়ার্ড</label>
-                    <input type="password" id="signupPassword" class="form-input" placeholder="পাসওয়ার্ড">
+                    <label class="form-label bangla">পাসওয়ার্ড</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="নতুন পাসওয়ার্ড">
                 </div>
+                
                 <div class="form-group">
-                    <label class="form-label">পেশা</label>
-                    <input type="text" id="signupProfession" class="form-input" placeholder="আপনার পেশা">
+                    <label class="form-label bangla">পেশা</label>
+                    <input type="text" id="signupProfession" class="form-control" placeholder="আপনার পেশা">
                 </div>
-                <button class="btn btn-primary" style="width: 100%;" onclick="app.signup()">সাইন আপ করুন</button>
+                
+                <div class="form-group">
+                    <label class="form-label bangla">শহর</label>
+                    <select id="signupCity" class="form-control">
+                        <option value="">আপনার শহর নির্বাচন করুন</option>
+                        <option value="dhaka">ঢাকা</option>
+                        <option value="chittagong">চট্টগ্রাম</option>
+                        <option value="sylhet">সিলেট</option>
+                        <option value="khulna">খুলনা</option>
+                        <option value="rajshahi">রাজশাহী</option>
+                        <option value="barisal">বরিশাল</option>
+                        <option value="rangpur">রংপুর</option>
+                        <option value="mymensingh">ময়মনসিংহ</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-checkbox-label bangla">
+                        <input type="checkbox" id="termsAgreement" class="form-checkbox">
+                        <span>আমি <a href="#" style="color: var(--primary);">সেবা শর্তাবলী</a> এবং <a href="#" style="color: var(--primary);">গোপনীয়তা নীতি</a> মেনে চলতে সম্মত</span>
+                    </label>
+                </div>
+                
+                <button class="btn btn-primary btn-block bangla" onclick="app.signup()">
+                    <i class="fas fa-user-plus"></i> অ্যাকাউন্ট তৈরি করুন
+                </button>
             </div>
-
-            <p id="authError" style="color: var(--accent-red); text-align: center; margin-top: var(--spacing-lg); display: none;"></p>
+            
+            <p id="authError" class="text-center mt-3" style="color: var(--accent-red); display: none;"></p>
         </div>
     </div>
 
     <!-- POST JOB MODAL -->
-    <div id="postJobModal" class="modal">
+    <div id="postJobModal" class="modal-overlay">
         <div class="modal-content">
+            <button class="modal-close" onclick="app.closeModal('postJobModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            
             <div class="modal-header">
-                <h2>চাকরি পোস্ট করুন</h2>
-                <button class="modal-close" onclick="app.closeModal('postJobModal')">✕</button>
+                <h1 class="modal-title bangla">চাকরি পোস্ট করুন</h1>
+                <p class="modal-subtitle bangla">আপনার চাকরির সুযোগ শেয়ার করুন</p>
             </div>
+            
             <div class="form-group">
-                <label class="form-label">চাকরির শিরোনাম</label>
-                <input type="text" id="jobTitle" class="form-input" placeholder="যেমন: সফটওয়্যার ডেভেলপার">
+                <label class="form-label bangla">চাকরির শিরোনাম</label>
+                <input type="text" id="jobTitle" class="form-control" placeholder="যেমন: সফটওয়্যার ডেভেলপার">
             </div>
+            
             <div class="form-group">
-                <label class="form-label">বিবরণ</label>
-                <textarea id="jobDescription" class="form-textarea" placeholder="চাকরির বিবরণ লিখুন..."></textarea>
+                <label class="form-label bangla">কোম্পানির নাম</label>
+                <input type="text" id="jobCompany" class="form-control" placeholder="আপনার কোম্পানির নাম">
             </div>
+            
             <div class="form-group">
-                <label class="form-label">অবস্থান</label>
-                <input type="text" id="jobLocation" class="form-input" placeholder="শহর/এলাকা">
+                <label class="form-label bangla">চাকরির ধরন</label>
+                <select id="jobType" class="form-control">
+                    <option value="">চাকরির ধরন নির্বাচন করুন</option>
+                    <option value="full-time">পূর্ণকালীন</option>
+                    <option value="part-time">খণ্ডকালীন</option>
+                    <option value="contract">চুক্তিভিত্তিক</option>
+                    <option value="internship">ইন্টার্নশিপ</option>
+                    <option value="remote">দূরবর্তী</option>
+                </select>
             </div>
+            
             <div class="form-group">
-                <label class="form-label">বেতন (ঐচ্ছিক)</label>
-                <input type="text" id="jobSalary" class="form-input" placeholder="বেতনের পরিসীমা">
+                <label class="form-label bangla">অবস্থান</label>
+                <input type="text" id="jobLocation" class="form-control" placeholder="শহর এবং দেশ">
             </div>
-            <button class="btn btn-primary" style="width: 100%;" onclick="app.postJob()">চাকরি পোস্ট করুন</button>
+            
+            <div class="form-group">
+                <label class="form-label bangla">বেতন</label>
+                <input type="text" id="jobSalary" class="form-control" placeholder="বেতনের পরিসীমা (ঐচ্ছিক)">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label bangla">বিবরণ</label>
+                <textarea id="jobDescription" class="form-control form-textarea" placeholder="চাকরির বিস্তারিত বিবরণ..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label bangla">দক্ষতা প্রয়োজন</label>
+                <input type="text" id="jobSkills" class="form-control" placeholder="কমা দিয়ে দক্ষতা লিখুন (যেমন: JavaScript, React, Node.js)">
+            </div>
+            
+            <button class="btn btn-primary btn-block bangla" onclick="app.postJob()">
+                <i class="fas fa-paper-plane"></i> চাকরি পোস্ট করুন
+            </button>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="toast" style="display: none;"></div>
+    <!-- EDIT PROFILE MODAL -->
+    <div id="editProfileModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="app.closeModal('editProfileModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <h1 class="modal-title bangla">প্রোফাইল সম্পাদনা</h1>
+                <p class="modal-subtitle bangla">আপনার তথ্য আপডেট করুন</p>
+            </div>
+            
+            <!-- Edit profile form will be loaded here -->
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <!-- SCRIPTS -->
     <script>
@@ -1322,7 +2730,7 @@
             apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
             authDomain: "hello-bangladeshi.firebaseapp.com",
             projectId: "hello-bangladeshi",
-            storageBucket: "hello-bangladeshi.firebasestorage.app",
+            storageBucket: "hello-bangladeshi.appspot.com",
             messagingSenderId: "508048583569",
             appId: "1:508048583569:web:36eb40ac37d1682ca98830"
         };
@@ -1337,439 +2745,1186 @@
         const app = {
             currentUser: null,
             currentView: 'home',
+            usersData: [],
+            jobsData: [],
+            chatsData: [],
+            recommendationsData: [],
             
             // Initialize app
             init() {
-                this.setupLocationTracking();
-                this.loadCurrentUser();
+                console.log('হ্যালো বাংলাদেশী অ্যাপ শুরু হচ্ছে...');
+                this.setupAuthListener();
+                this.setupEventListeners();
+                this.loadDemoData();
+                this.checkSplashScreen();
             },
-
+            
+            // Check if splash screen should be shown
+            checkSplashScreen() {
+                const hasSeenSplash = localStorage.getItem('hasSeenSplash');
+                if (!hasSeenSplash) {
+                    // Show splash screen for first time users
+                    setTimeout(() => {
+                        this.hideSplash();
+                        localStorage.setItem('hasSeenSplash', 'true');
+                    }, 3000);
+                } else {
+                    // Hide splash screen immediately
+                    document.getElementById('splashScreen').style.display = 'none';
+                    document.getElementById('mainApp').classList.remove('hidden');
+                }
+            },
+            
+            // Setup event listeners
+            setupEventListeners() {
+                // Search input
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        this.performSearch(e.target.value);
+                    });
+                }
+                
+                // Radius input
+                const radiusInput = document.getElementById('radiusInput');
+                if (radiusInput) {
+                    radiusInput.addEventListener('input', (e) => {
+                        const radiusDisplay = document.getElementById('radiusDisplay');
+                        if (radiusDisplay) {
+                            radiusDisplay.textContent = `${e.target.value} কিমি`;
+                        }
+                    });
+                }
+                
+                // Chat input enter key
+                const chatInput = document.getElementById('chatInput');
+                if (chatInput) {
+                    chatInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            this.sendMessage();
+                        }
+                    });
+                }
+                
+                // Window click to close dropdowns
+                window.addEventListener('click', (e) => {
+                    if (!e.target.closest('.user-menu')) {
+                        this.hideUserDropdown();
+                    }
+                });
+            },
+            
+            // Setup auth state listener
+            setupAuthListener() {
+                auth.onAuthStateChanged((user) => {
+                    this.currentUser = user;
+                    if (user) {
+                        console.log('ব্যবহারকারী লগইন করেছেন:', user.email);
+                        this.showAuthenticatedUI();
+                        this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
+                    } else {
+                        console.log('কোনো ব্যবহারকারী লগইন নেই');
+                        this.showAuthModal();
+                    }
+                });
+            },
+            
+            // Load demo data
+            loadDemoData() {
+                // Demo users
+                this.usersData = [
+                    {
+                        id: '1',
+                        name: 'আহমেদ হাসান',
+                        profession: 'সফটওয়্যার ইঞ্জিনিয়ার',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        bio: 'ফুল-স্ট্যাক ডেভেলপার, ওয়েব টেকনোলজি এবং AI এ আগ্রহী।',
+                        rating: 4.8,
+                        connections: 245,
+                        online: true,
+                        verified: true,
+                        distance: 2.5
+                    },
+                    {
+                        id: '2',
+                        name: 'ফারহানা আক্তার',
+                        profession: 'গ্রাফিক ডিজাইনার',
+                        location: 'চট্টগ্রাম, বাংলাদেশ',
+                        bio: 'ক্রিয়েটিভ ডিজাইনার, UI/UX এবং ব্র্যান্ডিং বিশেষজ্ঞ।',
+                        rating: 4.9,
+                        connections: 189,
+                        online: true,
+                        verified: true,
+                        distance: 5.2
+                    },
+                    {
+                        id: '3',
+                        name: 'রাকিবুল ইসলাম',
+                        profession: 'ডাক্তার',
+                        location: 'সিলেট, বাংলাদেশ',
+                        bio: 'হৃদরোগ বিশেষজ্ঞ, স্বাস্থ্য সচেতনতা নিয়ে কাজ করতে পছন্দ করি।',
+                        rating: 4.7,
+                        connections: 312,
+                        online: false,
+                        verified: true,
+                        distance: 12.8
+                    },
+                    {
+                        id: '4',
+                        name: 'সাবরিনা সুলতানা',
+                        profession: 'শিক্ষিকা',
+                        location: 'খুলনা, বাংলাদেশ',
+                        bio: 'ইংরেজি সাহিত্যের অধ্যাপক, পড়ানো এবং লেখালেখি আমার নেশা।',
+                        rating: 4.9,
+                        connections: 156,
+                        online: true,
+                        verified: false,
+                        distance: 8.4
+                    },
+                    {
+                        id: '5',
+                        name: 'জুবায়ের আহমেদ',
+                        profession: 'ব্যবসায়ী',
+                        location: 'রাজশাহী, বাংলাদেশ',
+                        bio: 'আইটি কোম্পানির মালিক, স্টার্টআপ এবং বিনিয়োগে আগ্রহী।',
+                        rating: 4.6,
+                        connections: 421,
+                        online: true,
+                        verified: true,
+                        distance: 15.3
+                    },
+                    {
+                        id: '6',
+                        name: 'তানিয়া রহমান',
+                        profession: 'ডাটা সায়েন্টিস্ট',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        bio: 'মেশিন লার্নিং এবং ডাটা অ্যানালাইসিসে অভিজ্ঞ, গবেষণায় আগ্রহী।',
+                        rating: 4.8,
+                        connections: 278,
+                        online: false,
+                        verified: true,
+                        distance: 3.1
+                    }
+                ];
+                
+                // Demo jobs
+                this.jobsData = [
+                    {
+                        id: '1',
+                        title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার',
+                        company: 'টেকনোভেশন লিমিটেড',
+                        type: 'পূর্ণকালীন',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        salary: '৳১,৫০,০০০ - ৳২,৫০,০০০',
+                        description: 'আমরা একজন অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার খুঁজছি যিনি Node.js, React এবং MongoDB তে দক্ষ। দলগত কাজ এবং সমস্যা সমাধানে পারদর্শী হতে হবে।',
+                        skills: ['Node.js', 'React', 'MongoDB', 'AWS', 'Docker'],
+                        featured: true,
+                        posted: '২ দিন আগে'
+                    },
+                    {
+                        id: '2',
+                        title: 'গ্রাফিক ডিজাইনার',
+                        company: 'ক্রিয়েটিভ মিডিয়া',
+                        type: 'খণ্ডকালীন',
+                        location: 'চট্টগ্রাম, বাংলাদেশ',
+                        salary: '৳৪০,০০০ - ৳৬০,০০০',
+                        description: 'আমাদের ডিজাইন টিমের সাথে কাজ করার জন্য একজন প্রতিভাবান গ্রাফিক ডিজাইনার প্রয়োজন। Adobe Creative Suite (Photoshop, Illustrator) এ দক্ষতা প্রয়োজন।',
+                        skills: ['Photoshop', 'Illustrator', 'UI/UX', 'Figma'],
+                        featured: false,
+                        posted: '১ সপ্তাহ আগে'
+                    },
+                    {
+                        id: '3',
+                        title: 'ডাটা অ্যানালিস্ট',
+                        company: 'ডাটা সলিউশন্স',
+                        type: 'দূরবর্তী',
+                        location: 'দূরবর্তী',
+                        salary: '৳৮০,০০০ - ৳১,২০,০০০',
+                        description: 'বড় ডাটা প্রসেসিং এবং বিশ্লেষণের অভিজ্ঞতা সহ একজন ডাটা অ্যানালিস্ট প্রয়োজন। Python, SQL এবং ডাটা ভিজ্যুয়ালাইজেশন টুলস সম্পর্কে গভীর জ্ঞান প্রয়োজন।',
+                        skills: ['Python', 'SQL', 'Tableau', 'Data Analysis'],
+                        featured: true,
+                        posted: '৩ দিন আগে'
+                    }
+                ];
+                
+                // Demo recommendations
+                this.recommendationsData = [
+                    { id: '7', name: 'মোহাম্মদ আলী', profession: 'ওয়েব ডেভেলপার', mutual: 12 },
+                    { id: '8', name: 'নুসরাত জাহান', profession: 'মার্কেটিং ম্যানেজার', mutual: 8 },
+                    { id: '9', name: 'সালমান আহমেদ', profession: 'ব্যাংক কর্মকর্তা', mutual: 15 },
+                    { id: '10', name: 'রেহানা খাতুন', profession: 'কন্টেন্ট রাইটার', mutual: 6 }
+                ];
+                
+                // Demo chats
+                this.chatsData = [
+                    { id: '1', name: 'আহমেদ হাসান', lastMessage: 'কেমন আছেন? কাল দেখা হবে?', time: '১০:৩০ AM', unread: 2 },
+                    { id: '2', name: 'ফারহানা আক্তার', lastMessage: 'ধন্যবাদ আপনার সাহায্যের জন্য!', time: 'গতকাল', unread: 0 },
+                    { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্টগুলো পাঠিয়েছি দেখে নিন', time: '২ দিন আগে', unread: 1 },
+                    { id: '4', name: 'সাবরিনা সুলতানা', lastMessage: 'মিটিং এর সময় সম্পর্কে জানতে চাচ্ছিলাম', time: '৩ দিন আগে', unread: 0 }
+                ];
+            },
+            
             // Hide splash screen
             hideSplash() {
-                document.getElementById('splashScreen').style.display = 'none';
-                document.getElementById('mainApp').classList.remove('hidden');
+                const splashScreen = document.getElementById('splashScreen');
+                splashScreen.style.animation = 'fadeOut 0.5s ease forwards';
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    document.getElementById('mainApp').classList.remove('hidden');
+                    this.showAuthModal();
+                }, 500);
+            },
+            
+            // Show auth modal
+            showAuthModal() {
                 document.getElementById('authModal').classList.add('active');
             },
-
-            // Authentication
+            
+            // Authentication functions
             login() {
                 const email = document.getElementById('loginEmail').value;
                 const password = document.getElementById('loginPassword').value;
-
+                
                 if (!email || !password) {
-                    this.showError('সমস্ত ক্ষেত্র পূরণ করুন');
+                    this.showError('দয়া করে ইমেল এবং পাসওয়ার্ড দিন');
                     return;
                 }
-
-                auth.signInWithEmailAndPassword(email, password)
-                    .then(result => {
-                        this.currentUser = result.user;
+                
+                this.showToast('লগইন প্রক্রিয়া চলছে...', 'info');
+                
+                // Demo login for testing (remove in production)
+                if (email === 'demo@test.com' && password === 'password') {
+                    setTimeout(() => {
+                        this.currentUser = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
                         this.showAuthenticatedUI();
-                        this.showToast('সফলভাবে লগইন হয়েছেন', 'success');
+                        this.showToast('ডেমো অ্যাকাউন্টে লগইন সফল!', 'success');
+                    }, 1000);
+                    return;
+                }
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        this.currentUser = userCredential.user;
+                        this.showAuthenticatedUI();
                     })
-                    .catch(error => this.showError(error.message));
+                    .catch((error) => {
+                        this.showError(this.getAuthErrorMessage(error));
+                    });
             },
-
+            
             signup() {
                 const name = document.getElementById('signupName').value;
                 const email = document.getElementById('signupEmail').value;
                 const password = document.getElementById('signupPassword').value;
                 const profession = document.getElementById('signupProfession').value;
-
-                if (!name || !email || !password || !profession) {
-                    this.showError('সমস্ত ক্ষেত্র পূরণ করুন');
+                const city = document.getElementById('signupCity').value;
+                const terms = document.getElementById('termsAgreement').checked;
+                
+                if (!name || !email || !password || !profession || !city) {
+                    this.showError('দয়া করে সব তথ্য পূরণ করুন');
                     return;
                 }
-
+                
+                if (!terms) {
+                    this.showError('আপনাকে সেবা শর্তাবলী মেনে চলতে হবে');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    this.showError('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে');
+                    return;
+                }
+                
+                this.showToast('অ্যাকাউন্ট তৈরি করা হচ্ছে...', 'info');
+                
+                // Demo signup for testing
+                if (email.includes('@demo.com')) {
+                    setTimeout(() => {
+                        this.currentUser = { 
+                            uid: 'demo' + Date.now(), 
+                            email: email, 
+                            displayName: name 
+                        };
+                        this.showAuthenticatedUI();
+                        this.showToast('ডেমো অ্যাকাউন্ট তৈরি সফল!', 'success');
+                    }, 1500);
+                    return;
+                }
+                
                 auth.createUserWithEmailAndPassword(email, password)
-                    .then(result => {
-                        const userId = result.user.uid;
-                        return db.collection('users').doc(userId).set({
-                            name,
-                            email,
-                            profession,
-                            bio: '',
-                            location: { latitude: 0, longitude: 0 },
-                            createdAt: new Date(),
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        
+                        // Save user data to Firestore
+                        return db.collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            profession: profession,
+                            city: city,
+                            bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                             rating: 0,
-                            verified: false
+                            connections: 0,
+                            verified: false,
+                            online: true
                         });
                     })
                     .then(() => {
                         this.currentUser = auth.currentUser;
                         this.showAuthenticatedUI();
-                        this.showToast('অ্যাকাউন্ট তৈরি সফল হয়েছে', 'success');
                     })
-                    .catch(error => this.showError(error.message));
+                    .catch((error) => {
+                        this.showError(this.getAuthErrorMessage(error));
+                    });
             },
-
+            
             loginWithGoogle() {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                auth.signInWithPopup(provider)
-                    .then(result => {
-                        this.currentUser = result.user;
-                        this.showAuthenticatedUI();
-                        this.showToast('গুগল দিয়ে সফলভাবে লগইন হয়েছেন', 'success');
-                    })
-                    .catch(error => this.showError(error.message));
+                this.showToast('গুগল লগইন শীঘ্রই আসছে!', 'info');
+                // Implement Google login here
             },
-
+            
+            loginWithFacebook() {
+                this.showToast('ফেসবুক লগইন শীঘ্রই আসছে!', 'info');
+                // Implement Facebook login here
+            },
+            
             logout() {
-                auth.signOut().then(() => {
+                if (this.currentUser && this.currentUser.uid !== 'demo123') {
+                    auth.signOut().then(() => {
+                        this.showToast('সফলভাবে লগ আউট হয়েছে', 'success');
+                    }).catch((error) => {
+                        this.showError('লগ আউট করতে সমস্যা: ' + error.message);
+                    });
+                } else {
+                    // Demo logout
                     this.currentUser = null;
-                    document.getElementById('authModal').classList.add('active');
-                    document.getElementById('loginForm').classList.remove('hidden');
-                    document.getElementById('signupForm').classList.add('hidden');
-                    this.showToast('আপনি লগ আউট করেছেন', 'success');
-                });
+                    this.showAuthModal();
+                    this.showToast('ডেমো অ্যাকাউন্ট থেকে লগ আউট হয়েছে', 'info');
+                }
             },
-
-            // UI Navigation
+            
+            // Get auth error messages in Bengali
+            getAuthErrorMessage(error) {
+                switch(error.code) {
+                    case 'auth/user-not-found':
+                        return 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই';
+                    case 'auth/wrong-password':
+                        return 'ভুল পাসওয়ার্ড';
+                    case 'auth/email-already-in-use':
+                        return 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে';
+                    case 'auth/weak-password':
+                        return 'পাসওয়ার্ড শক্তিশালী করুন';
+                    case 'auth/invalid-email':
+                        return 'ভুল ইমেল ফরম্যাট';
+                    case 'auth/network-request-failed':
+                        return 'নেটওয়ার্ক সমস্যা, ইন্টারনেট কানেকশন চেক করুন';
+                    default:
+                        return 'একটি সমস্যা হয়েছে: ' + error.message;
+                }
+            },
+            
+            // Show authenticated UI
+            showAuthenticatedUI() {
+                document.getElementById('authModal').classList.remove('active');
+                
+                // Update user info in header
+                const userName = this.currentUser.displayName || this.currentUser.email || 'ব্যবহারকারী';
+                const userAvatar = document.getElementById('userAvatar');
+                const userNameElement = document.getElementById('userName');
+                
+                if (userAvatar) {
+                    userAvatar.textContent = userName.charAt(0).toUpperCase();
+                }
+                
+                if (userNameElement) {
+                    userNameElement.textContent = userName;
+                }
+                
+                // Load initial data
+                this.loadHomeView();
+            },
+            
+            // Navigation
             navigateTo(view) {
+                console.log('Navigating to:', view);
+                
                 // Hide all views
                 document.querySelectorAll('[id$="View"]').forEach(el => {
                     el.classList.add('hidden');
                 });
-
-                // Show selected view
-                document.getElementById(view + 'View').classList.remove('hidden');
-
-                // Update sidebar
+                
+                // Update active nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
                 document.querySelectorAll('.sidebar-item').forEach(item => {
                     item.classList.remove('active');
                 });
-                event.target.closest('.sidebar-item')?.classList.add('active');
-
+                
+                document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Show selected view
+                const targetView = document.getElementById(view + 'View');
+                if (targetView) {
+                    targetView.classList.remove('hidden');
+                }
+                
+                // Update active navigation
+                const navLink = document.querySelector(`.nav-link[onclick*="${view}"]`);
+                const sidebarItem = document.querySelector(`.sidebar-item[onclick*="${view}"]`);
+                const mobileNavItem = document.querySelector(`.mobile-nav-item[onclick*="${view}"]`);
+                
+                if (navLink) navLink.classList.add('active');
+                if (sidebarItem) sidebarItem.classList.add('active');
+                if (mobileNavItem) mobileNavItem.classList.add('active');
+                
                 this.currentView = view;
                 
-                if (view === 'home') this.loadNearbyUsers();
-                if (view === 'jobs') this.loadJobs();
-                if (view === 'chat') this.loadConversations();
-                if (view === 'profile') this.loadProfile();
+                // Load data for the view
+                switch(view) {
+                    case 'home':
+                        this.loadHomeView();
+                        break;
+                    case 'search':
+                        this.loadSearchView();
+                        break;
+                    case 'jobs':
+                        this.loadJobsView();
+                        break;
+                    case 'chat':
+                        this.loadChatView();
+                        break;
+                    case 'profile':
+                        this.loadProfileView();
+                        break;
+                    case 'settings':
+                        this.loadSettingsView();
+                        break;
+                }
             },
-
-            // Load nearby users
-            loadNearbyUsers() {
+            
+            // Load home view
+            loadHomeView() {
+                this.renderUsers(this.usersData);
+                this.renderRecommendations(this.recommendationsData);
+                this.renderTrendingJobs(this.jobsData.slice(0, 3));
+                this.renderUpcomingEvents();
+            },
+            
+            // Load search view
+            loadSearchView() {
+                const searchResults = document.getElementById('searchResults');
+                if (searchResults) {
+                    searchResults.innerHTML = '<div class="loading"><div class="spinner"></div><p class="bangla">অনুসন্ধান প্রস্তুত...</p></div>';
+                }
+            },
+            
+            // Perform search
+            performSearch(query) {
+                const searchResults = document.getElementById('searchResults');
+                if (!searchResults) return;
+                
+                if (!query.trim()) {
+                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">অনুসন্ধান করুন</h3><p class="bangla">ব্যক্তি, চাকরি বা গোষ্ঠী খুঁজতে অনুসন্ধান বার ব্যবহার করুন</p></div>';
+                    return;
+                }
+                
+                // Filter users based on query
+                const filteredUsers = this.usersData.filter(user => 
+                    user.name.toLowerCase().includes(query.toLowerCase()) ||
+                    user.profession.toLowerCase().includes(query.toLowerCase()) ||
+                    user.location.toLowerCase().includes(query.toLowerCase())
+                );
+                
+                if (filteredUsers.length === 0) {
+                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3><p class="bangla">"' + query + '" এর জন্য কোনো মিল পাওয়া যায়নি</p></div>';
+                } else {
+                    this.renderSearchResults(filteredUsers);
+                }
+            },
+            
+            // Load jobs view
+            loadJobsView() {
+                this.renderJobs(this.jobsData);
+            },
+            
+            // Load chat view
+            loadChatView() {
+                this.renderConversations(this.chatsData);
+            },
+            
+            // Load profile view
+            loadProfileView() {
+                if (!this.currentUser) return;
+                
+                // Update profile info
+                const profileAvatar = document.getElementById('profileAvatar');
+                const profileName = document.getElementById('profileName');
+                const profileProfession = document.getElementById('profileProfession');
+                const profileBio = document.getElementById('profileBio');
+                const profileConnections = document.getElementById('profileConnections');
+                const profilePosts = document.getElementById('profilePosts');
+                const profileRating = document.getElementById('profileRating');
+                
+                if (profileAvatar) {
+                    profileAvatar.textContent = (this.currentUser.displayName || 'U').charAt(0).toUpperCase();
+                }
+                
+                if (profileName) {
+                    profileName.textContent = this.currentUser.displayName || 'ব্যবহারকারী';
+                }
+                
+                if (profileProfession) {
+                    profileProfession.textContent = 'হ্যালো বাংলাদেশী সদস্য';
+                }
+                
+                if (profileBio) {
+                    profileBio.textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ। স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হতে পছন্দ করি।';
+                }
+                
+                if (profileConnections) {
+                    profileConnections.textContent = Math.floor(Math.random() * 100) + 50;
+                }
+                
+                if (profilePosts) {
+                    profilePosts.textContent = Math.floor(Math.random() * 50) + 10;
+                }
+                
+                if (profileRating) {
+                    profileRating.textContent = (Math.random() * 1 + 4).toFixed(1);
+                }
+                
+                // Load profile groups
+                this.renderProfileGroups();
+            },
+            
+            // Load settings view
+            loadSettingsView() {
+                // Settings are already loaded in HTML
+            },
+            
+            // Render users
+            renderUsers(users) {
                 const container = document.getElementById('usersList');
-                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-                db.collection('users').limit(20).get()
-                    .then(snapshot => {
-                        container.innerHTML = '';
-                        snapshot.forEach(doc => {
-                            const user = doc.data();
-                            const card = this.createUserCard(user, doc.id);
-                            container.appendChild(card);
-                        });
-                    });
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                users.forEach(user => {
+                    const userCard = this.createUserCard(user);
+                    container.appendChild(userCard);
+                });
             },
-
+            
             // Create user card
-            createUserCard(user, userId) {
+            createUserCard(user) {
                 const div = document.createElement('div');
                 div.className = 'user-card';
                 div.innerHTML = `
-                    <div class="user-card-image">
-                        <div class="user-card-distance">${Math.random() * 10 + 1 | 0} কিমি দূর</div>
+                    <div class="user-card-header">
+                        <div class="user-card-avatar">${user.name.charAt(0)}</div>
+                        ${user.online ? '<div class="user-card-online"></div>' : ''}
                     </div>
                     <div class="user-card-content">
-                        <div class="user-card-header">
-                            <div class="user-card-avatar">${user.name[0]}</div>
-                            <div class="user-card-info">
-                                <h3>${user.name}</h3>
-                                <p>${user.profession}</p>
-                            </div>
-                        </div>
+                        <h3 class="user-card-name bangla">${user.name}</h3>
+                        <p class="user-card-profession bangla">
+                            <i class="fas fa-briefcase"></i> ${user.profession}
+                            ${user.verified ? ' <i class="fas fa-check-circle" style="color: var(--accent-green); font-size: 12px;"></i>' : ''}
+                        </p>
+                        <p class="user-card-location bangla">
+                            <i class="fas fa-map-marker-alt"></i> ${user.location}
+                            <span style="margin-left: 10px; font-size: 12px;">
+                                <i class="fas fa-road"></i> ${user.distance} কিমি
+                            </span>
+                        </p>
+                        <p class="user-card-bio bangla">${user.bio}</p>
+                        
                         <div class="user-card-stats">
                             <div class="stat-item">
-                                <div class="stat-value">${user.rating || 0}</div>
-                                <div class="stat-label">রেটিং</div>
+                                <div class="stat-value">${user.rating}</div>
+                                <div class="stat-label bangla">রেটিং</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">12</div>
-                                <div class="stat-label">পর্যালোচনা</div>
+                                <div class="stat-value">${user.connections}</div>
+                                <div class="stat-label bangla">সংযোগ</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">98%</div>
-                                <div class="stat-label">সাড়া</div>
+                                <div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div>
+                                <div class="stat-label bangla">অবস্থা</div>
                             </div>
                         </div>
+                        
                         <div class="user-card-actions">
-                            <button class="btn btn-primary" onclick="app.startChat('${userId}')">চ্যাট করুন</button>
-                            <button class="btn btn-secondary" onclick="app.viewProfile('${userId}')">দেখুন</button>
+                            <button class="btn btn-primary bangla" onclick="app.startChat('${user.id}')">
+                                <i class="fas fa-comment"></i> চ্যাট
+                            </button>
+                            <button class="btn btn-secondary bangla" onclick="app.connectWithUser('${user.id}')">
+                                <i class="fas fa-user-plus"></i> সংযুক্ত হন
+                            </button>
                         </div>
                     </div>
                 `;
                 return div;
             },
-
-            // Load jobs
-            loadJobs() {
-                const container = document.getElementById('jobsList');
-                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-                db.collection('jobs').where('status', '==', 'open').limit(20).get()
-                    .then(snapshot => {
-                        container.innerHTML = '';
-                        snapshot.forEach(doc => {
-                            const job = doc.data();
-                            const card = this.createJobCard(job, doc.id);
-                            container.appendChild(card);
-                        });
-                    });
+            
+            // Render recommendations
+            renderRecommendations(recommendations) {
+                const container = document.getElementById('recommendationsList');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                recommendations.forEach(rec => {
+                    const recItem = document.createElement('div');
+                    recItem.className = 'recommendation-item';
+                    recItem.innerHTML = `
+                        <div class="recommendation-avatar">${rec.name.charAt(0)}</div>
+                        <div class="recommendation-info">
+                            <h4 class="bangla">${rec.name}</h4>
+                            <p class="bangla">${rec.profession}</p>
+                            <p class="bangla" style="font-size: 11px; color: var(--primary);">
+                                ${rec.mutual} mutual connections
+                            </p>
+                        </div>
+                        <button class="btn-icon" style="width: 36px; height: 36px;" onclick="app.connectWithUser('${rec.id}')">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    `;
+                    container.appendChild(recItem);
+                });
             },
-
+            
+            // Render trending jobs
+            renderTrendingJobs(jobs) {
+                const container = document.getElementById('trendingJobs');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                jobs.forEach(job => {
+                    const jobItem = document.createElement('div');
+                    jobItem.className = 'trending-job';
+                    jobItem.innerHTML = `
+                        <div class="job-title bangla">${job.title}</div>
+                        <div class="job-company bangla">${job.company}</div>
+                        <div class="job-salary bangla">${job.salary}</div>
+                    `;
+                    container.appendChild(jobItem);
+                });
+            },
+            
+            // Render upcoming events
+            renderUpcomingEvents() {
+                const container = document.getElementById('upcomingEvents');
+                if (!container) return;
+                
+                const events = [
+                    { title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং', date: '১৫ মার্চ, ২০২৪', location: 'ঢাকা' },
+                    { title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন', date: '২০ মার্চ, ২০২৪', location: 'দূরবর্তী' },
+                    { title: 'ক্যারিয়ার গাইডেন্স সেমিনার', date: '২৫ মার্চ, ২০২৪', location: 'চট্টগ্রাম' }
+                ];
+                
+                container.innerHTML = '';
+                
+                events.forEach(event => {
+                    const eventItem = document.createElement('div');
+                    eventItem.className = 'event-item';
+                    eventItem.innerHTML = `
+                        <div class="event-date bangla">${event.date}</div>
+                        <div class="event-title bangla">${event.title}</div>
+                        <div class="event-location bangla">
+                            <i class="fas fa-map-marker-alt"></i> ${event.location}
+                        </div>
+                    `;
+                    container.appendChild(eventItem);
+                });
+            },
+            
+            // Render search results
+            renderSearchResults(results) {
+                const container = document.getElementById('searchResults');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (results.length === 0) {
+                    container.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3></div>';
+                    return;
+                }
+                
+                results.forEach(user => {
+                    const userCard = this.createUserCard(user);
+                    container.appendChild(userCard);
+                });
+            },
+            
+            // Render jobs
+            renderJobs(jobs) {
+                const container = document.getElementById('jobsList');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                jobs.forEach(job => {
+                    const jobCard = this.createJobCard(job);
+                    container.appendChild(jobCard);
+                });
+            },
+            
             // Create job card
-            createJobCard(job, jobId) {
+            createJobCard(job) {
                 const div = document.createElement('div');
                 div.className = 'job-card';
                 div.innerHTML = `
+                    ${job.featured ? '<div class="job-featured bangla">ফিচার্ড</div>' : ''}
                     <div class="job-card-header">
                         <div>
-                            <h3 class="job-card-title">${job.title}</h3>
-                            <span class="job-card-status ${job.status === 'open' ? 'status-open' : 'status-closed'}">
-                                ${job.status === 'open' ? 'খোলা' : 'বন্ধ'}
-                            </span>
+                            <h3 class="job-card-title bangla">${job.title}</h3>
+                            <p class="job-card-company bangla">${job.company}</p>
+                        </div>
+                        <span class="badge">${job.type}</span>
+                    </div>
+                    
+                    <div class="job-card-tags">
+                        <span class="job-tag job-tag-type bangla">${job.type}</span>
+                        ${job.skills.map(skill => `<span class="job-tag bangla">${skill}</span>`).join('')}
+                    </div>
+                    
+                    <p class="job-card-description bangla">${job.description}</p>
+                    
+                    <div class="job-card-footer">
+                        <div class="job-card-salary bangla">${job.salary}</div>
+                        <div class="job-card-location bangla">
+                            <i class="fas fa-map-marker-alt"></i> ${job.location}
                         </div>
                     </div>
-                    <div class="job-card-meta">
-                        <span>📍 ${job.location}</span>
-                        <span>📅 ${new Date(job.postedAt?.toDate()).toLocaleDateString('bn-BD')}</span>
-                    </div>
-                    <p class="job-card-description">${job.description}</p>
-                    ${job.salary ? `<div class="job-card-salary">${job.salary}</div>` : ''}
-                    <button class="btn btn-primary" style="width: 100%;" onclick="app.applyForJob('${jobId}')">আবেদন করুন</button>
+                    
+                    <button class="btn btn-primary btn-block mt-3 bangla" onclick="app.applyForJob('${job.id}')">
+                        <i class="fas fa-paper-plane"></i> আবেদন করুন
+                    </button>
                 `;
                 return div;
             },
-
+            
+            // Render conversations
+            renderConversations(conversations) {
+                const container = document.getElementById('conversationsList');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                conversations.forEach(chat => {
+                    const chatItem = this.createChatItem(chat);
+                    container.appendChild(chatItem);
+                });
+            },
+            
+            // Create chat item
+            createChatItem(chat) {
+                const div = document.createElement('div');
+                div.className = 'chat-item';
+                div.onclick = () => this.openChat(chat);
+                div.innerHTML = `
+                    <div class="chat-avatar">${chat.name.charAt(0)}</div>
+                    <div class="chat-info">
+                        <h4 class="bangla">${chat.name}</h4>
+                        <p class="chat-last-message bangla">${chat.lastMessage}</p>
+                    </div>
+                    <div class="chat-time bangla">${chat.time}</div>
+                    ${chat.unread > 0 ? `<div class="chat-unread">${chat.unread}</div>` : ''}
+                `;
+                return div;
+            },
+            
+            // Render profile groups
+            renderProfileGroups() {
+                const container = document.getElementById('profileGroups');
+                if (!container) return;
+                
+                const groups = [
+                    { name: 'বাংলাদেশী শিক্ষার্থী', members: 1250 },
+                    { name: 'আইটি পেশাজীবী বাংলাদেশ', members: 3200 },
+                    { name: 'প্রবাসী বাংলাদেশী', members: 5800 }
+                ];
+                
+                container.innerHTML = '';
+                
+                groups.forEach(group => {
+                    const groupItem = document.createElement('div');
+                    groupItem.className = 'sidebar-item';
+                    groupItem.style.marginBottom = '8px';
+                    groupItem.innerHTML = `
+                        <span class="sidebar-icon"><i class="fas fa-users"></i></span>
+                        <span class="bangla">${group.name}</span>
+                        <span class="sidebar-badge">${group.members}</span>
+                    `;
+                    container.appendChild(groupItem);
+                });
+            },
+            
+            // Filter users
+            filterUsers(filter) {
+                const tabs = document.querySelectorAll('.feed-tab');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                event.target.classList.add('active');
+                
+                let filteredUsers = [];
+                
+                switch(filter) {
+                    case 'all':
+                        filteredUsers = this.usersData;
+                        break;
+                    case 'nearby':
+                        filteredUsers = this.usersData.filter(user => user.distance < 10);
+                        break;
+                    case 'online':
+                        filteredUsers = this.usersData.filter(user => user.online);
+                        break;
+                    case 'verified':
+                        filteredUsers = this.usersData.filter(user => user.verified);
+                        break;
+                }
+                
+                this.renderUsers(filteredUsers);
+            },
+            
             // Post job
             postJob() {
                 const title = document.getElementById('jobTitle').value;
-                const description = document.getElementById('jobDescription').value;
+                const company = document.getElementById('jobCompany').value;
+                const type = document.getElementById('jobType').value;
                 const location = document.getElementById('jobLocation').value;
                 const salary = document.getElementById('jobSalary').value;
-
-                if (!title || !description || !location) {
-                    this.showError('সমস্ত প্রয়োজনীয় ক্ষেত্র পূরণ করুন');
+                const description = document.getElementById('jobDescription').value;
+                const skills = document.getElementById('jobSkills').value;
+                
+                if (!title || !company || !type || !location || !description) {
+                    this.showError('দয়া করে সব প্রয়োজনীয় তথ্য পূরণ করুন');
                     return;
                 }
-
-                db.collection('jobs').add({
-                    title,
-                    description,
-                    location,
-                    salary,
-                    employerId: this.currentUser.uid,
-                    status: 'open',
-                    postedAt: new Date(),
-                    applicantCount: 0
-                }).then(() => {
+                
+                this.showToast('চাকরি পোস্ট করা হচ্ছে...', 'info');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    const newJob = {
+                        id: 'job' + Date.now(),
+                        title: title,
+                        company: company,
+                        type: type,
+                        location: location,
+                        salary: salary || 'আলোচনা সাপেক্ষ',
+                        description: description,
+                        skills: skills ? skills.split(',').map(s => s.trim()) : [],
+                        featured: false,
+                        posted: 'এইমাত্র'
+                    };
+                    
+                    this.jobsData.unshift(newJob);
                     this.closeModal('postJobModal');
-                    this.loadJobs();
-                    this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে', 'success');
+                    this.navigateTo('jobs');
+                    this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে!', 'success');
+                    
                     // Clear form
-                    document.getElementById('jobTitle').value = '';
-                    document.getElementById('jobDescription').value = '';
-                    document.getElementById('jobLocation').value = '';
-                    document.getElementById('jobSalary').value = '';
-                });
-            },
-
-            // Chat functions
-            loadConversations() {
-                const container = document.getElementById('conversationsList');
-                container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-                db.collection('chats')
-                    .where('participantIds', 'array-contains', this.currentUser.uid)
-                    .get()
-                    .then(snapshot => {
-                        container.innerHTML = '';
-                        snapshot.forEach(doc => {
-                            const chat = doc.data();
-                            const item = this.createChatItem(chat, doc.id);
-                            container.appendChild(item);
-                        });
+                    ['jobTitle', 'jobCompany', 'jobLocation', 'jobSalary', 'jobDescription', 'jobSkills'].forEach(id => {
+                        document.getElementById(id).value = '';
                     });
+                    document.getElementById('jobType').selectedIndex = 0;
+                }, 1500);
             },
-
-            createChatItem(chat, chatId) {
-                const div = document.createElement('div');
-                div.className = 'chat-item';
-                div.onclick = () => this.openChat(chatId, chat.otherUserName);
-                div.innerHTML = `
-                    <div class="chat-avatar">${chat.otherUserName[0]}</div>
-                    <div class="chat-meta">
-                        <h4>${chat.otherUserName}</h4>
-                        <p>${chat.lastMessage}</p>
-                    </div>
-                `;
-                return div;
+            
+            // Apply for job
+            applyForJob(jobId) {
+                this.showToast('আবেদন জমা দেওয়া হচ্ছে...', 'info');
+                
+                setTimeout(() => {
+                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে!', 'success');
+                }, 1000);
             },
-
-            startChat(userId) {
-                db.collection('users').doc(userId).get().then(doc => {
-                    const user = doc.data();
-                    this.navigateTo('chat');
-                    setTimeout(() => this.openChat(userId, user.name), 100);
-                });
+            
+            // Connect with user
+            connectWithUser(userId) {
+                this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে', 'success');
             },
-
-            openChat(chatId, userName) {
+            
+            // Chat functions
+            openChat(chat) {
                 document.getElementById('chatWindow').style.display = 'flex';
-                document.getElementById('chatTitle').textContent = userName;
-                this.loadChatMessages(chatId);
+                document.getElementById('chatEmptyState').style.display = 'none';
+                
+                // Update chat header
+                document.getElementById('chatUserName').textContent = chat.name;
+                document.getElementById('chatUserAvatar').textContent = chat.name.charAt(0);
+                
+                // Load messages
+                this.loadChatMessages(chat.id);
+                
+                // Mark as read
+                const chatItem = event.target.closest('.chat-item');
+                if (chatItem) {
+                    const unreadBadge = chatItem.querySelector('.chat-unread');
+                    if (unreadBadge) {
+                        unreadBadge.remove();
+                    }
+                    document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
+                    chatItem.classList.add('active');
+                }
             },
-
-            closeChat() {
-                document.getElementById('chatWindow').style.display = 'none';
-            },
-
+            
             loadChatMessages(chatId) {
                 const container = document.getElementById('chatMessages');
+                if (!container) return;
+                
+                // Demo messages
+                const messages = [
+                    { text: 'হ্যালো! কেমন আছেন?', sender: 'other', time: '১০:১৫ AM' },
+                    { text: 'আলহামদুলিল্লাহ, ভালো আছি। আপনি কেমন আছেন?', sender: 'me', time: '১০:১৬ AM' },
+                    { text: 'আমিও ভালো, ধন্যবাদ। আজকের মিটিং সম্পর্কে জানতে চাচ্ছিলাম।', sender: 'other', time: '১০:১৭ AM' },
+                    { text: 'হ্যাঁ, মিটিং টা বিকাল ৪টায় নির্ধারিত আছে। Zoom লিঙ্ক আমি পরে পাঠিয়ে দিব।', sender: 'me', time: '১০:১৮ AM' },
+                    { text: 'দারুন! তাহলে দেখা হবে বিকালে।', sender: 'other', time: '১০:১৯ AM' }
+                ];
+                
                 container.innerHTML = '';
-
-                db.collection('chats').doc(chatId).collection('messages')
-                    .orderBy('timestamp')
-                    .get()
-                    .then(snapshot => {
-                        snapshot.forEach(doc => {
-                            const msg = doc.data();
-                            const div = document.createElement('div');
-                            div.className = `message ${msg.senderId === this.currentUser.uid ? 'sent' : 'received'}`;
-                            div.innerHTML = `<div class="message-content">${msg.text}</div>`;
-                            container.appendChild(div);
-                        });
-                        container.scrollTop = container.scrollHeight;
-                    });
+                
+                messages.forEach(msg => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${msg.sender}`;
+                    messageDiv.innerHTML = `
+                        <div class="message-avatar">${msg.sender === 'me' ? 'আ' : chatId.charAt(0)}</div>
+                        <div>
+                            <div class="message-content bangla">${msg.text}</div>
+                            <div class="message-time">${msg.time}</div>
+                        </div>
+                    `;
+                    container.appendChild(messageDiv);
+                });
+                
+                // Scroll to bottom
+                container.scrollTop = container.scrollHeight;
             },
-
+            
             sendMessage() {
                 const input = document.getElementById('chatInput');
-                const text = input.value.trim();
-
-                if (!text) return;
-
-                const chatId = document.getElementById('chatTitle').textContent;
+                const message = input.value.trim();
                 
-                db.collection('chats').doc(chatId).collection('messages').add({
-                    senderId: this.currentUser.uid,
-                    text,
-                    timestamp: new Date(),
-                    status: 'sent'
-                }).then(() => {
-                    input.value = '';
-                    this.loadChatMessages(chatId);
-                });
+                if (!message) return;
+                
+                const container = document.getElementById('chatMessages');
+                const time = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+                
+                // Add message to UI
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">আ</div>
+                    <div>
+                        <div class="message-content bangla">${message}</div>
+                        <div class="message-time">${time}</div>
+                    </div>
+                `;
+                container.appendChild(messageDiv);
+                
+                // Clear input
+                input.value = '';
+                
+                // Scroll to bottom
+                container.scrollTop = container.scrollHeight;
+                
+                // Simulate reply after 1 second
+                setTimeout(() => {
+                    const replyDiv = document.createElement('div');
+                    replyDiv.className = 'message received';
+                    replyDiv.innerHTML = `
+                        <div class="message-avatar">অ</div>
+                        <div>
+                            <div class="message-content bangla">ধন্যবাদ আপনার বার্তার জন্য!</div>
+                            <div class="message-time">${new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' })}</div>
+                        </div>
+                    `;
+                    container.appendChild(replyDiv);
+                    container.scrollTop = container.scrollHeight;
+                }, 1000);
             },
-
-            // Profile functions
-            loadProfile() {
-                db.collection('users').doc(this.currentUser.uid).get().then(doc => {
-                    const user = doc.data();
-                    document.getElementById('profileAvatar').textContent = user.name[0];
-                    document.getElementById('profileName').textContent = user.name;
-                    document.getElementById('profileProfession').textContent = user.profession;
-                    document.getElementById('profileBio').textContent = user.bio || 'বায়ো যোগ করা হয়নি';
-                    document.getElementById('userGreeting').textContent = `স্বাগতম, ${user.name.split(' ')[0]}`;
-                });
+            
+            closeChat() {
+                document.getElementById('chatWindow').style.display = 'none';
+                document.getElementById('chatEmptyState').style.display = 'flex';
             },
-
-            viewProfile(userId) {
-                db.collection('users').doc(userId).get().then(doc => {
-                    const user = doc.data();
-                    alert(`${user.name}\n${user.profession}\n${user.bio}`);
-                });
-            },
-
+            
             // Modal functions
             showPostJobModal() {
                 document.getElementById('postJobModal').classList.add('active');
             },
-
+            
+            showSettingsModal() {
+                this.navigateTo('settings');
+            },
+            
             closeModal(modalId) {
                 document.getElementById(modalId).classList.remove('active');
             },
-
-            // Auth UI
+            
+            // Auth tabs
             showLoginTab() {
                 document.getElementById('loginForm').classList.remove('hidden');
                 document.getElementById('signupForm').classList.add('hidden');
-                document.querySelectorAll('#authTabs button')[0].classList.remove('btn-secondary');
-                document.querySelectorAll('#authTabs button')[0].classList.add('btn-primary');
-                document.querySelectorAll('#authTabs button')[1].classList.remove('btn-primary');
-                document.querySelectorAll('#authTabs button')[1].classList.add('btn-secondary');
+                
+                const tabs = document.querySelectorAll('.auth-tab');
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
             },
-
+            
             showSignupTab() {
                 document.getElementById('loginForm').classList.add('hidden');
                 document.getElementById('signupForm').classList.remove('hidden');
-                document.querySelectorAll('#authTabs button')[1].classList.remove('btn-secondary');
-                document.querySelectorAll('#authTabs button')[1].classList.add('btn-primary');
-                document.querySelectorAll('#authTabs button')[0].classList.remove('btn-primary');
-                document.querySelectorAll('#authTabs button')[0].classList.add('btn-secondary');
+                
+                const tabs = document.querySelectorAll('.auth-tab');
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
             },
-
-            showAuthenticatedUI() {
-                document.getElementById('authModal').classList.remove('active');
-                this.loadProfile();
-                this.loadNearbyUsers();
+            
+            // Mobile menu
+            toggleMobileMenu() {
+                document.getElementById('mobileMenu').classList.toggle('active');
             },
-
-            showError(message) {
-                document.getElementById('authError').textContent = message;
-                document.getElementById('authError').style.display = 'block';
-            },
-
-            showToast(message, type = 'info') {
-                const toast = document.getElementById('toast');
-                toast.textContent = message;
-                toast.classList.remove('error', 'success');
-                if (type !== 'info') toast.classList.add(type);
-                toast.style.display = 'block';
-                setTimeout(() => toast.style.display = 'none', 3000);
-            },
-
-            // Location tracking
-            setupLocationTracking() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.watchPosition(position => {
-                        if (this.currentUser) {
-                            db.collection('users').doc(this.currentUser.uid).update({
-                                location: {
-                                    latitude: position.coords.latitude,
-                                    longitude: position.coords.longitude
-                                }
-                            });
-                        }
-                    });
+            
+            // User dropdown
+            toggleUserDropdown() {
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                } else {
+                    this.createUserDropdown();
                 }
             },
-
-            loadCurrentUser() {
-                auth.onAuthStateChanged(user => {
-                    this.currentUser = user;
-                    if (user) {
-                        this.showAuthenticatedUI();
-                    }
-                });
+            
+            hideUserDropdown() {
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
             },
-
-            applyForJob(jobId) {
-                db.collection('applications').add({
-                    jobId,
-                    applicantId: this.currentUser.uid,
-                    appliedAt: new Date(),
-                    status: 'pending'
-                }).then(() => {
-                    this.showToast('চাকরিতে আবেদন সফল হয়েছে', 'success');
-                });
+            
+            createUserDropdown() {
+                // Create dropdown if it doesn't exist
+                const dropdown = document.createElement('div');
+                dropdown.id = 'userDropdown';
+                dropdown.className = 'user-dropdown';
+                dropdown.innerHTML = `
+                    <a href="#" onclick="app.navigateTo('profile')"><i class="fas fa-user"></i> প্রোফাইল</a>
+                    <a href="#" onclick="app.navigateTo('settings')"><i class="fas fa-cog"></i> সেটিংস</a>
+                    <hr>
+                    <a href="#" onclick="app.logout()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+                `;
+                
+                const userMenu = document.getElementById('userMenu');
+                userMenu.appendChild(dropdown);
+                dropdown.classList.add('active');
+            },
+            
+            // Toast notifications
+            showToast(message, type = 'info') {
+                const toastContainer = document.getElementById('toastContainer');
+                if (!toastContainer) return;
+                
+                const toastId = 'toast-' + Date.now();
+                const toast = document.createElement('div');
+                toast.id = toastId;
+                toast.className = `toast ${type}`;
+                
+                const icons = {
+                    success: 'fas fa-check-circle',
+                    error: 'fas fa-exclamation-circle',
+                    warning: 'fas fa-exclamation-triangle',
+                    info: 'fas fa-info-circle'
+                };
+                
+                toast.innerHTML = `
+                    <div class="toast-icon">
+                        <i class="${icons[type] || icons.info}"></i>
+                    </div>
+                    <div class="toast-content">
+                        <div class="toast-title bangla">${type === 'success' ? 'সফল' : type === 'error' ? 'ত্রুটি' : type === 'warning' ? 'সতর্কতা' : 'তথ্য'}</div>
+                        <div class="toast-message bangla">${message}</div>
+                    </div>
+                    <button class="toast-close" onclick="document.getElementById('${toastId}').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (document.getElementById(toastId)) {
+                        document.getElementById(toastId).remove();
+                    }
+                }, 5000);
+            },
+            
+            // Show error
+            showError(message) {
+                const errorElement = document.getElementById('authError');
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                    setTimeout(() => errorElement.style.display = 'none', 5000);
+                }
+                this.showToast(message, 'error');
+            },
+            
+            // Account management
+            changePassword() {
+                this.showToast('পাসওয়ার্ড পরিবর্তন ফিচার শীঘ্রই আসছে', 'info');
+            },
+            
+            deactivateAccount() {
+                if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট নিষ্ক্রিয় করতে চান? আপনি আবার সক্রিয় করতে পারবেন।')) {
+                    this.showToast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে', 'success');
+                }
+            },
+            
+            deleteAccount() {
+                if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট স্থায়ীভাবে মুছতে চান? এই কাজটি অপরিবর্তনীয়।')) {
+                    this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 'success');
+                    setTimeout(() => {
+                        this.logout();
+                    }, 2000);
+                }
+            },
+            
+            // Start chat with user
+            startChat(userId) {
+                this.navigateTo('chat');
+                
+                // Find user
+                const user = this.usersData.find(u => u.id === userId) || 
+                            this.recommendationsData.find(u => u.id === userId);
+                
+                if (user) {
+                    setTimeout(() => {
+                        this.openChat({
+                            id: userId,
+                            name: user.name,
+                            lastMessage: 'নতুন চ্যাট শুরু হয়েছে',
+                            time: 'এখন',
+                            unread: 0
+                        });
+                    }, 500);
+                }
             }
         };
 
         // Initialize app when page loads
-        window.addEventListener('load', () => app.init());
+        window.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+
+        // Make app available globally
+        window.app = app;
     </script>
 </body>
 </html>
