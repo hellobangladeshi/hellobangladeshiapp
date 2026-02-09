@@ -2725,15 +2725,16 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
-            authDomain: "hello-bangladeshi.firebaseapp.com",
-            projectId: "hello-bangladeshi",
-            storageBucket: "hello-bangladeshi.appspot.com",
-            messagingSenderId: "508048583569",
-            appId: "1:508048583569:web:36eb40ac37d1682ca98830"
-        };
+       // Replace lines 1996-2006 with this:
+const firebaseConfig = {
+    apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
+    authDomain: "hello-bangladeshi.firebaseapp.com",
+    projectId: "hello-bangladeshi",
+    storageBucket: "hello-bangladeshi.firebasestorage.app",
+    messagingSenderId: "508048583569",
+    appId: "1:508048583569:web:36eb40ac37d1682ca98830",
+    measurementId: "G-K0WLFW4L58"
+};
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
