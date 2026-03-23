@@ -8,38 +8,29 @@
     <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
     
     <style>
         :root {
-            /* Primary Colors - Bangladeshi Theme */
-            --primary: #006A4E; /* Bangladesh Green */
+            --primary: #006A4E;
             --primary-dark: #00563D;
             --primary-light: #008060;
-            
-            /* Secondary Colors */
-            --secondary: #F42A41; /* Bangladesh Red */
+            --secondary: #F42A41;
             --secondary-light: #FF5C72;
-            --secondary-dark: #D42034;
-            
-            /* Accent Colors */
             --accent-gold: #FFD700;
             --accent-green: #27AE60;
             --accent-blue: #3498DB;
             --accent-orange: #F39C12;
             --accent-red: #E74C3C;
-            --accent-purple: #9B59B6;
-            
-            /* Neutral Colors */
             --text-dark: #1A1A1A;
             --text-medium: #4A5568;
             --text-light: #718096;
@@ -48,45 +39,30 @@
             --bg-card: #FFFFFF;
             --border-color: #E2E8F0;
             --shadow-color: rgba(0, 106, 78, 0.08);
-            
-            /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
             --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-light));
             --gradient-green: linear-gradient(135deg, #27AE60, #2ECC71);
             --gradient-blue: linear-gradient(135deg, #3498DB, #2E86C1);
-            
-            /* Spacing */
             --spacing-xs: 6px;
             --spacing-sm: 12px;
             --spacing-md: 20px;
             --spacing-lg: 30px;
             --spacing-xl: 40px;
             --spacing-xxl: 60px;
-            
-            /* Typography */
             --font-bangla: 'Hind Siliguri', sans-serif;
             --font-display: 'Poppins', sans-serif;
             --font-body: 'Inter', sans-serif;
-            
-            /* Shadows */
             --shadow-sm: 0 2px 8px var(--shadow-color);
             --shadow-md: 0 6px 16px var(--shadow-color);
             --shadow-lg: 0 12px 32px var(--shadow-color);
             --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-            
-            /* Border Radius */
             --radius-sm: 10px;
             --radius-md: 16px;
             --radius-lg: 24px;
             --radius-xl: 32px;
             --radius-full: 9999px;
-            
-            /* Transitions */
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
-            
-            /* Z-index */
             --z-dropdown: 100;
             --z-sticky: 200;
             --z-modal: 1000;
@@ -107,14 +83,9 @@
             direction: ltr;
         }
 
-        /* Bangla Typography */
         .bangla {
             font-family: var(--font-bangla);
         }
-
-        /* ============================================
-           UTILITY CLASSES
-           ============================================ */
 
         .container {
             max-width: 1280px;
@@ -174,12 +145,6 @@
         .mb-4 { margin-bottom: var(--spacing-lg); }
         .mb-5 { margin-bottom: var(--spacing-xl); }
 
-        .p-1 { padding: var(--spacing-xs); }
-        .p-2 { padding: var(--spacing-sm); }
-        .p-3 { padding: var(--spacing-md); }
-        .p-4 { padding: var(--spacing-lg); }
-        .p-5 { padding: var(--spacing-xl); }
-
         .gradient-text {
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -210,10 +175,60 @@
             background: var(--accent-green);
         }
 
-        /* ============================================
-           SPLASH SCREEN
-           ============================================ */
+        /* Guest Mode Badge */
+        .guest-badge {
+            background: #FF9800;
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        /* Login Required Overlay */
+        .login-required-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .login-required-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            max-width: 400px;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .login-required-card i {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .login-required-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-family: var(--font-bangla);
+        }
+        
+        .login-required-card p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
 
+        /* Splash Screen */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -286,31 +301,7 @@
             opacity: 0.9;
         }
 
-        .splash-bg-decoration {
-            position: absolute;
-            z-index: -1;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .splash-circle-1 {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            right: -150px;
-        }
-
-        .splash-circle-2 {
-            width: 200px;
-            height: 200px;
-            bottom: -100px;
-            left: -100px;
-        }
-
-        /* ============================================
-           HEADER & NAVIGATION
-           ============================================ */
-
+        /* Header */
         header {
             background: var(--bg-white);
             border-bottom: 1px solid var(--border-color);
@@ -339,6 +330,7 @@
             font-size: 24px;
             color: var(--primary);
             font-family: var(--font-bangla);
+            cursor: pointer;
         }
 
         .logo-icon {
@@ -416,6 +408,7 @@
             border-radius: var(--radius-full);
             cursor: pointer;
             transition: all var(--transition-normal);
+            position: relative;
         }
 
         .user-menu:hover {
@@ -444,6 +437,45 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 180px;
+            margin-top: 8px;
+            overflow: hidden;
+            z-index: var(--z-dropdown);
+            display: none;
+        }
+
+        .user-dropdown.active {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all var(--transition-normal);
+        }
+
+        .user-dropdown a:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .user-dropdown hr {
+            margin: 8px 0;
+            border: none;
+            border-top: 1px solid var(--border-color);
         }
 
         .btn-icon {
@@ -477,10 +509,7 @@
             cursor: pointer;
         }
 
-        /* ============================================
-           MAIN CONTENT AREA
-           ============================================ */
-
+        /* Main Content */
         .main-content {
             display: grid;
             grid-template-columns: 280px 1fr 340px;
@@ -490,10 +519,7 @@
             margin: 0 auto;
         }
 
-        /* ============================================
-           SIDEBAR
-           ============================================ */
-
+        /* Sidebar */
         .sidebar {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -570,10 +596,7 @@
             border: none;
         }
 
-        /* ============================================
-           FEED SECTION
-           ============================================ */
-
+        /* Feed */
         .feed {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -599,6 +622,17 @@
         .feed-subtitle {
             color: var(--text-light);
             font-size: 15px;
+        }
+
+        .guest-info-bar {
+            background: #FFF3E0;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #E67E22;
         }
 
         .feed-tabs {
@@ -632,10 +666,7 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           USER CARD
-           ============================================ */
-
+        /* User Cards */
         .grid-users {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -663,13 +694,6 @@
             height: 160px;
             background: var(--gradient-primary);
             overflow: hidden;
-        }
-
-        .user-card-cover {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
         }
 
         .user-card-avatar {
@@ -775,10 +799,7 @@
             gap: var(--spacing-sm);
         }
 
-        /* ============================================
-           BUTTONS
-           ============================================ */
-
+        /* Buttons */
         .btn {
             padding: var(--spacing-md) var(--spacing-lg);
             border: none;
@@ -835,11 +856,6 @@
             color: white;
         }
 
-        .btn-danger:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
         .btn-small {
             padding: var(--spacing-sm) var(--spacing-md);
             font-size: 13px;
@@ -849,10 +865,7 @@
             width: 100%;
         }
 
-        /* ============================================
-           RIGHT SIDEBAR
-           ============================================ */
-
+        /* Right Sidebar */
         .right-sidebar {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -875,7 +888,6 @@
             justify-content: space-between;
         }
 
-        /* Recommendations */
         .recommendation-item {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-sm);
@@ -920,7 +932,6 @@
             color: var(--text-light);
         }
 
-        /* Trending Jobs */
         .trending-job {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-md);
@@ -954,7 +965,6 @@
             font-size: 14px;
         }
 
-        /* Events */
         .event-item {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-md);
@@ -985,205 +995,219 @@
             gap: var(--spacing-xs);
         }
 
-        /* ============================================
-           MODALS
-           ============================================ */
+        /* Job Cards */
+        .grid-jobs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
 
-        .modal-overlay {
-            position: fixed;
+        .job-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .job-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-card-title {
+            font-family: var(--font-bangla);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .job-card-company {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .job-card-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-tag {
+            padding: 4px 12px;
+            background: var(--bg-light);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            color: var(--text-medium);
+        }
+
+        .job-tag-type {
+            background: rgba(0, 106, 78, 0.1);
+            color: var(--primary);
+        }
+
+        .job-card-description {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+            font-size: 15px;
+        }
+
+        .job-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .job-card-salary {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .job-card-location {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .job-featured {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 4px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Profile Page */
+        .profile-header {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            color: white;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: var(--z-modal);
-            display: none;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%2C0%20L100%2C0%20L100%2C100%20Z%22%20fill%3D%22rgba(255%2C255%2C255%2C0.1)%22%2F%3E%3C%2Fsvg%3E');
+            background-size: cover;
+        }
+
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background: var(--gradient-blue);
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-md);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-xl);
-            max-width: 500px;
-            width: 100%;
-            box-shadow: var(--shadow-xl);
-            animation: slideUp 0.4s ease;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
             position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
+            z-index: 1;
         }
 
-        .modal-header {
-            margin-bottom: var(--spacing-xl);
+        .profile-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-bangla);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-profession {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-stat {
             text-align: center;
         }
 
-        .modal-title {
-            font-family: var(--font-bangla);
+        .profile-stat-value {
             font-size: 28px;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .modal-subtitle {
-            color: var(--text-light);
-            font-size: 16px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: var(--spacing-lg);
-            right: var(--spacing-lg);
-            background: var(--bg-light);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-normal);
-        }
-
-        .modal-close:hover {
-            background: var(--primary);
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        /* Auth Modal */
-        .auth-tabs {
-            display: flex;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: var(--spacing-md);
-            border: none;
-            background: var(--bg-light);
-            border-radius: var(--radius-md);
-            color: var(--text-medium);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            font-family: var(--font-bangla);
-        }
-
-        .auth-tab:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .auth-tab.active {
-            background: var(--gradient-primary);
-            color: white;
-        }
-
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .form-label {
             display: block;
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
+        }
+
+        .profile-stat-label {
             font-size: 14px;
-            color: var(--text-dark);
+            opacity: 0.8;
         }
 
-        .form-control {
-            width: 100%;
-            padding: var(--spacing-md);
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-md);
-            font-family: var(--font-bangla);
-            font-size: 15px;
-            transition: all var(--transition-normal);
-            background: var(--bg-light);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(0, 106, 78, 0.1);
-            background: white;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-            line-height: 1.6;
-        }
-
-        .form-checkbox {
-            width: 18px;
-            height: 18px;
-            margin-right: var(--spacing-sm);
-        }
-
-        .form-checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .social-login {
+        .profile-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-lg);
+            grid-template-columns: 1fr 350px;
+            gap: var(--spacing-lg);
         }
 
-        .btn-google, .btn-facebook {
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-sm);
-            transition: all var(--transition-normal);
+        .profile-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
         }
 
-        .btn-google {
-            background: #4285F4;
-            color: white;
+        .profile-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-dark);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+            font-family: var(--font-bangla);
         }
 
-        .btn-google:hover {
-            background: #3367D6;
-        }
-
-        .btn-facebook {
-            background: #1877F2;
-            color: white;
-        }
-
-        .btn-facebook:hover {
-            background: #166FE5;
-        }
-
-        /* ============================================
-           CHAT INTERFACE
-           ============================================ */
-
+        /* Chat Interface */
         .chat-container {
             display: grid;
             grid-template-columns: 350px 1fr;
@@ -1203,21 +1227,22 @@
         .chat-search {
             padding: var(--spacing-md);
             border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         .chat-search input {
             width: 100%;
             padding: var(--spacing-md);
+            padding-left: 40px;
             border: 2px solid var(--border-color);
             border-radius: var(--radius-full);
             font-family: var(--font-bangla);
-            padding-left: 40px;
             background: var(--bg-light);
         }
 
         .chat-search i {
             position: absolute;
-            left: 20px;
+            left: 28px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
@@ -1449,326 +1474,199 @@
             border-color: var(--primary);
         }
 
-        /* ============================================
-           JOB CARDS
-           ============================================ */
-
-        .grid-jobs {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: var(--z-modal);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            animation: fadeIn 0.3s ease;
         }
 
-        .job-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .job-card:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-            transform: translateY(-4px);
-        }
-
-        .job-card-header {
+        .modal-overlay.active {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: var(--spacing-md);
         }
 
-        .job-card-title {
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.4s ease;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .modal-title {
             font-family: var(--font-bangla);
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .job-card-company {
-            font-size: 14px;
-            color: var(--text-light);
+            color: var(--text-dark);
             margin-bottom: var(--spacing-sm);
         }
 
-        .job-card-tags {
-            display: flex;
-            gap: var(--spacing-xs);
-            flex-wrap: wrap;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .job-tag {
-            padding: 4px 12px;
-            background: var(--bg-light);
-            border-radius: var(--radius-full);
-            font-size: 12px;
-            color: var(--text-medium);
-        }
-
-        .job-tag-type {
-            background: rgba(0, 106, 78, 0.1);
-            color: var(--primary);
-        }
-
-        .job-card-description {
-            color: var(--text-medium);
-            line-height: 1.7;
-            margin-bottom: var(--spacing-lg);
-            font-size: 15px;
-        }
-
-        .job-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: var(--spacing-md);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .job-card-salary {
-            font-family: var(--font-display);
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .job-card-location {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
+        .modal-subtitle {
             color: var(--text-light);
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .job-featured {
+        .modal-close {
             position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--accent-gold);
-            color: var(--text-dark);
-            padding: 4px 30px;
-            transform: rotate(45deg);
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* ============================================
-           PROFILE PAGE
-           ============================================ */
-
-        .profile-header {
-            background: var(--gradient-primary);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-            color: white;
-            margin-bottom: var(--spacing-xl);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--bg-light);
+            border: none;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            border: 6px solid white;
-            background: var(--gradient-blue);
+            font-size: 20px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
         }
 
-        .profile-name {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Auth Modal */
+        .auth-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: none;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            color: var(--text-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
             font-family: var(--font-bangla);
         }
 
-        .profile-profession {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: var(--spacing-md);
+        .auth-tab:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        .profile-stats {
+        .auth-tab.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-family: var(--font-bangla);
+            font-size: 15px;
+            transition: all var(--transition-normal);
+            background: var(--bg-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 106, 78, 0.1);
+            background: white;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .form-checkbox {
+            width: 18px;
+            height: 18px;
+            margin-right: var(--spacing-sm);
+        }
+
+        .form-checkbox-label {
             display: flex;
-            gap: var(--spacing-xl);
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
             margin-top: var(--spacing-lg);
         }
 
-        .profile-stat {
-            text-align: center;
-        }
-
-        .profile-stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            display: block;
-        }
-
-        .profile-stat-label {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        .profile-content {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: var(--spacing-lg);
-        }
-
-        .profile-section {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-        }
-
-        .profile-section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-dark);
-            padding-bottom: var(--spacing-sm);
-            border-bottom: 2px solid var(--border-color);
-            font-family: var(--font-bangla);
-        }
-
-        /* ============================================
-           ANIMATIONS
-           ============================================ */
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ============================================
-           LOADING & EMPTY STATES
-           ============================================ */
-
-        .loading {
+        .btn-google, .btn-facebook {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-xxl);
-            flex-direction: column;
-            gap: var(--spacing-lg);
+            gap: var(--spacing-sm);
+            transition: all var(--transition-normal);
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--border-color);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .btn-google {
+            background: #4285F4;
+            color: white;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: var(--spacing-xxl);
-            color: var(--text-light);
+        .btn-google:hover {
+            background: #3367D6;
         }
 
-        .empty-state-icon {
-            font-size: 80px;
-            margin-bottom: var(--spacing-lg);
-            opacity: 0.5;
+        .btn-facebook {
+            background: #1877F2;
+            color: white;
         }
 
-        .empty-state h3 {
-            font-family: var(--font-bangla);
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-dark);
+        .btn-facebook:hover {
+            background: #166FE5;
         }
 
-        .empty-state p {
-            font-size: 16px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        /* ============================================
-           TOAST NOTIFICATIONS
-           ============================================ */
-
+        /* Toast */
         .toast-container {
             position: fixed;
             bottom: var(--spacing-lg);
@@ -1789,15 +1687,18 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
-            animation: slideUp 0.3s ease;
-            transform: translateX(100%);
             animation: slideIn 0.3s ease forwards;
             border: 1px solid var(--border-color);
         }
 
         @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
             to {
                 transform: translateX(0);
+                opacity: 1;
             }
         }
 
@@ -1845,123 +1746,97 @@
             padding: 4px;
         }
 
-        .toast-close:hover {
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xxl);
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 80px;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-bangla);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
             color: var(--text-dark);
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
+        .empty-state p {
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
 
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 250px 1fr;
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .right-sidebar {
-                display: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 992px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            
-            .sidebar {
-                display: none;
-            }
-            
-            .profile-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .chat-container {
-                grid-template-columns: 1fr;
-                height: calc(100vh - 140px);
-            }
-            
-            .chat-sidebar {
-                display: none;
+            to {
+                opacity: 1;
             }
         }
 
-        @media (max-width: 768px) {
-            .navbar {
-                padding: var(--spacing-sm);
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
             }
-            
-            .nav-center {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .user-name {
-                display: none;
-            }
-            
-            .grid-users {
-                grid-template-columns: 1fr;
-            }
-            
-            .splash-screen h1 {
-                font-size: 32px;
-            }
-            
-            .splash-logo {
-                width: 100px;
-                height: 100px;
-                font-size: 40px;
-            }
-            
-            .modal-content {
-                padding: var(--spacing-lg);
-            }
-            
-            .profile-stats {
-                flex-wrap: wrap;
-                gap: var(--spacing-md);
-            }
-            
-            .user-card-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .user-card-actions {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 0;
+                visibility: hidden;
             }
         }
 
-        @media (max-width: 480px) {
-            .main-content {
-                padding: var(--spacing-sm);
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
             }
-            
-            .feed {
-                padding: var(--spacing-md);
-            }
-            
-            .btn {
-                padding: var(--spacing-sm) var(--spacing-md);
-            }
-            
-            .social-login {
-                grid-template-columns: 1fr;
-            }
-            
-            .chat-input {
-                padding: var(--spacing-md);
+            50% {
+                transform: scale(1.05);
             }
         }
 
-        /* ============================================
-           MOBILE MENU
-           ============================================ */
-
+        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -2022,6 +1897,7 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
+            cursor: pointer;
         }
 
         .mobile-nav-item:hover {
@@ -2038,6 +1914,84 @@
         .mobile-nav-icon {
             width: 24px;
             text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 250px 1fr;
+            }
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            .sidebar {
+                display: none;
+            }
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            .chat-container {
+                grid-template-columns: 1fr;
+                height: calc(100vh - 140px);
+            }
+            .chat-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--spacing-sm);
+            }
+            .nav-center {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .user-name {
+                display: none;
+            }
+            .grid-users {
+                grid-template-columns: 1fr;
+            }
+            .splash-screen h1 {
+                font-size: 32px;
+            }
+            .splash-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            .modal-content {
+                padding: var(--spacing-lg);
+            }
+            .profile-stats {
+                flex-wrap: wrap;
+                gap: var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: var(--spacing-sm);
+            }
+            .feed {
+                padding: var(--spacing-md);
+            }
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            .social-login {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -2081,10 +2035,11 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 
-                <a href="#" class="logo" onclick="app.navigateTo('home')">
+                <div class="logo" onclick="app.navigateTo('home')">
                     <div class="logo-icon">হেবি</div>
                     <span class="bangla">হ্যালো বাংলাদেশী</span>
-                </a>
+                    <span id="guestBadge" class="guest-badge hidden">অতিথি</span>
+                </div>
 
                 <nav class="nav-center">
                     <span class="nav-link active" onclick="app.navigateTo('home')">
@@ -2106,7 +2061,7 @@
                 </nav>
 
                 <div class="nav-right">
-                    <button class="btn-icon" onclick="app.navigateTo('notifications')">
+                    <button class="btn-icon" onclick="app.showNotifications()">
                         <i class="fas fa-bell"></i>
                     </button>
                     
@@ -2114,6 +2069,12 @@
                         <div class="user-avatar" id="userAvatar">U</div>
                         <div class="user-name bangla" id="userName">অতিথি</div>
                         <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div id="userDropdown" class="user-dropdown">
+                        <a href="#" onclick="app.navigateTo('profile'); app.hideUserDropdown()"><i class="fas fa-user"></i> প্রোফাইল</a>
+                        <a href="#" onclick="app.navigateTo('settings'); app.hideUserDropdown()"><i class="fas fa-cog"></i> সেটিংস</a>
+                        <hr>
+                        <a href="#" onclick="app.logout(); app.hideUserDropdown()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
                     </div>
                 </div>
             </div>
@@ -2132,35 +2093,37 @@
             </div>
             
             <nav class="mobile-nav">
-                <a class="mobile-nav-item active" onclick="app.navigateTo('home'); app.toggleMobileMenu()">
+                <div class="mobile-nav-item active" onclick="app.navigateTo('home'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-home"></i></span>
                     <span>বাড়ি</span>
-                </a>
-                <a class="mobile-nav-item" onclick="app.navigateTo('search'); app.toggleMobileMenu()">
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('search'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-search"></i></span>
                     <span>খুঁজুন</span>
-                </a>
-                <a class="mobile-nav-item" onclick="app.navigateTo('jobs'); app.toggleMobileMenu()">
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('jobs'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-briefcase"></i></span>
                     <span>চাকরি</span>
-                </a>
-                <a class="mobile-nav-item" onclick="app.navigateTo('chat'); app.toggleMobileMenu()">
+                    <span class="badge badge-new" style="margin-left: 8px;">১২</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('chat'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-comments"></i></span>
-                    <span>চ্যাট <span class="badge badge-new" style="margin-left: 8px;">৩</span></span>
-                </a>
-                <a class="mobile-nav-item" onclick="app.navigateTo('profile'); app.toggleMobileMenu()">
+                    <span>চ্যাট</span>
+                    <span class="badge badge-new" style="margin-left: 8px;">৩</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('profile'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-user"></i></span>
                     <span>প্রোফাইল</span>
-                </a>
+                </div>
                 <hr class="sidebar-divider">
-                <a class="mobile-nav-item" onclick="app.navigateTo('settings'); app.toggleMobileMenu()">
+                <div class="mobile-nav-item" onclick="app.navigateTo('settings'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-cog"></i></span>
                     <span>সেটিংস</span>
-                </a>
-                <a class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()">
+                </div>
+                <div class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-sign-out-alt"></i></span>
                     <span>লগ আউট</span>
-                </a>
+                </div>
             </nav>
         </div>
 
@@ -2241,6 +2204,12 @@
                     <div class="feed-header">
                         <h1 class="feed-title bangla">আপনার কাছাকাছি মানুষ</h1>
                         <p class="feed-subtitle bangla">আপনার এলাকায় বাংলাদেশীদের সাথে সংযুক্ত হোন</p>
+                    </div>
+                    
+                    <div id="guestInfoBar" class="guest-info-bar hidden">
+                        <i class="fas fa-info-circle"></i>
+                        <span>আপনি অতিথি হিসেবে দেখছেন। সংযোগ, চ্যাট ও চাকরিতে আবেদন করতে লগইন করুন।</span>
+                        <button class="btn btn-primary btn-small" onclick="app.showAuthModal()" style="margin-left: auto; padding: 6px 16px;">লগইন</button>
                     </div>
                     
                     <div class="feed-tabs">
@@ -2357,65 +2326,8 @@
 
                 <!-- PROFILE VIEW -->
                 <div id="profileView" class="hidden">
-                    <div class="profile-header">
-                        <div class="profile-avatar" id="profileAvatar">U</div>
-                        <h1 class="profile-name bangla" id="profileName">অতিথি ব্যবহারকারী</h1>
-                        <p class="profile-profession bangla" id="profileProfession">সদস্য</p>
-                        
-                        <div class="profile-stats">
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileConnections">০</span>
-                                <span class="profile-stat-label bangla">সংযোগ</span>
-                            </div>
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profilePosts">০</span>
-                                <span class="profile-stat-label bangla">পোস্ট</span>
-                            </div>
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileRating">০.০</span>
-                                <span class="profile-stat-label bangla">রেটিং</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-content">
-                        <div>
-                            <div class="profile-section">
-                                <h2 class="profile-section-title bangla">আমার সম্পর্কে</h2>
-                                <p id="profileBio" class="bangla" style="line-height: 1.8;">আপনার বায়ো এখানে দেখানো হবে। বায়ো সম্পাদনা করতে প্রোফাইল সম্পাদনা বাটনে ক্লিক করুন।</p>
-                            </div>
-                            
-                            <div class="profile-section">
-                                <h2 class="profile-section-title bangla">পেশাগত তথ্য</h2>
-                                <div id="profileProfessionalInfo">
-                                    <!-- Professional info will be loaded here -->
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="profile-section">
-                                <h2 class="profile-section-title bangla">দ্রুত কাজ</h2>
-                                <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
-                                    <button class="btn btn-primary btn-block bangla" onclick="app.navigateTo('edit-profile')">
-                                        <i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা
-                                    </button>
-                                    <button class="btn btn-secondary btn-block bangla" onclick="app.showSettingsModal()">
-                                        <i class="fas fa-cog"></i> সেটিংস
-                                    </button>
-                                    <button class="btn btn-outline btn-block bangla" onclick="app.logout()">
-                                        <i class="fas fa-sign-out-alt"></i> লগ আউট
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="profile-section">
-                                <h2 class="profile-section-title bangla">আমার গোষ্ঠী</h2>
-                                <div id="profileGroups">
-                                    <!-- Groups will be loaded here -->
-                                </div>
-                            </div>
-                        </div>
+                    <div id="profileContent">
+                        <!-- Profile content will be loaded dynamically -->
                     </div>
                 </div>
 
@@ -2537,7 +2449,7 @@
     </div>
 
     <!-- AUTH MODAL -->
-    <div id="authModal" class="modal-overlay active">
+    <div id="authModal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="app.closeModal('authModal')">
                 <i class="fas fa-times"></i>
@@ -2586,6 +2498,9 @@
                 </div>
                 
                 <p class="text-center mt-3 bangla" style="color: var(--text-light);">
+                    ডেমো অ্যাকাউন্ট: demo@test.com / password
+                </p>
+                <p class="text-center bangla" style="color: var(--text-light);">
                     পাসওয়ার্ড ভুলে গেছেন? 
                     <a href="#" style="color: var(--primary); font-weight: 600;">পাসওয়ার্ড রিসেট করুন</a>
                 </p>
@@ -2605,7 +2520,7 @@
                 
                 <div class="form-group">
                     <label class="form-label bangla">পাসওয়ার্ড</label>
-                    <input type="password" id="signupPassword" class="form-control" placeholder="নতুন পাসওয়ার্ড">
+                    <input type="password" id="signupPassword" class="form-control" placeholder="নতুন পাসওয়ার্ড (৬+ অক্ষর)">
                 </div>
                 
                 <div class="form-group">
@@ -2716,37 +2631,62 @@
                 <p class="modal-subtitle bangla">আপনার তথ্য আপডেট করুন</p>
             </div>
             
-            <!-- Edit profile form will be loaded here -->
+            <div class="form-group">
+                <label class="form-label bangla">পুরো নাম</label>
+                <input type="text" id="editName" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label bangla">পেশা</label>
+                <input type="text" id="editProfession" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label bangla">বায়ো</label>
+                <textarea id="editBio" class="form-control form-textarea" rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label bangla">শহর</label>
+                <select id="editCity" class="form-control">
+                    <option value="ঢাকা">ঢাকা</option>
+                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                    <option value="সিলেট">সিলেট</option>
+                    <option value="খুলনা">খুলনা</option>
+                    <option value="রাজশাহী">রাজশাহী</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary btn-block bangla" onclick="app.updateProfile()">
+                <i class="fas fa-save"></i> সংরক্ষণ করুন
+            </button>
         </div>
     </div>
 
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- SCRIPTS -->
-       <script>
+    <script>
+        // Firebase Config
         const firebaseConfig = {
-            
-            apiKey: "AIzaSyAGlMCGsQhz_XyQw7s0NZWrD4GXhHRNjww",
-            authDomain: "hellobangladeshi.firebaseapp.com",
-            databaseURL: "https://hellobangladeshi-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "hellobangladeshi",
-            storageBucket: "hellobangladeshi.firebasestorage.app",
-            messagingSenderId: "1068912456284",
-            appId: "1:1068912456284:web:9dbe759a9352ff0a072c99",
-            measurementId: "G-4FLDL5KPRL"
+            apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
+            authDomain: "hello-bangladeshi.firebaseapp.com",
+            projectId: "hello-bangladeshi",
+            storageBucket: "hello-bangladeshi.firebasestorage.app",
+            messagingSenderId: "508048583569",
+            appId: "1:508048583569:web:36eb40ac37d1682ca98830",
+            measurementId: "G-K0WLFW4L58"
         };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
-        const storage = firebase.storage();
 
         // App State
         const app = {
             currentUser: null,
-            isGuest: false,
+            isGuest: true,
             currentView: 'home',
             usersData: [],
             jobsData: [],
@@ -2773,16 +2713,6 @@
                 } else {
                     document.getElementById('splashScreen').style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
-                    // Check if user is already logged in via Firebase persistence
-                    auth.onAuthStateChanged((user) => {
-                        if (!user && !this.isGuest) {
-                            this.showAuthModal();
-                        } else if (user) {
-                            this.currentUser = user;
-                            this.isGuest = false;
-                            this.showAuthenticatedUI();
-                        }
-                    });
                 }
             },
             
@@ -2824,38 +2754,191 @@
             // Setup auth state listener
             setupAuthListener() {
                 auth.onAuthStateChanged((user) => {
+                    this.currentUser = user;
                     if (user) {
-                        console.log('ব্যবহারকারী লগইন করেছেন:', user.email);
-                        this.currentUser = user;
                         this.isGuest = false;
-                        this.showAuthenticatedUI();
+                        console.log('ব্যবহারকারী লগইন করেছেন:', user.email);
+                        this.updateUIForLoggedInUser(user);
                         this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
-                    } else if (!this.isGuest) {
-                        console.log('কোনো ব্যবহারকারী লগইন নেই');
+                    } else {
+                        this.isGuest = true;
                         this.currentUser = null;
-                        // Only show auth modal if not already in guest mode and main app is visible
-                        if (document.getElementById('mainApp') && !document.getElementById('mainApp').classList.contains('hidden')) {
-                            // Don't auto-show modal, let user choose
-                        }
+                        console.log('কোনো ব্যবহারকারী লগইন নেই - অতিথি মোড');
+                        this.updateUIForGuest();
                     }
+                    this.loadHomeView();
                 });
+            },
+            
+            // Update UI for logged in user
+            updateUIForLoggedInUser(user) {
+                const userName = user.displayName || user.email || 'ব্যবহারকারী';
+                const userAvatar = document.getElementById('userAvatar');
+                const userNameElement = document.getElementById('userName');
+                const guestBadge = document.getElementById('guestBadge');
+                const guestInfoBar = document.getElementById('guestInfoBar');
+                
+                if (userAvatar) userAvatar.textContent = userName.charAt(0).toUpperCase();
+                if (userNameElement) userNameElement.textContent = userName.split('@')[0];
+                if (guestBadge) guestBadge.classList.add('hidden');
+                if (guestInfoBar) guestInfoBar.classList.add('hidden');
+                
+                this.closeModal('authModal');
+            },
+            
+            // Update UI for guest
+            updateUIForGuest() {
+                const userAvatar = document.getElementById('userAvatar');
+                const userNameElement = document.getElementById('userName');
+                const guestBadge = document.getElementById('guestBadge');
+                const guestInfoBar = document.getElementById('guestInfoBar');
+                
+                if (userAvatar) userAvatar.textContent = 'U';
+                if (userNameElement) userNameElement.textContent = 'অতিথি';
+                if (guestBadge) guestBadge.classList.remove('hidden');
+                if (guestInfoBar) guestInfoBar.classList.remove('hidden');
+            },
+            
+            // Check if action requires login
+            requireAuth(actionName, callback) {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal(actionName);
+                    return false;
+                }
+                if (callback) callback();
+                return true;
+            },
+            
+            // Show login required modal
+            showLoginRequiredModal(actionName) {
+                const modal = document.createElement('div');
+                modal.className = 'login-required-overlay';
+                modal.innerHTML = `
+                    <div class="login-required-card">
+                        <i class="fas fa-lock"></i>
+                        <h3 class="bangla">লগইন প্রয়োজন</h3>
+                        <p class="bangla">${actionName} করতে অনুগ্রহ করে লগইন করুন</p>
+                        <button class="btn btn-primary bangla" onclick="app.showAuthModal(); this.closest('.login-required-overlay').remove()">লগইন করুন</button>
+                        <button class="btn btn-secondary bangla mt-2" onclick="this.closest('.login-required-overlay').remove()">পরে</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
             },
             
             // Load demo data
             loadDemoData() {
                 this.usersData = [
-                    { id: '1', name: 'আহমেদ হাসান', profession: 'সফটওয়্যার ইঞ্জিনিয়ার', location: 'ঢাকা, বাংলাদেশ', bio: 'ফুল-স্ট্যাক ডেভেলপার, ওয়েব টেকনোলজি এবং AI এ আগ্রহী।', rating: 4.8, connections: 245, online: true, verified: true, distance: 2.5 },
-                    { id: '2', name: 'ফারহানা আক্তার', profession: 'গ্রাফিক ডিজাইনার', location: 'চট্টগ্রাম, বাংলাদেশ', bio: 'ক্রিয়েটিভ ডিজাইনার, UI/UX এবং ব্র্যান্ডিং বিশেষজ্ঞ।', rating: 4.9, connections: 189, online: true, verified: true, distance: 5.2 },
-                    { id: '3', name: 'রাকিবুল ইসলাম', profession: 'ডাক্তার', location: 'সিলেট, বাংলাদেশ', bio: 'হৃদরোগ বিশেষজ্ঞ, স্বাস্থ্য সচেতনতা নিয়ে কাজ করতে পছন্দ করি।', rating: 4.7, connections: 312, online: false, verified: true, distance: 12.8 },
-                    { id: '4', name: 'সাবরিনা সুলতানা', profession: 'শিক্ষিকা', location: 'খুলনা, বাংলাদেশ', bio: 'ইংরেজি সাহিত্যের অধ্যাপক, পড়ানো এবং লেখালেখি আমার নেশা।', rating: 4.9, connections: 156, online: true, verified: false, distance: 8.4 },
-                    { id: '5', name: 'জুবায়ের আহমেদ', profession: 'ব্যবসায়ী', location: 'রাজশাহী, বাংলাদেশ', bio: 'আইটি কোম্পানির মালিক, স্টার্টআপ এবং বিনিয়োগে আগ্রহী।', rating: 4.6, connections: 421, online: true, verified: true, distance: 15.3 },
-                    { id: '6', name: 'তানিয়া রহমান', profession: 'ডাটা সায়েন্টিস্ট', location: 'ঢাকা, বাংলাদেশ', bio: 'মেশিন লার্নিং এবং ডাটা অ্যানালাইসিসে অভিজ্ঞ, গবেষণায় আগ্রহী।', rating: 4.8, connections: 278, online: false, verified: true, distance: 3.1 }
+                    {
+                        id: '1',
+                        name: 'আহমেদ হাসান',
+                        profession: 'সফটওয়্যার ইঞ্জিনিয়ার',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        bio: 'ফুল-স্ট্যাক ডেভেলপার, ওয়েব টেকনোলজি এবং AI এ আগ্রহী।',
+                        rating: 4.8,
+                        connections: 245,
+                        online: true,
+                        verified: true,
+                        distance: 2.5
+                    },
+                    {
+                        id: '2',
+                        name: 'ফারহানা আক্তার',
+                        profession: 'গ্রাফিক ডিজাইনার',
+                        location: 'চট্টগ্রাম, বাংলাদেশ',
+                        bio: 'ক্রিয়েটিভ ডিজাইনার, UI/UX এবং ব্র্যান্ডিং বিশেষজ্ঞ।',
+                        rating: 4.9,
+                        connections: 189,
+                        online: true,
+                        verified: true,
+                        distance: 5.2
+                    },
+                    {
+                        id: '3',
+                        name: 'রাকিবুল ইসলাম',
+                        profession: 'ডাক্তার',
+                        location: 'সিলেট, বাংলাদেশ',
+                        bio: 'হৃদরোগ বিশেষজ্ঞ, স্বাস্থ্য সচেতনতা নিয়ে কাজ করতে পছন্দ করি।',
+                        rating: 4.7,
+                        connections: 312,
+                        online: false,
+                        verified: true,
+                        distance: 12.8
+                    },
+                    {
+                        id: '4',
+                        name: 'সাবরিনা সুলতানা',
+                        profession: 'শিক্ষিকা',
+                        location: 'খুলনা, বাংলাদেশ',
+                        bio: 'ইংরেজি সাহিত্যের অধ্যাপক, পড়ানো এবং লেখালেখি আমার নেশা।',
+                        rating: 4.9,
+                        connections: 156,
+                        online: true,
+                        verified: false,
+                        distance: 8.4
+                    },
+                    {
+                        id: '5',
+                        name: 'জুবায়ের আহমেদ',
+                        profession: 'ব্যবসায়ী',
+                        location: 'রাজশাহী, বাংলাদেশ',
+                        bio: 'আইটি কোম্পানির মালিক, স্টার্টআপ এবং বিনিয়োগে আগ্রহী।',
+                        rating: 4.6,
+                        connections: 421,
+                        online: true,
+                        verified: true,
+                        distance: 15.3
+                    },
+                    {
+                        id: '6',
+                        name: 'তানিয়া রহমান',
+                        profession: 'ডাটা সায়েন্টিস্ট',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        bio: 'মেশিন লার্নিং এবং ডাটা অ্যানালাইসিসে অভিজ্ঞ, গবেষণায় আগ্রহী।',
+                        rating: 4.8,
+                        connections: 278,
+                        online: false,
+                        verified: true,
+                        distance: 3.1
+                    }
                 ];
                 
                 this.jobsData = [
-                    { id: '1', title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার', company: 'টেকনোভেশন লিমিটেড', type: 'পূর্ণকালীন', location: 'ঢাকা, বাংলাদেশ', salary: '৳১,৫০,০০০ - ৳২,৫০,০০০', description: 'আমরা একজন অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার খুঁজছি যিনি Node.js, React এবং MongoDB তে দক্ষ।', skills: ['Node.js', 'React', 'MongoDB'], featured: true, posted: '২ দিন আগে' },
-                    { id: '2', title: 'গ্রাফিক ডিজাইনার', company: 'ক্রিয়েটিভ মিডিয়া', type: 'খণ্ডকালীন', location: 'চট্টগ্রাম, বাংলাদেশ', salary: '৳৪০,০০০ - ৳৬০,০০০', description: 'আমাদের ডিজাইন টিমের সাথে কাজ করার জন্য একজন প্রতিভাবান গ্রাফিক ডিজাইনার প্রয়োজন।', skills: ['Photoshop', 'Illustrator'], featured: false, posted: '১ সপ্তাহ আগে' },
-                    { id: '3', title: 'ডাটা অ্যানালিস্ট', company: 'ডাটা সলিউশন্স', type: 'দূরবর্তী', location: 'দূরবর্তী', salary: '৳৮০,০০০ - ৳১,২০,০০০', description: 'বড় ডাটা প্রসেসিং এবং বিশ্লেষণের অভিজ্ঞতা সহ একজন ডাটা অ্যানালিস্ট প্রয়োজন।', skills: ['Python', 'SQL'], featured: true, posted: '৩ দিন আগে' }
+                    {
+                        id: '1',
+                        title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার',
+                        company: 'টেকনোভেশন লিমিটেড',
+                        type: 'পূর্ণকালীন',
+                        location: 'ঢাকা, বাংলাদেশ',
+                        salary: '৳১,৫০,০০০ - ৳২,৫০,০০০',
+                        description: 'আমরা একজন অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার খুঁজছি যিনি Node.js, React এবং MongoDB তে দক্ষ। দলগত কাজ এবং সমস্যা সমাধানে পারদর্শী হতে হবে।',
+                        skills: ['Node.js', 'React', 'MongoDB', 'AWS', 'Docker'],
+                        featured: true,
+                        posted: '২ দিন আগে'
+                    },
+                    {
+                        id: '2',
+                        title: 'গ্রাফিক ডিজাইনার',
+                        company: 'ক্রিয়েটিভ মিডিয়া',
+                        type: 'খণ্ডকালীন',
+                        location: 'চট্টগ্রাম, বাংলাদেশ',
+                        salary: '৳৪০,০০০ - ৳৬০,০০০',
+                        description: 'আমাদের ডিজাইন টিমের সাথে কাজ করার জন্য একজন প্রতিভাবান গ্রাফিক ডিজাইনার প্রয়োজন। Adobe Creative Suite (Photoshop, Illustrator) এ দক্ষতা প্রয়োজন।',
+                        skills: ['Photoshop', 'Illustrator', 'UI/UX', 'Figma'],
+                        featured: false,
+                        posted: '১ সপ্তাহ আগে'
+                    },
+                    {
+                        id: '3',
+                        title: 'ডাটা অ্যানালিস্ট',
+                        company: 'ডাটা সলিউশন্স',
+                        type: 'দূরবর্তী',
+                        location: 'দূরবর্তী',
+                        salary: '৳৮০,০০০ - ৳১,২০,০০০',
+                        description: 'বড় ডাটা প্রসেসিং এবং বিশ্লেষণের অভিজ্ঞতা সহ একজন ডাটা অ্যানালিস্ট প্রয়োজন। Python, SQL এবং ডাটা ভিজ্যুয়ালাইজেশন টুলস সম্পর্কে গভীর জ্ঞান প্রয়োজন।',
+                        skills: ['Python', 'SQL', 'Tableau', 'Data Analysis'],
+                        featured: true,
+                        posted: '৩ দিন আগে'
+                    }
                 ];
                 
                 this.recommendationsData = [
@@ -2880,67 +2963,17 @@
                 setTimeout(() => {
                     splashScreen.style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
-                    // Don't auto show auth modal - let user browse as guest first
                 }, 500);
             },
             
             // Show auth modal
             showAuthModal() {
-                const modal = document.getElementById('authModal');
-                if (modal) {
-                    modal.classList.add('active');
-                }
+                document.getElementById('authModal').classList.add('active');
             },
             
-            // Guest mode - continue without login
-            continueAsGuest() {
-                this.isGuest = true;
-                this.currentUser = null;
-                this.closeModal('authModal');
-                this.showGuestUI();
-                this.showToast('আপনি গেস্ট মোডে আছেন। সম্পূর্ণ সুবিধা পেতে লগইন করুন।', 'info');
-            },
-            
-            // Show guest UI
-            showGuestUI() {
-                // Update header for guest
-                const userAvatar = document.getElementById('userAvatar');
-                const userName = document.getElementById('userName');
-                if (userAvatar) userAvatar.textContent = 'অ';
-                if (userName) userName.textContent = 'অতিথি';
-                
-                // Disable actions that require login
-                const postJobBtn = document.querySelector('#jobsView .btn-primary');
-                if (postJobBtn) postJobBtn.style.opacity = '0.5';
-                
-                this.loadHomeView();
-            },
-            
-            // Show authenticated UI
-            showAuthenticatedUI() {
-                this.closeModal('authModal');
-                
-                const userName = this.currentUser.displayName || (this.currentUser.email ? this.currentUser.email.split('@')[0] : 'ব্যবহারকারী');
-                const userAvatar = document.getElementById('userAvatar');
-                const userNameElement = document.getElementById('userName');
-                
-                if (userAvatar) {
-                    userAvatar.textContent = userName.charAt(0).toUpperCase();
-                }
-                if (userNameElement) {
-                    userNameElement.textContent = userName;
-                }
-                
-                // Enable post job button
-                const postJobBtn = document.querySelector('#jobsView .btn-primary');
-                if (postJobBtn) postJobBtn.style.opacity = '1';
-                
-                this.loadHomeView();
-            },
-            
-            // Login function
-            async login() {
-                const email = document.getElementById('loginEmail').value.trim();
+            // Authentication functions
+            login() {
+                const email = document.getElementById('loginEmail').value;
                 const password = document.getElementById('loginPassword').value;
                 
                 if (!email || !password) {
@@ -2950,29 +2983,35 @@
                 
                 this.showToast('লগইন প্রক্রিয়া চলছে...', 'info');
                 
-                try {
-                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                    this.currentUser = userCredential.user;
-                    this.isGuest = false;
-                    this.showAuthenticatedUI();
-                    this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
-                } catch (error) {
-                    console.error('Login error:', error);
-                    let errorMessage = 'লগইন করতে সমস্যা হয়েছে। ';
-                    if (error.code === 'auth/user-not-found') errorMessage = 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই।';
-                    else if (error.code === 'auth/wrong-password') errorMessage = 'ভুল পাসওয়ার্ড।';
-                    else if (error.code === 'auth/invalid-email') errorMessage = 'ভুল ইমেল ফরম্যাট।';
-                    else if (error.code === 'auth/network-request-failed') errorMessage = 'নেটওয়ার্ক সমস্যা। ইন্টারনেট কানেকশন চেক করুন।';
-                    this.showError(errorMessage);
+                // Demo login for testing
+                if (email === 'demo@test.com' && password === 'password') {
+                    setTimeout(() => {
+                        const demoUser = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
+                        this.currentUser = demoUser;
+                        this.isGuest = false;
+                        this.updateUIForLoggedInUser(demoUser);
+                        this.showToast('ডেমো অ্যাকাউন্টে লগইন সফল!', 'success');
+                        this.loadHomeView();
+                    }, 500);
+                    return;
                 }
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        this.currentUser = userCredential.user;
+                        this.updateUIForLoggedInUser(userCredential.user);
+                        this.showToast('লগইন সফল!', 'success');
+                    })
+                    .catch((error) => {
+                        this.showError(this.getAuthErrorMessage(error));
+                    });
             },
             
-            // Signup function
-            async signup() {
-                const name = document.getElementById('signupName').value.trim();
-                const email = document.getElementById('signupEmail').value.trim();
+            signup() {
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
                 const password = document.getElementById('signupPassword').value;
-                const profession = document.getElementById('signupProfession').value.trim();
+                const profession = document.getElementById('signupProfession').value;
                 const city = document.getElementById('signupCity').value;
                 const terms = document.getElementById('termsAgreement').checked;
                 
@@ -2993,37 +3032,31 @@
                 
                 this.showToast('অ্যাকাউন্ট তৈরি করা হচ্ছে...', 'info');
                 
-                try {
-                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                    const user = userCredential.user;
-                    
-                    await user.updateProfile({ displayName: name });
-                    
-                    await db.collection('users').doc(user.uid).set({
-                        name: name,
-                        email: email,
-                        profession: profession,
-                        city: city,
-                        bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        connections: 0,
-                        rating: 0,
-                        verified: false
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        return user.updateProfile({ displayName: name })
+                            .then(() => {
+                                return db.collection('users').doc(user.uid).set({
+                                    name: name,
+                                    email: email,
+                                    profession: profession,
+                                    city: city,
+                                    bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
+                                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                                    rating: 0,
+                                    connections: 0,
+                                    verified: false,
+                                    online: true
+                                });
+                            });
+                    })
+                    .then(() => {
+                        this.showToast('অ্যাকাউন্ট তৈরি সফল!', 'success');
+                    })
+                    .catch((error) => {
+                        this.showError(this.getAuthErrorMessage(error));
                     });
-                    
-                    this.currentUser = user;
-                    this.isGuest = false;
-                    this.showAuthenticatedUI();
-                    this.showToast('অ্যাকাউন্ট তৈরি সফল! স্বাগতম!', 'success');
-                    
-                } catch (error) {
-                    console.error('Signup error:', error);
-                    let errorMessage = 'নিবন্ধন করতে সমস্যা হয়েছে। ';
-                    if (error.code === 'auth/email-already-in-use') errorMessage = 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে।';
-                    else if (error.code === 'auth/weak-password') errorMessage = 'পাসওয়ার্ড শক্তিশালী করুন।';
-                    else if (error.code === 'auth/invalid-email') errorMessage = 'ভুল ইমেল ফরম্যাট।';
-                    this.showError(errorMessage);
-                }
             },
             
             loginWithGoogle() {
@@ -3035,41 +3068,50 @@
             },
             
             logout() {
-                if (this.currentUser) {
+                if (this.currentUser && this.currentUser.uid !== 'demo123') {
                     auth.signOut().then(() => {
-                        this.currentUser = null;
-                        this.isGuest = false;
-                        this.showGuestUI();
                         this.showToast('সফলভাবে লগ আউট হয়েছে', 'success');
-                        this.showAuthModal();
                     }).catch((error) => {
                         this.showError('লগ আউট করতে সমস্যা: ' + error.message);
                     });
                 } else {
-                    this.showGuestUI();
+                    this.currentUser = null;
+                    this.isGuest = true;
+                    this.updateUIForGuest();
+                    this.showToast('ডেমো অ্যাকাউন্ট থেকে লগ আউট হয়েছে', 'info');
                 }
             },
             
+            // Get auth error messages in Bengali
             getAuthErrorMessage(error) {
                 switch(error.code) {
-                    case 'auth/user-not-found': return 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই';
-                    case 'auth/wrong-password': return 'ভুল পাসওয়ার্ড';
-                    case 'auth/email-already-in-use': return 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে';
-                    case 'auth/weak-password': return 'পাসওয়ার্ড শক্তিশালী করুন';
-                    case 'auth/invalid-email': return 'ভুল ইমেল ফরম্যাট';
-                    case 'auth/network-request-failed': return 'নেটওয়ার্ক সমস্যা, ইন্টারনেট কানেকশন চেক করুন';
-                    default: return 'একটি সমস্যা হয়েছে: ' + error.message;
+                    case 'auth/user-not-found':
+                        return 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই';
+                    case 'auth/wrong-password':
+                        return 'ভুল পাসওয়ার্ড';
+                    case 'auth/email-already-in-use':
+                        return 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে';
+                    case 'auth/weak-password':
+                        return 'পাসওয়ার্ড শক্তিশালী করুন';
+                    case 'auth/invalid-email':
+                        return 'ভুল ইমেল ফরম্যাট';
+                    case 'auth/network-request-failed':
+                        return 'নেটওয়ার্ক সমস্যা, ইন্টারনেট কানেকশন চেক করুন';
+                    default:
+                        return 'একটি সমস্যা হয়েছে: ' + error.message;
                 }
             },
             
-            // Navigation (keep all existing navigation functions)
+            // Navigation
             navigateTo(view) {
                 console.log('Navigating to:', view);
                 
+                // Hide all views
                 document.querySelectorAll('[id$="View"]').forEach(el => {
                     el.classList.add('hidden');
                 });
                 
+                // Update active nav links
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                 });
@@ -3082,11 +3124,13 @@
                     item.classList.remove('active');
                 });
                 
+                // Show selected view
                 const targetView = document.getElementById(view + 'View');
                 if (targetView) {
                     targetView.classList.remove('hidden');
                 }
                 
+                // Update active navigation
                 const navLink = document.querySelector(`.nav-link[onclick*="${view}"]`);
                 const sidebarItem = document.querySelector(`.sidebar-item[onclick*="${view}"]`);
                 const mobileNavItem = document.querySelector(`.mobile-nav-item[onclick*="${view}"]`);
@@ -3097,16 +3141,30 @@
                 
                 this.currentView = view;
                 
+                // Load data for the view
                 switch(view) {
-                    case 'home': this.loadHomeView(); break;
-                    case 'search': this.loadSearchView(); break;
-                    case 'jobs': this.loadJobsView(); break;
-                    case 'chat': this.loadChatView(); break;
-                    case 'profile': this.loadProfileView(); break;
-                    case 'settings': this.loadSettingsView(); break;
+                    case 'home':
+                        this.loadHomeView();
+                        break;
+                    case 'search':
+                        this.loadSearchView();
+                        break;
+                    case 'jobs':
+                        this.loadJobsView();
+                        break;
+                    case 'chat':
+                        this.loadChatView();
+                        break;
+                    case 'profile':
+                        this.loadProfileView();
+                        break;
+                    case 'settings':
+                        this.loadSettingsView();
+                        break;
                 }
             },
             
+            // Load home view
             loadHomeView() {
                 this.renderUsers(this.usersData);
                 this.renderRecommendations(this.recommendationsData);
@@ -3114,6 +3172,7 @@
                 this.renderUpcomingEvents();
             },
             
+            // Load search view
             loadSearchView() {
                 const searchResults = document.getElementById('searchResults');
                 if (searchResults) {
@@ -3121,6 +3180,7 @@
                 }
             },
             
+            // Perform search
             performSearch(query) {
                 const searchResults = document.getElementById('searchResults');
                 if (!searchResults) return;
@@ -3143,55 +3203,129 @@
                 }
             },
             
+            // Load jobs view
             loadJobsView() {
                 this.renderJobs(this.jobsData);
             },
             
+            // Load chat view
             loadChatView() {
+                if (!this.currentUser) {
+                    const chatView = document.getElementById('chatView');
+                    if (chatView) {
+                        chatView.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h3 class="bangla">চ্যাট করতে লগইন করুন</h3>
+                                <p class="bangla">অন্যান্যদের সাথে সংযুক্ত হতে এবং চ্যাট করতে অনুগ্রহ করে লগইন করুন</p>
+                                <button class="btn btn-primary mt-3" onclick="app.showAuthModal()">লগইন করুন</button>
+                            </div>
+                        `;
+                    }
+                    return;
+                }
                 this.renderConversations(this.chatsData);
             },
             
+            // Load profile view
             loadProfileView() {
-                if (!this.currentUser && !this.isGuest) {
-                    this.showToast('প্রোফাইল দেখতে লগইন করুন', 'warning');
-                    this.showAuthModal();
+                const profileContent = document.getElementById('profileContent');
+                if (!this.currentUser) {
+                    profileContent.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h3 class="bangla">প্রোফাইল দেখতে লগইন করুন</h3>
+                            <p class="bangla">আপনার প্রোফাইল দেখতে এবং সম্পাদনা করতে লগইন করুন</p>
+                            <button class="btn btn-primary mt-3" onclick="app.showAuthModal()">লগইন করুন</button>
+                        </div>
+                    `;
                     return;
                 }
                 
-                const profileAvatar = document.getElementById('profileAvatar');
-                const profileName = document.getElementById('profileName');
-                const profileProfession = document.getElementById('profileProfession');
-                const profileBio = document.getElementById('profileBio');
-                const profileConnections = document.getElementById('profileConnections');
-                const profilePosts = document.getElementById('profilePosts');
-                const profileRating = document.getElementById('profileRating');
-                
-                if (this.currentUser) {
-                    const displayName = this.currentUser.displayName || this.currentUser.email.split('@')[0];
-                    if (profileAvatar) profileAvatar.textContent = displayName.charAt(0).toUpperCase();
-                    if (profileName) profileName.textContent = displayName;
-                    if (profileProfession) profileProfession.textContent = 'হ্যালো বাংলাদেশী সদস্য';
-                    if (profileBio) profileBio.textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ।';
-                    if (profileConnections) profileConnections.textContent = Math.floor(Math.random() * 100) + 50;
-                    if (profilePosts) profilePosts.textContent = Math.floor(Math.random() * 50) + 10;
-                    if (profileRating) profileRating.textContent = (Math.random() * 1 + 4).toFixed(1);
-                } else {
-                    if (profileAvatar) profileAvatar.textContent = 'অ';
-                    if (profileName) profileName.textContent = 'অতিথি ব্যবহারকারী';
-                    if (profileProfession) profileProfession.textContent = 'গেস্ট';
-                    if (profileBio) profileBio.textContent = 'প্রোফাইল দেখতে অনুগ্রহ করে লগইন করুন।';
-                    if (profileConnections) profileConnections.textContent = '০';
-                    if (profilePosts) profilePosts.textContent = '০';
-                    if (profileRating) profileRating.textContent = '০.০';
-                }
-                
-                this.renderProfileGroups();
+                profileContent.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-avatar-large" id="profileAvatar">${(this.currentUser.displayName || this.currentUser.email).charAt(0).toUpperCase()}</div>
+                        <h1 class="profile-name bangla" id="profileName">${this.currentUser.displayName || this.currentUser.email.split('@')[0]}</h1>
+                        <p class="profile-profession bangla" id="profileProfession">হ্যালো বাংলাদেশী সদস্য</p>
+                        
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profileConnections">${Math.floor(Math.random() * 100) + 50}</span>
+                                <span class="profile-stat-label bangla">সংযোগ</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profilePosts">${Math.floor(Math.random() * 50) + 10}</span>
+                                <span class="profile-stat-label bangla">পোস্ট</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profileRating">${(Math.random() * 1 + 4).toFixed(1)}</span>
+                                <span class="profile-stat-label bangla">রেটিং</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <div>
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">আমার সম্পর্কে</h2>
+                                <p id="profileBio" class="bangla" style="line-height: 1.8;">হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ। স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হতে পছন্দ করি।</p>
+                            </div>
+                            
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">পেশাগত তথ্য</h2>
+                                <div id="profileProfessionalInfo">
+                                    <p><i class="fas fa-envelope"></i> ${this.currentUser.email}</p>
+                                    <p><i class="fas fa-calendar-alt"></i> যোগদান: ${new Date().toLocaleDateString('bn-BD')}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">দ্রুত কাজ</h2>
+                                <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                                    <button class="btn btn-primary btn-block bangla" onclick="app.showEditProfileModal()">
+                                        <i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা
+                                    </button>
+                                    <button class="btn btn-secondary btn-block bangla" onclick="app.navigateTo('settings')">
+                                        <i class="fas fa-cog"></i> সেটিংস
+                                    </button>
+                                    <button class="btn btn-outline btn-block bangla" onclick="app.logout()">
+                                        <i class="fas fa-sign-out-alt"></i> লগ আউট
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">আমার গোষ্ঠী</h2>
+                                <div id="profileGroups">
+                                    <div class="sidebar-item" style="margin-bottom: 8px;">
+                                        <span class="sidebar-icon"><i class="fas fa-users"></i></span>
+                                        <span class="bangla">বাংলাদেশী শিক্ষার্থী</span>
+                                        <span class="sidebar-badge">১.২ক</span>
+                                    </div>
+                                    <div class="sidebar-item" style="margin-bottom: 8px;">
+                                        <span class="sidebar-icon"><i class="fas fa-laptop-code"></i></span>
+                                        <span class="bangla">আইটি পেশাজীবী বাংলাদেশ</span>
+                                        <span class="sidebar-badge">৩.২ক</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
             },
             
+            // Load settings view
             loadSettingsView() {
-                // Settings already loaded
+                // Settings are already loaded in HTML
             },
             
+            // Render users
             renderUsers(users) {
                 const container = document.getElementById('usersList');
                 if (!container) return;
@@ -3204,6 +3338,7 @@
                 });
             },
             
+            // Create user card
             createUserCard(user) {
                 const div = document.createElement('div');
                 div.className = 'user-card';
@@ -3242,11 +3377,11 @@
                         </div>
                         
                         <div class="user-card-actions">
-                            <button class="btn btn-primary bangla" onclick="app.startChat('${user.id}')">
-                                <i class="fas fa-comment"></i> চ্যাট
-                            </button>
-                            <button class="btn btn-secondary bangla" onclick="app.connectWithUser('${user.id}')">
+                            <button class="btn btn-primary bangla" onclick="app.handleConnect('${user.id}')">
                                 <i class="fas fa-user-plus"></i> সংযুক্ত হন
+                            </button>
+                            <button class="btn btn-secondary bangla" onclick="app.handleChat('${user.id}')">
+                                <i class="fas fa-comment"></i> চ্যাট
                             </button>
                         </div>
                     </div>
@@ -3254,6 +3389,37 @@
                 return div;
             },
             
+            // Handle connect action
+            handleConnect(userId) {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('সংযোগ করতে');
+                    return;
+                }
+                this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে!', 'success');
+            },
+            
+            // Handle chat action
+            handleChat(userId) {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('চ্যাট করতে');
+                    return;
+                }
+                this.navigateTo('chat');
+                const user = this.usersData.find(u => u.id === userId);
+                if (user) {
+                    setTimeout(() => {
+                        this.openChat({
+                            id: userId,
+                            name: user.name,
+                            lastMessage: 'নতুন চ্যাট শুরু হয়েছে',
+                            time: 'এখন',
+                            unread: 0
+                        });
+                    }, 500);
+                }
+            },
+            
+            // Render recommendations
             renderRecommendations(recommendations) {
                 const container = document.getElementById('recommendationsList');
                 if (!container) return;
@@ -3272,7 +3438,7 @@
                                 ${rec.mutual} mutual connections
                             </p>
                         </div>
-                        <button class="btn-icon" style="width: 36px; height: 36px;" onclick="app.connectWithUser('${rec.id}')">
+                        <button class="btn-icon" style="width: 36px; height: 36px;" onclick="app.handleConnect('${rec.id}')">
                             <i class="fas fa-user-plus"></i>
                         </button>
                     `;
@@ -3280,6 +3446,7 @@
                 });
             },
             
+            // Render trending jobs
             renderTrendingJobs(jobs) {
                 const container = document.getElementById('trendingJobs');
                 if (!container) return;
@@ -3298,6 +3465,7 @@
                 });
             },
             
+            // Render upcoming events
             renderUpcomingEvents() {
                 const container = document.getElementById('upcomingEvents');
                 if (!container) return;
@@ -3324,6 +3492,7 @@
                 });
             },
             
+            // Render search results
             renderSearchResults(results) {
                 const container = document.getElementById('searchResults');
                 if (!container) return;
@@ -3341,6 +3510,7 @@
                 });
             },
             
+            // Render jobs
             renderJobs(jobs) {
                 const container = document.getElementById('jobsList');
                 if (!container) return;
@@ -3353,6 +3523,7 @@
                 });
             },
             
+            // Create job card
             createJobCard(job) {
                 const div = document.createElement('div');
                 div.className = 'job-card';
@@ -3368,7 +3539,7 @@
                     
                     <div class="job-card-tags">
                         <span class="job-tag job-tag-type bangla">${job.type}</span>
-                        ${job.skills ? job.skills.map(skill => `<span class="job-tag bangla">${skill}</span>`).join('') : ''}
+                        ${job.skills.map(skill => `<span class="job-tag bangla">${skill}</span>`).join('')}
                     </div>
                     
                     <p class="job-card-description bangla">${job.description}</p>
@@ -3380,13 +3551,26 @@
                         </div>
                     </div>
                     
-                    <button class="btn btn-primary btn-block mt-3 bangla" onclick="app.applyForJob('${job.id}')">
+                    <button class="btn btn-primary btn-block mt-3 bangla" onclick="app.handleApply('${job.id}')">
                         <i class="fas fa-paper-plane"></i> আবেদন করুন
                     </button>
                 `;
                 return div;
             },
             
+            // Handle apply for job
+            handleApply(jobId) {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('চাকরিতে আবেদন করতে');
+                    return;
+                }
+                this.showToast('আবেদন জমা দেওয়া হচ্ছে...', 'info');
+                setTimeout(() => {
+                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে!', 'success');
+                }, 1000);
+            },
+            
+            // Render conversations
             renderConversations(conversations) {
                 const container = document.getElementById('conversationsList');
                 if (!container) return;
@@ -3399,6 +3583,7 @@
                 });
             },
             
+            // Create chat item
             createChatItem(chat) {
                 const div = document.createElement('div');
                 div.className = 'chat-item';
@@ -3415,61 +3600,37 @@
                 return div;
             },
             
-            renderProfileGroups() {
-                const container = document.getElementById('profileGroups');
-                if (!container) return;
-                
-                const groups = [
-                    { name: 'বাংলাদেশী শিক্ষার্থী', members: 1250 },
-                    { name: 'আইটি পেশাজীবী বাংলাদেশ', members: 3200 },
-                    { name: 'প্রবাসী বাংলাদেশী', members: 5800 }
-                ];
-                
-                container.innerHTML = '';
-                
-                groups.forEach(group => {
-                    const groupItem = document.createElement('div');
-                    groupItem.className = 'sidebar-item';
-                    groupItem.style.marginBottom = '8px';
-                    groupItem.innerHTML = `
-                        <span class="sidebar-icon"><i class="fas fa-users"></i></span>
-                        <span class="bangla">${group.name}</span>
-                        <span class="sidebar-badge">${group.members}</span>
-                    `;
-                    container.appendChild(groupItem);
-                });
-            },
-            
+            // Filter users
             filterUsers(filter) {
-                const event = window.event;
                 const tabs = document.querySelectorAll('.feed-tab');
                 tabs.forEach(tab => tab.classList.remove('active'));
-                if (event && event.target) event.target.classList.add('active');
+                event.target.classList.add('active');
                 
                 let filteredUsers = [];
                 
                 switch(filter) {
-                    case 'all': filteredUsers = this.usersData; break;
-                    case 'nearby': filteredUsers = this.usersData.filter(user => user.distance < 10); break;
-                    case 'online': filteredUsers = this.usersData.filter(user => user.online); break;
-                    case 'verified': filteredUsers = this.usersData.filter(user => user.verified); break;
+                    case 'all':
+                        filteredUsers = this.usersData;
+                        break;
+                    case 'nearby':
+                        filteredUsers = this.usersData.filter(user => user.distance < 10);
+                        break;
+                    case 'online':
+                        filteredUsers = this.usersData.filter(user => user.online);
+                        break;
+                    case 'verified':
+                        filteredUsers = this.usersData.filter(user => user.verified);
+                        break;
                 }
                 
                 this.renderUsers(filteredUsers);
             },
             
-            showPostJobModal() {
-                if (!this.currentUser) {
-                    this.showToast('চাকরি পোস্ট করতে লগইন করুন', 'warning');
-                    this.showAuthModal();
-                    return;
-                }
-                document.getElementById('postJobModal').classList.add('active');
-            },
-            
+            // Post job
             postJob() {
                 if (!this.currentUser) {
-                    this.showToast('চাকরি পোস্ট করতে লগইন করুন', 'warning');
+                    this.showLoginRequiredModal('চাকরি পোস্ট করতে');
+                    this.closeModal('postJobModal');
                     return;
                 }
                 
@@ -3508,59 +3669,13 @@
                     this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে!', 'success');
                     
                     ['jobTitle', 'jobCompany', 'jobLocation', 'jobSalary', 'jobDescription', 'jobSkills'].forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) el.value = '';
+                        document.getElementById(id).value = '';
                     });
-                    const jobType = document.getElementById('jobType');
-                    if (jobType) jobType.selectedIndex = 0;
+                    document.getElementById('jobType').selectedIndex = 0;
                 }, 1500);
             },
             
-            applyForJob(jobId) {
-                if (!this.currentUser) {
-                    this.showToast('চাকরিতে আবেদন করতে লগইন করুন', 'warning');
-                    this.showAuthModal();
-                    return;
-                }
-                this.showToast('আবেদন জমা দেওয়া হচ্ছে...', 'info');
-                setTimeout(() => {
-                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে!', 'success');
-                }, 1000);
-            },
-            
-            connectWithUser(userId) {
-                if (!this.currentUser) {
-                    this.showToast('সংযোগ করতে লগইন করুন', 'warning');
-                    this.showAuthModal();
-                    return;
-                }
-                this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে', 'success');
-            },
-            
-            startChat(userId) {
-                if (!this.currentUser) {
-                    this.showToast('চ্যাট করতে লগইন করুন', 'warning');
-                    this.showAuthModal();
-                    return;
-                }
-                this.navigateTo('chat');
-                
-                const user = this.usersData.find(u => u.id === userId) || 
-                            this.recommendationsData.find(u => u.id === userId);
-                
-                if (user) {
-                    setTimeout(() => {
-                        this.openChat({
-                            id: userId,
-                            name: user.name,
-                            lastMessage: 'নতুন চ্যাট শুরু হয়েছে',
-                            time: 'এখন',
-                            unread: 0
-                        });
-                    }, 500);
-                }
-            },
-            
+            // Chat functions
             openChat(chat) {
                 document.getElementById('chatWindow').style.display = 'flex';
                 document.getElementById('chatEmptyState').style.display = 'none';
@@ -3570,10 +3685,12 @@
                 
                 this.loadChatMessages(chat.id);
                 
-                const chatItem = window.event ? window.event.target.closest('.chat-item') : null;
+                const chatItem = event.target.closest('.chat-item');
                 if (chatItem) {
                     const unreadBadge = chatItem.querySelector('.chat-unread');
-                    if (unreadBadge) unreadBadge.remove();
+                    if (unreadBadge) {
+                        unreadBadge.remove();
+                    }
                     document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
                     chatItem.classList.add('active');
                 }
@@ -3610,6 +3727,11 @@
             },
             
             sendMessage() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('বার্তা পাঠাতে');
+                    return;
+                }
+                
                 const input = document.getElementById('chatInput');
                 const message = input.value.trim();
                 
@@ -3652,24 +3774,53 @@
                 document.getElementById('chatEmptyState').style.display = 'flex';
             },
             
-            showSettingsModal() {
-                this.navigateTo('settings');
+            // Modal functions
+            showPostJobModal() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('চাকরি পোস্ট করতে');
+                    return;
+                }
+                document.getElementById('postJobModal').classList.add('active');
+            },
+            
+            showEditProfileModal() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('প্রোফাইল সম্পাদনা করতে');
+                    return;
+                }
+                const modal = document.getElementById('editProfileModal');
+                document.getElementById('editName').value = this.currentUser.displayName || '';
+                document.getElementById('editProfession').value = '';
+                document.getElementById('editBio').value = '';
+                modal.classList.add('active');
+            },
+            
+            updateProfile() {
+                this.showToast('প্রোফাইল আপডেট করা হয়েছে!', 'success');
+                this.closeModal('editProfileModal');
+                this.loadProfileView();
+            },
+            
+            showNotifications() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('বিজ্ঞপ্তি দেখতে');
+                    return;
+                }
+                this.showToast('কোন নতুন বিজ্ঞপ্তি নেই', 'info');
             },
             
             closeModal(modalId) {
-                const modal = document.getElementById(modalId);
-                if (modal) modal.classList.remove('active');
+                document.getElementById(modalId).classList.remove('active');
             },
             
+            // Auth tabs
             showLoginTab() {
                 document.getElementById('loginForm').classList.remove('hidden');
                 document.getElementById('signupForm').classList.add('hidden');
                 
                 const tabs = document.querySelectorAll('.auth-tab');
-                if (tabs[0]) tabs[0].classList.add('active');
-                if (tabs[1]) tabs[1].classList.remove('active');
-                const authError = document.getElementById('authError');
-                if (authError) authError.style.display = 'none';
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
             },
             
             showSignupTab() {
@@ -3677,49 +3828,31 @@
                 document.getElementById('signupForm').classList.remove('hidden');
                 
                 const tabs = document.querySelectorAll('.auth-tab');
-                if (tabs[0]) tabs[0].classList.remove('active');
-                if (tabs[1]) tabs[1].classList.add('active');
-                const authError = document.getElementById('authError');
-                if (authError) authError.style.display = 'none';
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
             },
             
+            // Mobile menu
             toggleMobileMenu() {
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu) mobileMenu.classList.toggle('active');
+                document.getElementById('mobileMenu').classList.toggle('active');
             },
             
+            // User dropdown
             toggleUserDropdown() {
                 const dropdown = document.getElementById('userDropdown');
                 if (dropdown) {
                     dropdown.classList.toggle('active');
-                } else {
-                    this.createUserDropdown();
                 }
             },
             
             hideUserDropdown() {
                 const dropdown = document.getElementById('userDropdown');
-                if (dropdown) dropdown.classList.remove('active');
-            },
-            
-            createUserDropdown() {
-                const dropdown = document.createElement('div');
-                dropdown.id = 'userDropdown';
-                dropdown.className = 'user-dropdown';
-                dropdown.innerHTML = `
-                    <a href="#" onclick="app.navigateTo('profile')"><i class="fas fa-user"></i> প্রোফাইল</a>
-                    <a href="#" onclick="app.navigateTo('settings')"><i class="fas fa-cog"></i> সেটিংস</a>
-                    <hr>
-                    <a href="#" onclick="app.logout()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
-                `;
-                
-                const userMenu = document.getElementById('userMenu');
-                if (userMenu) {
-                    userMenu.appendChild(dropdown);
-                    dropdown.classList.add('active');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
                 }
             },
             
+            // Toast notifications
             showToast(message, type = 'info') {
                 const toastContainer = document.getElementById('toastContainer');
                 if (!toastContainer) return;
@@ -3752,11 +3885,13 @@
                 toastContainer.appendChild(toast);
                 
                 setTimeout(() => {
-                    const el = document.getElementById(toastId);
-                    if (el) el.remove();
+                    if (document.getElementById(toastId)) {
+                        document.getElementById(toastId).remove();
+                    }
                 }, 5000);
             },
             
+            // Show error
             showError(message) {
                 const errorElement = document.getElementById('authError');
                 if (errorElement) {
@@ -3767,17 +3902,30 @@
                 this.showToast(message, 'error');
             },
             
+            // Account management
             changePassword() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('পাসওয়ার্ড পরিবর্তন করতে');
+                    return;
+                }
                 this.showToast('পাসওয়ার্ড পরিবর্তন ফিচার শীঘ্রই আসছে', 'info');
             },
             
             deactivateAccount() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('অ্যাকাউন্ট নিষ্ক্রিয় করতে');
+                    return;
+                }
                 if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট নিষ্ক্রিয় করতে চান? আপনি আবার সক্রিয় করতে পারবেন।')) {
                     this.showToast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে', 'success');
                 }
             },
             
             deleteAccount() {
+                if (!this.currentUser) {
+                    this.showLoginRequiredModal('অ্যাকাউন্ট মুছতে');
+                    return;
+                }
                 if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট স্থায়ীভাবে মুছতে চান? এই কাজটি অপরিবর্তনীয়।')) {
                     this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 'success');
                     setTimeout(() => {
@@ -3787,10 +3935,12 @@
             }
         };
 
+        // Initialize app when page loads
         window.addEventListener('DOMContentLoaded', () => {
             app.init();
         });
 
+        // Make app available globally
         window.app = app;
     </script>
 </body>
