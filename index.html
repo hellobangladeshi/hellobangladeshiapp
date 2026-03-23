@@ -21,25 +21,18 @@
     
     <style>
         :root {
-            /* Primary Colors - Bangladeshi Theme */
-            --primary: #006A4E; /* Bangladesh Green */
+            --primary: #006A4E;
             --primary-dark: #00563D;
             --primary-light: #008060;
-            
-            /* Secondary Colors */
-            --secondary: #F42A41; /* Bangladesh Red */
+            --secondary: #F42A41;
             --secondary-light: #FF5C72;
             --secondary-dark: #D42034;
-            
-            /* Accent Colors */
             --accent-gold: #FFD700;
             --accent-green: #27AE60;
             --accent-blue: #3498DB;
             --accent-orange: #F39C12;
             --accent-red: #E74C3C;
             --accent-purple: #9B59B6;
-            
-            /* Neutral Colors */
             --text-dark: #1A1A1A;
             --text-medium: #4A5568;
             --text-light: #718096;
@@ -48,45 +41,27 @@
             --bg-card: #FFFFFF;
             --border-color: #E2E8F0;
             --shadow-color: rgba(0, 106, 78, 0.08);
-            
-            /* Gradients */
             --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
             --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-light));
-            --gradient-green: linear-gradient(135deg, #27AE60, #2ECC71);
-            --gradient-blue: linear-gradient(135deg, #3498DB, #2E86C1);
-            
-            /* Spacing */
             --spacing-xs: 6px;
             --spacing-sm: 12px;
             --spacing-md: 20px;
             --spacing-lg: 30px;
             --spacing-xl: 40px;
             --spacing-xxl: 60px;
-            
-            /* Typography */
             --font-bangla: 'Hind Siliguri', sans-serif;
             --font-display: 'Poppins', sans-serif;
             --font-body: 'Inter', sans-serif;
-            
-            /* Shadows */
             --shadow-sm: 0 2px 8px var(--shadow-color);
             --shadow-md: 0 6px 16px var(--shadow-color);
             --shadow-lg: 0 12px 32px var(--shadow-color);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-            
-            /* Border Radius */
             --radius-sm: 10px;
             --radius-md: 16px;
             --radius-lg: 24px;
             --radius-xl: 32px;
             --radius-full: 9999px;
-            
-            /* Transitions */
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
-            
-            /* Z-index */
             --z-dropdown: 100;
             --z-sticky: 200;
             --z-modal: 1000;
@@ -107,14 +82,9 @@
             direction: ltr;
         }
 
-        /* Bangla Typography */
         .bangla {
             font-family: var(--font-bangla);
         }
-
-        /* ============================================
-           UTILITY CLASSES
-           ============================================ */
 
         .container {
             max-width: 1280px;
@@ -210,10 +180,7 @@
             background: var(--accent-green);
         }
 
-        /* ============================================
-           SPLASH SCREEN
-           ============================================ */
-
+        /* SPLASH SCREEN */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -307,10 +274,7 @@
             left: -100px;
         }
 
-        /* ============================================
-           HEADER & NAVIGATION
-           ============================================ */
-
+        /* HEADER & NAVIGATION */
         header {
             background: var(--bg-white);
             border-bottom: 1px solid var(--border-color);
@@ -477,10 +441,7 @@
             cursor: pointer;
         }
 
-        /* ============================================
-           MAIN CONTENT AREA
-           ============================================ */
-
+        /* MAIN CONTENT AREA */
         .main-content {
             display: grid;
             grid-template-columns: 280px 1fr 340px;
@@ -490,10 +451,7 @@
             margin: 0 auto;
         }
 
-        /* ============================================
-           SIDEBAR
-           ============================================ */
-
+        /* SIDEBAR */
         .sidebar {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -570,10 +528,7 @@
             border: none;
         }
 
-        /* ============================================
-           FEED SECTION
-           ============================================ */
-
+        /* FEED SECTION */
         .feed {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -632,10 +587,7 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           USER CARD
-           ============================================ */
-
+        /* USER CARD */
         .grid-users {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -663,13 +615,6 @@
             height: 160px;
             background: var(--gradient-primary);
             overflow: hidden;
-        }
-
-        .user-card-cover {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
         }
 
         .user-card-avatar {
@@ -775,10 +720,7 @@
             gap: var(--spacing-sm);
         }
 
-        /* ============================================
-           BUTTONS
-           ============================================ */
-
+        /* BUTTONS */
         .btn {
             padding: var(--spacing-md) var(--spacing-lg);
             border: none;
@@ -835,11 +777,6 @@
             color: white;
         }
 
-        .btn-danger:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
         .btn-small {
             padding: var(--spacing-sm) var(--spacing-md);
             font-size: 13px;
@@ -849,10 +786,7 @@
             width: 100%;
         }
 
-        /* ============================================
-           RIGHT SIDEBAR
-           ============================================ */
-
+        /* RIGHT SIDEBAR */
         .right-sidebar {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -875,7 +809,6 @@
             justify-content: space-between;
         }
 
-        /* Recommendations */
         .recommendation-item {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-sm);
@@ -920,7 +853,6 @@
             color: var(--text-light);
         }
 
-        /* Trending Jobs */
         .trending-job {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-md);
@@ -954,7 +886,6 @@
             font-size: 14px;
         }
 
-        /* Events */
         .event-item {
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-md);
@@ -985,10 +916,7 @@
             gap: var(--spacing-xs);
         }
 
-        /* ============================================
-           MODALS
-           ============================================ */
-
+        /* MODALS */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1063,7 +991,6 @@
             transform: rotate(90deg);
         }
 
-        /* Auth Modal */
         .auth-tabs {
             display: flex;
             gap: var(--spacing-sm);
@@ -1180,10 +1107,7 @@
             background: #166FE5;
         }
 
-        /* ============================================
-           CHAT INTERFACE
-           ============================================ */
-
+        /* CHAT INTERFACE */
         .chat-container {
             display: grid;
             grid-template-columns: 350px 1fr;
@@ -1203,6 +1127,7 @@
         .chat-search {
             padding: var(--spacing-md);
             border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         .chat-search input {
@@ -1217,7 +1142,7 @@
 
         .chat-search i {
             position: absolute;
-            left: 20px;
+            left: 28px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
@@ -1449,10 +1374,7 @@
             border-color: var(--primary);
         }
 
-        /* ============================================
-           JOB CARDS
-           ============================================ */
-
+        /* JOB CARDS */
         .grid-jobs {
             display: grid;
             grid-template-columns: 1fr;
@@ -1559,10 +1481,7 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           PROFILE PAGE
-           ============================================ */
-
+        /* PROFILE PAGE */
         .profile-header {
             background: var(--gradient-primary);
             border-radius: var(--radius-lg);
@@ -1659,10 +1578,7 @@
             font-family: var(--font-bangla);
         }
 
-        /* ============================================
-           ANIMATIONS
-           ============================================ */
-
+        /* ANIMATIONS */
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -1702,25 +1618,19 @@
             }
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
         @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
         }
 
-        /* ============================================
-           LOADING & EMPTY STATES
-           ============================================ */
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
 
+        /* LOADING & EMPTY STATES */
         .loading {
             display: flex;
             align-items: center;
@@ -1765,10 +1675,7 @@
             margin: 0 auto;
         }
 
-        /* ============================================
-           TOAST NOTIFICATIONS
-           ============================================ */
-
+        /* TOAST NOTIFICATIONS */
         .toast-container {
             position: fixed;
             bottom: var(--spacing-lg);
@@ -1789,16 +1696,8 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
-            animation: slideUp 0.3s ease;
-            transform: translateX(100%);
             animation: slideIn 0.3s ease forwards;
             border: 1px solid var(--border-color);
-        }
-
-        @keyframes slideIn {
-            to {
-                transform: translateX(0);
-            }
         }
 
         .toast-icon {
@@ -1849,119 +1748,7 @@
             color: var(--text-dark);
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-
-        @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 250px 1fr;
-            }
-            
-            .right-sidebar {
-                display: none;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
-            }
-            
-            .sidebar {
-                display: none;
-            }
-            
-            .profile-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .chat-container {
-                grid-template-columns: 1fr;
-                height: calc(100vh - 140px);
-            }
-            
-            .chat-sidebar {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: var(--spacing-sm);
-            }
-            
-            .nav-center {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .user-name {
-                display: none;
-            }
-            
-            .grid-users {
-                grid-template-columns: 1fr;
-            }
-            
-            .splash-screen h1 {
-                font-size: 32px;
-            }
-            
-            .splash-logo {
-                width: 100px;
-                height: 100px;
-                font-size: 40px;
-            }
-            
-            .modal-content {
-                padding: var(--spacing-lg);
-            }
-            
-            .profile-stats {
-                flex-wrap: wrap;
-                gap: var(--spacing-md);
-            }
-            
-            .user-card-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .user-card-actions {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding: var(--spacing-sm);
-            }
-            
-            .feed {
-                padding: var(--spacing-md);
-            }
-            
-            .btn {
-                padding: var(--spacing-sm) var(--spacing-md);
-            }
-            
-            .social-login {
-                grid-template-columns: 1fr;
-            }
-            
-            .chat-input {
-                padding: var(--spacing-md);
-            }
-        }
-
-        /* ============================================
-           MOBILE MENU
-           ============================================ */
-
+        /* MOBILE MENU */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -2038,6 +1825,93 @@
         .mobile-nav-icon {
             width: 24px;
             text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 250px 1fr;
+            }
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            .sidebar {
+                display: none;
+            }
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            .chat-container {
+                grid-template-columns: 1fr;
+                height: calc(100vh - 140px);
+            }
+            .chat-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--spacing-sm);
+            }
+            .nav-center {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .user-name {
+                display: none;
+            }
+            .grid-users {
+                grid-template-columns: 1fr;
+            }
+            .splash-screen h1 {
+                font-size: 32px;
+            }
+            .splash-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            .modal-content {
+                padding: var(--spacing-lg);
+            }
+            .profile-stats {
+                flex-wrap: wrap;
+                gap: var(--spacing-md);
+            }
+            .user-card-stats {
+                grid-template-columns: 1fr;
+            }
+            .user-card-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: var(--spacing-sm);
+            }
+            .feed {
+                padding: var(--spacing-md);
+            }
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+            .chat-input {
+                padding: var(--spacing-md);
+            }
         }
     </style>
 </head>
@@ -2715,32 +2589,32 @@
                 <h1 class="modal-title bangla">প্রোফাইল সম্পাদনা</h1>
                 <p class="modal-subtitle bangla">আপনার তথ্য আপডেট করুন</p>
             </div>
-            
-            <!-- Edit profile form will be loaded here -->
         </div>
     </div>
 
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- SCRIPTS -->
     <script>
-       // Replace lines 1996-2006 with this:
-const firebaseConfig = {
-    apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
-    authDomain: "hello-bangladeshi.firebaseapp.com",
-    projectId: "hello-bangladeshi",
-    storageBucket: "hello-bangladeshi.firebasestorage.app",
-    messagingSenderId: "508048583569",
-    appId: "1:508048583569:web:36eb40ac37d1682ca98830",
-    measurementId: "G-K0WLFW4L58"
-};
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
+            authDomain: "hello-bangladeshi.firebaseapp.com",
+            projectId: "hello-bangladeshi",
+            storageBucket: "hello-bangladeshi.firebasestorage.app",
+            messagingSenderId: "508048583569",
+            appId: "1:508048583569:web:36eb40ac37d1682ca98830",
+            measurementId: "G-K0WLFW4L58"
+        };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
         const storage = firebase.storage();
+
+        // Enable persistence
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e => console.log(e));
 
         // App State
         const app = {
@@ -2751,1180 +2625,539 @@ const firebaseConfig = {
             chatsData: [],
             recommendationsData: [],
             
-            // Initialize app
             init() {
-                console.log('হ্যালো বাংলাদেশী অ্যাপ শুরু হচ্ছে...');
+                console.log('App starting...');
                 this.setupAuthListener();
                 this.setupEventListeners();
                 this.loadDemoData();
                 this.checkSplashScreen();
             },
             
-            // Check if splash screen should be shown
             checkSplashScreen() {
                 const hasSeenSplash = localStorage.getItem('hasSeenSplash');
                 if (!hasSeenSplash) {
-                    // Show splash screen for first time users
                     setTimeout(() => {
                         this.hideSplash();
                         localStorage.setItem('hasSeenSplash', 'true');
                     }, 3000);
                 } else {
-                    // Hide splash screen immediately
                     document.getElementById('splashScreen').style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
                 }
             },
             
-            // Setup event listeners
             setupEventListeners() {
-                // Search input
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) {
-                    searchInput.addEventListener('input', (e) => {
-                        this.performSearch(e.target.value);
-                    });
+                    searchInput.addEventListener('input', (e) => this.performSearch(e.target.value));
                 }
-                
-                // Radius input
                 const radiusInput = document.getElementById('radiusInput');
                 if (radiusInput) {
                     radiusInput.addEventListener('input', (e) => {
-                        const radiusDisplay = document.getElementById('radiusDisplay');
-                        if (radiusDisplay) {
-                            radiusDisplay.textContent = `${e.target.value} কিমি`;
-                        }
+                        const d = document.getElementById('radiusDisplay');
+                        if (d) d.textContent = `${e.target.value} কিমি`;
                     });
                 }
-                
-                // Chat input enter key
                 const chatInput = document.getElementById('chatInput');
                 if (chatInput) {
-                    chatInput.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            this.sendMessage();
-                        }
-                    });
+                    chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') this.sendMessage(); });
                 }
-                
-                // Window click to close dropdowns
-                window.addEventListener('click', (e) => {
-                    if (!e.target.closest('.user-menu')) {
-                        this.hideUserDropdown();
-                    }
-                });
+                window.addEventListener('click', (e) => { if(!e.target.closest('.user-menu')) this.hideUserDropdown(); });
             },
             
-            // Setup auth state listener
             setupAuthListener() {
                 auth.onAuthStateChanged((user) => {
                     this.currentUser = user;
                     if (user) {
-                        console.log('ব্যবহারকারী লগইন করেছেন:', user.email);
+                        console.log('User logged in:', user.email);
+                        this.updateUserOnlineStatus(true);
                         this.showAuthenticatedUI();
                         this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
                     } else {
-                        console.log('কোনো ব্যবহারকারী লগইন নেই');
+                        console.log('No user logged in');
                         this.showAuthModal();
                     }
                 });
             },
             
-            // Load demo data
+            updateUserOnlineStatus(isOnline) {
+                if (this.currentUser && this.currentUser.uid !== 'demo123') {
+                    db.collection('users').doc(this.currentUser.uid).update({
+                        online: isOnline,
+                        lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+                    }).catch(e => console.log(e));
+                }
+            },
+            
             loadDemoData() {
-                // Demo users
                 this.usersData = [
-                    {
-                        id: '1',
-                        name: 'আহমেদ হাসান',
-                        profession: 'সফটওয়্যার ইঞ্জিনিয়ার',
-                        location: 'ঢাকা, বাংলাদেশ',
-                        bio: 'ফুল-স্ট্যাক ডেভেলপার, ওয়েব টেকনোলজি এবং AI এ আগ্রহী।',
-                        rating: 4.8,
-                        connections: 245,
-                        online: true,
-                        verified: true,
-                        distance: 2.5
-                    },
-                    {
-                        id: '2',
-                        name: 'ফারহানা আক্তার',
-                        profession: 'গ্রাফিক ডিজাইনার',
-                        location: 'চট্টগ্রাম, বাংলাদেশ',
-                        bio: 'ক্রিয়েটিভ ডিজাইনার, UI/UX এবং ব্র্যান্ডিং বিশেষজ্ঞ।',
-                        rating: 4.9,
-                        connections: 189,
-                        online: true,
-                        verified: true,
-                        distance: 5.2
-                    },
-                    {
-                        id: '3',
-                        name: 'রাকিবুল ইসলাম',
-                        profession: 'ডাক্তার',
-                        location: 'সিলেট, বাংলাদেশ',
-                        bio: 'হৃদরোগ বিশেষজ্ঞ, স্বাস্থ্য সচেতনতা নিয়ে কাজ করতে পছন্দ করি।',
-                        rating: 4.7,
-                        connections: 312,
-                        online: false,
-                        verified: true,
-                        distance: 12.8
-                    },
-                    {
-                        id: '4',
-                        name: 'সাবরিনা সুলতানা',
-                        profession: 'শিক্ষিকা',
-                        location: 'খুলনা, বাংলাদেশ',
-                        bio: 'ইংরেজি সাহিত্যের অধ্যাপক, পড়ানো এবং লেখালেখি আমার নেশা।',
-                        rating: 4.9,
-                        connections: 156,
-                        online: true,
-                        verified: false,
-                        distance: 8.4
-                    },
-                    {
-                        id: '5',
-                        name: 'জুবায়ের আহমেদ',
-                        profession: 'ব্যবসায়ী',
-                        location: 'রাজশাহী, বাংলাদেশ',
-                        bio: 'আইটি কোম্পানির মালিক, স্টার্টআপ এবং বিনিয়োগে আগ্রহী।',
-                        rating: 4.6,
-                        connections: 421,
-                        online: true,
-                        verified: true,
-                        distance: 15.3
-                    },
-                    {
-                        id: '6',
-                        name: 'তানিয়া রহমান',
-                        profession: 'ডাটা সায়েন্টিস্ট',
-                        location: 'ঢাকা, বাংলাদেশ',
-                        bio: 'মেশিন লার্নিং এবং ডাটা অ্যানালাইসিসে অভিজ্ঞ, গবেষণায় আগ্রহী।',
-                        rating: 4.8,
-                        connections: 278,
-                        online: false,
-                        verified: true,
-                        distance: 3.1
-                    }
+                    { id: '1', name: 'আহমেদ হাসান', profession: 'সফটওয়্যার ইঞ্জিনিয়ার', location: 'ঢাকা, বাংলাদেশ', bio: 'ফুল-স্ট্যাক ডেভেলপার', rating: 4.8, connections: 245, online: true, verified: true, distance: 2.5 },
+                    { id: '2', name: 'ফারহানা আক্তার', profession: 'গ্রাফিক ডিজাইনার', location: 'চট্টগ্রাম, বাংলাদেশ', bio: 'UI/UX বিশেষজ্ঞ', rating: 4.9, connections: 189, online: true, verified: true, distance: 5.2 },
+                    { id: '3', name: 'রাকিবুল ইসলাম', profession: 'ডাক্তার', location: 'সিলেট, বাংলাদেশ', bio: 'হৃদরোগ বিশেষজ্ঞ', rating: 4.7, connections: 312, online: false, verified: true, distance: 12.8 },
+                    { id: '4', name: 'সাবরিনা সুলতানা', profession: 'শিক্ষিকা', location: 'খুলনা, বাংলাদেশ', bio: 'ইংরেজি সাহিত্যের অধ্যাপক', rating: 4.9, connections: 156, online: true, verified: false, distance: 8.4 },
+                    { id: '5', name: 'জুবায়ের আহমেদ', profession: 'ব্যবসায়ী', location: 'রাজশাহী, বাংলাদেশ', bio: 'আইটি কোম্পানির মালিক', rating: 4.6, connections: 421, online: true, verified: true, distance: 15.3 },
+                    { id: '6', name: 'তানিয়া রহমান', profession: 'ডাটা সায়েন্টিস্ট', location: 'ঢাকা, বাংলাদেশ', bio: 'মেশিন লার্নিং বিশেষজ্ঞ', rating: 4.8, connections: 278, online: false, verified: true, distance: 3.1 }
                 ];
-                
-                // Demo jobs
                 this.jobsData = [
-                    {
-                        id: '1',
-                        title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার',
-                        company: 'টেকনোভেশন লিমিটেড',
-                        type: 'পূর্ণকালীন',
-                        location: 'ঢাকা, বাংলাদেশ',
-                        salary: '৳১,৫০,০০০ - ৳২,৫০,০০০',
-                        description: 'আমরা একজন অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার খুঁজছি যিনি Node.js, React এবং MongoDB তে দক্ষ। দলগত কাজ এবং সমস্যা সমাধানে পারদর্শী হতে হবে।',
-                        skills: ['Node.js', 'React', 'MongoDB', 'AWS', 'Docker'],
-                        featured: true,
-                        posted: '২ দিন আগে'
-                    },
-                    {
-                        id: '2',
-                        title: 'গ্রাফিক ডিজাইনার',
-                        company: 'ক্রিয়েটিভ মিডিয়া',
-                        type: 'খণ্ডকালীন',
-                        location: 'চট্টগ্রাম, বাংলাদেশ',
-                        salary: '৳৪০,০০০ - ৳৬০,০০০',
-                        description: 'আমাদের ডিজাইন টিমের সাথে কাজ করার জন্য একজন প্রতিভাবান গ্রাফিক ডিজাইনার প্রয়োজন। Adobe Creative Suite (Photoshop, Illustrator) এ দক্ষতা প্রয়োজন।',
-                        skills: ['Photoshop', 'Illustrator', 'UI/UX', 'Figma'],
-                        featured: false,
-                        posted: '১ সপ্তাহ আগে'
-                    },
-                    {
-                        id: '3',
-                        title: 'ডাটা অ্যানালিস্ট',
-                        company: 'ডাটা সলিউশন্স',
-                        type: 'দূরবর্তী',
-                        location: 'দূরবর্তী',
-                        salary: '৳৮০,০০০ - ৳১,২০,০০০',
-                        description: 'বড় ডাটা প্রসেসিং এবং বিশ্লেষণের অভিজ্ঞতা সহ একজন ডাটা অ্যানালিস্ট প্রয়োজন। Python, SQL এবং ডাটা ভিজ্যুয়ালাইজেশন টুলস সম্পর্কে গভীর জ্ঞান প্রয়োজন।',
-                        skills: ['Python', 'SQL', 'Tableau', 'Data Analysis'],
-                        featured: true,
-                        posted: '৩ দিন আগে'
-                    }
+                    { id: '1', title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার', company: 'টেকনোভেশন লিমিটেড', type: 'পূর্ণকালীন', location: 'ঢাকা', salary: '৳১,৫০,০০০ - ৳২,৫০,০০০', description: 'Node.js, React দক্ষ প্রয়োজন', skills: ['Node.js', 'React', 'MongoDB'], featured: true, posted: '২ দিন আগে' },
+                    { id: '2', title: 'গ্রাফিক ডিজাইনার', company: 'ক্রিয়েটিভ মিডিয়া', type: 'খণ্ডকালীন', location: 'চট্টগ্রাম', salary: '৳৪০,০০০ - ৳৬০,০০০', description: 'Adobe Creative Suite দক্ষতা প্রয়োজন', skills: ['Photoshop', 'Illustrator'], featured: false, posted: '১ সপ্তাহ আগে' },
+                    { id: '3', title: 'ডাটা অ্যানালিস্ট', company: 'ডাটা সলিউশন্স', type: 'দূরবর্তী', location: 'দূরবর্তী', salary: '৳৮০,০০০ - ৳১,২০,০০০', description: 'Python, SQL দক্ষতা প্রয়োজন', skills: ['Python', 'SQL'], featured: true, posted: '৩ দিন আগে' }
                 ];
-                
-                // Demo recommendations
                 this.recommendationsData = [
                     { id: '7', name: 'মোহাম্মদ আলী', profession: 'ওয়েব ডেভেলপার', mutual: 12 },
                     { id: '8', name: 'নুসরাত জাহান', profession: 'মার্কেটিং ম্যানেজার', mutual: 8 },
-                    { id: '9', name: 'সালমান আহমেদ', profession: 'ব্যাংক কর্মকর্তা', mutual: 15 },
-                    { id: '10', name: 'রেহানা খাতুন', profession: 'কন্টেন্ট রাইটার', mutual: 6 }
+                    { id: '9', name: 'সালমান আহমেদ', profession: 'ব্যাংক কর্মকর্তা', mutual: 15 }
                 ];
-                
-                // Demo chats
                 this.chatsData = [
-                    { id: '1', name: 'আহমেদ হাসান', lastMessage: 'কেমন আছেন? কাল দেখা হবে?', time: '১০:৩০ AM', unread: 2 },
-                    { id: '2', name: 'ফারহানা আক্তার', lastMessage: 'ধন্যবাদ আপনার সাহায্যের জন্য!', time: 'গতকাল', unread: 0 },
-                    { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্টগুলো পাঠিয়েছি দেখে নিন', time: '২ দিন আগে', unread: 1 },
-                    { id: '4', name: 'সাবরিনা সুলতানা', lastMessage: 'মিটিং এর সময় সম্পর্কে জানতে চাচ্ছিলাম', time: '৩ দিন আগে', unread: 0 }
+                    { id: '1', name: 'আহমেদ হাসান', lastMessage: 'কেমন আছেন?', time: '১০:৩০ AM', unread: 2 },
+                    { id: '2', name: 'ফারহানা আক্তার', lastMessage: 'ধন্যবাদ!', time: 'গতকাল', unread: 0 },
+                    { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্ট পাঠিয়েছি', time: '২ দিন আগে', unread: 1 }
                 ];
             },
             
-            // Hide splash screen
             hideSplash() {
-                const splashScreen = document.getElementById('splashScreen');
-                splashScreen.style.animation = 'fadeOut 0.5s ease forwards';
+                const splash = document.getElementById('splashScreen');
+                splash.style.animation = 'fadeOut 0.5s ease forwards';
                 setTimeout(() => {
-                    splashScreen.style.display = 'none';
+                    splash.style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
                     this.showAuthModal();
                 }, 500);
             },
             
-            // Show auth modal
-            showAuthModal() {
-                document.getElementById('authModal').classList.add('active');
-            },
+            showAuthModal() { document.getElementById('authModal').classList.add('active'); },
             
-            // Authentication functions
-            login() {
-                const email = document.getElementById('loginEmail').value;
+            async login() {
+                const email = document.getElementById('loginEmail').value.trim();
                 const password = document.getElementById('loginPassword').value;
+                if(!email || !password) { this.showError('ইমেল ও পাসওয়ার্ড দিন'); return; }
                 
-                if (!email || !password) {
-                    this.showError('দয়া করে ইমেল এবং পাসওয়ার্ড দিন');
-                    return;
-                }
+                const btn = event.target;
+                const orig = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> লগইন হচ্ছে...';
+                this.showToast('লগইন হচ্ছে...', 'info');
                 
-                this.showToast('লগইন প্রক্রিয়া চলছে...', 'info');
-                
-                // Demo login for testing (remove in production)
-                if (email === 'demo@test.com' && password === 'password') {
+                if(email === 'demo@test.com' && password === 'password') {
                     setTimeout(() => {
                         this.currentUser = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
                         this.showAuthenticatedUI();
-                        this.showToast('ডেমো অ্যাকাউন্টে লগইন সফল!', 'success');
+                        this.showToast('ডেমো লগইন সফল!', 'success');
+                        btn.disabled = false;
+                        btn.innerHTML = orig;
                     }, 1000);
                     return;
                 }
                 
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        this.currentUser = userCredential.user;
-                        this.showAuthenticatedUI();
-                    })
-                    .catch((error) => {
-                        this.showError(this.getAuthErrorMessage(error));
-                    });
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                    btn.disabled = false;
+                    btn.innerHTML = orig;
+                } catch(error) {
+                    this.showError(this.getAuthErrorMessage(error));
+                    btn.disabled = false;
+                    btn.innerHTML = orig;
+                }
             },
             
-            signup() {
-                const name = document.getElementById('signupName').value;
-                const email = document.getElementById('signupEmail').value;
+            async signup() {
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
                 const password = document.getElementById('signupPassword').value;
-                const profession = document.getElementById('signupProfession').value;
+                const profession = document.getElementById('signupProfession').value.trim();
                 const city = document.getElementById('signupCity').value;
                 const terms = document.getElementById('termsAgreement').checked;
                 
-                if (!name || !email || !password || !profession || !city) {
-                    this.showError('দয়া করে সব তথ্য পূরণ করুন');
-                    return;
-                }
+                if(!name || !email || !password || !profession || !city) { this.showError('সব তথ্য দিন'); return; }
+                if(!terms) { this.showError('শর্তাবলী মেনে চলতে হবে'); return; }
+                if(password.length < 6) { this.showError('পাসওয়ার্ড ৬+ অক্ষর'); return; }
                 
-                if (!terms) {
-                    this.showError('আপনাকে সেবা শর্তাবলী মেনে চলতে হবে');
-                    return;
-                }
+                const btn = event.target;
+                const orig = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> অ্যাকাউন্ট তৈরি হচ্ছে...';
+                this.showToast('অ্যাকাউন্ট তৈরি হচ্ছে...', 'info');
                 
-                if (password.length < 6) {
-                    this.showError('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে');
-                    return;
-                }
-                
-                this.showToast('অ্যাকাউন্ট তৈরি করা হচ্ছে...', 'info');
-                
-                // Demo signup for testing
-                if (email.includes('@demo.com')) {
+                if(email.includes('@demo.com')) {
                     setTimeout(() => {
-                        this.currentUser = { 
-                            uid: 'demo' + Date.now(), 
-                            email: email, 
-                            displayName: name 
-                        };
+                        this.currentUser = { uid: 'demo'+Date.now(), email: email, displayName: name };
                         this.showAuthenticatedUI();
                         this.showToast('ডেমো অ্যাকাউন্ট তৈরি সফল!', 'success');
+                        btn.disabled = false;
+                        btn.innerHTML = orig;
                     }, 1500);
                     return;
                 }
                 
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        const user = userCredential.user;
-                        
-                        // Save user data to Firestore
-                        return db.collection('users').doc(user.uid).set({
-                            name: name,
-                            email: email,
-                            profession: profession,
-                            city: city,
-                            bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            rating: 0,
-                            connections: 0,
-                            verified: false,
-                            online: true
-                        });
-                    })
-                    .then(() => {
-                        this.currentUser = auth.currentUser;
-                        this.showAuthenticatedUI();
-                    })
-                    .catch((error) => {
-                        this.showError(this.getAuthErrorMessage(error));
+                try {
+                    const userCred = await auth.createUserWithEmailAndPassword(email, password);
+                    await userCred.user.updateProfile({ displayName: name });
+                    await db.collection('users').doc(userCred.user.uid).set({
+                        uid: userCred.user.uid, name: name, email: email, profession: profession, city: city,
+                        bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        rating: 0, connections: 0, verified: false, online: true
                     });
+                    btn.disabled = false;
+                    btn.innerHTML = orig;
+                } catch(error) {
+                    this.showError(this.getAuthErrorMessage(error));
+                    btn.disabled = false;
+                    btn.innerHTML = orig;
+                }
             },
             
             loginWithGoogle() {
-                this.showToast('গুগল লগইন শীঘ্রই আসছে!', 'info');
-                // Implement Google login here
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider).then(() => {
+                    this.showToast('গুগল লগইন সফল!', 'success');
+                }).catch(err => {
+                    this.showError('গুগল লগইন ব্যর্থ');
+                });
             },
             
-            loginWithFacebook() {
-                this.showToast('ফেসবুক লগইন শীঘ্রই আসছে!', 'info');
-                // Implement Facebook login here
-            },
+            loginWithFacebook() { this.showToast('ফেসবুক লগইন শীঘ্রই আসছে!', 'info'); },
             
-            logout() {
-                if (this.currentUser && this.currentUser.uid !== 'demo123') {
-                    auth.signOut().then(() => {
-                        this.showToast('সফলভাবে লগ আউট হয়েছে', 'success');
-                    }).catch((error) => {
-                        this.showError('লগ আউট করতে সমস্যা: ' + error.message);
-                    });
+            async logout() {
+                this.showToast('লগআউট হচ্ছে...', 'info');
+                if(this.currentUser && this.currentUser.uid !== 'demo123') {
+                    await this.updateUserOnlineStatus(false);
+                    await auth.signOut();
                 } else {
-                    // Demo logout
                     this.currentUser = null;
                     this.showAuthModal();
-                    this.showToast('ডেমো অ্যাকাউন্ট থেকে লগ আউট হয়েছে', 'info');
                 }
+                this.showToast('লগআউট হয়েছে', 'success');
             },
             
-            // Get auth error messages in Bengali
             getAuthErrorMessage(error) {
-                switch(error.code) {
-                    case 'auth/user-not-found':
-                        return 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই';
-                    case 'auth/wrong-password':
-                        return 'ভুল পাসওয়ার্ড';
-                    case 'auth/email-already-in-use':
-                        return 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে';
-                    case 'auth/weak-password':
-                        return 'পাসওয়ার্ড শক্তিশালী করুন';
-                    case 'auth/invalid-email':
-                        return 'ভুল ইমেল ফরম্যাট';
-                    case 'auth/network-request-failed':
-                        return 'নেটওয়ার্ক সমস্যা, ইন্টারনেট কানেকশন চেক করুন';
-                    default:
-                        return 'একটি সমস্যা হয়েছে: ' + error.message;
-                }
+                const errors = {
+                    'auth/user-not-found': 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই',
+                    'auth/wrong-password': 'ভুল পাসওয়ার্ড',
+                    'auth/email-already-in-use': 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে',
+                    'auth/weak-password': 'পাসওয়ার্ড ৬+ অক্ষর দিন',
+                    'auth/invalid-email': 'ভুল ইমেল ফরম্যাট',
+                    'auth/network-request-failed': 'নেটওয়ার্ক সমস্যা'
+                };
+                return errors[error.code] || 'একটি সমস্যা হয়েছে: ' + error.message;
             },
             
-            // Show authenticated UI
             showAuthenticatedUI() {
                 document.getElementById('authModal').classList.remove('active');
-                
-                // Update user info in header
-                const userName = this.currentUser.displayName || this.currentUser.email || 'ব্যবহারকারী';
-                const userAvatar = document.getElementById('userAvatar');
-                const userNameElement = document.getElementById('userName');
-                
-                if (userAvatar) {
-                    userAvatar.textContent = userName.charAt(0).toUpperCase();
-                }
-                
-                if (userNameElement) {
-                    userNameElement.textContent = userName;
-                }
-                
-                // Load initial data
+                const name = this.currentUser.displayName || this.currentUser.email || 'ব্যবহারকারী';
+                document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+                document.getElementById('userName').textContent = name;
                 this.loadHomeView();
             },
             
-            // Navigation
             navigateTo(view) {
-                console.log('Navigating to:', view);
-                
-                // Hide all views
-                document.querySelectorAll('[id$="View"]').forEach(el => {
-                    el.classList.add('hidden');
-                });
-                
-                // Update active nav links
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.sidebar-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.mobile-nav-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Show selected view
-                const targetView = document.getElementById(view + 'View');
-                if (targetView) {
-                    targetView.classList.remove('hidden');
-                }
-                
-                // Update active navigation
-                const navLink = document.querySelector(`.nav-link[onclick*="${view}"]`);
-                const sidebarItem = document.querySelector(`.sidebar-item[onclick*="${view}"]`);
-                const mobileNavItem = document.querySelector(`.mobile-nav-item[onclick*="${view}"]`);
-                
-                if (navLink) navLink.classList.add('active');
-                if (sidebarItem) sidebarItem.classList.add('active');
-                if (mobileNavItem) mobileNavItem.classList.add('active');
-                
+                document.querySelectorAll('[id$="View"]').forEach(el => el.classList.add('hidden'));
+                document.getElementById(view + 'View').classList.remove('hidden');
+                document.querySelectorAll('.nav-link, .sidebar-item, .mobile-nav-item').forEach(el => el.classList.remove('active'));
+                const selector = `[onclick*="${view}"]`;
+                const activeEl = document.querySelector(selector);
+                if(activeEl) activeEl.classList.add('active');
                 this.currentView = view;
-                
-                // Load data for the view
-                switch(view) {
-                    case 'home':
-                        this.loadHomeView();
-                        break;
-                    case 'search':
-                        this.loadSearchView();
-                        break;
-                    case 'jobs':
-                        this.loadJobsView();
-                        break;
-                    case 'chat':
-                        this.loadChatView();
-                        break;
-                    case 'profile':
-                        this.loadProfileView();
-                        break;
-                    case 'settings':
-                        this.loadSettingsView();
-                        break;
-                }
+                if(view === 'home') this.loadHomeView();
+                else if(view === 'search') this.loadSearchView();
+                else if(view === 'jobs') this.loadJobsView();
+                else if(view === 'chat') this.loadChatView();
+                else if(view === 'profile') this.loadProfileView();
+                else if(view === 'settings') this.loadSettingsView();
             },
             
-            // Load home view
             loadHomeView() {
                 this.renderUsers(this.usersData);
                 this.renderRecommendations(this.recommendationsData);
-                this.renderTrendingJobs(this.jobsData.slice(0, 3));
+                this.renderTrendingJobs(this.jobsData.slice(0,3));
                 this.renderUpcomingEvents();
             },
             
-            // Load search view
             loadSearchView() {
-                const searchResults = document.getElementById('searchResults');
-                if (searchResults) {
-                    searchResults.innerHTML = '<div class="loading"><div class="spinner"></div><p class="bangla">অনুসন্ধান প্রস্তুত...</p></div>';
-                }
+                const results = document.getElementById('searchResults');
+                if(results) results.innerHTML = '<div class="loading"><div class="spinner"></div><p>অনুসন্ধান প্রস্তুত...</p></div>';
             },
             
-            // Perform search
             performSearch(query) {
-                const searchResults = document.getElementById('searchResults');
-                if (!searchResults) return;
-                
-                if (!query.trim()) {
-                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">অনুসন্ধান করুন</h3><p class="bangla">ব্যক্তি, চাকরি বা গোষ্ঠী খুঁজতে অনুসন্ধান বার ব্যবহার করুন</p></div>';
+                const results = document.getElementById('searchResults');
+                if(!results) return;
+                if(!query.trim()) {
+                    results.innerHTML = '<div class="empty-state"><h3>অনুসন্ধান করুন</h3><p>ব্যক্তি খুঁজতে লিখুন</p></div>';
                     return;
                 }
-                
-                // Filter users based on query
-                const filteredUsers = this.usersData.filter(user => 
-                    user.name.toLowerCase().includes(query.toLowerCase()) ||
-                    user.profession.toLowerCase().includes(query.toLowerCase()) ||
-                    user.location.toLowerCase().includes(query.toLowerCase())
-                );
-                
-                if (filteredUsers.length === 0) {
-                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3><p class="bangla">"' + query + '" এর জন্য কোনো মিল পাওয়া যায়নি</p></div>';
-                } else {
-                    this.renderSearchResults(filteredUsers);
-                }
+                const filtered = this.usersData.filter(u => u.name.includes(query) || u.profession.includes(query) || u.location.includes(query));
+                if(filtered.length === 0) results.innerHTML = '<div class="empty-state"><h3>কোন ফলাফল নেই</h3></div>';
+                else this.renderSearchResults(filtered);
             },
             
-            // Load jobs view
-            loadJobsView() {
-                this.renderJobs(this.jobsData);
-            },
-            
-            // Load chat view
-            loadChatView() {
-                this.renderConversations(this.chatsData);
-            },
-            
-            // Load profile view
+            loadJobsView() { this.renderJobs(this.jobsData); },
+            loadChatView() { this.renderConversations(this.chatsData); },
             loadProfileView() {
-                if (!this.currentUser) return;
-                
-                // Update profile info
-                const profileAvatar = document.getElementById('profileAvatar');
-                const profileName = document.getElementById('profileName');
-                const profileProfession = document.getElementById('profileProfession');
-                const profileBio = document.getElementById('profileBio');
-                const profileConnections = document.getElementById('profileConnections');
-                const profilePosts = document.getElementById('profilePosts');
-                const profileRating = document.getElementById('profileRating');
-                
-                if (profileAvatar) {
-                    profileAvatar.textContent = (this.currentUser.displayName || 'U').charAt(0).toUpperCase();
-                }
-                
-                if (profileName) {
-                    profileName.textContent = this.currentUser.displayName || 'ব্যবহারকারী';
-                }
-                
-                if (profileProfession) {
-                    profileProfession.textContent = 'হ্যালো বাংলাদেশী সদস্য';
-                }
-                
-                if (profileBio) {
-                    profileBio.textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ। স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হতে পছন্দ করি।';
-                }
-                
-                if (profileConnections) {
-                    profileConnections.textContent = Math.floor(Math.random() * 100) + 50;
-                }
-                
-                if (profilePosts) {
-                    profilePosts.textContent = Math.floor(Math.random() * 50) + 10;
-                }
-                
-                if (profileRating) {
-                    profileRating.textContent = (Math.random() * 1 + 4).toFixed(1);
-                }
-                
-                // Load profile groups
+                if(!this.currentUser) return;
+                const name = this.currentUser.displayName || 'ব্যবহারকারী';
+                document.getElementById('profileAvatar').textContent = name.charAt(0).toUpperCase();
+                document.getElementById('profileName').textContent = name;
+                document.getElementById('profileProfession').textContent = 'হ্যালো বাংলাদেশী সদস্য';
+                document.getElementById('profileBio').textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ।';
+                document.getElementById('profileConnections').textContent = Math.floor(Math.random()*100)+50;
+                document.getElementById('profilePosts').textContent = Math.floor(Math.random()*50)+10;
+                document.getElementById('profileRating').textContent = (Math.random()*1+4).toFixed(1);
                 this.renderProfileGroups();
             },
+            loadSettingsView() {},
             
-            // Load settings view
-            loadSettingsView() {
-                // Settings are already loaded in HTML
-            },
-            
-            // Render users
             renderUsers(users) {
                 const container = document.getElementById('usersList');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
-                users.forEach(user => {
-                    const userCard = this.createUserCard(user);
-                    container.appendChild(userCard);
-                });
+                users.forEach(u => container.appendChild(this.createUserCard(u)));
             },
             
-            // Create user card
             createUserCard(user) {
                 const div = document.createElement('div');
                 div.className = 'user-card';
                 div.innerHTML = `
-                    <div class="user-card-header">
-                        <div class="user-card-avatar">${user.name.charAt(0)}</div>
-                        ${user.online ? '<div class="user-card-online"></div>' : ''}
-                    </div>
+                    <div class="user-card-header"><div class="user-card-avatar">${user.name.charAt(0)}</div>${user.online ? '<div class="user-card-online"></div>' : ''}</div>
                     <div class="user-card-content">
-                        <h3 class="user-card-name bangla">${user.name}</h3>
-                        <p class="user-card-profession bangla">
-                            <i class="fas fa-briefcase"></i> ${user.profession}
-                            ${user.verified ? ' <i class="fas fa-check-circle" style="color: var(--accent-green); font-size: 12px;"></i>' : ''}
-                        </p>
-                        <p class="user-card-location bangla">
-                            <i class="fas fa-map-marker-alt"></i> ${user.location}
-                            <span style="margin-left: 10px; font-size: 12px;">
-                                <i class="fas fa-road"></i> ${user.distance} কিমি
-                            </span>
-                        </p>
-                        <p class="user-card-bio bangla">${user.bio}</p>
-                        
-                        <div class="user-card-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">${user.rating}</div>
-                                <div class="stat-label bangla">রেটিং</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">${user.connections}</div>
-                                <div class="stat-label bangla">সংযোগ</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div>
-                                <div class="stat-label bangla">অবস্থা</div>
-                            </div>
-                        </div>
-                        
-                        <div class="user-card-actions">
-                            <button class="btn btn-primary bangla" onclick="app.startChat('${user.id}')">
-                                <i class="fas fa-comment"></i> চ্যাট
-                            </button>
-                            <button class="btn btn-secondary bangla" onclick="app.connectWithUser('${user.id}')">
-                                <i class="fas fa-user-plus"></i> সংযুক্ত হন
-                            </button>
-                        </div>
+                        <h3 class="user-card-name">${user.name}</h3>
+                        <p class="user-card-profession"><i class="fas fa-briefcase"></i> ${user.profession}${user.verified ? ' <i class="fas fa-check-circle" style="color:var(--accent-green);"></i>' : ''}</p>
+                        <p class="user-card-location"><i class="fas fa-map-marker-alt"></i> ${user.location} <span style="margin-left:10px;"><i class="fas fa-road"></i> ${user.distance} কিমি</span></p>
+                        <p class="user-card-bio">${user.bio}</p>
+                        <div class="user-card-stats"><div class="stat-item"><div class="stat-value">${user.rating}</div><div class="stat-label">রেটিং</div></div><div class="stat-item"><div class="stat-value">${user.connections}</div><div class="stat-label">সংযোগ</div></div><div class="stat-item"><div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div><div class="stat-label">অবস্থা</div></div></div>
+                        <div class="user-card-actions"><button class="btn btn-primary" onclick="app.startChat('${user.id}')"><i class="fas fa-comment"></i> চ্যাট</button><button class="btn btn-secondary" onclick="app.connectWithUser('${user.id}')"><i class="fas fa-user-plus"></i> সংযুক্ত হন</button></div>
                     </div>
                 `;
                 return div;
             },
             
-            // Render recommendations
             renderRecommendations(recommendations) {
                 const container = document.getElementById('recommendationsList');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
                 recommendations.forEach(rec => {
-                    const recItem = document.createElement('div');
-                    recItem.className = 'recommendation-item';
-                    recItem.innerHTML = `
-                        <div class="recommendation-avatar">${rec.name.charAt(0)}</div>
-                        <div class="recommendation-info">
-                            <h4 class="bangla">${rec.name}</h4>
-                            <p class="bangla">${rec.profession}</p>
-                            <p class="bangla" style="font-size: 11px; color: var(--primary);">
-                                ${rec.mutual} mutual connections
-                            </p>
-                        </div>
-                        <button class="btn-icon" style="width: 36px; height: 36px;" onclick="app.connectWithUser('${rec.id}')">
-                            <i class="fas fa-user-plus"></i>
-                        </button>
-                    `;
-                    container.appendChild(recItem);
+                    const div = document.createElement('div');
+                    div.className = 'recommendation-item';
+                    div.innerHTML = `<div class="recommendation-avatar">${rec.name.charAt(0)}</div><div class="recommendation-info"><h4>${rec.name}</h4><p>${rec.profession}</p><p style="font-size:11px;color:var(--primary);">${rec.mutual} mutual connections</p></div><button class="btn-icon" style="width:36px;height:36px;" onclick="app.connectWithUser('${rec.id}')"><i class="fas fa-user-plus"></i></button>`;
+                    container.appendChild(div);
                 });
             },
             
-            // Render trending jobs
             renderTrendingJobs(jobs) {
                 const container = document.getElementById('trendingJobs');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
                 jobs.forEach(job => {
-                    const jobItem = document.createElement('div');
-                    jobItem.className = 'trending-job';
-                    jobItem.innerHTML = `
-                        <div class="job-title bangla">${job.title}</div>
-                        <div class="job-company bangla">${job.company}</div>
-                        <div class="job-salary bangla">${job.salary}</div>
-                    `;
-                    container.appendChild(jobItem);
+                    const div = document.createElement('div');
+                    div.className = 'trending-job';
+                    div.innerHTML = `<div class="job-title">${job.title}</div><div class="job-company">${job.company}</div><div class="job-salary">${job.salary}</div>`;
+                    container.appendChild(div);
                 });
             },
             
-            // Render upcoming events
             renderUpcomingEvents() {
                 const container = document.getElementById('upcomingEvents');
-                if (!container) return;
-                
-                const events = [
-                    { title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং', date: '১৫ মার্চ, ২০২৪', location: 'ঢাকা' },
-                    { title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন', date: '২০ মার্চ, ২০২৪', location: 'দূরবর্তী' },
-                    { title: 'ক্যারিয়ার গাইডেন্স সেমিনার', date: '২৫ মার্চ, ২০২৪', location: 'চট্টগ্রাম' }
-                ];
-                
+                if(!container) return;
+                const events = [{title:'বাংলাদেশী আইটি নেটওয়ার্কিং',date:'১৫ মার্চ',location:'ঢাকা'},{title:'স্টার্টআপ আইডিয়া শেয়ারিং',date:'২০ মার্চ',location:'দূরবর্তী'},{title:'ক্যারিয়ার গাইডেন্স',date:'২৫ মার্চ',location:'চট্টগ্রাম'}];
                 container.innerHTML = '';
-                
-                events.forEach(event => {
-                    const eventItem = document.createElement('div');
-                    eventItem.className = 'event-item';
-                    eventItem.innerHTML = `
-                        <div class="event-date bangla">${event.date}</div>
-                        <div class="event-title bangla">${event.title}</div>
-                        <div class="event-location bangla">
-                            <i class="fas fa-map-marker-alt"></i> ${event.location}
-                        </div>
-                    `;
-                    container.appendChild(eventItem);
+                events.forEach(e => {
+                    const div = document.createElement('div');
+                    div.className = 'event-item';
+                    div.innerHTML = `<div class="event-date">${e.date}</div><div class="event-title">${e.title}</div><div class="event-location"><i class="fas fa-map-marker-alt"></i> ${e.location}</div>`;
+                    container.appendChild(div);
                 });
             },
             
-            // Render search results
             renderSearchResults(results) {
                 const container = document.getElementById('searchResults');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
-                if (results.length === 0) {
-                    container.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3></div>';
-                    return;
-                }
-                
-                results.forEach(user => {
-                    const userCard = this.createUserCard(user);
-                    container.appendChild(userCard);
-                });
+                results.forEach(u => container.appendChild(this.createUserCard(u)));
             },
             
-            // Render jobs
             renderJobs(jobs) {
                 const container = document.getElementById('jobsList');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
-                jobs.forEach(job => {
-                    const jobCard = this.createJobCard(job);
-                    container.appendChild(jobCard);
-                });
+                jobs.forEach(job => container.appendChild(this.createJobCard(job)));
             },
             
-            // Create job card
             createJobCard(job) {
                 const div = document.createElement('div');
                 div.className = 'job-card';
-                div.innerHTML = `
-                    ${job.featured ? '<div class="job-featured bangla">ফিচার্ড</div>' : ''}
-                    <div class="job-card-header">
-                        <div>
-                            <h3 class="job-card-title bangla">${job.title}</h3>
-                            <p class="job-card-company bangla">${job.company}</p>
-                        </div>
-                        <span class="badge">${job.type}</span>
-                    </div>
-                    
-                    <div class="job-card-tags">
-                        <span class="job-tag job-tag-type bangla">${job.type}</span>
-                        ${job.skills.map(skill => `<span class="job-tag bangla">${skill}</span>`).join('')}
-                    </div>
-                    
-                    <p class="job-card-description bangla">${job.description}</p>
-                    
-                    <div class="job-card-footer">
-                        <div class="job-card-salary bangla">${job.salary}</div>
-                        <div class="job-card-location bangla">
-                            <i class="fas fa-map-marker-alt"></i> ${job.location}
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-block mt-3 bangla" onclick="app.applyForJob('${job.id}')">
-                        <i class="fas fa-paper-plane"></i> আবেদন করুন
-                    </button>
-                `;
+                div.innerHTML = `${job.featured ? '<div class="job-featured">ফিচার্ড</div>' : ''}<div class="job-card-header"><div><h3 class="job-card-title">${job.title}</h3><p class="job-card-company">${job.company}</p></div><span class="badge">${job.type}</span></div><div class="job-card-tags"><span class="job-tag job-tag-type">${job.type}</span>${job.skills.map(s => `<span class="job-tag">${s}</span>`).join('')}</div><p class="job-card-description">${job.description}</p><div class="job-card-footer"><div class="job-card-salary">${job.salary}</div><div class="job-card-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</div></div><button class="btn btn-primary btn-block mt-3" onclick="app.applyForJob('${job.id}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button>`;
                 return div;
             },
             
-            // Render conversations
             renderConversations(conversations) {
                 const container = document.getElementById('conversationsList');
-                if (!container) return;
-                
+                if(!container) return;
                 container.innerHTML = '';
-                
-                conversations.forEach(chat => {
-                    const chatItem = this.createChatItem(chat);
-                    container.appendChild(chatItem);
-                });
+                conversations.forEach(chat => container.appendChild(this.createChatItem(chat)));
             },
             
-            // Create chat item
             createChatItem(chat) {
                 const div = document.createElement('div');
                 div.className = 'chat-item';
                 div.onclick = () => this.openChat(chat);
-                div.innerHTML = `
-                    <div class="chat-avatar">${chat.name.charAt(0)}</div>
-                    <div class="chat-info">
-                        <h4 class="bangla">${chat.name}</h4>
-                        <p class="chat-last-message bangla">${chat.lastMessage}</p>
-                    </div>
-                    <div class="chat-time bangla">${chat.time}</div>
-                    ${chat.unread > 0 ? `<div class="chat-unread">${chat.unread}</div>` : ''}
-                `;
+                div.innerHTML = `<div class="chat-avatar">${chat.name.charAt(0)}</div><div class="chat-info"><h4>${chat.name}</h4><p class="chat-last-message">${chat.lastMessage}</p></div><div class="chat-time">${chat.time}</div>${chat.unread > 0 ? `<div class="chat-unread">${chat.unread}</div>` : ''}`;
                 return div;
             },
             
-            // Render profile groups
             renderProfileGroups() {
                 const container = document.getElementById('profileGroups');
-                if (!container) return;
-                
-                const groups = [
-                    { name: 'বাংলাদেশী শিক্ষার্থী', members: 1250 },
-                    { name: 'আইটি পেশাজীবী বাংলাদেশ', members: 3200 },
-                    { name: 'প্রবাসী বাংলাদেশী', members: 5800 }
-                ];
-                
+                if(!container) return;
+                const groups = [{name:'বাংলাদেশী শিক্ষার্থী',members:1250},{name:'আইটি পেশাজীবী',members:3200},{name:'প্রবাসী বাংলাদেশী',members:5800}];
                 container.innerHTML = '';
-                
-                groups.forEach(group => {
-                    const groupItem = document.createElement('div');
-                    groupItem.className = 'sidebar-item';
-                    groupItem.style.marginBottom = '8px';
-                    groupItem.innerHTML = `
-                        <span class="sidebar-icon"><i class="fas fa-users"></i></span>
-                        <span class="bangla">${group.name}</span>
-                        <span class="sidebar-badge">${group.members}</span>
-                    `;
-                    container.appendChild(groupItem);
+                groups.forEach(g => {
+                    const div = document.createElement('div');
+                    div.className = 'sidebar-item';
+                    div.style.marginBottom = '8px';
+                    div.innerHTML = `<span class="sidebar-icon"><i class="fas fa-users"></i></span><span>${g.name}</span><span class="sidebar-badge">${g.members}</span>`;
+                    container.appendChild(div);
                 });
             },
             
-            // Filter users
             filterUsers(filter) {
-                const tabs = document.querySelectorAll('.feed-tab');
-                tabs.forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.feed-tab').forEach(t => t.classList.remove('active'));
                 event.target.classList.add('active');
-                
-                let filteredUsers = [];
-                
-                switch(filter) {
-                    case 'all':
-                        filteredUsers = this.usersData;
-                        break;
-                    case 'nearby':
-                        filteredUsers = this.usersData.filter(user => user.distance < 10);
-                        break;
-                    case 'online':
-                        filteredUsers = this.usersData.filter(user => user.online);
-                        break;
-                    case 'verified':
-                        filteredUsers = this.usersData.filter(user => user.verified);
-                        break;
-                }
-                
-                this.renderUsers(filteredUsers);
+                let filtered = [];
+                if(filter === 'all') filtered = this.usersData;
+                else if(filter === 'nearby') filtered = this.usersData.filter(u => u.distance < 10);
+                else if(filter === 'online') filtered = this.usersData.filter(u => u.online);
+                else if(filter === 'verified') filtered = this.usersData.filter(u => u.verified);
+                this.renderUsers(filtered);
             },
             
-            // Post job
             postJob() {
                 const title = document.getElementById('jobTitle').value;
                 const company = document.getElementById('jobCompany').value;
                 const type = document.getElementById('jobType').value;
                 const location = document.getElementById('jobLocation').value;
                 const salary = document.getElementById('jobSalary').value;
-                const description = document.getElementById('jobDescription').value;
+                const desc = document.getElementById('jobDescription').value;
                 const skills = document.getElementById('jobSkills').value;
-                
-                if (!title || !company || !type || !location || !description) {
-                    this.showError('দয়া করে সব প্রয়োজনীয় তথ্য পূরণ করুন');
-                    return;
-                }
-                
-                this.showToast('চাকরি পোস্ট করা হচ্ছে...', 'info');
-                
-                // Simulate API call
+                if(!title || !company || !type || !location || !desc) { this.showError('সব তথ্য পূরণ করুন'); return; }
+                this.showToast('পোস্ট করা হচ্ছে...','info');
                 setTimeout(() => {
-                    const newJob = {
-                        id: 'job' + Date.now(),
-                        title: title,
-                        company: company,
-                        type: type,
-                        location: location,
-                        salary: salary || 'আলোচনা সাপেক্ষ',
-                        description: description,
-                        skills: skills ? skills.split(',').map(s => s.trim()) : [],
-                        featured: false,
-                        posted: 'এইমাত্র'
-                    };
-                    
-                    this.jobsData.unshift(newJob);
+                    this.jobsData.unshift({id:'job'+Date.now(),title,company,type,location,salary:salary||'আলোচনা সাপেক্ষ',description:desc,skills:skills?skills.split(',').map(s=>s.trim()):[],featured:false,posted:'এইমাত্র'});
                     this.closeModal('postJobModal');
                     this.navigateTo('jobs');
-                    this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে!', 'success');
-                    
-                    // Clear form
-                    ['jobTitle', 'jobCompany', 'jobLocation', 'jobSalary', 'jobDescription', 'jobSkills'].forEach(id => {
-                        document.getElementById(id).value = '';
-                    });
+                    this.showToast('পোস্ট সফল!','success');
+                    ['jobTitle','jobCompany','jobLocation','jobSalary','jobDescription','jobSkills'].forEach(id => document.getElementById(id).value = '');
                     document.getElementById('jobType').selectedIndex = 0;
-                }, 1500);
+                },1500);
             },
             
-            // Apply for job
-            applyForJob(jobId) {
-                this.showToast('আবেদন জমা দেওয়া হচ্ছে...', 'info');
-                
-                setTimeout(() => {
-                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে!', 'success');
-                }, 1000);
-            },
+            applyForJob(jobId) { this.showToast('আবেদন জমা দেওয়া হচ্ছে...','info'); setTimeout(() => this.showToast('আবেদন সফল!','success'),1000); },
+            connectWithUser(userId) { this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে','success'); },
             
-            // Connect with user
-            connectWithUser(userId) {
-                this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে', 'success');
-            },
-            
-            // Chat functions
             openChat(chat) {
                 document.getElementById('chatWindow').style.display = 'flex';
                 document.getElementById('chatEmptyState').style.display = 'none';
-                
-                // Update chat header
                 document.getElementById('chatUserName').textContent = chat.name;
                 document.getElementById('chatUserAvatar').textContent = chat.name.charAt(0);
-                
-                // Load messages
                 this.loadChatMessages(chat.id);
-                
-                // Mark as read
                 const chatItem = event.target.closest('.chat-item');
-                if (chatItem) {
-                    const unreadBadge = chatItem.querySelector('.chat-unread');
-                    if (unreadBadge) {
-                        unreadBadge.remove();
-                    }
-                    document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
+                if(chatItem) {
+                    const ub = chatItem.querySelector('.chat-unread');
+                    if(ub) ub.remove();
+                    document.querySelectorAll('.chat-item').forEach(i => i.classList.remove('active'));
                     chatItem.classList.add('active');
                 }
             },
             
             loadChatMessages(chatId) {
                 const container = document.getElementById('chatMessages');
-                if (!container) return;
-                
-                // Demo messages
-                const messages = [
-                    { text: 'হ্যালো! কেমন আছেন?', sender: 'other', time: '১০:১৫ AM' },
-                    { text: 'আলহামদুলিল্লাহ, ভালো আছি। আপনি কেমন আছেন?', sender: 'me', time: '১০:১৬ AM' },
-                    { text: 'আমিও ভালো, ধন্যবাদ। আজকের মিটিং সম্পর্কে জানতে চাচ্ছিলাম।', sender: 'other', time: '১০:১৭ AM' },
-                    { text: 'হ্যাঁ, মিটিং টা বিকাল ৪টায় নির্ধারিত আছে। Zoom লিঙ্ক আমি পরে পাঠিয়ে দিব।', sender: 'me', time: '১০:১৮ AM' },
-                    { text: 'দারুন! তাহলে দেখা হবে বিকালে।', sender: 'other', time: '১০:১৯ AM' }
-                ];
-                
+                if(!container) return;
+                const messages = [{text:'হ্যালো! কেমন আছেন?',sender:'other',time:'১০:১৫ AM'},{text:'আলহামদুলিল্লাহ ভালো',sender:'me',time:'১০:১৬ AM'},{text:'আমিও ভালো, ধন্যবাদ',sender:'other',time:'১০:১৭ AM'}];
                 container.innerHTML = '';
-                
                 messages.forEach(msg => {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `message ${msg.sender}`;
-                    messageDiv.innerHTML = `
-                        <div class="message-avatar">${msg.sender === 'me' ? 'আ' : chatId.charAt(0)}</div>
-                        <div>
-                            <div class="message-content bangla">${msg.text}</div>
-                            <div class="message-time">${msg.time}</div>
-                        </div>
-                    `;
-                    container.appendChild(messageDiv);
+                    const div = document.createElement('div');
+                    div.className = `message ${msg.sender}`;
+                    div.innerHTML = `<div class="message-avatar">${msg.sender === 'me' ? 'আ' : chatId.charAt(0)}</div><div><div class="message-content">${msg.text}</div><div class="message-time">${msg.time}</div></div>`;
+                    container.appendChild(div);
                 });
-                
-                // Scroll to bottom
                 container.scrollTop = container.scrollHeight;
             },
             
             sendMessage() {
                 const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-                
+                const msg = input.value.trim();
+                if(!msg) return;
                 const container = document.getElementById('chatMessages');
-                const time = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-                
-                // Add message to UI
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message sent';
-                messageDiv.innerHTML = `
-                    <div class="message-avatar">আ</div>
-                    <div>
-                        <div class="message-content bangla">${message}</div>
-                        <div class="message-time">${time}</div>
-                    </div>
-                `;
-                container.appendChild(messageDiv);
-                
-                // Clear input
+                const time = new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'});
+                const div = document.createElement('div');
+                div.className = 'message sent';
+                div.innerHTML = `<div class="message-avatar">আ</div><div><div class="message-content">${msg}</div><div class="message-time">${time}</div></div>`;
+                container.appendChild(div);
                 input.value = '';
-                
-                // Scroll to bottom
                 container.scrollTop = container.scrollHeight;
-                
-                // Simulate reply after 1 second
                 setTimeout(() => {
-                    const replyDiv = document.createElement('div');
-                    replyDiv.className = 'message received';
-                    replyDiv.innerHTML = `
-                        <div class="message-avatar">অ</div>
-                        <div>
-                            <div class="message-content bangla">ধন্যবাদ আপনার বার্তার জন্য!</div>
-                            <div class="message-time">${new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' })}</div>
-                        </div>
-                    `;
-                    container.appendChild(replyDiv);
+                    const reply = document.createElement('div');
+                    reply.className = 'message received';
+                    reply.innerHTML = `<div class="message-avatar">অ</div><div><div class="message-content">ধন্যবাদ!</div><div class="message-time">${new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+                    container.appendChild(reply);
                     container.scrollTop = container.scrollHeight;
-                }, 1000);
+                },1000);
             },
             
-            closeChat() {
-                document.getElementById('chatWindow').style.display = 'none';
-                document.getElementById('chatEmptyState').style.display = 'flex';
-            },
-            
-            // Modal functions
-            showPostJobModal() {
-                document.getElementById('postJobModal').classList.add('active');
-            },
-            
-            showSettingsModal() {
-                this.navigateTo('settings');
-            },
-            
-            closeModal(modalId) {
-                document.getElementById(modalId).classList.remove('active');
-            },
-            
-            // Auth tabs
-            showLoginTab() {
-                document.getElementById('loginForm').classList.remove('hidden');
-                document.getElementById('signupForm').classList.add('hidden');
-                
-                const tabs = document.querySelectorAll('.auth-tab');
-                tabs[0].classList.add('active');
-                tabs[1].classList.remove('active');
-            },
-            
-            showSignupTab() {
-                document.getElementById('loginForm').classList.add('hidden');
-                document.getElementById('signupForm').classList.remove('hidden');
-                
-                const tabs = document.querySelectorAll('.auth-tab');
-                tabs[0].classList.remove('active');
-                tabs[1].classList.add('active');
-            },
-            
-            // Mobile menu
-            toggleMobileMenu() {
-                document.getElementById('mobileMenu').classList.toggle('active');
-            },
-            
-            // User dropdown
-            toggleUserDropdown() {
-                const dropdown = document.getElementById('userDropdown');
-                if (dropdown) {
-                    dropdown.classList.toggle('active');
-                } else {
-                    this.createUserDropdown();
-                }
-            },
-            
-            hideUserDropdown() {
-                const dropdown = document.getElementById('userDropdown');
-                if (dropdown) {
-                    dropdown.classList.remove('active');
-                }
-            },
-            
+            closeChat() { document.getElementById('chatWindow').style.display = 'none'; document.getElementById('chatEmptyState').style.display = 'flex'; },
+            showPostJobModal() { document.getElementById('postJobModal').classList.add('active'); },
+            showSettingsModal() { this.navigateTo('settings'); },
+            closeModal(modalId) { document.getElementById(modalId).classList.remove('active'); },
+            showLoginTab() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.querySelectorAll('.auth-tab')[0].classList.add('active'); document.querySelectorAll('.auth-tab')[1].classList.remove('active'); },
+            showSignupTab() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.querySelectorAll('.auth-tab')[0].classList.remove('active'); document.querySelectorAll('.auth-tab')[1].classList.add('active'); },
+            toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); },
+            toggleUserDropdown() { this.createUserDropdown(); },
+            hideUserDropdown() { const d = document.getElementById('userDropdown'); if(d) d.remove(); },
             createUserDropdown() {
-                // Create dropdown if it doesn't exist
-                const dropdown = document.createElement('div');
-                dropdown.id = 'userDropdown';
-                dropdown.className = 'user-dropdown';
-                dropdown.innerHTML = `
-                    <a href="#" onclick="app.navigateTo('profile')"><i class="fas fa-user"></i> প্রোফাইল</a>
-                    <a href="#" onclick="app.navigateTo('settings')"><i class="fas fa-cog"></i> সেটিংস</a>
-                    <hr>
-                    <a href="#" onclick="app.logout()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
-                `;
-                
-                const userMenu = document.getElementById('userMenu');
-                userMenu.appendChild(dropdown);
-                dropdown.classList.add('active');
+                const existing = document.getElementById('userDropdown');
+                if(existing) existing.remove();
+                const div = document.createElement('div');
+                div.id = 'userDropdown';
+                div.style.position = 'absolute';
+                div.style.top = '70px';
+                div.style.right = '20px';
+                div.style.background = 'white';
+                div.style.borderRadius = '12px';
+                div.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                div.style.padding = '8px';
+                div.style.zIndex = '1000';
+                div.innerHTML = `<a href="#" onclick="app.navigateTo('profile');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-user"></i> প্রোফাইল</a><a href="#" onclick="app.navigateTo('settings');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-cog"></i> সেটিংস</a><hr style="margin:4px 0"><a href="#" onclick="app.logout();app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--accent-red);text-decoration:none;"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>`;
+                document.body.appendChild(div);
+                setTimeout(() => { window.addEventListener('click', function closeDropdown(e) { if(!div.contains(e.target) && !e.target.closest('.user-menu')) { div.remove(); window.removeEventListener('click', closeDropdown); } }); }, 100);
             },
             
-            // Toast notifications
             showToast(message, type = 'info') {
-                const toastContainer = document.getElementById('toastContainer');
-                if (!toastContainer) return;
-                
-                const toastId = 'toast-' + Date.now();
+                const container = document.getElementById('toastContainer');
+                if(!container) return;
+                const id = 'toast-'+Date.now();
                 const toast = document.createElement('div');
-                toast.id = toastId;
+                toast.id = id;
                 toast.className = `toast ${type}`;
-                
-                const icons = {
-                    success: 'fas fa-check-circle',
-                    error: 'fas fa-exclamation-circle',
-                    warning: 'fas fa-exclamation-triangle',
-                    info: 'fas fa-info-circle'
-                };
-                
-                toast.innerHTML = `
-                    <div class="toast-icon">
-                        <i class="${icons[type] || icons.info}"></i>
-                    </div>
-                    <div class="toast-content">
-                        <div class="toast-title bangla">${type === 'success' ? 'সফল' : type === 'error' ? 'ত্রুটি' : type === 'warning' ? 'সতর্কতা' : 'তথ্য'}</div>
-                        <div class="toast-message bangla">${message}</div>
-                    </div>
-                    <button class="toast-close" onclick="document.getElementById('${toastId}').remove()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                
-                toastContainer.appendChild(toast);
-                
-                // Auto remove after 5 seconds
-                setTimeout(() => {
-                    if (document.getElementById(toastId)) {
-                        document.getElementById(toastId).remove();
-                    }
-                }, 5000);
+                const icons = {success:'✓',error:'✕',info:'ℹ'};
+                toast.innerHTML = `<div class="toast-icon">${icons[type]||'ℹ'}</div><div class="toast-content"><div class="toast-title">${type==='success'?'সফল':type==='error'?'ত্রুটি':'তথ্য'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="document.getElementById('${id}').remove()">✕</button>`;
+                container.appendChild(toast);
+                setTimeout(() => { if(document.getElementById(id)) document.getElementById(id).remove(); }, 4000);
             },
             
-            // Show error
             showError(message) {
-                const errorElement = document.getElementById('authError');
-                if (errorElement) {
-                    errorElement.textContent = message;
-                    errorElement.style.display = 'block';
-                    setTimeout(() => errorElement.style.display = 'none', 5000);
-                }
+                const err = document.getElementById('authError');
+                if(err) { err.textContent = message; err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 5000); }
                 this.showToast(message, 'error');
             },
             
-            // Account management
-            changePassword() {
-                this.showToast('পাসওয়ার্ড পরিবর্তন ফিচার শীঘ্রই আসছে', 'info');
-            },
-            
-            deactivateAccount() {
-                if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট নিষ্ক্রিয় করতে চান? আপনি আবার সক্রিয় করতে পারবেন।')) {
-                    this.showToast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে', 'success');
-                }
-            },
-            
-            deleteAccount() {
-                if (confirm('আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট স্থায়ীভাবে মুছতে চান? এই কাজটি অপরিবর্তনীয়।')) {
-                    this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 'success');
-                    setTimeout(() => {
-                        this.logout();
-                    }, 2000);
-                }
-            },
-            
-            // Start chat with user
+            changePassword() { this.showToast('পাসওয়ার্ড পরিবর্তন শীঘ্রই আসছে','info'); },
+            deactivateAccount() { if(confirm('অ্যাকাউন্ট নিষ্ক্রিয় করবেন?')) this.showToast('অ্যাকাউন্ট নিষ্ক্রিয়','success'); },
+            deleteAccount() { if(confirm('স্থায়ীভাবে মুছবেন?')) { this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে','success'); setTimeout(()=>this.logout(),2000); } },
             startChat(userId) {
                 this.navigateTo('chat');
-                
-                // Find user
-                const user = this.usersData.find(u => u.id === userId) || 
-                            this.recommendationsData.find(u => u.id === userId);
-                
-                if (user) {
-                    setTimeout(() => {
-                        this.openChat({
-                            id: userId,
-                            name: user.name,
-                            lastMessage: 'নতুন চ্যাট শুরু হয়েছে',
-                            time: 'এখন',
-                            unread: 0
-                        });
-                    }, 500);
-                }
+                const user = this.usersData.find(u=>u.id===userId) || this.recommendationsData.find(u=>u.id===userId);
+                if(user) setTimeout(()=>this.openChat({id:userId,name:user.name,lastMessage:'নতুন চ্যাট',time:'এখন',unread:0}),500);
             }
         };
 
-        // Initialize app when page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            app.init();
-        });
-
-        // Make app available globally
+        window.addEventListener('DOMContentLoaded', () => app.init());
         window.app = app;
     </script>
 </body>
