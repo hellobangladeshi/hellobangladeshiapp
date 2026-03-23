@@ -2595,468 +2595,532 @@
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
-            authDomain: "hello-bangladeshi.firebaseapp.com",
-            projectId: "hello-bangladeshi",
-            storageBucket: "hello-bangladeshi.firebasestorage.app",
-            messagingSenderId: "508048583569",
-            appId: "1:508048583569:web:36eb40ac37d1682ca98830",
-            measurementId: "G-K0WLFW4L58"
-        };
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
+        authDomain: "hello-bangladeshi.firebaseapp.com",
+        projectId: "hello-bangladeshi",
+        storageBucket: "hello-bangladeshi.firebasestorage.app",
+        messagingSenderId: "508048583569",
+        appId: "1:508048583569:web:36eb40ac37d1682ca98830",
+        measurementId: "G-K0WLFW4L58"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const storage = firebase.storage();
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-        // Enable persistence
-        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e => console.log(e));
+    // Enable persistence - এইটা যোগ করা হয়েছে
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .catch(e => console.log("Persistence error:", e));
 
-        // App State
-        const app = {
-            currentUser: null,
-            currentView: 'home',
-            usersData: [],
-            jobsData: [],
-            chatsData: [],
-            recommendationsData: [],
-            
-            init() {
-                console.log('App starting...');
-                this.setupAuthListener();
-                this.setupEventListeners();
-                this.loadDemoData();
-                this.checkSplashScreen();
-            },
-            
-            checkSplashScreen() {
-                const hasSeenSplash = localStorage.getItem('hasSeenSplash');
-                if (!hasSeenSplash) {
-                    setTimeout(() => {
-                        this.hideSplash();
-                        localStorage.setItem('hasSeenSplash', 'true');
-                    }, 3000);
-                } else {
-                    document.getElementById('splashScreen').style.display = 'none';
-                    document.getElementById('mainApp').classList.remove('hidden');
-                }
-            },
-            
-            setupEventListeners() {
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    searchInput.addEventListener('input', (e) => this.performSearch(e.target.value));
-                }
-                const radiusInput = document.getElementById('radiusInput');
-                if (radiusInput) {
-                    radiusInput.addEventListener('input', (e) => {
-                        const d = document.getElementById('radiusDisplay');
-                        if (d) d.textContent = `${e.target.value} কিমি`;
-                    });
-                }
-                const chatInput = document.getElementById('chatInput');
-                if (chatInput) {
-                    chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') this.sendMessage(); });
-                }
-                window.addEventListener('click', (e) => { if(!e.target.closest('.user-menu')) this.hideUserDropdown(); });
-            },
-            
-            setupAuthListener() {
-                auth.onAuthStateChanged((user) => {
-                    this.currentUser = user;
-                    if (user) {
-                        console.log('User logged in:', user.email);
-                        this.updateUserOnlineStatus(true);
-                        this.showAuthenticatedUI();
-                        this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
-                    } else {
-                        console.log('No user logged in');
-                        this.showAuthModal();
-                    }
+    // App State
+    const app = {
+        currentUser: null,
+        currentView: 'home',
+        usersData: [],
+        jobsData: [],
+        chatsData: [],
+        recommendationsData: [],
+        
+        init() {
+            console.log('App starting...');
+            this.setupAuthListener();
+            this.setupEventListeners();
+            this.loadDemoData();
+            this.checkSplashScreen();
+        },
+        
+        checkSplashScreen() {
+            const hasSeenSplash = localStorage.getItem('hasSeenSplash');
+            if (!hasSeenSplash) {
+                setTimeout(() => {
+                    this.hideSplash();
+                    localStorage.setItem('hasSeenSplash', 'true');
+                }, 3000);
+            } else {
+                document.getElementById('splashScreen').style.display = 'none';
+                document.getElementById('mainApp').classList.remove('hidden');
+            }
+        },
+        
+        setupEventListeners() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => this.performSearch(e.target.value));
+            }
+            const radiusInput = document.getElementById('radiusInput');
+            if (radiusInput) {
+                radiusInput.addEventListener('input', (e) => {
+                    const d = document.getElementById('radiusDisplay');
+                    if (d) d.textContent = `${e.target.value} কিমি`;
                 });
-            },
-            
-            updateUserOnlineStatus(isOnline) {
-                if (this.currentUser && this.currentUser.uid !== 'demo123') {
-                    db.collection('users').doc(this.currentUser.uid).update({
-                        online: isOnline,
-                        lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-                    }).catch(e => console.log(e));
+            }
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') this.sendMessage(); });
+            }
+            window.addEventListener('click', (e) => { if(!e.target.closest('.user-menu')) this.hideUserDropdown(); });
+        },
+        
+        setupAuthListener() {
+            auth.onAuthStateChanged((user) => {
+                console.log("Auth state changed:", user ? user.email : "No user");
+                this.currentUser = user;
+                if (user) {
+                    console.log('User logged in:', user.email);
+                    this.updateUserOnlineStatus(true);
+                    this.showAuthenticatedUI();
+                    this.showToast('সফলভাবে লগইন হয়েছেন!', 'success');
+                } else {
+                    console.log('No user logged in - showing auth modal');
+                    // Auth modal দেখান - কিন্তু splash screen থাকলে পরে দেখাবে
+                    setTimeout(() => {
+                        if (!this.currentUser) {
+                            this.showAuthModal();
+                        }
+                    }, 500);
                 }
-            },
-            
-            loadDemoData() {
-                this.usersData = [
-                    { id: '1', name: 'আহমেদ হাসান', profession: 'সফটওয়্যার ইঞ্জিনিয়ার', location: 'ঢাকা, বাংলাদেশ', bio: 'ফুল-স্ট্যাক ডেভেলপার', rating: 4.8, connections: 245, online: true, verified: true, distance: 2.5 },
-                    { id: '2', name: 'ফারহানা আক্তার', profession: 'গ্রাফিক ডিজাইনার', location: 'চট্টগ্রাম, বাংলাদেশ', bio: 'UI/UX বিশেষজ্ঞ', rating: 4.9, connections: 189, online: true, verified: true, distance: 5.2 },
-                    { id: '3', name: 'রাকিবুল ইসলাম', profession: 'ডাক্তার', location: 'সিলেট, বাংলাদেশ', bio: 'হৃদরোগ বিশেষজ্ঞ', rating: 4.7, connections: 312, online: false, verified: true, distance: 12.8 },
-                    { id: '4', name: 'সাবরিনা সুলতানা', profession: 'শিক্ষিকা', location: 'খুলনা, বাংলাদেশ', bio: 'ইংরেজি সাহিত্যের অধ্যাপক', rating: 4.9, connections: 156, online: true, verified: false, distance: 8.4 },
-                    { id: '5', name: 'জুবায়ের আহমেদ', profession: 'ব্যবসায়ী', location: 'রাজশাহী, বাংলাদেশ', bio: 'আইটি কোম্পানির মালিক', rating: 4.6, connections: 421, online: true, verified: true, distance: 15.3 },
-                    { id: '6', name: 'তানিয়া রহমান', profession: 'ডাটা সায়েন্টিস্ট', location: 'ঢাকা, বাংলাদেশ', bio: 'মেশিন লার্নিং বিশেষজ্ঞ', rating: 4.8, connections: 278, online: false, verified: true, distance: 3.1 }
-                ];
-                this.jobsData = [
-                    { id: '1', title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার', company: 'টেকনোভেশন লিমিটেড', type: 'পূর্ণকালীন', location: 'ঢাকা', salary: '৳১,৫০,০০০ - ৳২,৫০,০০০', description: 'Node.js, React দক্ষ প্রয়োজন', skills: ['Node.js', 'React', 'MongoDB'], featured: true, posted: '২ দিন আগে' },
-                    { id: '2', title: 'গ্রাফিক ডিজাইনার', company: 'ক্রিয়েটিভ মিডিয়া', type: 'খণ্ডকালীন', location: 'চট্টগ্রাম', salary: '৳৪০,০০০ - ৳৬০,০০০', description: 'Adobe Creative Suite দক্ষতা প্রয়োজন', skills: ['Photoshop', 'Illustrator'], featured: false, posted: '১ সপ্তাহ আগে' },
-                    { id: '3', title: 'ডাটা অ্যানালিস্ট', company: 'ডাটা সলিউশন্স', type: 'দূরবর্তী', location: 'দূরবর্তী', salary: '৳৮০,০০০ - ৳১,২০,০০০', description: 'Python, SQL দক্ষতা প্রয়োজন', skills: ['Python', 'SQL'], featured: true, posted: '৩ দিন আগে' }
-                ];
-                this.recommendationsData = [
-                    { id: '7', name: 'মোহাম্মদ আলী', profession: 'ওয়েব ডেভেলপার', mutual: 12 },
-                    { id: '8', name: 'নুসরাত জাহান', profession: 'মার্কেটিং ম্যানেজার', mutual: 8 },
-                    { id: '9', name: 'সালমান আহমেদ', profession: 'ব্যাংক কর্মকর্তা', mutual: 15 }
-                ];
-                this.chatsData = [
-                    { id: '1', name: 'আহমেদ হাসান', lastMessage: 'কেমন আছেন?', time: '১০:৩০ AM', unread: 2 },
-                    { id: '2', name: 'ফারহানা আক্তার', lastMessage: 'ধন্যবাদ!', time: 'গতকাল', unread: 0 },
-                    { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্ট পাঠিয়েছি', time: '২ দিন আগে', unread: 1 }
-                ];
-            },
-            
-            hideSplash() {
-                const splash = document.getElementById('splashScreen');
+            });
+        },
+        
+        updateUserOnlineStatus(isOnline) {
+            if (this.currentUser && this.currentUser.uid && this.currentUser.uid !== 'demo123') {
+                db.collection('users').doc(this.currentUser.uid).update({
+                    online: isOnline,
+                    lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+                }).catch(e => console.log(e));
+            }
+        },
+        
+        loadDemoData() {
+            this.usersData = [
+                { id: '1', name: 'আহমেদ হাসান', profession: 'সফটওয়্যার ইঞ্জিনিয়ার', location: 'ঢাকা, বাংলাদেশ', bio: 'ফুল-স্ট্যাক ডেভেলপার', rating: 4.8, connections: 245, online: true, verified: true, distance: 2.5 },
+                { id: '2', name: 'ফারহানা আক্তার', profession: 'গ্রাফিক ডিজাইনার', location: 'চট্টগ্রাম, বাংলাদেশ', bio: 'UI/UX বিশেষজ্ঞ', rating: 4.9, connections: 189, online: true, verified: true, distance: 5.2 },
+                { id: '3', name: 'রাকিবুল ইসলাম', profession: 'ডাক্তার', location: 'সিলেট, বাংলাদেশ', bio: 'হৃদরোগ বিশেষজ্ঞ', rating: 4.7, connections: 312, online: false, verified: true, distance: 12.8 },
+                { id: '4', name: 'সাবরিনা সুলতানা', profession: 'শিক্ষিকা', location: 'খুলনা, বাংলাদেশ', bio: 'ইংরেজি সাহিত্যের অধ্যাপক', rating: 4.9, connections: 156, online: true, verified: false, distance: 8.4 },
+                { id: '5', name: 'জুবায়ের আহমেদ', profession: 'ব্যবসায়ী', location: 'রাজশাহী, বাংলাদেশ', bio: 'আইটি কোম্পানির মালিক', rating: 4.6, connections: 421, online: true, verified: true, distance: 15.3 },
+                { id: '6', name: 'তানিয়া রহমান', profession: 'ডাটা সায়েন্টিস্ট', location: 'ঢাকা, বাংলাদেশ', bio: 'মেশিন লার্নিং বিশেষজ্ঞ', rating: 4.8, connections: 278, online: false, verified: true, distance: 3.1 }
+            ];
+            this.jobsData = [
+                { id: '1', title: 'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার', company: 'টেকনোভেশন লিমিটেড', type: 'পূর্ণকালীন', location: 'ঢাকা', salary: '৳১,৫০,০০০ - ৳২,৫০,০০০', description: 'Node.js, React দক্ষ প্রয়োজন', skills: ['Node.js', 'React', 'MongoDB'], featured: true, posted: '২ দিন আগে' },
+                { id: '2', title: 'গ্রাফিক ডিজাইনার', company: 'ক্রিয়েটিভ মিডিয়া', type: 'খণ্ডকালীন', location: 'চট্টগ্রাম', salary: '৳৪০,০০০ - ৳৬০,০০০', description: 'Adobe Creative Suite দক্ষতা প্রয়োজন', skills: ['Photoshop', 'Illustrator'], featured: false, posted: '১ সপ্তাহ আগে' },
+                { id: '3', title: 'ডাটা অ্যানালিস্ট', company: 'ডাটা সলিউশন্স', type: 'দূরবর্তী', location: 'দূরবর্তী', salary: '৳৮০,০০০ - ৳১,২০,০০০', description: 'Python, SQL দক্ষতা প্রয়োজন', skills: ['Python', 'SQL'], featured: true, posted: '৩ দিন আগে' }
+            ];
+            this.recommendationsData = [
+                { id: '7', name: 'মোহাম্মদ আলী', profession: 'ওয়েব ডেভেলপার', mutual: 12 },
+                { id: '8', name: 'নুসরাত জাহান', profession: 'মার্কেটিং ম্যানেজার', mutual: 8 },
+                { id: '9', name: 'সালমান আহমেদ', profession: 'ব্যাংক কর্মকর্তা', mutual: 15 }
+            ];
+            this.chatsData = [
+                { id: '1', name: 'আহমেদ হাসান', lastMessage: 'কেমন আছেন?', time: '১০:৩০ AM', unread: 2 },
+                { id: '2', name: 'ফারহানা আক্তার', lastMessage: 'ধন্যবাদ!', time: 'গতকাল', unread: 0 },
+                { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্ট পাঠিয়েছি', time: '২ দিন আগে', unread: 1 }
+            ];
+        },
+        
+        hideSplash() {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
                 splash.style.animation = 'fadeOut 0.5s ease forwards';
                 setTimeout(() => {
                     splash.style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
-                    this.showAuthModal();
                 }, 500);
-            },
+            }
+        },
+        
+        showAuthModal() { 
+            const modal = document.getElementById('authModal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        },
+        
+        closeModal(modalId) { 
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        },
+        
+        // ========== LOGIN FIX - এখানে মূল পরিবর্তন ==========
+        async login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
             
-            showAuthModal() { document.getElementById('authModal').classList.add('active'); },
+            if(!email || !password) { 
+                this.showError('ইমেল ও পাসওয়ার্ড দিন'); 
+                return; 
+            }
             
-            async login() {
-                const email = document.getElementById('loginEmail').value.trim();
-                const password = document.getElementById('loginPassword').value;
-                if(!email || !password) { this.showError('ইমেল ও পাসওয়ার্ড দিন'); return; }
-                
-                const btn = event.target;
-                const orig = btn.innerHTML;
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> লগইন হচ্ছে...';
-                this.showToast('লগইন হচ্ছে...', 'info');
-                
-                if(email === 'demo@test.com' && password === 'password') {
-                    setTimeout(() => {
-                        this.currentUser = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
-                        this.showAuthenticatedUI();
-                        this.showToast('ডেমো লগইন সফল!', 'success');
-                        btn.disabled = false;
-                        btn.innerHTML = orig;
-                    }, 1000);
-                    return;
-                }
-                
-                try {
-                    await auth.signInWithEmailAndPassword(email, password);
-                    btn.disabled = false;
-                    btn.innerHTML = orig;
-                } catch(error) {
-                    this.showError(this.getAuthErrorMessage(error));
-                    btn.disabled = false;
-                    btn.innerHTML = orig;
-                }
-            },
+            const btn = event.target;
+            const orig = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> লগইন হচ্ছে...';
             
-            async signup() {
-                const name = document.getElementById('signupName').value.trim();
-                const email = document.getElementById('signupEmail').value.trim();
-                const password = document.getElementById('signupPassword').value;
-                const profession = document.getElementById('signupProfession').value.trim();
-                const city = document.getElementById('signupCity').value;
-                const terms = document.getElementById('termsAgreement').checked;
-                
-                if(!name || !email || !password || !profession || !city) { this.showError('সব তথ্য দিন'); return; }
-                if(!terms) { this.showError('শর্তাবলী মেনে চলতে হবে'); return; }
-                if(password.length < 6) { this.showError('পাসওয়ার্ড ৬+ অক্ষর'); return; }
-                
-                const btn = event.target;
-                const orig = btn.innerHTML;
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> অ্যাকাউন্ট তৈরি হচ্ছে...';
-                this.showToast('অ্যাকাউন্ট তৈরি হচ্ছে...', 'info');
-                
-                if(email.includes('@demo.com')) {
-                    setTimeout(() => {
-                        this.currentUser = { uid: 'demo'+Date.now(), email: email, displayName: name };
-                        this.showAuthenticatedUI();
-                        this.showToast('ডেমো অ্যাকাউন্ট তৈরি সফল!', 'success');
-                        btn.disabled = false;
-                        btn.innerHTML = orig;
-                    }, 1500);
-                    return;
-                }
-                
-                try {
-                    const userCred = await auth.createUserWithEmailAndPassword(email, password);
-                    await userCred.user.updateProfile({ displayName: name });
-                    await db.collection('users').doc(userCred.user.uid).set({
-                        uid: userCred.user.uid, name: name, email: email, profession: profession, city: city,
-                        bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        rating: 0, connections: 0, verified: false, online: true
-                    });
-                    btn.disabled = false;
-                    btn.innerHTML = orig;
-                } catch(error) {
-                    this.showError(this.getAuthErrorMessage(error));
-                    btn.disabled = false;
-                    btn.innerHTML = orig;
-                }
-            },
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                console.log("Login successful:", userCredential.user.email);
+                this.showToast('লগইন সফল!', 'success');
+                this.closeModal('authModal');
+                btn.disabled = false;
+                btn.innerHTML = orig;
+            } catch(error) {
+                console.error("Login error:", error.code, error.message);
+                let errorMsg = this.getAuthErrorMessage(error);
+                this.showError(errorMsg);
+                btn.disabled = false;
+                btn.innerHTML = orig;
+            }
+        },
+        
+        async signup() {
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const profession = document.getElementById('signupProfession').value.trim();
+            const city = document.getElementById('signupCity').value;
+            const terms = document.getElementById('termsAgreement').checked;
             
-            loginWithGoogle() {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                auth.signInWithPopup(provider).then(() => {
+            if(!name || !email || !password || !profession || !city) { 
+                this.showError('সব তথ্য দিন'); 
+                return; 
+            }
+            if(!terms) { 
+                this.showError('শর্তাবলী মেনে চলতে হবে'); 
+                return; 
+            }
+            if(password.length < 6) { 
+                this.showError('পাসওয়ার্ড ৬+ অক্ষর হতে হবে'); 
+                return; 
+            }
+            
+            const btn = event.target;
+            const orig = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> অ্যাকাউন্ট তৈরি হচ্ছে...';
+            
+            try {
+                const userCred = await auth.createUserWithEmailAndPassword(email, password);
+                await userCred.user.updateProfile({ displayName: name });
+                
+                await db.collection('users').doc(userCred.user.uid).set({
+                    uid: userCred.user.uid, 
+                    name: name, 
+                    email: email, 
+                    profession: profession, 
+                    city: city,
+                    bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    rating: 0, 
+                    connections: 0, 
+                    verified: false, 
+                    online: true
+                });
+                
+                this.showToast('অ্যাকাউন্ট তৈরি সফল!', 'success');
+                this.closeModal('authModal');
+                btn.disabled = false;
+                btn.innerHTML = orig;
+            } catch(error) {
+                console.error("Signup error:", error);
+                this.showError(this.getAuthErrorMessage(error));
+                btn.disabled = false;
+                btn.innerHTML = orig;
+            }
+        },
+        
+        loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
                     this.showToast('গুগল লগইন সফল!', 'success');
-                }).catch(err => {
-                    this.showError('গুগল লগইন ব্যর্থ');
+                    this.closeModal('authModal');
+                })
+                .catch(err => {
+                    console.error("Google login error:", err);
+                    this.showError('গুগল লগইন ব্যর্থ হয়েছে');
                 });
-            },
+        },
+        
+        loginWithFacebook() { 
+            this.showToast('ফেসবুক লগইন শীঘ্রই আসছে', 'info'); 
+        },
+        
+        async logout() {
+            this.showToast('লগআউট হচ্ছে...', 'info');
+            if(this.currentUser && this.currentUser.uid && this.currentUser.uid !== 'demo123') {
+                await this.updateUserOnlineStatus(false);
+                await auth.signOut();
+            } else {
+                this.currentUser = null;
+                this.showAuthModal();
+            }
+            this.showToast('লগআউট হয়েছে', 'success');
+        },
+        
+        getAuthErrorMessage(error) {
+            const errors = {
+                'auth/user-not-found': 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই',
+                'auth/wrong-password': 'ভুল পাসওয়ার্ড',
+                'auth/email-already-in-use': 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে',
+                'auth/weak-password': 'পাসওয়ার্ড ৬+ অক্ষর দিন',
+                'auth/invalid-email': 'ভুল ইমেল ফরম্যাট',
+                'auth/network-request-failed': 'নেটওয়ার্ক সমস্যা, ইন্টারনেট কানেকশন চেক করুন',
+                'auth/too-many-requests': 'অনেক বার চেষ্টা করেছেন, কিছুক্ষণ পর চেষ্টা করুন'
+            };
+            return errors[error.code] || 'একটি সমস্যা হয়েছে: ' + error.message;
+        },
+        
+        showAuthenticatedUI() {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.classList.remove('active');
             
-            loginWithFacebook() { this.showToast('ফেসবুক লগইন শীঘ্রই আসছে!', 'info'); },
+            const name = this.currentUser.displayName || this.currentUser.email || 'ব্যবহারকারী';
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
             
-            async logout() {
-                this.showToast('লগআউট হচ্ছে...', 'info');
-                if(this.currentUser && this.currentUser.uid !== 'demo123') {
-                    await this.updateUserOnlineStatus(false);
-                    await auth.signOut();
-                } else {
-                    this.currentUser = null;
-                    this.showAuthModal();
-                }
-                this.showToast('লগআউট হয়েছে', 'success');
-            },
+            if (userAvatar) userAvatar.textContent = name.charAt(0).toUpperCase();
+            if (userName) userName.textContent = name.length > 15 ? name.substring(0, 15) + '...' : name;
             
-            getAuthErrorMessage(error) {
-                const errors = {
-                    'auth/user-not-found': 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই',
-                    'auth/wrong-password': 'ভুল পাসওয়ার্ড',
-                    'auth/email-already-in-use': 'এই ইমেল ইতিমধ্যে ব্যবহৃত হচ্ছে',
-                    'auth/weak-password': 'পাসওয়ার্ড ৬+ অক্ষর দিন',
-                    'auth/invalid-email': 'ভুল ইমেল ফরম্যাট',
-                    'auth/network-request-failed': 'নেটওয়ার্ক সমস্যা'
-                };
-                return errors[error.code] || 'একটি সমস্যা হয়েছে: ' + error.message;
-            },
+            this.loadHomeView();
+        },
+        
+        // বাকি সব ফাংশন আগের মতোই থাকবে...
+        navigateTo(view) {
+            document.querySelectorAll('[id$="View"]').forEach(el => el.classList.add('hidden'));
+            const targetView = document.getElementById(view + 'View');
+            if (targetView) targetView.classList.remove('hidden');
             
-            showAuthenticatedUI() {
-                document.getElementById('authModal').classList.remove('active');
-                const name = this.currentUser.displayName || this.currentUser.email || 'ব্যবহারকারী';
-                document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
-                document.getElementById('userName').textContent = name;
-                this.loadHomeView();
-            },
+            document.querySelectorAll('.nav-link, .sidebar-item, .mobile-nav-item').forEach(el => el.classList.remove('active'));
+            const selector = `[onclick*="${view}"]`;
+            const activeEl = document.querySelector(selector);
+            if(activeEl) activeEl.classList.add('active');
             
-            navigateTo(view) {
-                document.querySelectorAll('[id$="View"]').forEach(el => el.classList.add('hidden'));
-                document.getElementById(view + 'View').classList.remove('hidden');
-                document.querySelectorAll('.nav-link, .sidebar-item, .mobile-nav-item').forEach(el => el.classList.remove('active'));
-                const selector = `[onclick*="${view}"]`;
-                const activeEl = document.querySelector(selector);
-                if(activeEl) activeEl.classList.add('active');
-                this.currentView = view;
-                if(view === 'home') this.loadHomeView();
-                else if(view === 'search') this.loadSearchView();
-                else if(view === 'jobs') this.loadJobsView();
-                else if(view === 'chat') this.loadChatView();
-                else if(view === 'profile') this.loadProfileView();
-                else if(view === 'settings') this.loadSettingsView();
-            },
+            this.currentView = view;
+            if(view === 'home') this.loadHomeView();
+            else if(view === 'search') this.loadSearchView();
+            else if(view === 'jobs') this.loadJobsView();
+            else if(view === 'chat') this.loadChatView();
+            else if(view === 'profile') this.loadProfileView();
+            else if(view === 'settings') this.loadSettingsView();
+        },
+        
+        loadHomeView() {
+            this.renderUsers(this.usersData);
+            this.renderRecommendations(this.recommendationsData);
+            this.renderTrendingJobs(this.jobsData.slice(0,3));
+            this.renderUpcomingEvents();
+        },
+        
+        loadSearchView() {
+            const results = document.getElementById('searchResults');
+            if(results) results.innerHTML = '<div class="loading"><div class="spinner"></div><p>অনুসন্ধান প্রস্তুত...</p></div>';
+        },
+        
+        performSearch(query) {
+            const results = document.getElementById('searchResults');
+            if(!results) return;
+            if(!query.trim()) {
+                results.innerHTML = '<div class="empty-state"><h3>অনুসন্ধান করুন</h3><p>ব্যক্তি খুঁজতে লিখুন</p></div>';
+                return;
+            }
+            const filtered = this.usersData.filter(u => u.name.includes(query) || u.profession.includes(query) || u.location.includes(query));
+            if(filtered.length === 0) results.innerHTML = '<div class="empty-state"><h3>কোন ফলাফল নেই</h3></div>';
+            else this.renderSearchResults(filtered);
+        },
+        
+        loadJobsView() { this.renderJobs(this.jobsData); },
+        loadChatView() { this.renderConversations(this.chatsData); },
+        
+        loadProfileView() {
+            if(!this.currentUser) return;
+            const name = this.currentUser.displayName || 'ব্যবহারকারী';
+            const profileAvatar = document.getElementById('profileAvatar');
+            const profileName = document.getElementById('profileName');
+            const profileProfession = document.getElementById('profileProfession');
+            const profileBio = document.getElementById('profileBio');
+            const profileConnections = document.getElementById('profileConnections');
+            const profilePosts = document.getElementById('profilePosts');
+            const profileRating = document.getElementById('profileRating');
             
-            loadHomeView() {
-                this.renderUsers(this.usersData);
-                this.renderRecommendations(this.recommendationsData);
-                this.renderTrendingJobs(this.jobsData.slice(0,3));
-                this.renderUpcomingEvents();
-            },
-            
-            loadSearchView() {
-                const results = document.getElementById('searchResults');
-                if(results) results.innerHTML = '<div class="loading"><div class="spinner"></div><p>অনুসন্ধান প্রস্তুত...</p></div>';
-            },
-            
-            performSearch(query) {
-                const results = document.getElementById('searchResults');
-                if(!results) return;
-                if(!query.trim()) {
-                    results.innerHTML = '<div class="empty-state"><h3>অনুসন্ধান করুন</h3><p>ব্যক্তি খুঁজতে লিখুন</p></div>';
-                    return;
-                }
-                const filtered = this.usersData.filter(u => u.name.includes(query) || u.profession.includes(query) || u.location.includes(query));
-                if(filtered.length === 0) results.innerHTML = '<div class="empty-state"><h3>কোন ফলাফল নেই</h3></div>';
-                else this.renderSearchResults(filtered);
-            },
-            
-            loadJobsView() { this.renderJobs(this.jobsData); },
-            loadChatView() { this.renderConversations(this.chatsData); },
-            loadProfileView() {
-                if(!this.currentUser) return;
-                const name = this.currentUser.displayName || 'ব্যবহারকারী';
-                document.getElementById('profileAvatar').textContent = name.charAt(0).toUpperCase();
-                document.getElementById('profileName').textContent = name;
-                document.getElementById('profileProfession').textContent = 'হ্যালো বাংলাদেশী সদস্য';
-                document.getElementById('profileBio').textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ।';
-                document.getElementById('profileConnections').textContent = Math.floor(Math.random()*100)+50;
-                document.getElementById('profilePosts').textContent = Math.floor(Math.random()*50)+10;
-                document.getElementById('profileRating').textContent = (Math.random()*1+4).toFixed(1);
-                this.renderProfileGroups();
-            },
-            loadSettingsView() {},
-            
-            renderUsers(users) {
-                const container = document.getElementById('usersList');
-                if(!container) return;
-                container.innerHTML = '';
-                users.forEach(u => container.appendChild(this.createUserCard(u)));
-            },
-            
-            createUserCard(user) {
+            if(profileAvatar) profileAvatar.textContent = name.charAt(0).toUpperCase();
+            if(profileName) profileName.textContent = name;
+            if(profileProfession) profileProfession.textContent = 'হ্যালো বাংলাদেশী সদস্য';
+            if(profileBio) profileBio.textContent = 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ।';
+            if(profileConnections) profileConnections.textContent = Math.floor(Math.random()*100)+50;
+            if(profilePosts) profilePosts.textContent = Math.floor(Math.random()*50)+10;
+            if(profileRating) profileRating.textContent = (Math.random()*1+4).toFixed(1);
+            this.renderProfileGroups();
+        },
+        
+        loadSettingsView() {},
+        
+        renderUsers(users) {
+            const container = document.getElementById('usersList');
+            if(!container) return;
+            container.innerHTML = '';
+            users.forEach(u => container.appendChild(this.createUserCard(u)));
+        },
+        
+        createUserCard(user) {
+            const div = document.createElement('div');
+            div.className = 'user-card';
+            div.innerHTML = `
+                <div class="user-card-header"><div class="user-card-avatar">${user.name.charAt(0)}</div>${user.online ? '<div class="user-card-online"></div>' : ''}</div>
+                <div class="user-card-content">
+                    <h3 class="user-card-name">${user.name}</h3>
+                    <p class="user-card-profession"><i class="fas fa-briefcase"></i> ${user.profession}${user.verified ? ' <i class="fas fa-check-circle" style="color:var(--accent-green);"></i>' : ''}</p>
+                    <p class="user-card-location"><i class="fas fa-map-marker-alt"></i> ${user.location} <span style="margin-left:10px;"><i class="fas fa-road"></i> ${user.distance} কিমি</span></p>
+                    <p class="user-card-bio">${user.bio}</p>
+                    <div class="user-card-stats"><div class="stat-item"><div class="stat-value">${user.rating}</div><div class="stat-label">রেটিং</div></div><div class="stat-item"><div class="stat-value">${user.connections}</div><div class="stat-label">সংযোগ</div></div><div class="stat-item"><div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div><div class="stat-label">অবস্থা</div></div></div>
+                    <div class="user-card-actions"><button class="btn btn-primary" onclick="app.startChat('${user.id}')"><i class="fas fa-comment"></i> চ্যাট</button><button class="btn btn-secondary" onclick="app.connectWithUser('${user.id}')"><i class="fas fa-user-plus"></i> সংযুক্ত হন</button></div>
+                </div>
+            `;
+            return div;
+        },
+        
+        renderRecommendations(recommendations) {
+            const container = document.getElementById('recommendationsList');
+            if(!container) return;
+            container.innerHTML = '';
+            recommendations.forEach(rec => {
                 const div = document.createElement('div');
-                div.className = 'user-card';
-                div.innerHTML = `
-                    <div class="user-card-header"><div class="user-card-avatar">${user.name.charAt(0)}</div>${user.online ? '<div class="user-card-online"></div>' : ''}</div>
-                    <div class="user-card-content">
-                        <h3 class="user-card-name">${user.name}</h3>
-                        <p class="user-card-profession"><i class="fas fa-briefcase"></i> ${user.profession}${user.verified ? ' <i class="fas fa-check-circle" style="color:var(--accent-green);"></i>' : ''}</p>
-                        <p class="user-card-location"><i class="fas fa-map-marker-alt"></i> ${user.location} <span style="margin-left:10px;"><i class="fas fa-road"></i> ${user.distance} কিমি</span></p>
-                        <p class="user-card-bio">${user.bio}</p>
-                        <div class="user-card-stats"><div class="stat-item"><div class="stat-value">${user.rating}</div><div class="stat-label">রেটিং</div></div><div class="stat-item"><div class="stat-value">${user.connections}</div><div class="stat-label">সংযোগ</div></div><div class="stat-item"><div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div><div class="stat-label">অবস্থা</div></div></div>
-                        <div class="user-card-actions"><button class="btn btn-primary" onclick="app.startChat('${user.id}')"><i class="fas fa-comment"></i> চ্যাট</button><button class="btn btn-secondary" onclick="app.connectWithUser('${user.id}')"><i class="fas fa-user-plus"></i> সংযুক্ত হন</button></div>
-                    </div>
-                `;
-                return div;
-            },
-            
-            renderRecommendations(recommendations) {
-                const container = document.getElementById('recommendationsList');
-                if(!container) return;
-                container.innerHTML = '';
-                recommendations.forEach(rec => {
-                    const div = document.createElement('div');
-                    div.className = 'recommendation-item';
-                    div.innerHTML = `<div class="recommendation-avatar">${rec.name.charAt(0)}</div><div class="recommendation-info"><h4>${rec.name}</h4><p>${rec.profession}</p><p style="font-size:11px;color:var(--primary);">${rec.mutual} mutual connections</p></div><button class="btn-icon" style="width:36px;height:36px;" onclick="app.connectWithUser('${rec.id}')"><i class="fas fa-user-plus"></i></button>`;
-                    container.appendChild(div);
-                });
-            },
-            
-            renderTrendingJobs(jobs) {
-                const container = document.getElementById('trendingJobs');
-                if(!container) return;
-                container.innerHTML = '';
-                jobs.forEach(job => {
-                    const div = document.createElement('div');
-                    div.className = 'trending-job';
-                    div.innerHTML = `<div class="job-title">${job.title}</div><div class="job-company">${job.company}</div><div class="job-salary">${job.salary}</div>`;
-                    container.appendChild(div);
-                });
-            },
-            
-            renderUpcomingEvents() {
-                const container = document.getElementById('upcomingEvents');
-                if(!container) return;
-                const events = [{title:'বাংলাদেশী আইটি নেটওয়ার্কিং',date:'১৫ মার্চ',location:'ঢাকা'},{title:'স্টার্টআপ আইডিয়া শেয়ারিং',date:'২০ মার্চ',location:'দূরবর্তী'},{title:'ক্যারিয়ার গাইডেন্স',date:'২৫ মার্চ',location:'চট্টগ্রাম'}];
-                container.innerHTML = '';
-                events.forEach(e => {
-                    const div = document.createElement('div');
-                    div.className = 'event-item';
-                    div.innerHTML = `<div class="event-date">${e.date}</div><div class="event-title">${e.title}</div><div class="event-location"><i class="fas fa-map-marker-alt"></i> ${e.location}</div>`;
-                    container.appendChild(div);
-                });
-            },
-            
-            renderSearchResults(results) {
-                const container = document.getElementById('searchResults');
-                if(!container) return;
-                container.innerHTML = '';
-                results.forEach(u => container.appendChild(this.createUserCard(u)));
-            },
-            
-            renderJobs(jobs) {
-                const container = document.getElementById('jobsList');
-                if(!container) return;
-                container.innerHTML = '';
-                jobs.forEach(job => container.appendChild(this.createJobCard(job)));
-            },
-            
-            createJobCard(job) {
+                div.className = 'recommendation-item';
+                div.innerHTML = `<div class="recommendation-avatar">${rec.name.charAt(0)}</div><div class="recommendation-info"><h4>${rec.name}</h4><p>${rec.profession}</p><p style="font-size:11px;color:var(--primary);">${rec.mutual} mutual connections</p></div><button class="btn-icon" style="width:36px;height:36px;" onclick="app.connectWithUser('${rec.id}')"><i class="fas fa-user-plus"></i></button>`;
+                container.appendChild(div);
+            });
+        },
+        
+        renderTrendingJobs(jobs) {
+            const container = document.getElementById('trendingJobs');
+            if(!container) return;
+            container.innerHTML = '';
+            jobs.forEach(job => {
                 const div = document.createElement('div');
-                div.className = 'job-card';
-                div.innerHTML = `${job.featured ? '<div class="job-featured">ফিচার্ড</div>' : ''}<div class="job-card-header"><div><h3 class="job-card-title">${job.title}</h3><p class="job-card-company">${job.company}</p></div><span class="badge">${job.type}</span></div><div class="job-card-tags"><span class="job-tag job-tag-type">${job.type}</span>${job.skills.map(s => `<span class="job-tag">${s}</span>`).join('')}</div><p class="job-card-description">${job.description}</p><div class="job-card-footer"><div class="job-card-salary">${job.salary}</div><div class="job-card-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</div></div><button class="btn btn-primary btn-block mt-3" onclick="app.applyForJob('${job.id}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button>`;
-                return div;
-            },
-            
-            renderConversations(conversations) {
-                const container = document.getElementById('conversationsList');
-                if(!container) return;
-                container.innerHTML = '';
-                conversations.forEach(chat => container.appendChild(this.createChatItem(chat)));
-            },
-            
-            createChatItem(chat) {
+                div.className = 'trending-job';
+                div.innerHTML = `<div class="job-title">${job.title}</div><div class="job-company">${job.company}</div><div class="job-salary">${job.salary}</div>`;
+                container.appendChild(div);
+            });
+        },
+        
+        renderUpcomingEvents() {
+            const container = document.getElementById('upcomingEvents');
+            if(!container) return;
+            const events = [{title:'বাংলাদেশী আইটি নেটওয়ার্কিং',date:'১৫ মার্চ',location:'ঢাকা'},{title:'স্টার্টআপ আইডিয়া শেয়ারিং',date:'২০ মার্চ',location:'দূরবর্তী'},{title:'ক্যারিয়ার গাইডেন্স',date:'২৫ মার্চ',location:'চট্টগ্রাম'}];
+            container.innerHTML = '';
+            events.forEach(e => {
                 const div = document.createElement('div');
-                div.className = 'chat-item';
-                div.onclick = () => this.openChat(chat);
-                div.innerHTML = `<div class="chat-avatar">${chat.name.charAt(0)}</div><div class="chat-info"><h4>${chat.name}</h4><p class="chat-last-message">${chat.lastMessage}</p></div><div class="chat-time">${chat.time}</div>${chat.unread > 0 ? `<div class="chat-unread">${chat.unread}</div>` : ''}`;
-                return div;
-            },
+                div.className = 'event-item';
+                div.innerHTML = `<div class="event-date">${e.date}</div><div class="event-title">${e.title}</div><div class="event-location"><i class="fas fa-map-marker-alt"></i> ${e.location}</div>`;
+                container.appendChild(div);
+            });
+        },
+        
+        renderSearchResults(results) {
+            const container = document.getElementById('searchResults');
+            if(!container) return;
+            container.innerHTML = '';
+            results.forEach(u => container.appendChild(this.createUserCard(u)));
+        },
+        
+        renderJobs(jobs) {
+            const container = document.getElementById('jobsList');
+            if(!container) return;
+            container.innerHTML = '';
+            jobs.forEach(job => container.appendChild(this.createJobCard(job)));
+        },
+        
+        createJobCard(job) {
+            const div = document.createElement('div');
+            div.className = 'job-card';
+            div.innerHTML = `${job.featured ? '<div class="job-featured">ফিচার্ড</div>' : ''}<div class="job-card-header"><div><h3 class="job-card-title">${job.title}</h3><p class="job-card-company">${job.company}</p></div><span class="badge">${job.type}</span></div><div class="job-card-tags"><span class="job-tag job-tag-type">${job.type}</span>${job.skills.map(s => `<span class="job-tag">${s}</span>`).join('')}</div><p class="job-card-description">${job.description}</p><div class="job-card-footer"><div class="job-card-salary">${job.salary}</div><div class="job-card-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</div></div><button class="btn btn-primary btn-block mt-3" onclick="app.applyForJob('${job.id}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button>`;
+            return div;
+        },
+        
+        renderConversations(conversations) {
+            const container = document.getElementById('conversationsList');
+            if(!container) return;
+            container.innerHTML = '';
+            conversations.forEach(chat => container.appendChild(this.createChatItem(chat)));
+        },
+        
+        createChatItem(chat) {
+            const div = document.createElement('div');
+            div.className = 'chat-item';
+            div.onclick = () => this.openChat(chat);
+            div.innerHTML = `<div class="chat-avatar">${chat.name.charAt(0)}</div><div class="chat-info"><h4>${chat.name}</h4><p class="chat-last-message">${chat.lastMessage}</p></div><div class="chat-time">${chat.time}</div>${chat.unread > 0 ? `<div class="chat-unread">${chat.unread}</div>` : ''}`;
+            return div;
+        },
+        
+        renderProfileGroups() {
+            const container = document.getElementById('profileGroups');
+            if(!container) return;
+            const groups = [{name:'বাংলাদেশী শিক্ষার্থী',members:1250},{name:'আইটি পেশাজীবী',members:3200},{name:'প্রবাসী বাংলাদেশী',members:5800}];
+            container.innerHTML = '';
+            groups.forEach(g => {
+                const div = document.createElement('div');
+                div.className = 'sidebar-item';
+                div.style.marginBottom = '8px';
+                div.innerHTML = `<span class="sidebar-icon"><i class="fas fa-users"></i></span><span>${g.name}</span><span class="sidebar-badge">${g.members}</span>`;
+                container.appendChild(div);
+            });
+        },
+        
+        filterUsers(filter) {
+            const tabs = document.querySelectorAll('.feed-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            if(event && event.target) event.target.classList.add('active');
             
-            renderProfileGroups() {
-                const container = document.getElementById('profileGroups');
-                if(!container) return;
-                const groups = [{name:'বাংলাদেশী শিক্ষার্থী',members:1250},{name:'আইটি পেশাজীবী',members:3200},{name:'প্রবাসী বাংলাদেশী',members:5800}];
-                container.innerHTML = '';
-                groups.forEach(g => {
-                    const div = document.createElement('div');
-                    div.className = 'sidebar-item';
-                    div.style.marginBottom = '8px';
-                    div.innerHTML = `<span class="sidebar-icon"><i class="fas fa-users"></i></span><span>${g.name}</span><span class="sidebar-badge">${g.members}</span>`;
-                    container.appendChild(div);
-                });
-            },
+            let filtered = [];
+            if(filter === 'all') filtered = this.usersData;
+            else if(filter === 'nearby') filtered = this.usersData.filter(u => u.distance < 10);
+            else if(filter === 'online') filtered = this.usersData.filter(u => u.online);
+            else if(filter === 'verified') filtered = this.usersData.filter(u => u.verified);
+            this.renderUsers(filtered);
+        },
+        
+        postJob() {
+            const title = document.getElementById('jobTitle').value;
+            const company = document.getElementById('jobCompany').value;
+            const type = document.getElementById('jobType').value;
+            const location = document.getElementById('jobLocation').value;
+            const salary = document.getElementById('jobSalary').value;
+            const desc = document.getElementById('jobDescription').value;
+            const skills = document.getElementById('jobSkills').value;
+            if(!title || !company || !type || !location || !desc) { this.showError('সব তথ্য পূরণ করুন'); return; }
+            this.showToast('পোস্ট করা হচ্ছে...','info');
+            setTimeout(() => {
+                this.jobsData.unshift({id:'job'+Date.now(),title,company,type,location,salary:salary||'আলোচনা সাপেক্ষ',description:desc,skills:skills?skills.split(',').map(s=>s.trim()):[],featured:false,posted:'এইমাত্র'});
+                this.closeModal('postJobModal');
+                this.navigateTo('jobs');
+                this.showToast('পোস্ট সফল!','success');
+                ['jobTitle','jobCompany','jobLocation','jobSalary','jobDescription','jobSkills'].forEach(id => document.getElementById(id).value = '');
+                document.getElementById('jobType').selectedIndex = 0;
+            },1500);
+        },
+        
+        applyForJob(jobId) { this.showToast('আবেদন জমা দেওয়া হচ্ছে...','info'); setTimeout(() => this.showToast('আবেদন সফল!','success'),1000); },
+        connectWithUser(userId) { this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে','success'); },
+        
+        openChat(chat) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatEmptyState = document.getElementById('chatEmptyState');
+            if(chatWindow) chatWindow.style.display = 'flex';
+            if(chatEmptyState) chatEmptyState.style.display = 'none';
             
-            filterUsers(filter) {
-                document.querySelectorAll('.feed-tab').forEach(t => t.classList.remove('active'));
-                event.target.classList.add('active');
-                let filtered = [];
-                if(filter === 'all') filtered = this.usersData;
-                else if(filter === 'nearby') filtered = this.usersData.filter(u => u.distance < 10);
-                else if(filter === 'online') filtered = this.usersData.filter(u => u.online);
-                else if(filter === 'verified') filtered = this.usersData.filter(u => u.verified);
-                this.renderUsers(filtered);
-            },
+            const chatUserName = document.getElementById('chatUserName');
+            const chatUserAvatar = document.getElementById('chatUserAvatar');
+            if(chatUserName) chatUserName.textContent = chat.name;
+            if(chatUserAvatar) chatUserAvatar.textContent = chat.name.charAt(0);
             
-            postJob() {
-                const title = document.getElementById('jobTitle').value;
-                const company = document.getElementById('jobCompany').value;
-                const type = document.getElementById('jobType').value;
-                const location = document.getElementById('jobLocation').value;
-                const salary = document.getElementById('jobSalary').value;
-                const desc = document.getElementById('jobDescription').value;
-                const skills = document.getElementById('jobSkills').value;
-                if(!title || !company || !type || !location || !desc) { this.showError('সব তথ্য পূরণ করুন'); return; }
-                this.showToast('পোস্ট করা হচ্ছে...','info');
-                setTimeout(() => {
-                    this.jobsData.unshift({id:'job'+Date.now(),title,company,type,location,salary:salary||'আলোচনা সাপেক্ষ',description:desc,skills:skills?skills.split(',').map(s=>s.trim()):[],featured:false,posted:'এইমাত্র'});
-                    this.closeModal('postJobModal');
-                    this.navigateTo('jobs');
-                    this.showToast('পোস্ট সফল!','success');
-                    ['jobTitle','jobCompany','jobLocation','jobSalary','jobDescription','jobSkills'].forEach(id => document.getElementById(id).value = '');
-                    document.getElementById('jobType').selectedIndex = 0;
-                },1500);
-            },
+            this.loadChatMessages(chat.id);
             
-            applyForJob(jobId) { this.showToast('আবেদন জমা দেওয়া হচ্ছে...','info'); setTimeout(() => this.showToast('আবেদন সফল!','success'),1000); },
-            connectWithUser(userId) { this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে','success'); },
-            
-            openChat(chat) {
-                document.getElementById('chatWindow').style.display = 'flex';
-                document.getElementById('chatEmptyState').style.display = 'none';
-                document.getElementById('chatUserName').textContent = chat.name;
-                document.getElementById('chatUserAvatar').textContent = chat.name.charAt(0);
-                this.loadChatMessages(chat.id);
+            if(event && event.target) {
                 const chatItem = event.target.closest('.chat-item');
                 if(chatItem) {
                     const ub = chatItem.querySelector('.chat-unread');
@@ -3064,101 +3128,157 @@
                     document.querySelectorAll('.chat-item').forEach(i => i.classList.remove('active'));
                     chatItem.classList.add('active');
                 }
-            },
-            
-            loadChatMessages(chatId) {
-                const container = document.getElementById('chatMessages');
-                if(!container) return;
-                const messages = [{text:'হ্যালো! কেমন আছেন?',sender:'other',time:'১০:১৫ AM'},{text:'আলহামদুলিল্লাহ ভালো',sender:'me',time:'১০:১৬ AM'},{text:'আমিও ভালো, ধন্যবাদ',sender:'other',time:'১০:১৭ AM'}];
-                container.innerHTML = '';
-                messages.forEach(msg => {
-                    const div = document.createElement('div');
-                    div.className = `message ${msg.sender}`;
-                    div.innerHTML = `<div class="message-avatar">${msg.sender === 'me' ? 'আ' : chatId.charAt(0)}</div><div><div class="message-content">${msg.text}</div><div class="message-time">${msg.time}</div></div>`;
-                    container.appendChild(div);
-                });
-                container.scrollTop = container.scrollHeight;
-            },
-            
-            sendMessage() {
-                const input = document.getElementById('chatInput');
-                const msg = input.value.trim();
-                if(!msg) return;
-                const container = document.getElementById('chatMessages');
-                const time = new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'});
-                const div = document.createElement('div');
-                div.className = 'message sent';
-                div.innerHTML = `<div class="message-avatar">আ</div><div><div class="message-content">${msg}</div><div class="message-time">${time}</div></div>`;
-                container.appendChild(div);
-                input.value = '';
-                container.scrollTop = container.scrollHeight;
-                setTimeout(() => {
-                    const reply = document.createElement('div');
-                    reply.className = 'message received';
-                    reply.innerHTML = `<div class="message-avatar">অ</div><div><div class="message-content">ধন্যবাদ!</div><div class="message-time">${new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
-                    container.appendChild(reply);
-                    container.scrollTop = container.scrollHeight;
-                },1000);
-            },
-            
-            closeChat() { document.getElementById('chatWindow').style.display = 'none'; document.getElementById('chatEmptyState').style.display = 'flex'; },
-            showPostJobModal() { document.getElementById('postJobModal').classList.add('active'); },
-            showSettingsModal() { this.navigateTo('settings'); },
-            closeModal(modalId) { document.getElementById(modalId).classList.remove('active'); },
-            showLoginTab() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.querySelectorAll('.auth-tab')[0].classList.add('active'); document.querySelectorAll('.auth-tab')[1].classList.remove('active'); },
-            showSignupTab() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.querySelectorAll('.auth-tab')[0].classList.remove('active'); document.querySelectorAll('.auth-tab')[1].classList.add('active'); },
-            toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); },
-            toggleUserDropdown() { this.createUserDropdown(); },
-            hideUserDropdown() { const d = document.getElementById('userDropdown'); if(d) d.remove(); },
-            createUserDropdown() {
-                const existing = document.getElementById('userDropdown');
-                if(existing) existing.remove();
-                const div = document.createElement('div');
-                div.id = 'userDropdown';
-                div.style.position = 'absolute';
-                div.style.top = '70px';
-                div.style.right = '20px';
-                div.style.background = 'white';
-                div.style.borderRadius = '12px';
-                div.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                div.style.padding = '8px';
-                div.style.zIndex = '1000';
-                div.innerHTML = `<a href="#" onclick="app.navigateTo('profile');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-user"></i> প্রোফাইল</a><a href="#" onclick="app.navigateTo('settings');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-cog"></i> সেটিংস</a><hr style="margin:4px 0"><a href="#" onclick="app.logout();app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--accent-red);text-decoration:none;"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>`;
-                document.body.appendChild(div);
-                setTimeout(() => { window.addEventListener('click', function closeDropdown(e) { if(!div.contains(e.target) && !e.target.closest('.user-menu')) { div.remove(); window.removeEventListener('click', closeDropdown); } }); }, 100);
-            },
-            
-            showToast(message, type = 'info') {
-                const container = document.getElementById('toastContainer');
-                if(!container) return;
-                const id = 'toast-'+Date.now();
-                const toast = document.createElement('div');
-                toast.id = id;
-                toast.className = `toast ${type}`;
-                const icons = {success:'✓',error:'✕',info:'ℹ'};
-                toast.innerHTML = `<div class="toast-icon">${icons[type]||'ℹ'}</div><div class="toast-content"><div class="toast-title">${type==='success'?'সফল':type==='error'?'ত্রুটি':'তথ্য'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="document.getElementById('${id}').remove()">✕</button>`;
-                container.appendChild(toast);
-                setTimeout(() => { if(document.getElementById(id)) document.getElementById(id).remove(); }, 4000);
-            },
-            
-            showError(message) {
-                const err = document.getElementById('authError');
-                if(err) { err.textContent = message; err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 5000); }
-                this.showToast(message, 'error');
-            },
-            
-            changePassword() { this.showToast('পাসওয়ার্ড পরিবর্তন শীঘ্রই আসছে','info'); },
-            deactivateAccount() { if(confirm('অ্যাকাউন্ট নিষ্ক্রিয় করবেন?')) this.showToast('অ্যাকাউন্ট নিষ্ক্রিয়','success'); },
-            deleteAccount() { if(confirm('স্থায়ীভাবে মুছবেন?')) { this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে','success'); setTimeout(()=>this.logout(),2000); } },
-            startChat(userId) {
-                this.navigateTo('chat');
-                const user = this.usersData.find(u=>u.id===userId) || this.recommendationsData.find(u=>u.id===userId);
-                if(user) setTimeout(()=>this.openChat({id:userId,name:user.name,lastMessage:'নতুন চ্যাট',time:'এখন',unread:0}),500);
             }
-        };
+        },
+        
+        loadChatMessages(chatId) {
+            const container = document.getElementById('chatMessages');
+            if(!container) return;
+            const messages = [{text:'হ্যালো! কেমন আছেন?',sender:'other',time:'১০:১৫ AM'},{text:'আলহামদুলিল্লাহ ভালো',sender:'me',time:'১০:১৬ AM'},{text:'আমিও ভালো, ধন্যবাদ',sender:'other',time:'১০:১৭ AM'}];
+            container.innerHTML = '';
+            messages.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = `message ${msg.sender}`;
+                div.innerHTML = `<div class="message-avatar">${msg.sender === 'me' ? 'আ' : chatId.charAt(0)}</div><div><div class="message-content">${msg.text}</div><div class="message-time">${msg.time}</div></div>`;
+                container.appendChild(div);
+            });
+            container.scrollTop = container.scrollHeight;
+        },
+        
+        sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input ? input.value.trim() : '';
+            if(!msg) return;
+            const container = document.getElementById('chatMessages');
+            const time = new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'});
+            const div = document.createElement('div');
+            div.className = 'message sent';
+            div.innerHTML = `<div class="message-avatar">আ</div><div><div class="message-content">${msg}</div><div class="message-time">${time}</div></div>`;
+            if(container) container.appendChild(div);
+            if(input) input.value = '';
+            if(container) container.scrollTop = container.scrollHeight;
+            setTimeout(() => {
+                const reply = document.createElement('div');
+                reply.className = 'message received';
+                reply.innerHTML = `<div class="message-avatar">অ</div><div><div class="message-content">ধন্যবাদ!</div><div class="message-time">${new Date().toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+                if(container) container.appendChild(reply);
+                if(container) container.scrollTop = container.scrollHeight;
+            },1000);
+        },
+        
+        closeChat() { 
+            const chatWindow = document.getElementById('chatWindow');
+            const chatEmptyState = document.getElementById('chatEmptyState');
+            if(chatWindow) chatWindow.style.display = 'none';
+            if(chatEmptyState) chatEmptyState.style.display = 'flex';
+        },
+        
+        showPostJobModal() { 
+            const modal = document.getElementById('postJobModal');
+            if(modal) modal.classList.add('active');
+        },
+        
+        showSettingsModal() { this.navigateTo('settings'); },
+        
+        showLoginTab() { 
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+            if(loginForm) loginForm.classList.remove('hidden');
+            if(signupForm) signupForm.classList.add('hidden');
+            if(tabs[0]) tabs[0].classList.add('active');
+            if(tabs[1]) tabs[1].classList.remove('active');
+        },
+        
+        showSignupTab() { 
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+            if(loginForm) loginForm.classList.add('hidden');
+            if(signupForm) signupForm.classList.remove('hidden');
+            if(tabs[0]) tabs[0].classList.remove('active');
+            if(tabs[1]) tabs[1].classList.add('active');
+        },
+        
+        toggleMobileMenu() { 
+            const menu = document.getElementById('mobileMenu');
+            if(menu) menu.classList.toggle('active');
+        },
+        
+        toggleUserDropdown() { this.createUserDropdown(); },
+        
+        hideUserDropdown() { 
+            const d = document.getElementById('userDropdown'); 
+            if(d) d.remove(); 
+        },
+        
+        createUserDropdown() {
+            const existing = document.getElementById('userDropdown');
+            if(existing) existing.remove();
+            const div = document.createElement('div');
+            div.id = 'userDropdown';
+            div.style.position = 'absolute';
+            div.style.top = '70px';
+            div.style.right = '20px';
+            div.style.background = 'white';
+            div.style.borderRadius = '12px';
+            div.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            div.style.padding = '8px';
+            div.style.zIndex = '1000';
+            div.innerHTML = `<a href="#" onclick="app.navigateTo('profile');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-user"></i> প্রোফাইল</a><a href="#" onclick="app.navigateTo('settings');app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--text-dark);text-decoration:none;"><i class="fas fa-cog"></i> সেটিংস</a><hr style="margin:4px 0"><a href="#" onclick="app.logout();app.hideUserDropdown();" style="display:block;padding:10px 20px;color:var(--accent-red);text-decoration:none;"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>`;
+            document.body.appendChild(div);
+            setTimeout(() => { 
+                window.addEventListener('click', function closeDropdown(e) { 
+                    if(!div.contains(e.target) && !e.target.closest('.user-menu')) { 
+                        div.remove(); 
+                        window.removeEventListener('click', closeDropdown); 
+                    } 
+                }); 
+            }, 100);
+        },
+        
+        showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            if(!container) return;
+            const id = 'toast-'+Date.now();
+            const toast = document.createElement('div');
+            toast.id = id;
+            toast.className = `toast ${type}`;
+            const icons = {success:'✓',error:'✕',warning:'⚠',info:'ℹ'};
+            toast.innerHTML = `<div class="toast-icon">${icons[type]||'ℹ'}</div><div class="toast-content"><div class="toast-title">${type==='success'?'সফল':type==='error'?'ত্রুটি':type==='warning'?'সতর্কতা':'তথ্য'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="document.getElementById('${id}').remove()">✕</button>`;
+            container.appendChild(toast);
+            setTimeout(() => { if(document.getElementById(id)) document.getElementById(id).remove(); }, 4000);
+        },
+        
+        showError(message) {
+            const err = document.getElementById('authError');
+            if(err) { err.textContent = message; err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 5000); }
+            this.showToast(message, 'error');
+        },
+        
+        changePassword() { this.showToast('পাসওয়ার্ড পরিবর্তন শীঘ্রই আসছে','info'); },
+        
+        deactivateAccount() { 
+            if(confirm('অ্যাকাউন্ট নিষ্ক্রিয় করবেন? আপনি পরে আবার সক্রিয় করতে পারবেন।')) 
+                this.showToast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে','success'); 
+        },
+        
+        deleteAccount() { 
+            if(confirm('স্থায়ীভাবে অ্যাকাউন্ট মুছবেন? এই কাজটি অপরিবর্তনীয়।')) { 
+                this.showToast('অ্যাকাউন্ট মুছে ফেলা হয়েছে','success'); 
+                setTimeout(()=>this.logout(),2000); 
+            } 
+        },
+        
+        startChat(userId) {
+            this.navigateTo('chat');
+            const user = this.usersData.find(u=>u.id===userId) || this.recommendationsData.find(u=>u.id===userId);
+            if(user) setTimeout(()=>this.openChat({id:userId,name:user.name,lastMessage:'নতুন চ্যাট',time:'এখন',unread:0}),500);
+        }
+    };
 
-        window.addEventListener('DOMContentLoaded', () => app.init());
-        window.app = app;
-    </script>
+    window.addEventListener('DOMContentLoaded', () => app.init());
+    window.app = app;
+</script>
 </body>
 </html>
