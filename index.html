@@ -8,7 +8,7 @@
     <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,7 +19,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
     
-    <!-- AdMob -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
     <style>
@@ -403,23 +403,26 @@
             gap: var(--spacing-md);
         }
 
-        .app-download-btn {
-            background: var(--gradient-primary);
-            color: white;
+        /* Download Button */
+        .download-btn {
+            background: linear-gradient(135deg, #006A4E, #008060);
             padding: 8px 16px;
-            border-radius: var(--radius-full);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
+            border-radius: 50px;
+            color: white;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all var(--transition-normal);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
         }
 
-        .app-download-btn:hover {
+        .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 5px 15px rgba(0,106,78,0.3);
         }
 
         .user-menu {
@@ -468,7 +471,7 @@
             background: white;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-lg);
-            min-width: 200px;
+            min-width: 220px;
             margin-top: 8px;
             overflow: hidden;
             z-index: var(--z-dropdown);
@@ -618,6 +621,48 @@
             border: none;
         }
 
+        /* Ad Banner */
+        .ad-banner {
+            background: #f0f0f0;
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed #ccc;
+        }
+
+        .ad-label {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .ad-banner-content {
+            background: #e0e0e0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        /* Native Ad */
+        .native-ad {
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .native-ad-badge {
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
         /* Feed */
         .feed {
             background: var(--bg-card);
@@ -663,7 +708,6 @@
             margin-bottom: var(--spacing-lg);
             border-bottom: 1px solid var(--border-color);
             padding-bottom: var(--spacing-sm);
-            flex-wrap: wrap;
         }
 
         .feed-tab {
@@ -1819,6 +1863,118 @@
             margin: 0 auto;
         }
 
+        /* Footer Styles */
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            margin-top: 60px;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-desc {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
         /* Animations */
         @keyframes slideUp {
             from {
@@ -1857,110 +2013,6 @@
             50% {
                 transform: scale(1.05);
             }
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-white);
-            border-top: 1px solid var(--border-color);
-            padding: var(--spacing-xxl) var(--spacing-lg) var(--spacing-lg);
-            margin-top: var(--spacing-xxl);
-        }
-
-        .footer-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .footer-section h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-dark);
-            font-family: var(--font-bangla);
-        }
-
-        .footer-section p {
-            color: var(--text-light);
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.8;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all var(--transition-normal);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 18px;
-            transition: all var(--transition-normal);
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: var(--spacing-xl);
-            margin-top: var(--spacing-xl);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        /* Ad Banner */
-        .ad-banner {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .ad-banner small {
-            color: var(--text-light);
-            font-size: 10px;
-            display: block;
-            margin-bottom: 8px;
         }
 
         /* Mobile Menu */
@@ -2071,13 +2123,6 @@
             .chat-sidebar {
                 display: none;
             }
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
         }
 
         @media (max-width: 768px) {
@@ -2092,12 +2137,6 @@
             }
             .user-name {
                 display: none;
-            }
-            .app-download-btn span {
-                display: none;
-            }
-            .app-download-btn i {
-                margin: 0;
             }
             .grid-users {
                 grid-template-columns: 1fr;
@@ -2117,6 +2156,12 @@
                 flex-wrap: wrap;
                 gap: var(--spacing-md);
             }
+            .download-btn span {
+                display: none;
+            }
+            .download-btn {
+                padding: 8px 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2132,12 +2177,24 @@
             .social-login {
                 grid-template-columns: 1fr;
             }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-links a {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- SPLASH SCREEN -->
     <div id="splashScreen" class="splash-screen">
+        <div class="splash-bg-decoration splash-circle-1"></div>
+        <div class="splash-bg-decoration splash-circle-2"></div>
         <div class="splash-content">
             <div class="splash-logo">
                 <i class="fas fa-flag"></i>
@@ -2199,10 +2256,11 @@
                 </nav>
 
                 <div class="nav-right">
-                    <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp" target="_blank" class="app-download-btn">
+                    <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp" target="_blank" class="download-btn">
                         <i class="fab fa-google-play"></i>
                         <span>অ্যাপ ডাউনলোড</span>
                     </a>
+                    
                     <button class="btn-icon" onclick="app.showNotifications()">
                         <i class="fas fa-bell"></i>
                     </button>
@@ -2216,9 +2274,9 @@
                         <a href="#" onclick="app.navigateTo('profile'); app.hideUserDropdown()"><i class="fas fa-user"></i> প্রোফাইল</a>
                         <a href="#" onclick="app.navigateTo('settings'); app.hideUserDropdown()"><i class="fas fa-cog"></i> সেটিংস</a>
                         <hr>
-                        <a href="#" onclick="app.navigateTo('about')"><i class="fas fa-code"></i> ডেভেলপার সম্পর্কে</a>
-                        <a href="#" onclick="app.navigateTo('privacy')"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
-                        <a href="#" onclick="app.navigateTo('terms')"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
+                        <a href="#" onclick="app.navigateTo('privacy'); app.hideUserDropdown()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
+                        <a href="#" onclick="app.navigateTo('terms'); app.hideUserDropdown()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
+                        <a href="#" onclick="app.navigateTo('about'); app.hideUserDropdown()"><i class="fas fa-code"></i> ডেভেলপার</a>
                         <hr>
                         <a href="#" onclick="app.logout(); app.hideUserDropdown()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
                     </div>
@@ -2261,23 +2319,36 @@
                     <span class="mobile-nav-icon"><i class="fas fa-user"></i></span>
                     <span>প্রোফাইল</span>
                 </div>
-                <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.navigateTo('events'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-calendar-alt"></i></span>
                     <span>ইভেন্ট</span>
                 </div>
                 <div class="mobile-nav-item" onclick="app.navigateTo('groups'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-users"></i></span>
-                    <span>গোষ্ঠী</span>
+                    <span>গ্রুপ</span>
                 </div>
-                <div class="mobile-nav-item" onclick="app.navigateTo('about'); app.toggleMobileMenu()">
-                    <span class="mobile-nav-icon"><i class="fas fa-code"></i></span>
-                    <span>ডেভেলপার সম্পর্কে</span>
-                </div>
+                <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.navigateTo('settings'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-cog"></i></span>
                     <span>সেটিংস</span>
                 </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('privacy'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span>গোপনীয়তা নীতি</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('terms'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-file-contract"></i></span>
+                    <span>সেবা শর্তাবলী</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('about'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-code"></i></span>
+                    <span>ডেভেলপার</span>
+                </div>
+                <div class="mobile-nav-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp', '_blank'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fab fa-google-play"></i></span>
+                    <span>অ্যাপ ডাউনলোড</span>
+                </div>
+                <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-sign-out-alt"></i></span>
                     <span>লগ আউট</span>
@@ -2338,15 +2409,23 @@
                 </div>
 
                 <hr class="sidebar-divider">
+                
+                <!-- Native Ad in Sidebar -->
+                <div class="sidebar-section">
+                    <div class="native-ad">
+                        <div class="native-ad-badge">স্পন্সরড</div>
+                        <div class="ad-banner-content" style="min-height: 100px;">
+                            <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="sidebar-divider">
 
                 <div class="sidebar-section">
                     <div class="sidebar-item" onclick="app.navigateTo('events')">
                         <span class="sidebar-icon"><i class="fas fa-calendar-alt"></i></span>
                         <span>ইভেন্ট</span>
-                    </div>
-                    <div class="sidebar-item" onclick="app.navigateTo('about')">
-                        <span class="sidebar-icon"><i class="fas fa-code"></i></span>
-                        <span>ডেভেলপার সম্পর্কে</span>
                     </div>
                     <div class="sidebar-item" onclick="app.navigateTo('privacy')">
                         <span class="sidebar-icon"><i class="fas fa-shield-alt"></i></span>
@@ -2356,6 +2435,10 @@
                         <span class="sidebar-icon"><i class="fas fa-file-contract"></i></span>
                         <span>সেবা শর্তাবলী</span>
                     </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('about')">
+                        <span class="sidebar-icon"><i class="fas fa-code"></i></span>
+                        <span>ডেভেলপার</span>
+                    </div>
                     <div class="sidebar-item" onclick="app.navigateTo('settings')">
                         <span class="sidebar-icon"><i class="fas fa-cog"></i></span>
                         <span>সেটিংস</span>
@@ -2364,7 +2447,15 @@
             </aside>
 
             <!-- FEED/MAIN SECTION -->
-            <main class="feed" id="mainFeed">
+            <main class="feed">
+                <!-- Ad Banner at top of feed -->
+                <div class="ad-banner">
+                    <div class="ad-label">বিজ্ঞাপন</div>
+                    <div class="ad-banner-content">
+                        <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                    </div>
+                </div>
+                
                 <!-- HOME VIEW -->
                 <div id="homeView">
                     <div class="feed-header">
@@ -2376,20 +2467,6 @@
                         <i class="fas fa-info-circle"></i>
                         <span>আপনি অতিথি হিসেবে দেখছেন। সংযোগ, চ্যাট ও চাকরিতে আবেদন করতে লগইন করুন।</span>
                         <button class="btn btn-primary btn-small" onclick="app.showAuthModal()" style="margin-left: auto; padding: 6px 16px;">লগইন</button>
-                    </div>
-                    
-                    <!-- Ad Banner -->
-                    <div class="ad-banner">
-                        <small>স্পন্সর</small>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                             data-ad-slot="1234567890"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
                     </div>
                     
                     <div class="feed-tabs">
@@ -2454,7 +2531,7 @@
                         <div class="chat-sidebar">
                             <div class="chat-search">
                                 <div style="position: relative;">
-                                    <input type="text" placeholder="চ্যাট খুঁজুন..." class="bangla" id="chatSearchInput">
+                                    <input type="text" placeholder="চ্যাট খুঁজুন..." class="bangla">
                                     <i class="fas fa-search"></i>
                                 </div>
                             </div>
@@ -2584,131 +2661,59 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- EVENTS VIEW -->
-                <div id="eventsView" class="hidden">
-                    <div class="feed-header">
-                        <h1 class="feed-title bangla">আসন্ন ইভেন্ট</h1>
-                        <p class="feed-subtitle bangla">বাংলাদেশী সম্প্রদায়ের ইভেন্টসমূহ</p>
-                    </div>
-                    <div id="eventsList" class="grid-jobs">
-                        <!-- Events will be loaded here -->
-                    </div>
-                </div>
-
-                <!-- GROUPS VIEW -->
-                <div id="groupsView" class="hidden">
-                    <div class="feed-header">
-                        <h1 class="feed-title bangla">গোষ্ঠীসমূহ</h1>
-                        <p class="feed-subtitle bangla">আপনার আগ্রহের গোষ্ঠীতে যোগ দিন</p>
-                    </div>
-                    <div id="groupsList" class="grid-users">
-                        <!-- Groups will be loaded here -->
-                    </div>
-                </div>
-
-                <!-- ABOUT DEVELOPER VIEW -->
-                <div id="aboutView" class="hidden">
-                    <div class="feed-header">
-                        <h1 class="feed-title bangla">ডেভেলপার সম্পর্কে</h1>
-                        <p class="feed-subtitle bangla">ফারাবিউ ওয়ালিদ - হ্যালো বাংলাদেশীর নির্মাতা</p>
-                    </div>
-                    
-                    <div class="profile-section" style="text-align: center;">
-                        <div style="width: 150px; height: 150px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto var(--spacing-lg); display: flex; align-items: center; justify-content: center; font-size: 60px; color: white;">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h2 style="font-size: 28px; margin-bottom: 8px;">ফারাবিউ ওয়ালিদ</h2>
-                        <p style="color: var(--primary); font-weight: 600; margin-bottom: var(--spacing-lg);">ফুল-স্ট্যাক ডেভেলপার & অ্যাপ ডেভেলপার</p>
-                        
-                        <div style="max-width: 600px; margin: 0 auto;">
-                            <p style="margin-bottom: var(--spacing-lg); line-height: 1.8;">হ্যালো, আমি ফারাবিউ ওয়ালিদ। আমি একজন পেশাদার ফুল-স্ট্যাক ওয়েব ডেভেলপার এবং অ্যান্ড্রয়েড অ্যাপ ডেভেলপার। আমি প্রযুক্তির মাধ্যমে মানুষকে সংযুক্ত করতে এবং তাদের জীবনকে সহজ করতে ভালোবাসি।</p>
-                            
-                            <div style="background: var(--bg-light); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
-                                <h3 style="margin-bottom: var(--spacing-md);">দক্ষতা</h3>
-                                <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
-                                    <span class="badge">HTML/CSS</span>
-                                    <span class="badge">JavaScript</span>
-                                    <span class="badge">React</span>
-                                    <span class="badge">Node.js</span>
-                                    <span class="badge">Python</span>
-                                    <span class="badge">Firebase</span>
-                                    <span class="badge">Flutter</span>
-                                    <span class="badge">Android</span>
-                                </div>
-                            </div>
-                            
-                            <div style="display: flex; gap: var(--spacing-md); justify-content: center; margin-bottom: var(--spacing-lg);">
-                                <a href="#" class="social-link" style="background: #333; color: white;"><i class="fab fa-github"></i></a>
-                                <a href="#" class="social-link" style="background: #0077B5; color: white;"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="social-link" style="background: #1DA1F2; color: white;"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-link" style="background: #E4405F; color: white;"><i class="fab fa-instagram"></i></a>
-                            </div>
-                            
-                            <p><i class="fas fa-envelope"></i> farabi.walid@example.com</p>
-                            <p><i class="fas fa-phone"></i> +880 1XXXXXXXXX</p>
-                            <p><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRIVACY POLICY VIEW -->
+                
+                <!-- PRIVACY VIEW -->
                 <div id="privacyView" class="hidden">
                     <div class="feed-header">
                         <h1 class="feed-title bangla">গোপনীয়তা নীতি</h1>
-                        <p class="feed-subtitle bangla">আপনার তথ্য কিভাবে সংরক্ষণ ও ব্যবহার করা হয়</p>
+                        <p class="feed-subtitle bangla">আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার</p>
                     </div>
-                    
                     <div class="profile-section">
-                        <h2 class="profile-section-title bangla">তথ্য সংগ্রহ</h2>
-                        <p>আমরা আপনার নাম, ইমেল ঠিকানা, অবস্থান এবং পেশাগত তথ্য সংগ্রহ করি। এই তথ্যগুলো আপনার প্রোফাইল তৈরি এবং অন্যান্য ব্যবহারকারীদের সাথে সংযোগ স্থাপনের জন্য ব্যবহার করা হয়।</p>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">তথ্যের ব্যবহার</h2>
-                        <p>আমরা আপনার তথ্য ব্যবহার করি:</p>
-                        <ul style="margin-left: var(--spacing-lg); margin-top: var(--spacing-sm);">
-                            <li>আপনার প্রোফাইল তৈরি ও পরিচালনা করতে</li>
-                            <li>অন্যান্য ব্যবহারকারীদের সাথে সংযোগ স্থাপনে</li>
-                            <li>চাকরি এবং ইভেন্ট সম্পর্কে জানাতে</li>
-                            <li>প্ল্যাটফর্মের নিরাপত্তা নিশ্চিত করতে</li>
-                        </ul>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">তৃতীয় পক্ষের সাথে তথ্য ভাগাভাগি</h2>
-                        <p>আমরা আপনার অনুমতি ছাড়া আপনার ব্যক্তিগত তথ্য তৃতীয় পক্ষের সাথে ভাগ করি না। শুধুমাত্র আইনি প্রয়োজন বা প্ল্যাটফর্মের নিরাপত্তার জন্য প্রয়োজনীয় ক্ষেত্রে তথ্য ভাগ করা হতে পারে।</p>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">যোগাযোগ</h2>
-                        <p>গোপনীয়তা নীতি সম্পর্কে কোন প্রশ্ন থাকলে আমাদের সাথে যোগাযোগ করুন: privacy@hellobangladeshi.com</p>
-                        
-                        <p style="margin-top: var(--spacing-lg); color: var(--text-light);">শেষ আপডেট: ১ জানুয়ারি, ২০২৪</p>
+                        <p>গোপনীয়তা নীতি পৃষ্ঠা লোড হচ্ছে... <a href="privacy.html" target="_blank">এখানে ক্লিক করুন</a></p>
                     </div>
                 </div>
-
+                
                 <!-- TERMS VIEW -->
                 <div id="termsView" class="hidden">
                     <div class="feed-header">
                         <h1 class="feed-title bangla">সেবা শর্তাবলী</h1>
                         <p class="feed-subtitle bangla">হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী</p>
                     </div>
-                    
                     <div class="profile-section">
-                        <h2 class="profile-section-title bangla">১. সেবার ব্যবহার</h2>
-                        <p>হ্যালো বাংলাদেশী প্ল্যাটফর্ম ব্যবহার করে আপনি নিম্নলিখিত শর্তাবলী মেনে চলতে সম্মত হচ্ছেন। প্ল্যাটফর্মটি শুধুমাত্র ব্যক্তিগত ও অ-বাণিজ্যিক ব্যবহারের জন্য।</p>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">২. ব্যবহারকারীর আচরণ</h2>
-                        <p>আপনি প্ল্যাটফর্ম ব্যবহারের সময়:</p>
-                        <ul style="margin-left: var(--spacing-lg); margin-top: var(--spacing-sm);">
-                            <li>অন্য ব্যবহারকারীদের প্রতি সম্মান প্রদর্শন করবেন</li>
-                            <li>অবৈধ বা ক্ষতিকর কার্যকলাপে লিপ্ত হবেন না</li>
-                            <li>কপিরাইট বা বৌদ্ধিক সম্পত্তির অধিকার লঙ্ঘন করবেন না</li>
-                            <li>স্প্যাম বা বিজ্ঞাপনমূলক বিষয়বস্তু পোস্ট করবেন না</li>
-                        </ul>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">৩. অ্যাকাউন্ট নিরাপত্তা</h2>
-                        <p>আপনার অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করা আপনার দায়িত্ব। অ্যাকাউন্ট সম্পর্কিত যেকোনো অননুমোদিত ব্যবহারের জন্য আমাদের অবহিত করুন।</p>
-                        
-                        <h2 class="profile-section-title bangla" style="margin-top: var(--spacing-lg);">৪. সেবা পরিবর্তনের অধিকার</h2>
-                        <p>আমরা যেকোনো সময় সেবার শর্তাবলী পরিবর্তন বা সংশোধন করার অধিকার সংরক্ষণ করি। পরিবর্তনের পর প্ল্যাটফর্ম ব্যবহার অব্যাহত রাখলে আপনি নতুন শর্তাবলী মেনে চলতে সম্মত হয়েছেন বলে ধরা হবে।</p>
-                        
-                        <p style="margin-top: var(--spacing-lg); color: var(--text-light);">শেষ আপডেট: ১ জানুয়ারি, ২০২৪</p>
+                        <p>সেবা শর্তাবলী পৃষ্ঠা লোড হচ্ছে... <a href="terms.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- ABOUT VIEW -->
+                <div id="aboutView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">ডেভেলপার</h1>
+                        <p class="feed-subtitle bangla">Forabee Walid - ফুল স্ট্যাক ডেভেলপার</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>ডেভেলপার সম্পর্কে জানতে <a href="about.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- EVENTS VIEW -->
+                <div id="eventsView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">ইভেন্ট</h1>
+                        <p class="feed-subtitle bangla">আসন্ন ইভেন্টসমূহ</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>ইভেন্ট পৃষ্ঠা লোড হচ্ছে... <a href="events.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- GROUPS VIEW -->
+                <div id="groupsView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">গ্রুপ</h1>
+                        <p class="feed-subtitle bangla">আপনার আগ্রহের গ্রুপে যোগ দিন</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>গ্রুপ পৃষ্ঠা লোড হচ্ছে... <a href="groups.html" target="_blank">এখানে ক্লিক করুন</a></p>
                     </div>
                 </div>
             </main>
@@ -2751,57 +2756,71 @@
                         <!-- Events will be loaded here -->
                     </div>
                 </div>
+                
+                <hr class="sidebar-divider">
+                
+                <!-- Ad Banner in Right Sidebar -->
+                <div class="sidebar-section">
+                    <div class="ad-banner" style="margin-top: 10px;">
+                        <div class="ad-label">বিজ্ঞাপন</div>
+                        <div class="ad-banner-content" style="min-height: 250px;">
+                            <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                        </div>
+                    </div>
+                </div>
             </aside>
         </div>
-
+        
         <!-- FOOTER -->
         <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="bangla">হ্যালো বাংলাদেশী</h3>
-                    <p class="bangla">স্থানীয় বাংলাদেশীদের সংযোগের জন্য প্ল্যাটফর্ম। আপনার এলাকার মানুষের সাথে সংযুক্ত হোন, চাকরি খুঁজুন, এবং ইভেন্টে অংশ নিন।</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">হেবি</div>
+                            <span class="footer-logo-text">হ্যালো বাংলাদেশী</span>
+                        </div>
+                        <p class="footer-desc">স্থানীয় বাংলাদেশীদের সাথে সংযোগ স্থাপনের জন্য একটি সম্পূর্ণ সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম।</p>
+                        <div class="footer-social">
+                            <a href="https://facebook.com/hellobangladeshi" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/hellobangladeshi" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/hellobangladeshi" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/company/hellobangladeshi" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">দ্রুত লিংক</h3>
+                        <ul class="footer-links">
+                            <li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> বাড়ি</a></li>
+                            <li><a onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li>
+                            <li><a onclick="app.navigateTo('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li>
+                            <li><a onclick="app.navigateTo('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">আইনি</h3>
+                        <ul class="footer-links">
+                            <li><a onclick="app.navigateTo('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li>
+                            <li><a onclick="app.navigateTo('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li>
+                            <li><a onclick="app.navigateTo('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">যোগাযোগ</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> support@hellobangladeshi.com</li>
+                            <li><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</li>
+                            <li><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3 class="bangla">দ্রুত লিংক</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> বাড়ি</a></li>
-                        <li><a href="#" onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li>
-                        <li><a href="#" onclick="app.navigateTo('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li>
-                        <li><a href="#" onclick="app.navigateTo('groups')"><i class="fas fa-chevron-right"></i> গোষ্ঠী</a></li>
-                    </ul>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত। Developed with <i class="fas fa-heart" style="color: #ff4757;"></i> by Forabee Walid</p>
                 </div>
-                
-                <div class="footer-section">
-                    <h3 class="bangla">সম্পর্কে</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="app.navigateTo('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার সম্পর্কে</a></li>
-                        <li><a href="#" onclick="app.navigateTo('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li>
-                        <li><a href="#" onclick="app.navigateTo('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="bangla">অ্যাপ ডাউনলোড</h3>
-                    <p class="bangla">মোবাইল অ্যাপ ডাউনলোড করুন এবং সর্বত্র সংযুক্ত থাকুন।</p>
-                    <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
-                        <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp" target="_blank" style="background: #000; padding: 8px 16px; border-radius: var(--radius-md); color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                            <i class="fab fa-google-play"></i> Play Store
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 হ্যালো বাংলাদেশী | ফারাবিউ ওয়ালিদ দ্বারা নির্মিত | সর্বস্বত্ব সংরক্ষিত</p>
             </div>
         </footer>
     </div>
@@ -3050,8 +3069,6 @@
             jobsData: [],
             chatsData: [],
             recommendationsData: [],
-            eventsData: [],
-            groupsData: [],
             
             // Initialize app
             init() {
@@ -3060,7 +3077,6 @@
                 this.setupEventListeners();
                 this.loadDemoData();
                 this.checkSplashScreen();
-                this.loadAdMob();
             },
             
             // Check if splash screen should be shown
@@ -3074,16 +3090,6 @@
                 } else {
                     document.getElementById('splashScreen').style.display = 'none';
                     document.getElementById('mainApp').classList.remove('hidden');
-                }
-            },
-            
-            // Load AdMob
-            loadAdMob() {
-                // AdMob initialization for web (using Google AdSense)
-                try {
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                } catch(e) {
-                    console.log('AdMob loading...');
                 }
             },
             
@@ -3115,34 +3121,9 @@
                     });
                 }
                 
-                const chatSearchInput = document.getElementById('chatSearchInput');
-                if (chatSearchInput) {
-                    chatSearchInput.addEventListener('input', (e) => {
-                        this.filterChats(e.target.value);
-                    });
-                }
-                
                 window.addEventListener('click', (e) => {
                     if (!e.target.closest('.user-menu')) {
                         this.hideUserDropdown();
-                    }
-                });
-            },
-            
-            // Filter chats
-            filterChats(query) {
-                const chatItems = document.querySelectorAll('.chat-item');
-                if (!query.trim()) {
-                    chatItems.forEach(item => item.style.display = 'flex');
-                    return;
-                }
-                
-                chatItems.forEach(item => {
-                    const name = item.querySelector('h4').textContent;
-                    if (name.toLowerCase().includes(query.toLowerCase())) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
                     }
                 });
             },
@@ -3350,20 +3331,6 @@
                     { id: '3', name: 'রাকিবুল ইসলাম', lastMessage: 'ডকুমেন্টগুলো পাঠিয়েছি দেখে নিন', time: '২ দিন আগে', unread: 1 },
                     { id: '4', name: 'সাবরিনা সুলতানা', lastMessage: 'মিটিং এর সময় সম্পর্কে জানতে চাচ্ছিলাম', time: '৩ দিন আগে', unread: 0 }
                 ];
-                
-                this.eventsData = [
-                    { id: '1', title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং', date: '১৫ মার্চ, ২০২৪', time: 'বিকাল ৩:০০টা', location: 'ঢাকা', organizer: 'বাংলাদেশ আইটি ফোরাম', attendees: 45 },
-                    { id: '2', title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন', date: '২০ মার্চ, ২০২৪', time: 'সকাল ১০:০০টা', location: 'দূরবর্তী (Zoom)', organizer: 'স্টার্টআপ বাংলাদেশ', attendees: 128 },
-                    { id: '3', title: 'ক্যারিয়ার গাইডেন্স সেমিনার', date: '২৫ মার্চ, ২০২৪', time: 'বিকাল ৪:০০টা', location: 'চট্টগ্রাম', organizer: 'চট্টগ্রাম ইউনিভার্সিটি', attendees: 256 },
-                    { id: '4', title: 'ফ্রিল্যান্সিং ওয়ার্কশপ', date: '৩০ মার্চ, ২০২৪', time: 'সকাল ৯:৩০টা', location: 'সিলেট', organizer: 'ফ্রিল্যান্সার ফোরাম', attendees: 89 }
-                ];
-                
-                this.groupsData = [
-                    { id: '1', name: 'বাংলাদেশী শিক্ষার্থী', members: '১২.৩ক', posts: '২.১ক', icon: 'fa-graduation-cap', color: '#3498DB', description: 'বাংলাদেশী শিক্ষার্থীদের জন্য শিক্ষা, ক্যারিয়ার ও স্টাডি নিয়ে আলোচনার গ্রুপ' },
-                    { id: '2', name: 'আইটি পেশাজীবী বাংলাদেশ', members: '৮.৭ক', posts: '১.৫ক', icon: 'fa-laptop-code', color: '#2ECC71', description: 'আইটি পেশাজীবীদের জন্য প্রযুক্তি, ক্যারিয়ার ও নেটওয়ার্কিং গ্রুপ' },
-                    { id: '3', name: 'ব্যবসায়ী নেটওয়ার্ক', members: '৫.২ক', posts: '৮৪০', icon: 'fa-chart-line', color: '#F39C12', description: 'উদ্যোক্তা ও ব্যবসায়ীদের জন্য ব্যবসার সুযোগ ও নেটওয়ার্কিং গ্রুপ' },
-                    { id: '4', name: 'প্রবাসী বাংলাদেশী', members: '১৫.৬ক', posts: '৩.২ক', icon: 'fa-plane', color: '#E74C3C', description: 'বিশ্বের বিভিন্ন দেশে থাকা বাংলাদেশীদের জন্য সংযোগ ও তথ্যের গ্রুপ' }
-                ];
             },
             
             // Hide splash screen
@@ -3538,9 +3505,6 @@
                 const targetView = document.getElementById(view + 'View');
                 if (targetView) {
                     targetView.classList.remove('hidden');
-                } else {
-                    // If view not found, show home
-                    document.getElementById('homeView').classList.remove('hidden');
                 }
                 
                 // Update active navigation
@@ -3574,20 +3538,12 @@
                     case 'settings':
                         this.loadSettingsView();
                         break;
-                    case 'events':
-                        this.loadEventsView();
-                        break;
-                    case 'groups':
-                        this.loadGroupsView();
-                        break;
-                    case 'about':
-                        // About view is already loaded in HTML
-                        break;
                     case 'privacy':
-                        // Privacy view is already loaded in HTML
-                        break;
                     case 'terms':
-                        // Terms view is already loaded in HTML
+                    case 'about':
+                    case 'events':
+                    case 'groups':
+                        // These views are already loaded with placeholder content
                         break;
                 }
             },
@@ -3641,19 +3597,16 @@
                 if (!this.currentUser) {
                     const chatView = document.getElementById('chatView');
                     if (chatView) {
-                        const container = document.querySelector('#chatView .chat-container');
-                        if (container) {
-                            container.innerHTML = `
-                                <div class="empty-state">
-                                    <div class="empty-state-icon">
-                                        <i class="fas fa-lock"></i>
-                                    </div>
-                                    <h3 class="bangla">চ্যাট করতে লগইন করুন</h3>
-                                    <p class="bangla">অন্যান্যদের সাথে সংযুক্ত হতে এবং চ্যাট করতে অনুগ্রহ করে লগইন করুন</p>
-                                    <button class="btn btn-primary mt-3" onclick="app.showAuthModal()">লগইন করুন</button>
+                        chatView.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-lock"></i>
                                 </div>
-                            `;
-                        }
+                                <h3 class="bangla">চ্যাট করতে লগইন করুন</h3>
+                                <p class="bangla">অন্যান্যদের সাথে সংযুক্ত হতে এবং চ্যাট করতে অনুগ্রহ করে লগইন করুন</p>
+                                <button class="btn btn-primary mt-3" onclick="app.showAuthModal()">লগইন করুন</button>
+                            </div>
+                        `;
                     }
                     return;
                 }
@@ -3754,16 +3707,6 @@
             // Load settings view
             loadSettingsView() {
                 // Settings are already loaded in HTML
-            },
-            
-            // Load events view
-            loadEventsView() {
-                this.renderEvents(this.eventsData);
-            },
-            
-            // Load groups view
-            loadGroupsView() {
-                this.renderGroups(this.groupsData);
             },
             
             // Render users
@@ -3911,7 +3854,11 @@
                 const container = document.getElementById('upcomingEvents');
                 if (!container) return;
                 
-                const events = this.eventsData.slice(0, 3);
+                const events = [
+                    { title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং', date: '১৫ মার্চ, ২০২৪', location: 'ঢাকা' },
+                    { title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন', date: '২০ মার্চ, ২০২৪', location: 'দূরবর্তী' },
+                    { title: 'ক্যারিয়ার গাইডেন্স সেমিনার', date: '২৫ মার্চ, ২০২৪', location: 'চট্টগ্রাম' }
+                ];
                 
                 container.innerHTML = '';
                 
@@ -4037,103 +3984,6 @@
                 return div;
             },
             
-            // Render events
-            renderEvents(events) {
-                const container = document.getElementById('eventsList');
-                if (!container) return;
-                
-                container.innerHTML = '';
-                
-                events.forEach(event => {
-                    const eventCard = document.createElement('div');
-                    eventCard.className = 'job-card';
-                    eventCard.innerHTML = `
-                        <div class="job-card-header">
-                            <div>
-                                <h3 class="job-card-title bangla">${event.title}</h3>
-                                <p class="job-card-company bangla">${event.organizer}</p>
-                            </div>
-                            <span class="badge">${event.date}</span>
-                        </div>
-                        
-                        <div class="job-card-tags">
-                            <span class="job-tag"><i class="far fa-clock"></i> ${event.time}</span>
-                            <span class="job-tag"><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
-                            <span class="job-tag"><i class="fas fa-users"></i> ${event.attendees} জন অংশগ্রহণকারী</span>
-                        </div>
-                        
-                        <div class="job-card-footer">
-                            <div class="job-card-salary bangla">বিনামূল্যে</div>
-                            <button class="btn btn-primary bangla" onclick="app.registerEvent('${event.id}')">
-                                <i class="fas fa-calendar-check"></i> নিবন্ধন করুন
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(eventCard);
-                });
-            },
-            
-            // Register for event
-            registerEvent(eventId) {
-                if (!this.currentUser) {
-                    this.showLoginRequiredModal('ইভেন্টে নিবন্ধন করতে');
-                    return;
-                }
-                this.showToast('ইভেন্টে নিবন্ধন সফল!', 'success');
-            },
-            
-            // Render groups
-            renderGroups(groups) {
-                const container = document.getElementById('groupsList');
-                if (!container) return;
-                
-                container.innerHTML = '';
-                
-                groups.forEach(group => {
-                    const groupCard = document.createElement('div');
-                    groupCard.className = 'user-card';
-                    groupCard.innerHTML = `
-                        <div class="user-card-header" style="background: ${group.color}">
-                            <div class="user-card-avatar" style="background: rgba(255,255,255,0.2);">
-                                <i class="fas ${group.icon}"></i>
-                            </div>
-                        </div>
-                        <div class="user-card-content">
-                            <h3 class="user-card-name bangla">${group.name}</h3>
-                            <p class="user-card-profession bangla">
-                                <i class="fas fa-users"></i> ${group.members} সদস্য
-                                <span style="margin-left: 10px;"><i class="fas fa-file-alt"></i> ${group.posts} পোস্ট</span>
-                            </p>
-                            <p class="user-card-bio bangla">${group.description}</p>
-                            
-                            <div class="user-card-actions">
-                                <button class="btn btn-primary bangla" onclick="app.joinGroup('${group.id}')">
-                                    <i class="fas fa-user-plus"></i> যোগ দিন
-                                </button>
-                                <button class="btn btn-secondary bangla" onclick="app.viewGroup('${group.id}')">
-                                    <i class="fas fa-eye"></i> দেখুন
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(groupCard);
-                });
-            },
-            
-            // Join group
-            joinGroup(groupId) {
-                if (!this.currentUser) {
-                    this.showLoginRequiredModal('গ্রুপে যোগ দিতে');
-                    return;
-                }
-                this.showToast('গ্রুপে যোগদানের অনুরোধ পাঠানো হয়েছে!', 'success');
-            },
-            
-            // View group
-            viewGroup(groupId) {
-                this.showToast('গ্রুপের বিস্তারিত শীঘ্রই আসছে!', 'info');
-            },
-            
             // Filter users
             filterUsers(filter) {
                 const tabs = document.querySelectorAll('.feed-tab');
@@ -4219,7 +4069,7 @@
                 
                 this.loadChatMessages(chat.id);
                 
-                const chatItem = document.querySelector(`.chat-item:has(h4:contains('${chat.name}'))`) || event?.target?.closest('.chat-item');
+                const chatItem = event.target.closest('.chat-item');
                 if (chatItem) {
                     const unreadBadge = chatItem.querySelector('.chat-unread');
                     if (unreadBadge) {
