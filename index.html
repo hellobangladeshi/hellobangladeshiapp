@@ -19,6 +19,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
     <style>
         :root {
             --primary: #006A4E;
@@ -400,6 +403,28 @@
             gap: var(--spacing-md);
         }
 
+        /* Download Button */
+        .download-btn {
+            background: linear-gradient(135deg, #006A4E, #008060);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,106,78,0.3);
+        }
+
         .user-menu {
             display: flex;
             align-items: center;
@@ -446,7 +471,7 @@
             background: white;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-lg);
-            min-width: 180px;
+            min-width: 220px;
             margin-top: 8px;
             overflow: hidden;
             z-index: var(--z-dropdown);
@@ -594,6 +619,48 @@
             background: var(--border-color);
             margin: var(--spacing-lg) 0;
             border: none;
+        }
+
+        /* Ad Banner */
+        .ad-banner {
+            background: #f0f0f0;
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed #ccc;
+        }
+
+        .ad-label {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .ad-banner-content {
+            background: #e0e0e0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        /* Native Ad */
+        .native-ad {
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .native-ad-badge {
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         /* Feed */
@@ -1796,6 +1863,118 @@
             margin: 0 auto;
         }
 
+        /* Footer Styles */
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            margin-top: 60px;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-desc {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
         /* Animations */
         @keyframes slideUp {
             from {
@@ -1977,6 +2156,12 @@
                 flex-wrap: wrap;
                 gap: var(--spacing-md);
             }
+            .download-btn span {
+                display: none;
+            }
+            .download-btn {
+                padding: 8px 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1991,6 +2176,16 @@
             }
             .social-login {
                 grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-links a {
+                justify-content: center;
             }
         }
     </style>
@@ -2061,6 +2256,11 @@
                 </nav>
 
                 <div class="nav-right">
+                    <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.app" target="_blank" class="download-btn">
+                        <i class="fab fa-google-play"></i>
+                        <span>অ্যাপ ডাউনলোড</span>
+                    </a>
+                    
                     <button class="btn-icon" onclick="app.showNotifications()">
                         <i class="fas fa-bell"></i>
                     </button>
@@ -2073,6 +2273,10 @@
                     <div id="userDropdown" class="user-dropdown">
                         <a href="#" onclick="app.navigateTo('profile'); app.hideUserDropdown()"><i class="fas fa-user"></i> প্রোফাইল</a>
                         <a href="#" onclick="app.navigateTo('settings'); app.hideUserDropdown()"><i class="fas fa-cog"></i> সেটিংস</a>
+                        <hr>
+                        <a href="#" onclick="app.navigateTo('privacy'); app.hideUserDropdown()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
+                        <a href="#" onclick="app.navigateTo('terms'); app.hideUserDropdown()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
+                        <a href="#" onclick="app.navigateTo('about'); app.hideUserDropdown()"><i class="fas fa-code"></i> ডেভেলপার</a>
                         <hr>
                         <a href="#" onclick="app.logout(); app.hideUserDropdown()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
                     </div>
@@ -2115,11 +2319,36 @@
                     <span class="mobile-nav-icon"><i class="fas fa-user"></i></span>
                     <span>প্রোফাইল</span>
                 </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('events'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-calendar-alt"></i></span>
+                    <span>ইভেন্ট</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('groups'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-users"></i></span>
+                    <span>গ্রুপ</span>
+                </div>
                 <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.navigateTo('settings'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-cog"></i></span>
                     <span>সেটিংস</span>
                 </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('privacy'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span>গোপনীয়তা নীতি</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('terms'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-file-contract"></i></span>
+                    <span>সেবা শর্তাবলী</span>
+                </div>
+                <div class="mobile-nav-item" onclick="app.navigateTo('about'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fas fa-code"></i></span>
+                    <span>ডেভেলপার</span>
+                </div>
+                <div class="mobile-nav-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp', '_blank'); app.toggleMobileMenu()">
+                    <span class="mobile-nav-icon"><i class="fab fa-google-play"></i></span>
+                    <span>অ্যাপ ডাউনলোড</span>
+                </div>
+                <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-sign-out-alt"></i></span>
                     <span>লগ আউট</span>
@@ -2161,21 +2390,33 @@
 
                 <div class="sidebar-section">
                     <div class="sidebar-title">গোষ্ঠী</div>
-                    <div class="sidebar-item">
+                    <div class="sidebar-item" onclick="app.navigateTo('groups')">
                         <span class="sidebar-icon"><i class="fas fa-users"></i></span>
                         <span>বাংলাদেশী শিক্ষার্থী</span>
                     </div>
-                    <div class="sidebar-item">
+                    <div class="sidebar-item" onclick="app.navigateTo('groups')">
                         <span class="sidebar-icon"><i class="fas fa-building"></i></span>
                         <span>আইটি পেশাজীবী</span>
                     </div>
-                    <div class="sidebar-item">
+                    <div class="sidebar-item" onclick="app.navigateTo('groups')">
                         <span class="sidebar-icon"><i class="fas fa-store"></i></span>
                         <span>ব্যবসায়ী নেটওয়ার্ক</span>
                     </div>
-                    <div class="sidebar-item">
+                    <div class="sidebar-item" onclick="app.navigateTo('groups')">
                         <span class="sidebar-icon"><i class="fas fa-graduation-cap"></i></span>
                         <span>প্রবাসী বাংলাদেশী</span>
+                    </div>
+                </div>
+
+                <hr class="sidebar-divider">
+                
+                <!-- Native Ad in Sidebar -->
+                <div class="sidebar-section">
+                    <div class="native-ad">
+                        <div class="native-ad-badge">স্পন্সরড</div>
+                        <div class="ad-banner-content" style="min-height: 100px;">
+                            <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                        </div>
                     </div>
                 </div>
 
@@ -2186,9 +2427,17 @@
                         <span class="sidebar-icon"><i class="fas fa-calendar-alt"></i></span>
                         <span>ইভেন্ট</span>
                     </div>
-                    <div class="sidebar-item" onclick="app.navigateTo('help')">
-                        <span class="sidebar-icon"><i class="fas fa-question-circle"></i></span>
-                        <span>সাহায্য</span>
+                    <div class="sidebar-item" onclick="app.navigateTo('privacy')">
+                        <span class="sidebar-icon"><i class="fas fa-shield-alt"></i></span>
+                        <span>গোপনীয়তা নীতি</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('terms')">
+                        <span class="sidebar-icon"><i class="fas fa-file-contract"></i></span>
+                        <span>সেবা শর্তাবলী</span>
+                    </div>
+                    <div class="sidebar-item" onclick="app.navigateTo('about')">
+                        <span class="sidebar-icon"><i class="fas fa-code"></i></span>
+                        <span>ডেভেলপার</span>
                     </div>
                     <div class="sidebar-item" onclick="app.navigateTo('settings')">
                         <span class="sidebar-icon"><i class="fas fa-cog"></i></span>
@@ -2199,6 +2448,14 @@
 
             <!-- FEED/MAIN SECTION -->
             <main class="feed">
+                <!-- Ad Banner at top of feed -->
+                <div class="ad-banner">
+                    <div class="ad-label">বিজ্ঞাপন</div>
+                    <div class="ad-banner-content">
+                        <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                    </div>
+                </div>
+                
                 <!-- HOME VIEW -->
                 <div id="homeView">
                     <div class="feed-header">
@@ -2404,6 +2661,61 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- PRIVACY VIEW -->
+                <div id="privacyView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">গোপনীয়তা নীতি</h1>
+                        <p class="feed-subtitle bangla">আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>গোপনীয়তা নীতি পৃষ্ঠা লোড হচ্ছে... <a href="privacy.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- TERMS VIEW -->
+                <div id="termsView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">সেবা শর্তাবলী</h1>
+                        <p class="feed-subtitle bangla">হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>সেবা শর্তাবলী পৃষ্ঠা লোড হচ্ছে... <a href="terms.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- ABOUT VIEW -->
+                <div id="aboutView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">ডেভেলপার</h1>
+                        <p class="feed-subtitle bangla">Forabee Walid - ফুল স্ট্যাক ডেভেলপার</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>ডেভেলপার সম্পর্কে জানতে <a href="about.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- EVENTS VIEW -->
+                <div id="eventsView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">ইভেন্ট</h1>
+                        <p class="feed-subtitle bangla">আসন্ন ইভেন্টসমূহ</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>ইভেন্ট পৃষ্ঠা লোড হচ্ছে... <a href="events.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
+                
+                <!-- GROUPS VIEW -->
+                <div id="groupsView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla">গ্রুপ</h1>
+                        <p class="feed-subtitle bangla">আপনার আগ্রহের গ্রুপে যোগ দিন</p>
+                    </div>
+                    <div class="profile-section">
+                        <p>গ্রুপ পৃষ্ঠা লোড হচ্ছে... <a href="groups.html" target="_blank">এখানে ক্লিক করুন</a></p>
+                    </div>
+                </div>
             </main>
 
             <!-- RIGHT SIDEBAR -->
@@ -2437,15 +2749,80 @@
                 <div class="sidebar-section">
                     <h3 class="right-sidebar-title bangla">
                         <span>আসন্ন ইভেন্ট</span>
-                        <a href="#" style="font-size: 14px; font-weight: normal; color: var(--primary);">সকল দেখুন</a>
+                        <a href="#" onclick="app.navigateTo('events')" style="font-size: 14px; font-weight: normal; color: var(--primary);">সকল দেখুন</a>
                     </h3>
                     
                     <div id="upcomingEvents">
                         <!-- Events will be loaded here -->
                     </div>
                 </div>
+                
+                <hr class="sidebar-divider">
+                
+                <!-- Ad Banner in Right Sidebar -->
+                <div class="sidebar-section">
+                    <div class="ad-banner" style="margin-top: 10px;">
+                        <div class="ad-label">বিজ্ঞাপন</div>
+                        <div class="ad-banner-content" style="min-height: 250px;">
+                            <i class="fas fa-ad"></i> আপনার বিজ্ঞাপন এখানে
+                        </div>
+                    </div>
+                </div>
             </aside>
         </div>
+        
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">হেবি</div>
+                            <span class="footer-logo-text">হ্যালো বাংলাদেশী</span>
+                        </div>
+                        <p class="footer-desc">স্থানীয় বাংলাদেশীদের সাথে সংযোগ স্থাপনের জন্য একটি সম্পূর্ণ সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম।</p>
+                        <div class="footer-social">
+                            <a href="https://facebook.com/hellobangladeshi" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/hellobangladeshi" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/hellobangladeshi" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/company/hellobangladeshi" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">দ্রুত লিংক</h3>
+                        <ul class="footer-links">
+                            <li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> বাড়ি</a></li>
+                            <li><a onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li>
+                            <li><a onclick="app.navigateTo('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li>
+                            <li><a onclick="app.navigateTo('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">আইনি</h3>
+                        <ul class="footer-links">
+                            <li><a onclick="app.navigateTo('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li>
+                            <li><a onclick="app.navigateTo('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li>
+                            <li><a onclick="app.navigateTo('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="footer-title">যোগাযোগ</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> support@hellobangladeshi.com</li>
+                            <li><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</li>
+                            <li><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত। Developed with <i class="fas fa-heart" style="color: #ff4757;"></i> by Forabee Walid</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- AUTH MODAL -->
@@ -3160,6 +3537,13 @@
                         break;
                     case 'settings':
                         this.loadSettingsView();
+                        break;
+                    case 'privacy':
+                    case 'terms':
+                    case 'about':
+                    case 'events':
+                    case 'groups':
+                        // These views are already loaded with placeholder content
                         break;
                 }
             },
