@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইভেন্ট - হ্যালো বাংলাদেশী</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: #f7fafc;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #006A4E, #008060);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .event-filters {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: #f7fafc;
+            color: #4a5568;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .filter-btn.active {
+            background: #006A4E;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: #006A4E;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .event-image {
+            height: 200px;
+            background: linear-gradient(135deg, #006A4E, #008060);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-date-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .event-day {
+            font-size: 24px;
+            font-weight: 700;
+            color: #006A4E;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 12px;
+            color: #718096;
+        }
+        
+        .event-content {
+            padding: 20px;
+        }
+        
+        .event-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .event-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        .event-info-item i {
+            width: 20px;
+            color: #006A4E;
+        }
+        
+        .event-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .event-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        
+        .event-stat {
+            text-align: center;
+        }
+        
+        .event-stat-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #006A4E;
+        }
+        
+        .event-stat-label {
+            font-size: 12px;
+            color: #718096;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #006A4E, #008060);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,106,78,0.3);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            color: #006A4E;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #006A4E;
+        }
+        
+        .back-button:hover {
+            background: #006A4E;
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            .event-filters {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>হোমে ফিরুন</span>
+    </a>
+    
+    <div class="header">
+        <h1>আসন্ন ইভেন্ট</h1>
+        <p>বাংলাদেশী কমিউনিটির সাথে সংযুক্ত হোন</p>
+    </div>
+    
+    <div class="container">
+        <div class="event-filters">
+            <button class="filter-btn active" onclick="filterEvents('all')">সকল</button>
+            <button class="filter-btn" onclick="filterEvents('online')">অনলাইন</button>
+            <button class="filter-btn" onclick="filterEvents('offline')">অফলাইন</button>
+            <button class="filter-btn" onclick="filterEvents('tech')">টেক</button>
+            <button class="filter-btn" onclick="filterEvents('business')">বিজনেস</button>
+            <button class="filter-btn" onclick="filterEvents('social')">সামাজিক</button>
+        </div>
+        
+        <div class="events-grid" id="eventsGrid">
+            <!-- Events will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        const events = [
+            {
+                id: 1,
+                title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং মিটআপ',
+                date: '2024-03-15',
+                time: '১০:০০ AM - ৫:০০ PM',
+                location: 'ঢাকা, বাংলাদেশ',
+                type: 'offline',
+                category: 'tech',
+                description: 'বাংলাদেশের আইটি পেশাজীবীদের জন্য একটি বিশেষ নেটওয়ার্কিং ইভেন্ট। ক্যারিয়ার গ্রোথ, নতুন টেকনোলজি এবং নেটওয়ার্কিংয়ের সুযোগ।',
+                attendees: 150,
+                maxAttendees: 200,
+                image: 'tech'
+            },
+            {
+                id: 2,
+                title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন',
+                date: '2024-03-20',
+                time: '৩:০০ PM - ৬:০০ PM',
+                location: 'অনলাইন (Zoom)',
+                type: 'online',
+                category: 'business',
+                description: 'নতুন উদ্যোক্তাদের জন্য স্টার্টআপ আইডিয়া শেয়ারিং এবং মেন্টরশিপ সেশন। সফল উদ্যোক্তাদের সাথে সরাসরি আলোচনার সুযোগ।',
+                attendees: 85,
+                maxAttendees: 100,
+                image: 'business'
+            },
+            {
+                id: 3,
+                title: 'ক্যারিয়ার গাইডেন্স সেমিনার',
+                date: '2024-03-25',
+                time: '৯:০০ AM - ১:০০ PM',
+                location: 'চট্টগ্রাম, বাংলাদেশ',
+                type: 'offline',
+                category: 'social',
+                description: 'তরুণদের জন্য ক্যারিয়ার গাইডেন্স সেমিনার। বিভিন্ন প্রফেশনালের সাথে আলোচনা এবং ক্যারিয়ার পরামর্শ।',
+                attendees: 200,
+                maxAttendees: 250,
+                image: 'career'
+            },
+            {
+                id: 4,
+                title: 'ফ্রিল্যান্সিং ওয়েবিনার',
+                date: '2024-03-28',
+                time: '৭:০০ PM - ৯:০০ PM',
+                location: 'অনলাইন (Facebook Live)',
+                type: 'online',
+                category: 'tech',
+                description: 'ফ্রিল্যান্সিং ক্যারিয়ার শুরু করতে চান? সফল ফ্রিল্যান্সারদের টিপস এবং কৌশল জানুন।',
+                attendees: 320,
+                maxAttendees: 500,
+                image: 'freelance'
+            },
+            {
+                id: 5,
+                title: 'বাংলাদেশী কমিউনিটি পিকনিক',
+                date: '2024-04-05',
+                time: '৮:০০ AM - ৫:০০ PM',
+                location: 'সাভার, ঢাকা',
+                type: 'offline',
+                category: 'social',
+                description: 'বাংলাদেশী কমিউনিটির জন্য বার্ষিক পিকনিক। পরিবার-পরিজন নিয়ে আনন্দঘন সময় কাটান।',
+                attendees: 450,
+                maxAttendees: 600,
+                image: 'picnic'
+            },
+            {
+                id: 6,
+                title: 'ডিজিটাল মার্কেটিং মাস্টারক্লাস',
+                date: '2024-04-10',
+                time: '১০:০০ AM - ৪:০০ PM',
+                location: 'রাজশাহী, বাংলাদেশ',
+                type: 'offline',
+                category: 'business',
+                description: 'ডিজিটাল মার্কেটিংয়ের最新 কৌশল এবং টেকনিক শিখুন। হ্যান্ডস-অন ট্রেনিং সহ বিশেষ সেশন।',
+                attendees: 60,
+                maxAttendees: 80,
+                image: 'marketing'
+            }
+        ];
+        
+        function renderEvents(filter = 'all') {
+            const container = document.getElementById('eventsGrid');
+            let filteredEvents = events;
+            
+            if (filter !== 'all') {
+                filteredEvents = events.filter(event => event.type === filter || event.category === filter);
+            }
+            
+            if (filteredEvents.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                        <i class="fas fa-calendar-times" style="font-size: 60px; color: #cbd5e0;"></i>
+                        <h3 style="margin-top: 20px; color: #4a5568;">কোন ইভেন্ট পাওয়া যায়নি</h3>
+                        <p style="color: #718096;">শীঘ্রই নতুন ইভেন্ট যোগ হবে</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredEvents.map(event => `
+                <div class="event-card">
+                    <div class="event-image">
+                        <div class="event-date-badge">
+                            <div class="event-day">${new Date(event.date).getDate()}</div>
+                            <div class="event-month">${new Date(event.date).toLocaleString('bn-BD', { month: 'short' })}</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">${event.title}</h3>
+                        <div class="event-info">
+                            <div class="event-info-item">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>${new Date(event.date).toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' })} | ${event.time}</span>
+                            </div>
+                            <div class="event-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${event.location}</span>
+                            </div>
+                            <div class="event-info-item">
+                                <i class="fas ${event.type === 'online' ? 'fa-wifi' : 'fa-users'}"></i>
+                                <span>${event.type === 'online' ? 'অনলাইন ইভেন্ট' : 'অফলাইন ইভেন্ট'}</span>
+                            </div>
+                        </div>
+                        <p class="event-description">${event.description}</p>
+                        <div class="event-stats">
+                            <div class="event-stat">
+                                <div class="event-stat-number">${event.attendees}</div>
+                                <div class="event-stat-label">নিবন্ধিত</div>
+                            </div>
+                            <div class="event-stat">
+                                <div class="event-stat-number">${event.maxAttendees - event.attendees}</div>
+                                <div class="event-stat-label">খালি আসন</div>
+                            </div>
+                        </div>
+                        <button class="btn-register" onclick="registerEvent(${event.id})">
+                            <i class="fas fa-ticket-alt"></i> নিবন্ধন করুন
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function filterEvents(type) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderEvents(type);
+        }
+        
+        function registerEvent(eventId) {
+            alert('ইভেন্টে নিবন্ধনের জন্য লগইন করুন!');
+        }
+        
+        // Initial render
+        renderEvents('all');
+    </script>
+</body>
+</html>
