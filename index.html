@@ -2238,7 +2238,7 @@
 
                 <nav class="nav-center">
                     <span class="nav-link active" onclick="app.navigateTo('home')">
-                        <i class="fas fa-home"></i> বাড়ি
+                        <i class="fas fa-home"></i> হোম
                     </span>
                     <span class="nav-link" onclick="app.navigateTo('search')">
                         <i class="fas fa-search"></i> খুঁজুন
@@ -2299,7 +2299,7 @@
             <nav class="mobile-nav">
                 <div class="mobile-nav-item active" onclick="app.navigateTo('home'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-home"></i></span>
-                    <span>বাড়ি</span>
+                    <span>হোম</span>
                 </div>
                 <div class="mobile-nav-item" onclick="app.navigateTo('search'); app.toggleMobileMenu()">
                     <span class="mobile-nav-icon"><i class="fas fa-search"></i></span>
@@ -2364,7 +2364,7 @@
                     <div class="sidebar-title">মূল মেনু</div>
                     <div class="sidebar-item active" onclick="app.navigateTo('home')">
                         <span class="sidebar-icon"><i class="fas fa-home"></i></span>
-                        <span>বাড়ি</span>
+                        <span>হোম</span>
                     </div>
                     <div class="sidebar-item" onclick="app.navigateTo('search')">
                         <span class="sidebar-icon"><i class="fas fa-search"></i></span>
@@ -2792,7 +2792,7 @@
                     <div>
                         <h3 class="footer-title">দ্রুত লিংক</h3>
                         <ul class="footer-links">
-                            <li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> বাড়ি</a></li>
+                            <li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> হোম</a></li>
                             <li><a onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li>
                             <li><a onclick="app.navigateTo('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li>
                             <li><a onclick="app.navigateTo('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li>
@@ -3109,6 +3109,7 @@
                         if (radiusDisplay) {
                             radiusDisplay.textContent = `${e.target.value} কিমি`;
                         }
+                        this.performSearch(document.getElementById('searchInput')?.value || '');
                     });
                 }
                 
@@ -3212,6 +3213,7 @@
                         location: 'ঢাকা, বাংলাদেশ',
                         bio: 'ফুল-স্ট্যাক ডেভেলপার, ওয়েব টেকনোলজি এবং AI এ আগ্রহী।',
                         rating: 4.8,
+                        followers: 1245,
                         connections: 245,
                         online: true,
                         verified: true,
@@ -3224,9 +3226,10 @@
                         location: 'চট্টগ্রাম, বাংলাদেশ',
                         bio: 'ক্রিয়েটিভ ডিজাইনার, UI/UX এবং ব্র্যান্ডিং বিশেষজ্ঞ।',
                         rating: 4.9,
+                        followers: 856,
                         connections: 189,
                         online: true,
-                        verified: true,
+                        verified: false,
                         distance: 5.2
                     },
                     {
@@ -3236,6 +3239,7 @@
                         location: 'সিলেট, বাংলাদেশ',
                         bio: 'হৃদরোগ বিশেষজ্ঞ, স্বাস্থ্য সচেতনতা নিয়ে কাজ করতে পছন্দ করি।',
                         rating: 4.7,
+                        followers: 2340,
                         connections: 312,
                         online: false,
                         verified: true,
@@ -3248,6 +3252,7 @@
                         location: 'খুলনা, বাংলাদেশ',
                         bio: 'ইংরেজি সাহিত্যের অধ্যাপক, পড়ানো এবং লেখালেখি আমার নেশা।',
                         rating: 4.9,
+                        followers: 567,
                         connections: 156,
                         online: true,
                         verified: false,
@@ -3260,6 +3265,7 @@
                         location: 'রাজশাহী, বাংলাদেশ',
                         bio: 'আইটি কোম্পানির মালিক, স্টার্টআপ এবং বিনিয়োগে আগ্রহী।',
                         rating: 4.6,
+                        followers: 3240,
                         connections: 421,
                         online: true,
                         verified: true,
@@ -3272,6 +3278,7 @@
                         location: 'ঢাকা, বাংলাদেশ',
                         bio: 'মেশিন লার্নিং এবং ডাটা অ্যানালাইসিসে অভিজ্ঞ, গবেষণায় আগ্রহী।',
                         rating: 4.8,
+                        followers: 980,
                         connections: 278,
                         online: false,
                         verified: true,
@@ -3422,6 +3429,7 @@
                                     bio: 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।',
                                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                                     rating: 0,
+                                    followers: 0,
                                     connections: 0,
                                     verified: false,
                                     online: true
@@ -3562,26 +3570,32 @@
                 if (searchResults) {
                     searchResults.innerHTML = '<div class="loading"><div class="spinner"></div><p class="bangla">অনুসন্ধান প্রস্তুত...</p></div>';
                 }
+                // Clear search input
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                this.performSearch('');
             },
             
-            // Perform search
+            // Perform search with distance filter
             performSearch(query) {
                 const searchResults = document.getElementById('searchResults');
                 if (!searchResults) return;
                 
-                if (!query.trim()) {
-                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">অনুসন্ধান করুন</h3><p class="bangla">ব্যক্তি, চাকরি বা গোষ্ঠী খুঁজতে অনুসন্ধান বার ব্যবহার করুন</p></div>';
-                    return;
-                }
+                const radius = parseInt(document.getElementById('radiusInput')?.value || 100);
                 
-                const filteredUsers = this.usersData.filter(user => 
-                    user.name.toLowerCase().includes(query.toLowerCase()) ||
-                    user.profession.toLowerCase().includes(query.toLowerCase()) ||
-                    user.location.toLowerCase().includes(query.toLowerCase())
-                );
+                let filteredUsers = this.usersData.filter(user => {
+                    const matchesSearch = !query.trim() || 
+                        user.name.toLowerCase().includes(query.toLowerCase()) ||
+                        user.profession.toLowerCase().includes(query.toLowerCase()) ||
+                        user.location.toLowerCase().includes(query.toLowerCase());
+                    
+                    const matchesDistance = user.distance <= radius;
+                    
+                    return matchesSearch && matchesDistance;
+                });
                 
                 if (filteredUsers.length === 0) {
-                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3><p class="bangla">"' + query + '" এর জন্য কোনো মিল পাওয়া যায়নি</p></div>';
+                    searchResults.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3><p class="bangla">"' + (query || 'সার্চ ক্যাটাগরি') + '" এর জন্য কোনো মিল পাওয়া যায়নি</p></div>';
                 } else {
                     this.renderSearchResults(filteredUsers);
                 }
@@ -3595,9 +3609,9 @@
             // Load chat view
             loadChatView() {
                 if (!this.currentUser) {
-                    const chatView = document.getElementById('chatView');
-                    if (chatView) {
-                        chatView.innerHTML = `
+                    const chatContainer = document.querySelector('#chatView .chat-container');
+                    if (chatContainer) {
+                        chatContainer.innerHTML = `
                             <div class="empty-state">
                                 <div class="empty-state-icon">
                                     <i class="fas fa-lock"></i>
@@ -3630,23 +3644,26 @@
                     return;
                 }
                 
+                // Find user data or use default
+                const userData = this.usersData.find(u => u.name.includes(this.currentUser.displayName?.split(' ')[0])) || this.usersData[0];
+                
                 profileContent.innerHTML = `
                     <div class="profile-header">
                         <div class="profile-avatar-large" id="profileAvatar">${(this.currentUser.displayName || this.currentUser.email).charAt(0).toUpperCase()}</div>
                         <h1 class="profile-name bangla" id="profileName">${this.currentUser.displayName || this.currentUser.email.split('@')[0]}</h1>
-                        <p class="profile-profession bangla" id="profileProfession">হ্যালো বাংলাদেশী সদস্য</p>
+                        <p class="profile-profession bangla" id="profileProfession">${userData?.profession || 'হ্যালো বাংলাদেশী সদস্য'}</p>
                         
                         <div class="profile-stats">
                             <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileConnections">${Math.floor(Math.random() * 100) + 50}</span>
+                                <span class="profile-stat-value" id="profileFollowers">${userData?.followers || Math.floor(Math.random() * 1000) + 100}</span>
+                                <span class="profile-stat-label bangla">ফলোয়ার</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-value" id="profileConnections">${userData?.connections || Math.floor(Math.random() * 500) + 50}</span>
                                 <span class="profile-stat-label bangla">সংযোগ</span>
                             </div>
                             <div class="profile-stat">
-                                <span class="profile-stat-value" id="profilePosts">${Math.floor(Math.random() * 50) + 10}</span>
-                                <span class="profile-stat-label bangla">পোস্ট</span>
-                            </div>
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileRating">${(Math.random() * 1 + 4).toFixed(1)}</span>
+                                <span class="profile-stat-value" id="profileRating">${userData?.rating || (Math.random() * 1 + 4).toFixed(1)}</span>
                                 <span class="profile-stat-label bangla">রেটিং</span>
                             </div>
                         </div>
@@ -3656,14 +3673,29 @@
                         <div>
                             <div class="profile-section">
                                 <h2 class="profile-section-title bangla">আমার সম্পর্কে</h2>
-                                <p id="profileBio" class="bangla" style="line-height: 1.8;">হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ। স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হতে পছন্দ করি।</p>
+                                <p id="profileBio" class="bangla" style="line-height: 1.8;">${userData?.bio || 'হ্যালো! আমি হ্যালো বাংলাদেশী সম্প্রদায়ের অংশ। স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হতে পছন্দ করি।'}</p>
                             </div>
                             
                             <div class="profile-section">
                                 <h2 class="profile-section-title bangla">পেশাগত তথ্য</h2>
                                 <div id="profileProfessionalInfo">
                                     <p><i class="fas fa-envelope"></i> ${this.currentUser.email}</p>
+                                    <p><i class="fas fa-map-marker-alt"></i> ${userData?.location || 'ঢাকা, বাংলাদেশ'}</p>
                                     <p><i class="fas fa-calendar-alt"></i> যোগদান: ${new Date().toLocaleDateString('bn-BD')}</p>
+                                    ${userData?.verified ? '<p><i class="fas fa-check-circle" style="color: var(--accent-green);"></i> যাচাইকৃত অ্যাকাউন্ট</p>' : ''}
+                                </div>
+                            </div>
+                            
+                            <!-- Verification Section -->
+                            <div class="profile-section">
+                                <h2 class="profile-section-title bangla">অ্যাকাউন্ট ভেরিফিকেশন</h2>
+                                <div id="verificationInfo">
+                                    ${userData?.followers >= 1000 ? 
+                                        '<p><i class="fas fa-check-circle" style="color: var(--accent-green);"></i> আপনার ১০০০+ ফলোয়ার আছে! আপনি ফ্রিতে ভেরিফাইড হতে পারেন। <button class="btn btn-primary btn-small mt-2" onclick="app.verifyAccountFree()">ফ্রি ভেরিফাই করুন</button></p>' : 
+                                        `<p><i class="fas fa-info-circle"></i> ভেরিফিকেশনের জন্য প্রয়োজন ১০০০+ ফলোয়ার অথবা প্রিমিয়াম সাবস্ক্রিপশন।</p>
+                                        <p>আপনার বর্তমান ফলোয়ার: ${userData?.followers || 0}</p>
+                                        <button class="btn btn-primary btn-small mt-2" onclick="app.verifyAccountPaid()">প্রিমিয়াম ভেরিফিকেশন (৳৫০০)</button>`
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -3702,6 +3734,17 @@
                         </div>
                     </div>
                 `;
+            },
+            
+            // Verification functions
+            verifyAccountFree() {
+                this.showToast('অভিনন্দন! আপনার অ্যাকাউন্ট ফ্রিতে ভেরিফাইড হয়েছে!', 'success');
+                // In real app, update Firestore
+            },
+            
+            verifyAccountPaid() {
+                this.showToast('প্রিমিয়াম ভেরিফিকেশন প্রক্রিয়া শুরু হয়েছে। পেমেন্ট পৃষ্ঠায় যান।', 'info');
+                // In real app, redirect to payment
             },
             
             // Load settings view
@@ -3747,22 +3790,22 @@
                         
                         <div class="user-card-stats">
                             <div class="stat-item">
-                                <div class="stat-value">${user.rating}</div>
-                                <div class="stat-label bangla">রেটিং</div>
+                                <div class="stat-value">${user.followers}</div>
+                                <div class="stat-label bangla">ফলোয়ার</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">${user.connections}</div>
                                 <div class="stat-label bangla">সংযোগ</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">${user.online ? 'অনলাইন' : 'অফলাইন'}</div>
-                                <div class="stat-label bangla">অবস্থা</div>
+                                <div class="stat-value">${user.rating}</div>
+                                <div class="stat-label bangla">রেটিং</div>
                             </div>
                         </div>
                         
                         <div class="user-card-actions">
                             <button class="btn btn-primary bangla" onclick="app.handleConnect('${user.id}')">
-                                <i class="fas fa-user-plus"></i> সংযুক্ত হন
+                                <i class="fas fa-user-plus"></i> ফলো
                             </button>
                             <button class="btn btn-secondary bangla" onclick="app.handleChat('${user.id}')">
                                 <i class="fas fa-comment"></i> চ্যাট
@@ -3773,13 +3816,13 @@
                 return div;
             },
             
-            // Handle connect action
+            // Handle connect/follow action
             handleConnect(userId) {
                 if (!this.currentUser) {
-                    this.showLoginRequiredModal('সংযোগ করতে');
+                    this.showLoginRequiredModal('ফলো করতে');
                     return;
                 }
-                this.showToast('সংযোগ অনুরোধ পাঠানো হয়েছে!', 'success');
+                this.showToast('ফলো অনুরোধ পাঠানো হয়েছে!', 'success');
             },
             
             // Handle chat action
@@ -3883,11 +3926,6 @@
                 
                 container.innerHTML = '';
                 
-                if (results.length === 0) {
-                    container.innerHTML = '<div class="empty-state"><h3 class="bangla">কোন ফলাফল পাওয়া যায়নি</h3></div>';
-                    return;
-                }
-                
                 results.forEach(user => {
                     const userCard = this.createUserCard(user);
                     container.appendChild(userCard);
@@ -3950,7 +3988,7 @@
                 }
                 this.showToast('আবেদন জমা দেওয়া হচ্ছে...', 'info');
                 setTimeout(() => {
-                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে!', 'success');
+                    this.showToast('চাকরিতে সফলভাবে আবেদন করা হয়েছে! পোস্টকারীকে নোটিফিকেশন পাঠানো হয়েছে।', 'success');
                 }, 1000);
             },
             
@@ -3988,7 +4026,7 @@
             filterUsers(filter) {
                 const tabs = document.querySelectorAll('.feed-tab');
                 tabs.forEach(tab => tab.classList.remove('active'));
-                event.target.classList.add('active');
+                if (event && event.target) event.target.classList.add('active');
                 
                 let filteredUsers = [];
                 
@@ -4053,31 +4091,38 @@
                     this.showToast('চাকরি সফলভাবে পোস্ট হয়েছে!', 'success');
                     
                     ['jobTitle', 'jobCompany', 'jobLocation', 'jobSalary', 'jobDescription', 'jobSkills'].forEach(id => {
-                        document.getElementById(id).value = '';
+                        const el = document.getElementById(id);
+                        if (el) el.value = '';
                     });
-                    document.getElementById('jobType').selectedIndex = 0;
+                    const jobTypeSelect = document.getElementById('jobType');
+                    if (jobTypeSelect) jobTypeSelect.selectedIndex = 0;
                 }, 1500);
             },
             
             // Chat functions
             openChat(chat) {
-                document.getElementById('chatWindow').style.display = 'flex';
-                document.getElementById('chatEmptyState').style.display = 'none';
+                const chatWindow = document.getElementById('chatWindow');
+                const chatEmptyState = document.getElementById('chatEmptyState');
+                if (chatWindow) chatWindow.style.display = 'flex';
+                if (chatEmptyState) chatEmptyState.style.display = 'none';
                 
-                document.getElementById('chatUserName').textContent = chat.name;
-                document.getElementById('chatUserAvatar').textContent = chat.name.charAt(0);
+                const chatUserName = document.getElementById('chatUserName');
+                const chatUserAvatar = document.getElementById('chatUserAvatar');
+                if (chatUserName) chatUserName.textContent = chat.name;
+                if (chatUserAvatar) chatUserAvatar.textContent = chat.name.charAt(0);
                 
                 this.loadChatMessages(chat.id);
                 
-                const chatItem = event.target.closest('.chat-item');
-                if (chatItem) {
-                    const unreadBadge = chatItem.querySelector('.chat-unread');
-                    if (unreadBadge) {
-                        unreadBadge.remove();
-                    }
-                    document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
-                    chatItem.classList.add('active');
-                }
+                // Update active state
+                document.querySelectorAll('.chat-item').forEach(item => item.classList.remove('active'));
+                const activeItem = Array.from(document.querySelectorAll('.chat-item')).find(item => 
+                    item.querySelector('h4')?.textContent === chat.name
+                );
+                if (activeItem) activeItem.classList.add('active');
+                
+                // Remove unread badge
+                const unreadBadge = activeItem?.querySelector('.chat-unread');
+                if (unreadBadge) unreadBadge.remove();
             },
             
             loadChatMessages(chatId) {
@@ -4087,9 +4132,7 @@
                 const messages = [
                     { text: 'হ্যালো! কেমন আছেন?', sender: 'other', time: '১০:১৫ AM' },
                     { text: 'আলহামদুলিল্লাহ, ভালো আছি। আপনি কেমন আছেন?', sender: 'me', time: '১০:১৬ AM' },
-                    { text: 'আমিও ভালো, ধন্যবাদ। আজকের মিটিং সম্পর্কে জানতে চাচ্ছিলাম।', sender: 'other', time: '১০:১৭ AM' },
-                    { text: 'হ্যাঁ, মিটিং টা বিকাল ৪টায় নির্ধারিত আছে। Zoom লিঙ্ক আমি পরে পাঠিয়ে দিব।', sender: 'me', time: '১০:১৮ AM' },
-                    { text: 'দারুন! তাহলে দেখা হবে বিকালে।', sender: 'other', time: '১০:১৯ AM' }
+                    { text: 'আমিও ভালো, ধন্যবাদ।', sender: 'other', time: '১০:১৭ AM' }
                 ];
                 
                 container.innerHTML = '';
@@ -4117,7 +4160,7 @@
                 }
                 
                 const input = document.getElementById('chatInput');
-                const message = input.value.trim();
+                const message = input?.value.trim();
                 
                 if (!message) return;
                 
@@ -4154,8 +4197,10 @@
             },
             
             closeChat() {
-                document.getElementById('chatWindow').style.display = 'none';
-                document.getElementById('chatEmptyState').style.display = 'flex';
+                const chatWindow = document.getElementById('chatWindow');
+                const chatEmptyState = document.getElementById('chatEmptyState');
+                if (chatWindow) chatWindow.style.display = 'none';
+                if (chatEmptyState) chatEmptyState.style.display = 'flex';
             },
             
             // Modal functions
@@ -4173,10 +4218,9 @@
                     return;
                 }
                 const modal = document.getElementById('editProfileModal');
-                document.getElementById('editName').value = this.currentUser.displayName || '';
-                document.getElementById('editProfession').value = '';
-                document.getElementById('editBio').value = '';
-                modal.classList.add('active');
+                const editName = document.getElementById('editName');
+                if (editName) editName.value = this.currentUser.displayName || '';
+                if (modal) modal.classList.add('active');
             },
             
             updateProfile() {
@@ -4194,46 +4238,48 @@
             },
             
             closeModal(modalId) {
-                document.getElementById(modalId).classList.remove('active');
+                const modal = document.getElementById(modalId);
+                if (modal) modal.classList.remove('active');
             },
             
             // Auth tabs
             showLoginTab() {
-                document.getElementById('loginForm').classList.remove('hidden');
-                document.getElementById('signupForm').classList.add('hidden');
+                const loginForm = document.getElementById('loginForm');
+                const signupForm = document.getElementById('signupForm');
+                if (loginForm) loginForm.classList.remove('hidden');
+                if (signupForm) signupForm.classList.add('hidden');
                 
                 const tabs = document.querySelectorAll('.auth-tab');
-                tabs[0].classList.add('active');
-                tabs[1].classList.remove('active');
+                if (tabs[0]) tabs[0].classList.add('active');
+                if (tabs[1]) tabs[1].classList.remove('active');
             },
             
             showSignupTab() {
-                document.getElementById('loginForm').classList.add('hidden');
-                document.getElementById('signupForm').classList.remove('hidden');
+                const loginForm = document.getElementById('loginForm');
+                const signupForm = document.getElementById('signupForm');
+                if (loginForm) loginForm.classList.add('hidden');
+                if (signupForm) signupForm.classList.remove('hidden');
                 
                 const tabs = document.querySelectorAll('.auth-tab');
-                tabs[0].classList.remove('active');
-                tabs[1].classList.add('active');
+                if (tabs[0]) tabs[0].classList.remove('active');
+                if (tabs[1]) tabs[1].classList.add('active');
             },
             
             // Mobile menu
             toggleMobileMenu() {
-                document.getElementById('mobileMenu').classList.toggle('active');
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) mobileMenu.classList.toggle('active');
             },
             
             // User dropdown
             toggleUserDropdown() {
                 const dropdown = document.getElementById('userDropdown');
-                if (dropdown) {
-                    dropdown.classList.toggle('active');
-                }
+                if (dropdown) dropdown.classList.toggle('active');
             },
             
             hideUserDropdown() {
                 const dropdown = document.getElementById('userDropdown');
-                if (dropdown) {
-                    dropdown.classList.remove('active');
-                }
+                if (dropdown) dropdown.classList.remove('active');
             },
             
             // Toast notifications
@@ -4269,9 +4315,8 @@
                 toastContainer.appendChild(toast);
                 
                 setTimeout(() => {
-                    if (document.getElementById(toastId)) {
-                        document.getElementById(toastId).remove();
-                    }
+                    const el = document.getElementById(toastId);
+                    if (el) el.remove();
                 }, 5000);
             },
             
@@ -4281,7 +4326,9 @@
                 if (errorElement) {
                     errorElement.textContent = message;
                     errorElement.style.display = 'block';
-                    setTimeout(() => errorElement.style.display = 'none', 5000);
+                    setTimeout(() => {
+                        if (errorElement) errorElement.style.display = 'none';
+                    }, 5000);
                 }
                 this.showToast(message, 'error');
             },
