@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্রুপ - হ্যালো বাংলাদেশী</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: #f7fafc;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #006A4E, #008060);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .create-group-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .create-group-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        
+        .create-group-info p {
+            color: #718096;
+        }
+        
+        .btn-create {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #006A4E, #008060);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,106,78,0.3);
+        }
+        
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .group-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .group-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .group-banner {
+            height: 120px;
+            background: linear-gradient(135deg, #006A4E, #008060);
+            position: relative;
+        }
+        
+        .group-avatar {
+            position: absolute;
+            bottom: -40px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #006A4E;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+        
+        .group-content {
+            padding: 50px 20px 20px;
+        }
+        
+        .group-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        
+        .group-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #f7fafc;
+            border-radius: 50px;
+            font-size: 12px;
+            color: #006A4E;
+            margin-bottom: 15px;
+        }
+        
+        .group-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .group-stats {
+            display: flex;
+            gap: 20px;
+            padding: 15px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+        
+        .group-stat {
+            text-align: center;
+        }
+        
+        .group-stat-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #006A4E;
+        }
+        
+        .group-stat-label {
+            font-size: 12px;
+            color: #718096;
+        }
+        
+        .btn-join {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #f7fafc;
+            color: #006A4E;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-join:hover {
+            background: #006A4E;
+            color: white;
+            border-color: #006A4E;
+        }
+        
+        .btn-joined {
+            background: #006A4E;
+            color: white;
+            border-color: #006A4E;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            color: #006A4E;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #006A4E;
+        }
+        
+        .back-button:hover {
+            background: #006A4E;
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .groups-grid {
+                grid-template-columns: 1fr;
+            }
+            .create-group-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>হোমে ফিরুন</span>
+    </a>
+    
+    <div class="header">
+        <h1>গ্রুপ</h1>
+        <p>আপনার আগ্রহের গ্রুপে যোগ দিন</p>
+    </div>
+    
+    <div class="container">
+        <div class="create-group-card">
+            <div class="create-group-info">
+                <h3>নতুন গ্রুপ তৈরি করুন</h3>
+                <p>আপনার আগ্রহের বিষয়ে একটি গ্রুপ তৈরি করুন এবং অন্যদের সাথে সংযুক্ত হোন</p>
+            </div>
+            <button class="btn-create" onclick="createGroup()">
+                <i class="fas fa-plus"></i> গ্রুপ তৈরি করুন
+            </button>
+        </div>
+        
+        <div class="groups-grid" id="groupsGrid">
+            <!-- Groups will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        const groups = [
+            {
+                id: 1,
+                name: 'বাংলাদেশী শিক্ষার্থী',
+                category: 'শিক্ষা',
+                description: 'বাংলাদেশের বিভিন্ন শিক্ষাপ্রতিষ্ঠানের শিক্ষার্থীদের জন্য একটি প্ল্যাটফর্ম। পড়াশোনা, ক্যারিয়ার এবং অভিজ্ঞতা শেয়ার করুন।',
+                members: 1250,
+                posts: 340,
+                isJoined: false,
+                icon: 'fa-graduation-cap'
+            },
+            {
+                id: 2,
+                name: 'আইটি পেশাজীবী',
+                category: 'প্রযুক্তি',
+                description: 'আইটি সেক্টরে কর্মরত বাংলাদেশীদের জন্য গ্রুপ। নতুন টেকনোলজি, জব সুযোগ এবং প্রজেক্ট নিয়ে আলোচনা।',
+                members: 3420,
+                posts: 890,
+                isJoined: true,
+                icon: 'fa-laptop-code'
+            },
+            {
+                id: 3,
+                name: 'ব্যবসায়ী নেটওয়ার্ক',
+                category: 'ব্যবসা',
+                description: 'উদ্যোক্তা এবং ব্যবসায়ীদের জন্য নেটওয়ার্কিং গ্রুপ। ব্যবসার সুযোগ, অংশীদারিত্ব এবং মার্কেটিং টিপস।',
+                members: 2100,
+                posts: 560,
+                isJoined: false,
+                icon: 'fa-chart-line'
+            },
+            {
+                id: 4,
+                name: 'প্রবাসী বাংলাদেশী',
+                category: 'সম্প্রদায়',
+                description: 'বিদেশে বসবাসরত বাংলাদেশীদের জন্য গ্রুপ। অভিজ্ঞতা শেয়ার, সমস্যার সমাধান এবং সংযোগ স্থাপন।',
+                members: 8900,
+                posts: 2100,
+                isJoined: false,
+                icon: 'fa-globe'
+            },
+            {
+                id: 5,
+                name: 'ফ্রিল্যান্সার কমিউনিটি',
+                category: 'ক্যারিয়ার',
+                description: 'ফ্রিল্যান্সারদের জন্য সম্পূর্ণ প্ল্যাটফর্ম। কাজের সুযোগ, ক্লায়েন্ট ম্যানেজমেন্ট এবং স্কিল ডেভেলপমেন্ট।',
+                members: 4500,
+                posts: 1250,
+                isJoined: true,
+                icon: 'fa-briefcase'
+            },
+            {
+                id: 6,
+                name: 'ক্রিয়েটিভ আর্টিস্ট',
+                category: 'সৃজনশীলতা',
+                description: 'শিল্পী, ডিজাইনার এবং ক্রিয়েটিভ ব্যক্তিদের জন্য গ্রুপ। আর্ট, ডিজাইন এবং ক্রিয়েটিভ আইডিয়া শেয়ার করুন।',
+                members: 980,
+                posts: 420,
+                isJoined: false,
+                icon: 'fa-palette'
+            }
+        ];
+        
+        function renderGroups() {
+            const container = document.getElementById('groupsGrid');
+            
+            container.innerHTML = groups.map(group => `
+                <div class="group-card">
+                    <div class="group-banner">
+                        <div class="group-avatar">
+                            <i class="fas ${group.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="group-content">
+                        <h3 class="group-name">${group.name}</h3>
+                        <span class="group-category">${group.category}</span>
+                        <p class="group-description">${group.description}</p>
+                        <div class="group-stats">
+                            <div class="group-stat">
+                                <div class="group-stat-number">${group.members.toLocaleString()}</div>
+                                <div class="group-stat-label">সদস্য</div>
+                            </div>
+                            <div class="group-stat">
+                                <div class="group-stat-number">${group.posts}</div>
+                                <div class="group-stat-label">পোস্ট</div>
+                            </div>
+                        </div>
+                        <button class="btn-join ${group.isJoined ? 'btn-joined' : ''}" onclick="toggleJoin(${group.id})">
+                            <i class="fas ${group.isJoined ? 'fa-check' : 'fa-user-plus'}"></i>
+                            ${group.isJoined ? 'যুক্ত হয়েছেন' : 'যোগ দিন'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function toggleJoin(groupId) {
+            const group = groups.find(g => g.id === groupId);
+            if (group) {
+                group.isJoined = !group.isJoined;
+                renderGroups();
+                if (group.isJoined) {
+                    alert(`"${group.name}" গ্রুপে যোগ দিয়েছেন!`);
+                } else {
+                    alert(`"${group.name}" গ্রুপ থেকে বের হয়ে গেছেন।`);
+                }
+            }
+        }
+        
+        function createGroup() {
+            alert('গ্রুপ তৈরির জন্য লগইন করুন!');
+        }
+        
+        // Initial render
