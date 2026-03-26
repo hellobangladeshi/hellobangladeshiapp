@@ -305,6 +305,7 @@
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
+            min-height: 500px;
         }
         .feed-header { margin-bottom: var(--spacing-xl); padding-bottom: var(--spacing-lg); border-bottom: 1px solid var(--border-color); }
         .feed-title { font-size: 28px; font-weight: 700; margin-bottom: var(--spacing-sm); }
@@ -627,6 +628,14 @@
         }
         .mobile-nav-item:hover { background: var(--bg-light); color: var(--primary); }
 
+        /* Iframe for external pages */
+        .page-iframe {
+            width: 100%;
+            height: 70vh;
+            border: none;
+            border-radius: var(--radius-md);
+        }
+
         @media (max-width: 1200px) { .main-content { grid-template-columns: 250px 1fr; } .right-sidebar { display: none; } }
         @media (max-width: 992px) { .main-content { grid-template-columns: 1fr; } .sidebar { display: none; } .profile-content { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .nav-center { display: none; } .mobile-menu-btn { display: block; } .user-name { display: none; } .grid-users { grid-template-columns: 1fr; } }
@@ -672,9 +681,9 @@
                         <a onclick="app.navigateTo('profile'); app.hideUserDropdown()"><i class="fas fa-user"></i> প্রোফাইল</a>
                         <a onclick="app.navigateTo('settings'); app.hideUserDropdown()"><i class="fas fa-cog"></i> সেটিংস</a>
                         <hr>
-                        <a onclick="app.navigateTo('privacy'); app.hideUserDropdown()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
-                        <a onclick="app.navigateTo('terms'); app.hideUserDropdown()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
-                        <a onclick="app.navigateTo('about'); app.hideUserDropdown()"><i class="fas fa-code"></i> ডেভেলপার</a>
+                        <a onclick="app.navigateToPage('privacy')"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
+                        <a onclick="app.navigateToPage('terms')"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
+                        <a onclick="app.navigateToPage('about')"><i class="fas fa-code"></i> ডেভেলপার</a>
                         <hr>
                         <a onclick="app.logout(); app.hideUserDropdown()" style="color: var(--accent-red);"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
                     </div>
@@ -693,12 +702,12 @@
                 <div class="mobile-nav-item" onclick="app.navigateTo('jobs'); app.toggleMobileMenu()"><i class="fas fa-briefcase"></i> চাকরি</div>
                 <div class="mobile-nav-item" onclick="app.navigateTo('chat'); app.toggleMobileMenu()"><i class="fas fa-comments"></i> চ্যাট</div>
                 <div class="mobile-nav-item" onclick="app.navigateTo('profile'); app.toggleMobileMenu()"><i class="fas fa-user"></i> প্রোফাইল</div>
-                <div class="mobile-nav-item" onclick="app.navigateTo('events'); app.toggleMobileMenu()"><i class="fas fa-calendar-alt"></i> ইভেন্ট</div>
-                <div class="mobile-nav-item" onclick="app.navigateTo('groups'); app.toggleMobileMenu()"><i class="fas fa-users"></i> গ্রুপ</div>
+                <div class="mobile-nav-item" onclick="app.navigateToPage('events'); app.toggleMobileMenu()"><i class="fas fa-calendar-alt"></i> ইভেন্ট</div>
+                <div class="mobile-nav-item" onclick="app.navigateToPage('groups'); app.toggleMobileMenu()"><i class="fas fa-users"></i> গ্রুপ</div>
                 <hr class="sidebar-divider">
-                <div class="mobile-nav-item" onclick="app.navigateTo('privacy'); app.toggleMobileMenu()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</div>
-                <div class="mobile-nav-item" onclick="app.navigateTo('terms'); app.toggleMobileMenu()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</div>
-                <div class="mobile-nav-item" onclick="app.navigateTo('about'); app.toggleMobileMenu()"><i class="fas fa-code"></i> ডেভেলপার</div>
+                <div class="mobile-nav-item" onclick="app.navigateToPage('privacy'); app.toggleMobileMenu()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</div>
+                <div class="mobile-nav-item" onclick="app.navigateToPage('terms'); app.toggleMobileMenu()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</div>
+                <div class="mobile-nav-item" onclick="app.navigateToPage('about'); app.toggleMobileMenu()"><i class="fas fa-code"></i> ডেভেলপার</div>
                 <hr class="sidebar-divider">
                 <div class="mobile-nav-item" onclick="app.logout(); app.toggleMobileMenu()"><i class="fas fa-sign-out-alt"></i> লগ আউট</div>
             </nav>
@@ -718,16 +727,16 @@
                 <hr class="sidebar-divider">
                 <div class="sidebar-section">
                     <div class="sidebar-title">গোষ্ঠী</div>
-                    <div class="sidebar-item" onclick="app.navigateTo('groups')"><i class="fas fa-users sidebar-icon"></i><span>বাংলাদেশী শিক্ষার্থী</span></div>
-                    <div class="sidebar-item" onclick="app.navigateTo('groups')"><i class="fas fa-building sidebar-icon"></i><span>আইটি পেশাজীবী</span></div>
-                    <div class="sidebar-item" onclick="app.navigateTo('groups')"><i class="fas fa-store sidebar-icon"></i><span>ব্যবসায়ী নেটওয়ার্ক</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('groups')"><i class="fas fa-users sidebar-icon"></i><span>বাংলাদেশী শিক্ষার্থী</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('groups')"><i class="fas fa-building sidebar-icon"></i><span>আইটি পেশাজীবী</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('groups')"><i class="fas fa-store sidebar-icon"></i><span>ব্যবসায়ী নেটওয়ার্ক</span></div>
                 </div>
                 <hr class="sidebar-divider">
                 <div class="sidebar-section">
-                    <div class="sidebar-item" onclick="app.navigateTo('events')"><i class="fas fa-calendar-alt sidebar-icon"></i><span>ইভেন্ট</span></div>
-                    <div class="sidebar-item" onclick="app.navigateTo('privacy')"><i class="fas fa-shield-alt sidebar-icon"></i><span>গোপনীয়তা নীতি</span></div>
-                    <div class="sidebar-item" onclick="app.navigateTo('terms')"><i class="fas fa-file-contract sidebar-icon"></i><span>সেবা শর্তাবলী</span></div>
-                    <div class="sidebar-item" onclick="app.navigateTo('about')"><i class="fas fa-code sidebar-icon"></i><span>ডেভেলপার</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('events')"><i class="fas fa-calendar-alt sidebar-icon"></i><span>ইভেন্ট</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('privacy')"><i class="fas fa-shield-alt sidebar-icon"></i><span>গোপনীয়তা নীতি</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('terms')"><i class="fas fa-file-contract sidebar-icon"></i><span>সেবা শর্তাবলী</span></div>
+                    <div class="sidebar-item" onclick="app.navigateToPage('about')"><i class="fas fa-code sidebar-icon"></i><span>ডেভেলপার</span></div>
                     <div class="sidebar-item" onclick="app.navigateTo('settings')"><i class="fas fa-cog sidebar-icon"></i><span>সেটিংস</span></div>
                 </div>
             </aside>
@@ -782,34 +791,13 @@
                     </div>
                 </div>
 
-                <!-- PRIVACY VIEW -->
-                <div id="privacyView" class="hidden">
-                    <div class="feed-header"><h1 class="feed-title bangla">গোপনীয়তা নীতি</h1><p class="feed-subtitle bangla">আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার</p></div>
-                    <div class="profile-section" id="privacyContent"></div>
-                </div>
-
-                <!-- TERMS VIEW -->
-                <div id="termsView" class="hidden">
-                    <div class="feed-header"><h1 class="feed-title bangla">সেবা শর্তাবলী</h1><p class="feed-subtitle bangla">হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী</p></div>
-                    <div class="profile-section" id="termsContent"></div>
-                </div>
-
-                <!-- ABOUT VIEW -->
-                <div id="aboutView" class="hidden">
-                    <div class="feed-header"><h1 class="feed-title bangla">ডেভেলপার</h1><p class="feed-subtitle bangla">Forabee Walid - ফুল স্ট্যাক ডেভেলপার</p></div>
-                    <div class="profile-section" id="aboutContent"></div>
-                </div>
-
-                <!-- EVENTS VIEW -->
-                <div id="eventsView" class="hidden">
-                    <div class="feed-header"><h1 class="feed-title bangla">ইভেন্ট</h1><p class="feed-subtitle bangla">আসন্ন ইভেন্টসমূহ</p></div>
-                    <div id="eventsList" class="grid-jobs"></div>
-                </div>
-
-                <!-- GROUPS VIEW -->
-                <div id="groupsView" class="hidden">
-                    <div class="feed-header"><h1 class="feed-title bangla">গ্রুপ</h1><p class="feed-subtitle bangla">আপনার আগ্রহের গ্রুপে যোগ দিন</p></div>
-                    <div id="groupsList" class="grid-users"></div>
+                <!-- EXTERNAL PAGE VIEW (for privacy, terms, about, events, groups) -->
+                <div id="externalPageView" class="hidden">
+                    <div class="feed-header">
+                        <h1 class="feed-title bangla" id="externalPageTitle"></h1>
+                        <p class="feed-subtitle bangla" id="externalPageSubtitle"></p>
+                    </div>
+                    <iframe id="externalPageIframe" class="page-iframe" src=""></iframe>
                 </div>
             </main>
 
@@ -819,7 +807,7 @@
                 <hr class="sidebar-divider">
                 <div class="sidebar-section"><h3 class="right-sidebar-title bangla"><span>ট্রেন্ডিং চাকরি</span><a onclick="app.showAllJobs()">সকল দেখুন</a></h3><div id="trendingJobs"></div></div>
                 <hr class="sidebar-divider">
-                <div class="sidebar-section"><h3 class="right-sidebar-title bangla"><span>আসন্ন ইভেন্ট</span><a onclick="app.showAllEvents()">সকল দেখুন</a></h3><div id="upcomingEvents"></div></div>
+                <div class="sidebar-section"><h3 class="right-sidebar-title bangla"><span>আসন্ন ইভেন্ট</span><a onclick="app.navigateToPage('events')">সকল দেখুন</a></h3><div id="upcomingEvents"></div></div>
             </aside>
         </div>
 
@@ -827,8 +815,8 @@
             <div class="footer-container">
                 <div class="footer-grid">
                     <div><div class="footer-logo"><div class="footer-logo-icon">হেবি</div><span class="footer-logo-text">হ্যালো বাংলাদেশী</span></div><p class="footer-desc">স্থানীয় বাংলাদেশীদের সাথে সংযোগ স্থাপনের জন্য একটি সম্পূর্ণ সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম।</p><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
-                    <div><h3 class="footer-title">দ্রুত লিংক</h3><ul class="footer-links"><li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> হোম</a></li><li><a onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li><li><a onclick="app.navigateTo('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li><li><a onclick="app.navigateTo('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li></ul></div>
-                    <div><h3 class="footer-title">আইনি</h3><ul class="footer-links"><li><a onclick="app.navigateTo('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li><li><a onclick="app.navigateTo('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li><li><a onclick="app.navigateTo('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li></ul></div>
+                    <div><h3 class="footer-title">দ্রুত লিংক</h3><ul class="footer-links"><li><a onclick="app.navigateTo('home')"><i class="fas fa-chevron-right"></i> হোম</a></li><li><a onclick="app.navigateTo('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li><li><a onclick="app.navigateToPage('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li><li><a onclick="app.navigateToPage('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li></ul></div>
+                    <div><h3 class="footer-title">আইনি</h3><ul class="footer-links"><li><a onclick="app.navigateToPage('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li><li><a onclick="app.navigateToPage('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li><li><a onclick="app.navigateToPage('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li></ul></div>
                     <div><h3 class="footer-title">যোগাযোগ</h3><ul class="footer-links"><li><i class="fas fa-envelope"></i> support@hellobangladeshi.com</li><li><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</li><li><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</li></ul></div>
                 </div>
                 <div class="footer-bottom"><p>&copy; 2024 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত। Developed with <i class="fas fa-heart" style="color:#ff4757;"></i> by Forabee Walid</p></div>
@@ -905,15 +893,6 @@
         </div>
     </div>
 
-    <!-- ALL EVENTS MODAL -->
-    <div id="allEventsModal" class="modal-overlay">
-        <div class="modal-content" style="max-width:600px">
-            <button class="modal-close" onclick="app.closeModal('allEventsModal')"><i class="fas fa-times"></i></button>
-            <div class="modal-header"><h1 class="modal-title bangla">সকল ইভেন্ট</h1></div>
-            <div id="allEventsList"></div>
-        </div>
-    </div>
-
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
@@ -930,7 +909,7 @@
 
         const app = {
             currentUser: null, isGuest: true, currentView: 'home',
-            usersData: [], jobsData: [], eventsData: [], groupsData: [], recommendationsData: [],
+            usersData: [], jobsData: [], recommendationsData: [],
             
             init() {
                 this.loadDemoData();
@@ -983,22 +962,6 @@
                     { id: '2', title: 'গ্রাফিক ডিজাইনার', company: 'ক্রিয়েটিভ মিডিয়া', type: 'খণ্ডকালীন', location: 'চট্টগ্রাম', salary: '৳৪০,০০০ - ৳৬০,০০০', description: 'Adobe Creative Suite এ দক্ষতা প্রয়োজন।', skills: ['Photoshop', 'Illustrator'], featured: false, posted: '১ সপ্তাহ আগে' },
                     { id: '3', title: 'ডাটা অ্যানালিস্ট', company: 'ডাটা সলিউশন্স', type: 'দূরবর্তী', location: 'দূরবর্তী', salary: '৳৮০,০০০ - ৳১,২০,০০০', description: 'Python, SQL এবং ডাটা ভিজ্যুয়ালাইজেশন টুলসে দক্ষ।', skills: ['Python', 'SQL'], featured: true, posted: '৩ দিন আগে' }
                 ];
-                this.eventsData = [
-                    { id: 'e1', title: 'বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং', date: '১৫ মার্চ, ২০২৪', time: 'সন্ধ্যা ৭টা', location: 'ঢাকা, বাংলাদেশ', description: 'আইটি পেশাজীবীদের জন্য নেটওয়ার্কিং সেশন। ক্যারিয়ার গ্রোথ এবং নতুন সুযোগ নিয়ে আলোচনা।' },
-                    { id: 'e2', title: 'স্টার্টআপ আইডিয়া শেয়ারিং সেশন', date: '২০ মার্চ, ২০২৪', time: 'বিকাল ৩টা', location: 'দূরবর্তী (অনলাইন)', description: 'নতুন উদ্যোক্তাদের জন্য স্টার্টআপ আইডিয়া শেয়ারিং এবং মেন্টরশিপ সেশন।' },
-                    { id: 'e3', title: 'ক্যারিয়ার গাইডেন্স সেমিনার', date: '২৫ মার্চ, ২০২৪', time: 'সকাল ১০টা', location: 'চট্টগ্রাম', description: 'তরুণদের জন্য ক্যারিয়ার গাইডেন্স সেমিনার। বিভিন্ন পেশার অভিজ্ঞ ব্যক্তিরা উপস্থিত থাকবেন।' },
-                    { id: 'e4', title: 'বাংলা নববর্ষ উদযাপন', date: '১৪ এপ্রিল, ২০২৪', time: 'সকাল ৮টা', location: 'ঢাকা বিশ্ববিদ্যালয়', description: 'পহেলা বৈশাখ উদযাপন। সাংস্কৃতিক অনুষ্ঠান, পান্তা-ইলিশ ও মঙ্গল শোভাযাত্রা।' },
-                    { id: 'e5', title: 'ফ্রিল্যান্সিং ওয়েবিনার', date: '৫ এপ্রিল, ২০২৪', time: 'রাত ৯টা', location: 'অনলাইন', description: 'ফ্রিল্যান্সিং ক্যারিয়ার শুরু করতে চান তাদের জন্য ওয়েবিনার।' },
-                    { id: 'e6', title: 'স্বাস্থ্য সচেতনতা ক্যাম্প', date: '১০ এপ্রিল, ২০২৪', time: 'সকাল ৯টা-বিকাল ৫টা', location: 'খুলনা', description: 'বিনামূল্যে স্বাস্থ্য পরীক্ষা ও সচেতনতা ক্যাম্প।' }
-                ];
-                this.groupsData = [
-                    { id: 'g1', name: 'বাংলাদেশী শিক্ষার্থী', members: 12500, description: 'দেশে-বিদেশে পড়ুয়া বাংলাদেশী শিক্ষার্থীদের জন্য গ্রুপ।', category: 'শিক্ষা' },
-                    { id: 'g2', name: 'আইটি পেশাজীবী বাংলাদেশ', members: 8500, description: 'আইটি পেশাজীবীদের জন্য টেকনিক্যাল ডিসকাশন ও নেটওয়ার্কিং গ্রুপ।', category: 'প্রযুক্তি' },
-                    { id: 'g3', name: 'ব্যবসায়ী নেটওয়ার্ক', members: 4200, description: 'ব্যবসায়ীদের জন্য বিনিয়োগ ও পার্টনারশিপের প্ল্যাটফর্ম।', category: 'ব্যবসা' },
-                    { id: 'g4', name: 'প্রবাসী বাংলাদেশী', members: 18900, description: 'বিশ্বের বিভিন্ন দেশে বসবাসরত বাংলাদেশীদের জন্য গ্রুপ।', category: 'কমিউনিটি' },
-                    { id: 'g5', name: 'ক্রিয়েটিভ রাইটার্স', members: 3200, description: 'লেখক ও কবি-সাহিত্যিকদের জন্য গ্রুপ।', category: 'সাহিত্য' },
-                    { id: 'g6', name: 'স্টার্টআপ বাংলাদেশ', members: 6700, description: 'স্টার্টআপ আইডিয়া ও উদ্যোক্তাদের জন্য গ্রুপ।', category: 'উদ্যোক্তা' }
-                ];
                 this.recommendationsData = [
                     { id: '7', name: 'মোহাম্মদ আলী', profession: 'ওয়েব ডেভেলপার', mutual: 12 },
                     { id: '8', name: 'নুসরাত জাহান', profession: 'মার্কেটিং ম্যানেজার', mutual: 8 },
@@ -1017,25 +980,33 @@
                 if (view === 'home') this.loadHomeView();
                 else if (view === 'jobs') this.loadJobsView();
                 else if (view === 'profile') this.loadProfileView();
-                else if (view === 'privacy') this.loadPrivacyView();
-                else if (view === 'terms') this.loadTermsView();
-                else if (view === 'about') this.loadAboutView();
-                else if (view === 'events') this.loadEventsView();
-                else if (view === 'groups') this.loadGroupsView();
             },
             
-            loadHomeView() { this.renderUsers(this.usersData); this.renderRecommendations(this.recommendationsData); this.renderTrendingJobs(this.jobsData.slice(0,3)); this.renderUpcomingEvents(this.eventsData.slice(0,3)); },
+            navigateToPage(page) {
+                const titles = {
+                    privacy: { title: 'গোপনীয়তা নীতি', subtitle: 'আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার' },
+                    terms: { title: 'সেবা শর্তাবলী', subtitle: 'হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী' },
+                    about: { title: 'ডেভেলপার', subtitle: 'Forabee Walid - ফুল স্ট্যাক ডেভেলপার' },
+                    events: { title: 'ইভেন্ট', subtitle: 'আসন্ন ইভেন্টসমূহ' },
+                    groups: { title: 'গ্রুপ', subtitle: 'আপনার আগ্রহের গ্রুপে যোগ দিন' }
+                };
+                const info = titles[page];
+                if (info) {
+                    document.getElementById('externalPageTitle').textContent = info.title;
+                    document.getElementById('externalPageSubtitle').textContent = info.subtitle;
+                    document.getElementById('externalPageIframe').src = page + '.html';
+                    document.querySelectorAll('[id$="View"]').forEach(el => el.classList.add('hidden'));
+                    document.getElementById('externalPageView').classList.remove('hidden');
+                }
+            },
+            
+            loadHomeView() { this.renderUsers(this.usersData); this.renderRecommendations(this.recommendationsData); this.renderTrendingJobs(this.jobsData.slice(0,3)); this.renderUpcomingEvents(); },
             loadJobsView() { this.renderJobs(this.jobsData); },
             loadProfileView() {
                 if (!this.currentUser) { document.getElementById('profileContent').innerHTML = '<div class="empty-state"><h3>প্রোফাইল দেখতে লগইন করুন</h3><button class="btn btn-primary" onclick="app.showAuthModal()">লগইন করুন</button></div>'; return; }
                 const user = this.usersData[0];
                 document.getElementById('profileContent').innerHTML = `<div class="profile-header"><div class="profile-avatar-large">${(this.currentUser.displayName || 'U').charAt(0)}</div><h1 class="profile-name">${this.currentUser.displayName || this.currentUser.email}</h1><p class="profile-profession">${user?.profession || 'হ্যালো বাংলাদেশী সদস্য'}</p><div class="profile-stats"><div class="profile-stat"><span class="profile-stat-value">${user?.followers || 1245}</span><span class="profile-stat-label">ফলোয়ার</span></div><div class="profile-stat"><span class="profile-stat-value">${user?.connections || 245}</span><span class="profile-stat-label">সংযোগ</span></div></div></div><div class="profile-content"><div><div class="profile-section"><h2 class="profile-section-title">আমার সম্পর্কে</h2><p>${user?.bio || 'হ্যালো! আমি হ্যালো বাংলাদেশী ব্যবহার করছি।'}</p></div></div><div><div class="profile-section"><h2 class="profile-section-title">দ্রুত কাজ</h2><button class="btn btn-primary btn-block" onclick="app.showEditProfileModal()"><i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা</button><button class="btn btn-secondary btn-block mt-2" onclick="app.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button></div></div></div>`;
             },
-            loadPrivacyView() { document.getElementById('privacyContent').innerHTML = `<h3>গোপনীয়তা নীতি</h3><p>আমরা আপনার ব্যক্তিগত তথ্যের গোপনীয়তাকে গুরুত্ব সহকারে নিই। এই নীতিতে বর্ণনা করা হয়েছে যে আমরা কীভাবে আপনার তথ্য সংগ্রহ, ব্যবহার এবং সুরক্ষা করি।</p><h4>তথ্য সংগ্রহ</h4><p>আমরা আপনার নাম, ইমেল, প্রোফাইল তথ্য এবং ব্যবহারের তথ্য সংগ্রহ করি।</p><h4>তথ্যের ব্যবহার</h4><p>আমরা আপনার তথ্য ব্যবহার করি সেবা প্রদান, যোগাযোগ এবং প্ল্যাটফর্ম উন্নত করতে।</p><h4>তথ্য সুরক্ষা</h4><p>আমরা আপনার তথ্য সুরক্ষিত রাখতে শিল্প-মানসম্মত নিরাপত্তা ব্যবস্থা ব্যবহার করি।</p>`; },
-            loadTermsView() { document.getElementById('termsContent').innerHTML = `<h3>সেবা শর্তাবলী</h3><p>হ্যালো বাংলাদেশী ব্যবহার করার মাধ্যমে আপনি নিম্নলিখিত শর্তাবলীতে সম্মতি প্রদান করছেন।</p><h4>অ্যাকাউন্ট দায়িত্ব</h4><p>আপনি আপনার অ্যাকাউন্টের তথ্য এবং কার্যকলাপের জন্য দায়ী।</p><h4>আচরণবিধি</h4><p>অন্যান্য ব্যবহারকারীদের সাথে সম্মানজনক আচরণ করতে হবে। হয়রানি, স্প্যাম বা অনৈতিক কার্যকলাপ নিষিদ্ধ।</p><h4>কন্টেন্ট অধিকার</h4><p>আপনার পোস্ট করা কন্টেন্টের মালিকানা আপনার, তবে প্ল্যাটফর্মে প্রদর্শনের জন্য আমাদের অনুমতি প্রয়োজন।</p>`; },
-            loadAboutView() { document.getElementById('aboutContent').innerHTML = `<div style="text-align:center"><i class="fas fa-code" style="font-size:60px;color:var(--primary)"></i><h3>Forabee Walid</h3><p>ফুল স্ট্যাক ডেভেলপার</p><p>৪+ বছর অভিজ্ঞতা, ৫০+ প্রজেক্ট সম্পন্ন। ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপ ডেভেলপমেন্ট এবং ক্লাউড সলিউশনে দক্ষ।</p><h4>দক্ষতা</h4><p>React, Node.js, Python, Firebase, MongoDB, Flutter</p><h4>যোগাযোগ</h4><p><i class="fas fa-envelope"></i> walid@hellobangladeshi.com</p><p><i class="fab fa-github"></i> github.com/forabeewalid</p></div>`; },
-            loadEventsView() { this.renderEvents(this.eventsData); },
-            loadGroupsView() { this.renderGroups(this.groupsData); },
             
             renderUsers(users) {
                 const container = document.getElementById('usersList');
@@ -1049,18 +1020,6 @@
                 container.innerHTML = jobs.map(job => `<div class="job-card">${job.featured ? '<div class="job-featured">ফিচার্ড</div>' : ''}<div class="job-card-header"><div><h3 class="job-card-title">${job.title}</h3><p class="job-card-company">${job.company}</p></div><span class="badge">${job.type}</span></div><div class="job-card-tags">${job.skills.map(s => `<span class="job-tag">${s}</span>`).join('')}</div><p class="job-card-description">${job.description}</p><div class="job-card-footer"><div class="job-card-salary">${job.salary}</div><div class="job-card-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</div></div><button class="btn btn-primary btn-block mt-3" onclick="app.showApplyJobModal('${job.id}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button></div>`).join('');
             },
             
-            renderEvents(events) {
-                const container = document.getElementById('eventsList');
-                if (!container) return;
-                container.innerHTML = events.map(event => `<div class="job-card"><h3 class="job-card-title">${event.title}</h3><p><i class="fas fa-calendar-alt"></i> ${event.date} | ${event.time}</p><p><i class="fas fa-map-marker-alt"></i> ${event.location}</p><p class="mt-2">${event.description}</p><button class="btn btn-primary btn-block mt-3" onclick="app.registerForEvent('${event.id}')"><i class="fas fa-ticket-alt"></i> রেজিস্টার করুন</button></div>`).join('');
-            },
-            
-            renderGroups(groups) {
-                const container = document.getElementById('groupsList');
-                if (!container) return;
-                container.innerHTML = groups.map(group => `<div class="user-card"><div class="user-card-header" style="background:var(--gradient-primary)"><div class="user-card-avatar"><i class="fas fa-users"></i></div></div><div class="user-card-content"><h3 class="user-card-name">${group.name}</h3><p><i class="fas fa-user-friends"></i> ${group.members.toLocaleString()} সদস্য</p><p class="user-card-bio">${group.description}</p><div class="user-card-actions"><button class="btn btn-primary" onclick="app.joinGroup('${group.id}')"><i class="fas fa-user-plus"></i> জয়েন করুন</button></div></div></div>`).join('');
-            },
-            
             renderRecommendations(recommendations) {
                 const container = document.getElementById('recommendationsList');
                 if (container) container.innerHTML = recommendations.map(rec => `<div class="recommendation-item" onclick="app.handleConnect('${rec.id}')"><div class="recommendation-avatar">${rec.name.charAt(0)}</div><div class="recommendation-info"><h4>${rec.name}</h4><p>${rec.profession}</p><p style="font-size:11px;color:var(--primary)">${rec.mutual} mutual</p></div><button class="btn-icon" style="width:36px;height:36px" onclick="event.stopPropagation();app.handleConnect('${rec.id}')"><i class="fas fa-user-plus"></i></button></div>`).join('');
@@ -1071,9 +1030,13 @@
                 if (container) container.innerHTML = jobs.map(job => `<div class="trending-job" onclick="app.showApplyJobModal('${job.id}')"><div class="job-title">${job.title}</div><div class="job-company">${job.company}</div><div class="job-salary">${job.salary}</div></div>`).join('');
             },
             
-            renderUpcomingEvents(events) {
+            renderUpcomingEvents() {
                 const container = document.getElementById('upcomingEvents');
-                if (container) container.innerHTML = events.map(event => `<div class="event-item" onclick="app.registerForEvent('${event.id}')"><div class="event-date"><i class="fas fa-calendar-alt"></i> ${event.date}</div><div class="event-title">${event.title}</div><div class="event-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</div></div>`).join('');
+                if (container) container.innerHTML = `
+                    <div class="event-item" onclick="app.navigateToPage('events')"><div class="event-date">১৫ মার্চ, ২০২৪</div><div class="event-title">বাংলাদেশী আইটি পেশাজীবী নেটওয়ার্কিং</div></div>
+                    <div class="event-item" onclick="app.navigateToPage('events')"><div class="event-date">২০ মার্চ, ২০২৪</div><div class="event-title">স্টার্টআপ আইডিয়া শেয়ারিং সেশন</div></div>
+                    <div class="event-item" onclick="app.navigateToPage('events')"><div class="event-date">২৫ মার্চ, ২০২৪</div><div class="event-title">ক্যারিয়ার গাইডেন্স সেমিনার</div></div>
+                `;
             },
             
             filterUsers(filter) {
@@ -1094,13 +1057,8 @@
                 document.getElementById('allJobsModal').classList.add('active');
             },
             
-            showAllEvents() {
-                document.getElementById('allEventsList').innerHTML = this.eventsData.map(event => `<div class="event-item" style="margin-bottom:10px"><div class="event-date">${event.date} | ${event.time}</div><div class="event-title">${event.title}</div><div class="event-location">${event.location}</div><button class="btn btn-primary btn-small mt-2" onclick="app.registerForEvent('${event.id}');app.closeModal('allEventsModal')">রেজিস্টার</button></div>`).join('');
-                document.getElementById('allEventsModal').classList.add('active');
-            },
-            
             showApplyJobModal(jobId) {
-                if (!this.currentUser) { this.showLoginRequiredModal('চাকরিতে আবেদন করতে'); return; }
+                if (!this.currentUser) { this.showToast('চাকরিতে আবেদন করতে লগইন প্রয়োজন', 'warning'); this.showAuthModal(); return; }
                 const job = this.jobsData.find(j => j.id === jobId);
                 document.getElementById('applyJobTitle').textContent = job?.title || '';
                 document.getElementById('applicantName').value = this.currentUser.displayName || '';
@@ -1115,14 +1073,13 @@
                 const name = document.getElementById('applicantName').value;
                 const email = document.getElementById('applicantEmail').value;
                 const phone = document.getElementById('applicantPhone').value;
-                const cover = document.getElementById('applicantCoverLetter').value;
                 if (!name || !email || !phone) { this.showToast('সব তথ্য পূরণ করুন', 'error'); return; }
-                this.showToast('আবেদন সফলভাবে জমা দেওয়া হয়েছে! পোস্টকারীকে নোটিফিকেশন পাঠানো হয়েছে।', 'success');
+                this.showToast('আবেদন সফলভাবে জমা দেওয়া হয়েছে!', 'success');
                 this.closeModal('applyJobModal');
             },
             
             postJob() {
-                if (!this.currentUser) { this.showLoginRequiredModal('চাকরি পোস্ট করতে'); return; }
+                if (!this.currentUser) { this.showToast('চাকরি পোস্ট করতে লগইন প্রয়োজন', 'warning'); this.showAuthModal(); return; }
                 const title = document.getElementById('jobTitle').value;
                 const company = document.getElementById('jobCompany').value;
                 const type = document.getElementById('jobType').value;
@@ -1138,18 +1095,8 @@
                 if (this.currentView === 'jobs') this.renderJobs(this.jobsData);
             },
             
-            registerForEvent(eventId) {
-                if (!this.currentUser) { this.showLoginRequiredModal('ইভেন্টে রেজিস্টার করতে'); return; }
-                this.showToast('ইভেন্টে রেজিস্ট্রেশন সফল!', 'success');
-            },
-            
-            joinGroup(groupId) {
-                if (!this.currentUser) { this.showLoginRequiredModal('গ্রুপে জয়েন করতে'); return; }
-                this.showToast('গ্রুপে জয়েন করার অনুরোধ পাঠানো হয়েছে!', 'success');
-            },
-            
-            handleConnect(userId) { if (!this.currentUser) { this.showLoginRequiredModal('ফলো করতে'); return; } this.showToast('ফলো অনুরোধ পাঠানো হয়েছে!', 'success'); },
-            handleChat(userId) { if (!this.currentUser) { this.showLoginRequiredModal('চ্যাট করতে'); return; } this.showToast('চ্যাট ফিচার শীঘ্রই আসছে', 'info'); },
+            handleConnect(userId) { if (!this.currentUser) { this.showToast('ফলো করতে লগইন প্রয়োজন', 'warning'); this.showAuthModal(); return; } this.showToast('ফলো অনুরোধ পাঠানো হয়েছে!', 'success'); },
+            handleChat(userId) { if (!this.currentUser) { this.showToast('চ্যাট করতে লগইন প্রয়োজন', 'warning'); this.showAuthModal(); return; } this.showToast('চ্যাট ফিচার শীঘ্রই আসছে', 'info'); },
             showNotifications() { this.showToast('কোন নতুন বিজ্ঞপ্তি নেই', 'info'); },
             
             login() {
@@ -1178,7 +1125,6 @@
             toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); },
             toggleUserDropdown() { document.getElementById('userDropdown').classList.toggle('active'); },
             hideUserDropdown() { document.getElementById('userDropdown').classList.remove('active'); },
-            showLoginRequiredModal(action) { this.showToast(`${action} লগইন প্রয়োজন`, 'warning'); this.showAuthModal(); },
             showToast(msg, type='info') {
                 const container = document.getElementById('toastContainer');
                 const toast = document.createElement('div');
