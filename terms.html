@@ -2,278 +2,407 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সেবা শর্তাবলী - হ্যালো বাংলাদেশী</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="হ্যালো বাংলাদেশী - স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম">
+    <meta name="theme-color" content="#006A4E">
+    <title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #006A4E;
+            --primary-dark: #00563D;
+            --primary-light: #008060;
+            --secondary: #F42A41;
+            --accent-gold: #FFD700;
+            --accent-green: #27AE60;
+            --accent-blue: #3498DB;
+            --accent-orange: #F39C12;
+            --text-dark: #1A1A1A;
+            --text-medium: #4A5568;
+            --text-light: #718096;
+            --bg-light: #F7FAFC;
+            --bg-white: #FFFFFF;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --font-bangla: 'Hind Siliguri', sans-serif;
         }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: #f7fafc;
+            font-family: var(--font-bangla);
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #006A4E, #008060);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: -30px auto 60px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            padding: 40px;
-        }
-        
-        .last-updated {
-            background: #f7fafc;
-            padding: 12px 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #718096;
-            font-size: 14px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #006A4E;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .section-content {
-            color: #4a5568;
-            line-height: 1.8;
-        }
-        
-        .section-content p {
-            margin-bottom: 15px;
-        }
-        
-        .section-content ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .section-content li {
-            margin-bottom: 8px;
-        }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: white;
-            color: #006A4E;
-            text-decoration: none;
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .grid { display: grid; }
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 12px; }
+        .mb-3 { margin-bottom: 20px; }
+        .mt-3 { margin-top: 20px; }
+        .btn {
+            padding: 10px 20px;
             border-radius: 50px;
             font-weight: 600;
-            margin: 20px;
-            transition: all 0.3s ease;
-            border: 2px solid #006A4E;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-bangla);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        .back-button:hover {
-            background: #006A4E;
-            color: white;
-            transform: translateX(-5px);
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .btn-secondary { background: #e2e8f0; color: var(--text-dark); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .badge-verified { background: var(--accent-green); color: white; padding: 2px 8px; border-radius: 50px; font-size: 12px; }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+            display: none; align-items: center; justify-content: center;
+            z-index: 2000;
         }
-        
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #718096;
-            background: white;
-            margin-top: 40px;
+        .modal-content {
+            background: white; border-radius: var(--radius-lg); max-width: 500px; width: 90%;
+            max-height: 85vh; overflow-y: auto; padding: 24px;
+            animation: fadeInUp 0.3s ease;
         }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                margin: -20px 20px 40px;
-            }
-            .header h1 {
-                font-size: 28px;
-            }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .form-group { margin-bottom: 16px; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-family: var(--font-bangla); }
+        .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: white; padding: 12px 20px; border-radius: 12px; box-shadow: var(--shadow-md); border-left: 5px solid var(--primary); min-width: 260px; animation: slideIn 0.3s ease; }
+        .navbar, .sidebar, .feed, .right-sidebar { background: var(--bg-white); border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+        .navbar { padding: 12px 24px; position: sticky; top: 0; z-index: 100; background: white; }
+        .main-content { display: grid; grid-template-columns: 260px 1fr 320px; gap: 24px; padding: 24px; max-width: 1400px; margin: 0 auto; }
+        .user-card, .job-card, .group-card, .event-card { background: white; border-radius: var(--radius-md); padding: 16px; border: 1px solid var(--border-color); transition: all 0.2s; }
+        .user-card:hover, .job-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .grid-users, .grid-jobs, .grid-groups, .grid-events { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .avatar { width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; }
+        @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; } .sidebar, .right-sidebar { display: none; } }
+        @media (max-width: 768px) { .mobile-menu-btn { display: block; } .nav-center { display: none; } }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-button">
-        <i class="fas fa-arrow-left"></i>
-        <span>হোমে ফিরুন</span>
-    </a>
-    
-    <div class="header">
-        <h1>সেবা শর্তাবলী</h1>
-        <p>হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী</p>
+
+<div id="splashScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg,#006A4E,#008060); display:flex; align-items:center; justify-content:center; z-index:9999;">
+    <div style="text-align:center; color:white;">
+        <div style="font-size:70px;">🇧🇩</div>
+        <h1 style="font-size:32px;">হ্যালো বাংলাদেশী</h1>
+        <p>স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্ক</p>
     </div>
-    
-    <div class="container">
-        <div class="last-updated">
-            <i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৪
+</div>
+
+<div id="mainApp" class="hidden">
+    <!-- Header -->
+    <header class="navbar flex-between">
+        <div class="logo" style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="app.navigateTo('home')">
+            <div style="width:40px; height:40px; background:var(--primary); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white;">হেবি</div>
+            <span style="font-weight:700;">হ্যালো বাংলাদেশী</span>
+            <span id="guestBadge" class="guest-badge" style="background:#FF9800; padding:2px 8px; border-radius:20px; font-size:12px;">অতিথি</span>
         </div>
-        
-        <div class="section">
-            <h2 class="section-title">১. শর্তাবলীর গ্রহণযোগ্যতা</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশী অ্যাপ্লিকেশন ব্যবহার করার মাধ্যমে, আপনি এই সেবা শর্তাবলী মেনে চলতে সম্মত হন। যদি আপনি এই শর্তাবলীর সাথে একমত না হন, তাহলে অনুগ্রহ করে অ্যাপ্লিকেশন ব্যবহার করবেন না।</p>
-                <p>আমরা যে কোনো সময় এই শর্তাবলী পরিবর্তন করতে পারি। পরিবর্তনগুলি এই পৃষ্ঠায় প্রকাশিত হবে এবং অব্যাহত ব্যবহারের মাধ্যমে আপনি পরিবর্তনগুলি গ্রহণ করেছেন বলে গণ্য হবে।</p>
+        <nav class="nav-center" style="display:flex; gap:16px;">
+            <span class="nav-link" onclick="app.navigateTo('home')"><i class="fas fa-home"></i> হোম</span>
+            <span class="nav-link" onclick="app.navigateTo('jobs')"><i class="fas fa-briefcase"></i> চাকরি</span>
+            <span class="nav-link" onclick="app.navigateTo('chat')"><i class="fas fa-comments"></i> চ্যাট</span>
+            <span class="nav-link" onclick="app.navigateTo('profile')"><i class="fas fa-user"></i> প্রোফাইল</span>
+        </nav>
+        <div style="display:flex; gap:12px;">
+            <button class="btn btn-primary" onclick="app.showAuthModal()"><i class="fas fa-sign-in-alt"></i> লগইন</button>
+            <button class="btn btn-secondary" onclick="app.showAuthModal()">রেজিস্টার</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="padding:20px;">
+            <div class="sidebar-section mb-3">
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('home')"><i class="fas fa-home"></i> হোম</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('jobs')"><i class="fas fa-briefcase"></i> চাকরি</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('events')"><i class="fas fa-calendar"></i> ইভেন্ট</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('groups')"><i class="fas fa-users"></i> গ্রুপ</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('privacy')"><i class="fas fa-shield-alt"></i> গোপনীয়তা</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('terms')"><i class="fas fa-file-contract"></i> শর্তাবলী</div>
+                <div class="sidebar-item" style="padding:12px; cursor:pointer;" onclick="app.navigateTo('about')"><i class="fas fa-code"></i> ডেভেলপার</div>
+                <hr class="my-2">
+                <div class="sidebar-item" style="padding:12px; cursor:pointer; color:#e53e3e;" onclick="app.logout()"><i class="fas fa-sign-out-alt"></i> লগআউট</div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">২. অ্যাকাউন্ট নিবন্ধন</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশী ব্যবহার করতে, আপনাকে একটি অ্যাকাউন্ট তৈরি করতে হবে। অ্যাকাউন্ট তৈরি করার সময়:</p>
-                <ul>
-                    <li>আপনাকে সঠিক এবং সম্পূর্ণ তথ্য প্রদান করতে হবে</li>
-                    <li>আপনার অ্যাকাউন্টের তথ্য গোপন রাখতে হবে</li>
-                    <li>আপনার অ্যাকাউন্টের সব কার্যকলাপের জন্য আপনি দায়ী</li>
-                    <li>আপনি একাধিক অ্যাকাউন্ট তৈরি করতে পারবেন না</li>
-                    <li>আপনার বয়স কমপক্ষে ১৩ বছর হতে হবে</li>
-                </ul>
-                <p>আমরা যেকোনো সময়, কোনো কারণ ছাড়াই, আপনার অ্যাকাউন্ট স্থগিত বা বাতিল করার অধিকার সংরক্ষণ করি।</p>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="feed" style="padding:24px;">
+            <!-- HOME VIEW -->
+            <div id="homeView">
+                <h2 class="mb-2">আপনার কাছাকাছি মানুষ</h2>
+                <div class="feed-tabs flex-between mb-3" style="gap:10px;">
+                    <button class="btn btn-secondary" onclick="app.filterUsers('all')">সকল</button>
+                    <button class="btn btn-secondary" onclick="app.filterUsers('nearby')">কাছাকাছি</button>
+                    <button class="btn btn-secondary" onclick="app.filterUsers('online')">অনলাইন</button>
+                </div>
+                <div id="usersList" class="grid-users"></div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৩. ব্যবহারকারীর আচরণবিধি</h2>
-            <div class="section-content">
-                <p>আপনি হ্যালো বাংলাদেশী ব্যবহার করার সময় নিম্নলিখিত আচরণবিধি মেনে চলতে বাধ্য:</p>
-                <ul>
-                    <li><strong>সম্মান প্রদর্শন:</strong> অন্য ব্যবহারকারীদের সাথে সম্মানজনক আচরণ করুন</li>
-                    <li><strong>উত্যক্তকরণ নিষিদ্ধ:</strong> কোনো ধরনের হয়রানি, উত্যক্তকরণ বা ভয় দেখানো নিষিদ্ধ</li>
-                    <li><strong>বৈধতা:</strong> শুধুমাত্র বৈধ উদ্দেশ্যে অ্যাপ ব্যবহার করুন</li>
-                    <li><strong>কপিরাইট:</strong> অন্যের কপিরাইটযুক্ত উপাদান অনুমতি ছাড়া ব্যবহার করবেন না</li>
-                    <li><strong>স্প্যাম নিষিদ্ধ:</strong> স্প্যাম বা অবাঞ্ছিত বার্তা পাঠানো নিষিদ্ধ</li>
-                    <li><strong>মিথ্যা তথ্য:</strong> মিথ্যা পরিচয় ব্যবহার বা ভুল তথ্য প্রদান করবেন না</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৪. নিষিদ্ধ কার্যকলাপ</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশীতে নিম্নলিখিত কার্যকলাপ সম্পূর্ণ নিষিদ্ধ:</p>
-                <ul>
-                    <li>অবৈধ কার্যকলাপ প্রচার বা উৎসাহিত করা</li>
-                    <li>ঘৃণামূলক বক্তব্য বা ভাষা ব্যবহার করা</li>
-                    <li>অশ্লীল বা অনুপযুক্ত কন্টেন্ট পোস্ট করা</li>
-                    <li>অন্য ব্যবহারকারীদের ব্যক্তিগত তথ্য সংগ্রহ করা</li>
-                    <li>অ্যাপের সিস্টেমে অননুমোদিত অ্যাক্সেসের চেষ্টা করা</li>
-                    <li>ভাইরাস বা ক্ষতিকারক কোড ছড়ানো</li>
-                    <li>অন্যের অ্যাকাউন্ট হ্যাক করার চেষ্টা করা</li>
-                </ul>
-                <p>এই নিয়ম ভঙ্গ করলে, আপনার অ্যাকাউন্ট অবিলম্বে স্থগিত বা বাতিল করা হবে।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৫. কন্টেন্টের মালিকানা</h2>
-            <div class="section-content">
-                <p>আপনি আপনার পোস্ট করা কন্টেন্টের মালিকানা ধরে রাখেন। তবে, হ্যালো বাংলাদেশী ব্যবহার করার মাধ্যমে, আপনি আমাদের নিম্নলিখিত অনুমতি দিচ্ছেন:</p>
-                <ul>
-                    <li>আপনার কন্টেন্ট প্রদর্শন, সংরক্ষণ এবং বিতরণের অনুমতি</li>
-                    <li>অ্যাপের কার্যকারিতার জন্য কন্টেন্ট ব্যবহারের অনুমতি</li>
-                    <li>আইনি প্রয়োজন মেনে কন্টেন্ট অপসারণের অধিকার</li>
-                </ul>
-                <p>আমরা আপনার কন্টেন্টের জন্য দায়ী নই এবং কন্টেন্টের সঠিকতা বা বৈধতা নিশ্চিত করি না।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৬. চাকরি পোস্টিং</h2>
-            <div class="section-content">
-                <p>চাকরি পোস্ট করার ক্ষেত্রে:</p>
-                <ul>
-                    <li>চাকরির তথ্য সঠিক এবং বৈধ হতে হবে</li>
-                    <li>বৈষম্যমূলক চাকরির বিজ্ঞাপন নিষিদ্ধ</li>
-                    <li>মিথ্যা চাকরির বিজ্ঞাপন দেওয়া যাবে না</li>
-                    <li>চাকরি সংক্রান্ত কোনো লেনদেনে হ্যালো বাংলাদেশী দায়ী নয়</li>
-                    <li>নিয়োগ প্রক্রিয়া সম্পূর্ণভাবে নিয়োগকর্তা এবং আবেদনকারীর মধ্যে</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৭. দায়িত্ব অস্বীকার</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশী "যেমন আছে" ভিত্তিতে প্রদান করা হয়। আমরা নিম্নলিখিত বিষয়ে কোনো ওয়ারেন্টি দিই না:</p>
-                <ul>
-                    <li>অ্যাপের নিরবচ্ছিন্ন বা ত্রুটিমুক্ত কার্যকারিতা</li>
-                    <li>ব্যবহারকারীদের দ্বারা পোস্ট করা তথ্যের সঠিকতা</li>
-                    <li>অনলাইন লেনদেনের নিরাপত্তা</li>
-                    <li>অ্যাপ ব্যবহারের ফলে কোনো ক্ষতি বা ক্ষয়ক্ষতি</li>
-                </ul>
-                <p>আমরা যেকোনো সময়, নোটিশ ছাড়াই, অ্যাপ পরিবর্তন বা বন্ধ করার অধিকার সংরক্ষণ করি।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৮. দায়বদ্ধতার সীমাবদ্ধতা</h2>
-            <div class="section-content">
-                <p>কোনো অবস্থাতেই হ্যালো বাংলাদেশী নিম্নলিখিত ক্ষতির জন্য দায়ী থাকবে না:</p>
-                <ul>
-                    <li>পরোক্ষ, আকস্মিক বা ফলস্বরূপ ক্ষতি</li>
-                    <li>লাভের ক্ষতি বা ডেটা ক্ষতি</li>
-                    <li>ব্যবহারকারীদের মধ্যে বিরোধের ফলে ক্ষতি</li>
-                    <li>তৃতীয় পক্ষের কার্যকলাপের ফলে ক্ষতি</li>
-                </ul>
-                <p>আইন দ্বারা অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত আমাদের দায়বদ্ধতা সীমিত।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৯. অ্যাকাউন্ট বাতিল</h2>
-            <div class="section-content">
-                <p>আপনি যেকোনো সময় আপনার অ্যাকাউন্ট বাতিল করতে পারেন। অ্যাকাউন্ট বাতিল করলে:</p>
-                <ul>
-                    <li>আপনার সমস্ত তথ্য মুছে ফেলা হবে</li>
-                    <li>আপনার পোস্ট এবং কার্যকলাপের ইতিহাস সরানো হবে</li>
-                    <li>আপনি আবার অ্যাকাউন্ট তৈরি করতে পারবেন</li>
-                </ul>
-                <p>আমরা এই শর্তাবলী ভঙ্গের জন্য আপনার অ্যাকাউন্ট বাতিল বা স্থগিত করার অধিকার সংরক্ষণ করি।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">১০. যোগাযোগ</h2>
-            <div class="section-content">
-                <p>এই শর্তাবলী সম্পর্কিত কোনো প্রশ্ন থাকলে, আমাদের সাথে যোগাযোগ করুন:</p>
-                <p>
-                    <i class="fas fa-envelope"></i> support@hellobangladeshi.com<br>
-                    <i class="fas fa-phone"></i> +880 1924449132<br>
-                    <i class="fas fa-map-marker-alt"></i> সিলেট, বাংলাদেশ
-                </p>
-            </div>
-        </div>
+            <!-- JOBS VIEW -->
+            <div id="jobsView" class="hidden"><h2>চাকরির সুযোগ</h2><button class="btn btn-primary mt-3 mb-3" onclick="app.showPostJobModal()">+ নতুন চাকরি পোস্ট করুন</button><div id="jobsList" class="grid-jobs"></div></div>
+            <!-- EVENTS VIEW -->
+            <div id="eventsView" class="hidden"><h2>আসন্ন ইভেন্ট</h2><div id="eventsList" class="grid-events"></div></div>
+            <!-- GROUPS VIEW -->
+            <div id="groupsView" class="hidden"><h2>আমাদের গ্রুপ</h2><div id="groupsList" class="grid-groups"></div></div>
+            <!-- PRIVACY VIEW -->
+            <div id="privacyView" class="hidden"><h2>গোপনীয়তা নীতি</h2><div id="privacyContent" class="profile-section" style="background:white; padding:20px; border-radius:12px;"></div></div>
+            <!-- TERMS VIEW -->
+            <div id="termsView" class="hidden"><h2>সেবা শর্তাবলী</h2><div id="termsContent" class="profile-section" style="background:white; padding:20px; border-radius:12px;"></div></div>
+            <!-- ABOUT VIEW -->
+            <div id="aboutView" class="hidden"><h2>ডেভেলপার</h2><div id="aboutContent" class="profile-section" style="background:white; padding:20px; border-radius:12px;"></div></div>
+            <!-- CHAT VIEW -->
+            <div id="chatView" class="hidden"><h2>চ্যাট (ডেমো)</h2><p>শীঘ্রই আসছে</p></div>
+            <!-- PROFILE VIEW -->
+            <div id="profileView" class="hidden"><div id="profileContent"></div></div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar" style="padding:20px;">
+            <div class="mb-3"><h3>সুপারিশকৃত ব্যক্তি</h3><div id="recommendationsList"></div><a href="#" onclick="app.showAllRecommendations()" style="color:var(--primary);">সকল দেখুন →</a></div>
+            <div class="mb-3"><h3>ট্রেন্ডিং চাকরি</h3><div id="trendingJobsList"></div><a href="#" onclick="app.showAllJobs()" style="color:var(--primary);">সকল দেখুন →</a></div>
+            <div><h3>আসন্ন ইভেন্ট</h3><div id="rightEventsList"></div><a href="#" onclick="app.showAllEvents()" style="color:var(--primary);">সকল দেখুন →</a></div>
+        </aside>
     </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত</p>
-    </div>
+</div>
+
+<!-- MODALS -->
+<div id="authModal" class="modal-overlay"><div class="modal-content"><h3>লগইন</h3><input type="email" id="loginEmail" placeholder="ইমেল" class="form-control mb-2"><input type="password" id="loginPassword" placeholder="পাসওয়ার্ড" class="form-control mb-2"><button class="btn btn-primary w-100" onclick="app.login()">লগইন</button><p class="text-center mt-2">ডেমো: demo@test.com / password</p><button class="btn btn-secondary mt-2" onclick="app.closeModal('authModal')">বন্ধ</button></div></div>
+<div id="postJobModal" class="modal-overlay"><div class="modal-content"><h3>চাকরি পোস্ট করুন</h3><input id="jobTitle" placeholder="শিরোনাম" class="form-control mb-2"><input id="jobCompany" placeholder="কোম্পানি" class="form-control mb-2"><select id="jobType" class="form-control mb-2"><option>পূর্ণকালীন</option><option>খণ্ডকালীন</option></select><input id="jobLocation" placeholder="অবস্থান" class="form-control mb-2"><input id="jobSalary" placeholder="বেতন" class="form-control mb-2"><textarea id="jobDescription" placeholder="বিবরণ" class="form-control mb-2"></textarea><input id="jobSkills" placeholder="দক্ষতা (কমা দিয়ে)" class="form-control mb-2"><button class="btn btn-primary" onclick="app.postJob()">পোস্ট করুন</button></div></div>
+<div id="applyJobModal" class="modal-overlay"><div class="modal-content"><h3>চাকরিতে আবেদন</h3><input id="applyName" placeholder="নাম" class="form-control mb-2"><input id="applyEmail" placeholder="ইমেইল" class="form-control mb-2"><input id="applyPhone" placeholder="ফোন" class="form-control mb-2"><textarea id="applyCover" placeholder="কভার লেটার" class="form-control mb-2"></textarea><button class="btn btn-primary" onclick="app.submitApplication()">জমা দিন</button></div></div>
+<div id="viewAllModal" class="modal-overlay"><div class="modal-content" style="max-width:700px;"><h3 id="viewAllTitle"></h3><div id="viewAllContent"></div><button class="btn btn-secondary mt-3" onclick="app.closeModal('viewAllModal')">বন্ধ</button></div></div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+    const app = {
+        currentUser: null,
+        users: [
+            { id:1, name:'আহমেদ হাসান', profession:'সফটওয়্যার ইঞ্জিনিয়ার', location:'ঢাকা', distance:2, followers:1245, online:true, verified:true, bio:'ওয়েব ডেভেলপার' },
+            { id:2, name:'ফারহানা আক্তার', profession:'গ্রাফিক ডিজাইনার', location:'চট্টগ্রাম', distance:5, followers:856, online:true, verified:false, bio:'ক্রিয়েটিভ ডিজাইনার' },
+            { id:3, name:'রাকিবুল ইসলাম', profession:'ডাক্তার', location:'সিলেট', distance:12, followers:2340, online:false, verified:true, bio:'হৃদরোগ বিশেষজ্ঞ' },
+            { id:4, name:'সাবরিনা সুলতানা', profession:'শিক্ষিকা', location:'খুলনা', distance:8, followers:567, online:true, verified:false },
+            { id:5, name:'জুবায়ের আহমেদ', profession:'ব্যবসায়ী', location:'রাজশাহী', distance:15, followers:3240, online:true, verified:true },
+            { id:6, name:'তানিয়া রহমান', profession:'ডাটা সায়েন্টিস্ট', location:'ঢাকা', distance:3, followers:980, online:false, verified:true }
+        ],
+        jobs: [
+            { id:1, title:'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার', company:'টেকনোভেশন', type:'পূর্ণকালীন', location:'ঢাকা', salary:'৳১,৫০,০০০', description:'React, Node.js দক্ষ', skills:['React'], featured:true },
+            { id:2, title:'গ্রাফিক ডিজাইনার', company:'ক্রিয়েটিভ মিডিয়া', type:'খণ্ডকালীন', location:'চট্টগ্রাম', salary:'৳৪০,০০০', description:'Adobe Photoshop প্রয়োজন', skills:['PS'], featured:false },
+            { id:3, title:'ডাটা অ্যানালিস্ট', company:'ডাটা সলিউশন্স', type:'দূরবর্তী', location:'দূরবর্তী', salary:'৳৮০,০০০', description:'Python, SQL', skills:['Python'], featured:true }
+        ],
+        events: [
+            { id:1, title:'বাংলাদেশী আইটি নেটওয়ার্কিং', date:'১৫ মার্চ, ২০২৫', time:'৩:০০ PM', location:'ঢাকা', description:'আইটি পেশাজীবীদের মিলনমেলা' },
+            { id:2, title:'স্টার্টআপ আইডিয়া শেয়ারিং', date:'২০ মার্চ, ২০২৫', time:'৪:০০ PM', location:'দূরবর্তী (Zoom)', description:'উদ্যোক্তাদের জন্য' },
+            { id:3, title:'ক্যারিয়ার গাইডেন্স সেমিনার', date:'২৫ মার্চ, ২০২৫', time:'১০:০০ AM', location:'চট্টগ্রাম', description:'চাকরি প্রস্তুতি' },
+            { id:4, title:'ফ্রিল্যান্সিং ওয়ার্কশপ', date:'২৮ মার্চ, ২০২৫', time:'২:০০ PM', location:'সিলেট', description:'ফ্রিল্যান্সিং টিপস' },
+            { id:5, title:'হেলথ ক্যাম্প', date:'৩০ মার্চ, ২০২৫', time:'৯:০০ AM', location:'খুলনা', description:'বিনামূল্যে স্বাস্থ্য সেবা' },
+            { id:6, title:'ওয়েব ডেভেলপমেন্ট মিটআপ', date:'৫ এপ্রিল, ২০২৫', time:'৫:০০ PM', location:'রাজশাহী', description:'কোডিং কমিউনিটি' }
+        ],
+        groups: [
+            { id:1, name:'বাংলাদেশী শিক্ষার্থী', members:1200, description:'শিক্ষার্থীদের জন্য আলোচনা ফোরাম' },
+            { id:2, name:'আইটি পেশাজীবী বাংলাদেশ', members:3200, description:'টেক আলোচনা' },
+            { id:3, name:'ব্যবসায়ী নেটওয়ার্ক', members:850, description:'বাণিজ্যিক সংযোগ' },
+            { id:4, name:'প্রবাসী বাংলাদেশী', members:2100, description:'বিদেশে বসবাসরত বাঙালি' },
+            { id:5, name:'ফ্রিল্যান্সার কমিউনিটি', members:950, description:'ফ্রিল্যান্সিং টিপস' },
+            { id:6, name:'বইপোকা', members:670, description:'বই আলোচনা' }
+        ],
+        init() {
+            setTimeout(() => {
+                document.getElementById('splashScreen').style.display = 'none';
+                document.getElementById('mainApp').classList.remove('hidden');
+            }, 1500);
+            this.loadHomeView();
+            this.setupDemoAuth();
+            this.renderRightSidebar();
+        },
+        setupDemoAuth() {
+            const demo = localStorage.getItem('demoUser');
+            if(demo) { this.currentUser = JSON.parse(demo); this.updateUIForUser(); }
+        },
+        updateUIForUser() {
+            document.getElementById('guestBadge').classList.add('hidden');
+            const btn = document.querySelector('.nav-right .btn-primary');
+            if(btn) btn.textContent = this.currentUser?.name || 'প্রোফাইল';
+        },
+        showAuthModal() { document.getElementById('authModal').classList.add('active'); },
+        closeModal(id) { document.getElementById(id).classList.remove('active'); },
+        login() {
+            const email = document.getElementById('loginEmail').value;
+            const pwd = document.getElementById('loginPassword').value;
+            if(email === 'demo@test.com' && pwd === 'password') {
+                this.currentUser = { uid:'demo', name:'ডেমো ব্যবহারকারী', email:'demo@test.com', followers:1500, verified:false };
+                localStorage.setItem('demoUser', JSON.stringify(this.currentUser));
+                this.updateUIForUser();
+                this.showToast('লগইন সফল!', 'success');
+                this.closeModal('authModal');
+                this.loadProfileView();
+            } else this.showToast('ভুল তথ্য', 'error');
+        },
+        logout() {
+            this.currentUser = null;
+            localStorage.removeItem('demoUser');
+            document.getElementById('guestBadge').classList.remove('hidden');
+            this.showToast('লগ আউট হয়েছে', 'info');
+            this.navigateTo('home');
+        },
+        navigateTo(view) {
+            const views = ['home','jobs','chat','profile','events','groups','privacy','terms','about'];
+            views.forEach(v => { const el = document.getElementById(v+'View'); if(el) el.classList.add('hidden'); });
+            document.getElementById(view+'View').classList.remove('hidden');
+            if(view === 'home') this.loadHomeView();
+            if(view === 'jobs') this.loadJobsView();
+            if(view === 'profile') this.loadProfileView();
+            if(view === 'events') this.loadEventsView();
+            if(view === 'groups') this.loadGroupsView();
+            if(view === 'privacy') this.loadPrivacyPage();
+            if(view === 'terms') this.loadTermsPage();
+            if(view === 'about') this.loadAboutPage();
+        },
+        loadHomeView() {
+            this.renderUsers(this.users);
+            this.renderRecommendations(this.users.slice(0,4));
+        },
+        renderUsers(users) {
+            const container = document.getElementById('usersList');
+            if(!container) return;
+            container.innerHTML = users.map(u => `
+                <div class="user-card">
+                    <div class="avatar" style="width:50px; height:50px;">${u.name.charAt(0)}</div>
+                    <h4>${u.name} ${u.verified ? '<i class="fas fa-check-circle" style="color:var(--accent-green);"></i>' : ''}</h4>
+                    <p><i class="fas fa-briefcase"></i> ${u.profession}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ${u.location}</p>
+                    <div class="flex-between mt-2">
+                        <button class="btn btn-primary btn-sm" onclick="app.handleConnect(${u.id})">ফলো</button>
+                        <button class="btn btn-secondary btn-sm" onclick="app.handleChat(${u.id})">চ্যাট</button>
+                    </div>
+                </div>
+            `).join('');
+        },
+        handleConnect(id) { if(!this.currentUser) return this.showToast('লগইন করুন', 'warning'); this.showToast('ফলো অনুরোধ পাঠানো হয়েছে', 'success'); },
+        handleChat(id) { this.navigateTo('chat'); },
+        filterUsers(type) {
+            let filtered = [...this.users];
+            if(type === 'nearby') filtered = filtered.filter(u => u.distance < 10);
+            if(type === 'online') filtered = filtered.filter(u => u.online);
+            this.renderUsers(filtered);
+        },
+        loadJobsView() { this.renderJobs(this.jobs); },
+        renderJobs(jobs) {
+            const container = document.getElementById('jobsList');
+            if(container) container.innerHTML = jobs.map(j => `
+                <div class="job-card">
+                    <h3>${j.title}</h3>
+                    <p>${j.company} | ${j.type}</p>
+                    <p>${j.location} | ${j.salary}</p>
+                    <button class="btn btn-primary mt-2" onclick="app.showApplyModal(${j.id})">আবেদন করুন</button>
+                </div>
+            `).join('');
+        },
+        showApplyModal(jobId) { if(!this.currentUser) return this.showToast('লগইন করুন', 'warning'); window.currentJobId = jobId; document.getElementById('applyJobModal').classList.add('active'); },
+        submitApplication() {
+            const name = document.getElementById('applyName').value;
+            const email = document.getElementById('applyEmail').value;
+            const phone = document.getElementById('applyPhone').value;
+            const cover = document.getElementById('applyCover').value;
+            if(!name || !email) return this.showToast('সব তথ্য দিন', 'error');
+            this.showToast('আবেদন জমা হয়েছে! নোটিফিকেশন পাঠানো হবে।', 'success');
+            this.closeModal('applyJobModal');
+            document.getElementById('applyName').value = '';
+            document.getElementById('applyEmail').value = '';
+            document.getElementById('applyPhone').value = '';
+            document.getElementById('applyCover').value = '';
+        },
+        showPostJobModal() { if(!this.currentUser) return this.showToast('লগইন করুন', 'warning'); document.getElementById('postJobModal').classList.add('active'); },
+        postJob() {
+            const newJob = {
+                id: Date.now(),
+                title: document.getElementById('jobTitle').value,
+                company: document.getElementById('jobCompany').value,
+                type: document.getElementById('jobType').value,
+                location: document.getElementById('jobLocation').value,
+                salary: document.getElementById('jobSalary').value,
+                description: document.getElementById('jobDescription').value,
+                skills: document.getElementById('jobSkills').value.split(',')
+            };
+            if(!newJob.title || !newJob.company) return this.showToast('শিরোনাম ও কোম্পানি দিন', 'error');
+            this.jobs.unshift(newJob);
+            this.renderJobs(this.jobs);
+            this.closeModal('postJobModal');
+            this.showToast('চাকরি পোস্ট হয়েছে!', 'success');
+            ['jobTitle','jobCompany','jobLocation','jobSalary','jobDescription','jobSkills'].forEach(id => document.getElementById(id).value = '');
+        },
+        loadProfileView() {
+            const container = document.getElementById('profileContent');
+            if(!this.currentUser) { container.innerHTML = '<p>প্রোফাইল দেখতে লগইন করুন</p>'; return; }
+            const user = this.users.find(u => u.name.includes(this.currentUser.name)) || this.users[0];
+            const canVerifyFree = (user.followers >= 1000);
+            container.innerHTML = `
+                <div class="profile-section" style="background:white; padding:24px; border-radius:20px;">
+                    <div class="avatar" style="width:80px; height:80px; font-size:32px;">${user.name.charAt(0)}</div>
+                    <h2>${user.name} ${user.verified ? '<i class="fas fa-check-circle" style="color:var(--accent-green);"></i>' : ''}</h2>
+                    <p>${user.profession}</p>
+                    <p>ফলোয়ার: ${user.followers}</p>
+                    ${!user.verified ? `<div class="mt-3"><h4>ভেরিফিকেশন</h4>${canVerifyFree ? '<button class="btn btn-primary" onclick="app.verifyFree()">ফ্রি ভেরিফাই করুন</button>' : '<button class="btn btn-outline" onclick="app.verifyPaid()">প্রিমিয়াম ভেরিফিকেশন (৳৫০০)</button>'}</div>` : '<span class="badge-verified">যাচাইকৃত</span>'}
+                    <button class="btn btn-secondary mt-3" onclick="app.showEditProfile()">প্রোফাইল এডিট</button>
+                </div>
+            `;
+        },
+        verifyFree() { this.showToast('অভিনন্দন! আপনার অ্যাকাউন্ট ভেরিফাইড হয়েছে (ফ্রি)', 'success'); },
+        verifyPaid() { this.showToast('পেমেন্ট পেজে রিডাইরেক্ট হচ্ছে...', 'info'); },
+        showEditProfile() { this.showToast('এডিট মোড শীঘ্রই', 'info'); },
+        loadEventsView() { this.renderEvents(this.events); },
+        renderEvents(events) {
+            const container = document.getElementById('eventsList');
+            if(container) container.innerHTML = events.map(e => `<div class="event-card"><h3>${e.title}</h3><p><i class="fas fa-calendar"></i> ${e.date} | ${e.time}</p><p><i class="fas fa-map-marker"></i> ${e.location}</p><p>${e.description}</p><button class="btn btn-primary btn-sm mt-2" onclick="app.registerEvent(${e.id})">রেজিস্টার</button></div>`).join('');
+        },
+        registerEvent(id) { if(!this.currentUser) return this.showToast('লগইন করুন', 'warning'); this.showToast('ইভেন্টে রেজিস্ট্রেশন সফল!', 'success'); },
+        loadGroupsView() { this.renderGroups(this.groups); },
+        renderGroups(groups) {
+            const container = document.getElementById('groupsList');
+            if(container) container.innerHTML = groups.map(g => `<div class="group-card"><h3>${g.name}</h3><p>সদস্য: ${g.members}</p><p>${g.description}</p><button class="btn btn-primary btn-sm" onclick="app.joinGroup(${g.id})">গ্রুপে জয়েন</button></div>`).join('');
+        },
+        joinGroup(id) { if(!this.currentUser) return this.showToast('লগইন করুন', 'warning'); this.showToast('গ্রুপে যোগ দিয়েছেন!', 'success'); },
+        loadPrivacyPage() { document.getElementById('privacyContent').innerHTML = `<h3>গোপনীয়তা নীতি</h3><p>আমরা আপনার তথ্য সুরক্ষায় প্রতিশ্রুতিবদ্ধ। কোনো ব্যক্তিগত তথ্য তৃতীয় পক্ষের সাথে শেয়ার করা হয় না।</p><p>আপনার ডেটা শুধুমাত্র প্ল্যাটফর্মের উন্নয়নে ব্যবহৃত হয়।</p>`; },
+        loadTermsPage() { document.getElementById('termsContent').innerHTML = `<h3>সেবা শর্তাবলী</h3><p>হ্যালো বাংলাদেশী ব্যবহারের মাধ্যমে আপনি সম্মতি দিচ্ছেন যে কোনো অসদাচরণ থেকে বিরত থাকবেন। ভুয়া প্রোফাইল তৈরি নিষিদ্ধ।</p><p>সেবা যেকোনো সময় পরিবর্তন হতে পারে।</p>`; },
+        loadAboutPage() { document.getElementById('aboutContent').innerHTML = `<div class="text-center"><h2>Forhad Walid</h2><p>ফুল স্ট্যাক ওয়েব ডেভেলপার</p><p>দক্ষতা: JavaScript, React, Firebase, Node.js</p><p>ইমেইল: forhad@hellobangladeshi.com</p><div style="display:flex; gap:15px; justify-content:center;"><a href="#"><i class="fab fa-github fa-2x"></i></a><a href="#"><i class="fab fa-linkedin fa-2x"></i></a></div></div>`; },
+        renderRightSidebar() {
+            const recDiv = document.getElementById('recommendationsList');
+            if(recDiv) recDiv.innerHTML = this.users.slice(0,3).map(u => `<div class="flex-between mb-2"><span>${u.name}</span><button class="btn btn-primary btn-sm" onclick="app.handleConnect(${u.id})">ফলো</button></div>`).join('');
+            const trendDiv = document.getElementById('trendingJobsList');
+            if(trendDiv) trendDiv.innerHTML = this.jobs.slice(0,2).map(j => `<div><strong>${j.title}</strong><br>${j.company}</div><hr>`).join('');
+            const rightEvents = document.getElementById('rightEventsList');
+            if(rightEvents) rightEvents.innerHTML = this.events.slice(0,2).map(e => `<div><i class="fas fa-calendar"></i> ${e.title}<br><small>${e.date}</small></div><hr>`).join('');
+        },
+        showAllRecommendations() { this.showAllList('সুপারিশকৃত ব্যক্তি', this.users.map(u => `<div class="flex-between"><span>${u.name} (${u.profession})</span><button class="btn btn-primary btn-sm" onclick="app.handleConnect(${u.id})">ফলো</button></div>`).join('')); },
+        showAllJobs() { this.showAllList('সকল চাকরি', this.jobs.map(j => `<div class="job-card"><h4>${j.title}</h4><p>${j.company} | ${j.salary}</p><button class="btn btn-primary" onclick="app.showApplyModal(${j.id})">আবেদন</button></div>`).join('')); },
+        showAllEvents() { this.showAllList('সকল ইভেন্ট', this.events.map(e => `<div class="event-card"><h4>${e.title}</h4><p>${e.date} | ${e.location}</p><button class="btn btn-primary" onclick="app.registerEvent(${e.id})">রেজিস্টার</button></div>`).join('')); },
+        showAllList(title, content) { document.getElementById('viewAllTitle').innerText = title; document.getElementById('viewAllContent').innerHTML = content; document.getElementById('viewAllModal').classList.add('active'); },
+        showToast(msg, type) {
+            const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':'fa-info-circle'}"></i> ${msg}`;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    };
+    window.app = app;
+    app.init();
+</script>
 </body>
 </html>
