@@ -1,379 +1,189 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>সেবা শর্তাবলী | হ্যালো বাংলাদেশী</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.5;
-        }
-
-        /* modern scroll */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #008060;
-            border-radius: 20px;
-        }
-
-        .header {
-            background: linear-gradient(125deg, #006A4E 0%, #008060 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .header::before {
-            content: "✦";
-            font-size: 160px;
-            opacity: 0.08;
-            position: absolute;
-            bottom: -30px;
-            right: -20px;
-            font-family: monospace;
-            pointer-events: none;
-        }
-        .header h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.92;
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: -2rem auto 4rem;
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.02);
-            padding: 2.5rem 2.8rem;
-            transition: all 0.2s;
-        }
-
-        .last-updated {
-            background: #f0fdf4;
-            border-left: 4px solid #008060;
-            padding: 0.8rem 1.5rem;
-            border-radius: 1rem;
-            margin-bottom: 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-            color: #1f5e3a;
-            font-weight: 500;
-            width: auto;
-        }
-
-        .section {
-            margin-bottom: 2.5rem;
-            scroll-margin-top: 1rem;
-        }
-        .section-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #006A4E;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #e6f0ec;
-            display: inline-block;
-            letter-spacing: -0.2px;
-        }
-        .section-content {
-            color: #2d3a48;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        .section-content p {
-            margin-bottom: 1rem;
-        }
-        .section-content ul {
-            margin: 0.75rem 0 1rem 1.6rem;
-            list-style-type: none;
-        }
-        .section-content li {
-            margin-bottom: 0.6rem;
-            position: relative;
-            padding-left: 1.6rem;
-        }
-        .section-content li:before {
-            content: "•";
-            color: #008060;
-            font-weight: bold;
-            font-size: 1.2rem;
-            position: absolute;
-            left: 0.2rem;
-            top: -0.1rem;
-        }
-        .contact-details {
-            background: #f9fafb;
-            padding: 1.2rem 1.6rem;
-            border-radius: 24px;
-            display: inline-block;
-            width: 100%;
-            border: 1px solid #e2edf2;
-        }
-        .contact-details i {
-            width: 28px;
-            color: #008060;
-            margin-right: 0.5rem;
-        }
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: white;
-            color: #006A4E;
-            padding: 0.7rem 1.6rem;
-            border-radius: 60px;
-            font-weight: 600;
-            text-decoration: none;
-            margin: 1.8rem 2rem;
-            transition: all 0.25s ease;
-            border: 1.5px solid #cbd5e1;
-            backdrop-filter: blur(2px);
-            font-size: 0.95rem;
-        }
-        .back-button:hover {
-            background: #006A4E;
-            color: white;
-            border-color: #006A4E;
-            transform: translateX(-4px);
-            box-shadow: 0 8px 16px -8px rgba(0,106,78,0.25);
-        }
-        .footer {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: white;
-            border-top: 1px solid #e9ecef;
-            color: #5b6e8c;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 780px) {
-            .container {
-                margin: -1.5rem 1.2rem 2.5rem;
-                padding: 1.6rem;
-            }
-            .header h1 {
-                font-size: 2rem;
-            }
-            .section-title {
-                font-size: 1.45rem;
-            }
-            .back-button {
-                margin: 1rem 1.2rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.4rem;
-            }
-            .section-content li {
-                font-size: 0.95rem;
-            }
-        }
-        hr {
-            margin: 1rem 0;
-            border: 0;
-            height: 1px;
-            background: linear-gradient(90deg, #e2e8f0, transparent);
-        }
-        .highlight {
-            font-weight: 600;
-            color: #0b4f3a;
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>সেবা শর্তাবলী - হ্যালো বাংলাদেশী</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Hind Siliguri',sans-serif;background:#f7fafc}
+.back{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;background:white;color:#006A4E;border-radius:50px;font-weight:600;margin:18px;transition:all .3s;border:2px solid #006A4E;text-decoration:none;font-size:13px}
+.back:hover{background:#006A4E;color:white;transform:translateX(-4px)}
+.header{background:linear-gradient(135deg,#006A4E,#008060);color:white;padding:50px 20px;text-align:center}
+.header h1{font-size:34px;margin-bottom:8px}.header p{font-size:15px;opacity:.9}
+.container{max-width:900px;margin:-26px auto 60px;background:white;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.08);padding:36px}
+.lastup{background:#f7fafc;padding:10px 16px;border-radius:12px;margin-bottom:28px;text-align:center;color:#718096;font-size:12px;border:1px solid #e2e8f0}
+.sec{margin-bottom:28px}
+.stitle{font-size:20px;font-weight:600;color:#006A4E;margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid #e2e8f0;display:flex;align-items:center;gap:10px}
+.stitle i{width:30px;height:30px;background:rgba(0,106,78,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.stext{color:#4a5568;line-height:1.8;font-size:13px}
+.stext p{margin-bottom:11px}
+.stext ul{margin-left:18px;margin-bottom:11px}
+.stext li{margin-bottom:5px}
+.stext strong{color:#1a1a1a}
+.highlight{background:rgba(244,42,65,.06);border-left:4px solid #F42A41;padding:14px 16px;border-radius:0 12px 12px 0;margin:14px 0;font-size:13px;color:#c0392b}
+.ok-box{background:rgba(0,106,78,.06);border-left:4px solid #006A4E;padding:14px 16px;border-radius:0 12px 12px 0;margin:14px 0;font-size:13px}
+.footer{text-align:center;padding:24px 0 0;border-top:1px solid #e2e8f0;color:#718096;font-size:12px;margin-top:10px}
+@media(max-width:768px){.container{padding:22px;margin:-20px 16px 40px}.header h1{font-size:28px}}
+</style>
 </head>
 <body>
-    <a href="index.html" class="back-button" aria-label="হোমপেজে ফিরে যান">
-        <i class="fas fa-arrow-left"></i>
-        <span>হোমে ফিরুন</span>
-    </a>
-    
-    <div class="header">
-        <h1>সেবা শর্তাবলী</h1>
-        <p>হ্যালো বাংলাদেশী — স্বচ্ছতা, বিশ্বাস ও দায়িত্ব</p>
+<a href="index.html" class="back"><i class="fas fa-arrow-left"></i> হোমে ফিরুন</a>
+<div class="header">
+  <h1 class="bangla">সেবা শর্তাবলী</h1>
+  <p class="bangla">হ্যালো বাংলাদেশী ব্যবহারের শর্ত ও নিয়মাবলী</p>
+</div>
+<div class="container">
+  <div class="lastup bangla"><i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৬ | কার্যকর: ফেব্রুয়ারি ২০২৬</div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-handshake"></i> ১. শর্তাবলীর গ্রহণযোগ্যতা</div>
+    <div class="stext bangla">
+      <p>হ্যালো বাংলাদেশী অ্যাপ্লিকেশন বা ওয়েবসাইট ব্যবহার করে আপনি এই সেবা শর্তাবলী মেনে চলতে সম্মত হচ্ছেন। যদি আপনি এই শর্তাবলীর সাথে একমত না হন, অনুগ্রহ করে আমাদের সেবা ব্যবহার করবেন না।</p>
+      <div class="ok-box"><i class="fas fa-info-circle"></i> <strong>গুরুত্বপূর্ণ:</strong> আমরা যেকোনো সময় এই শর্তাবলী পরিবর্তন করতে পারি। গুরুত্বপূর্ণ পরিবর্তনের ক্ষেত্রে আমরা আপনাকে আগেভাগে জানাবো। অব্যাহত ব্যবহার পরিবর্তনের গ্রহণযোগ্যতা বোঝায়।</div>
     </div>
-    
-    <div class="container">
-        <div class="last-updated">
-            <i class="fas fa-sync-alt"></i> 
-            <span>সর্বশেষ সংশোধন: ২৬ মার্চ, ২০২৬ | সংস্করণ ২.০</span>
-        </div>
-        
-        <div class="section" id="acceptance">
-            <h2 class="section-title">১. শর্তাবলীর গ্রহণযোগ্যতা</h2>
-            <div class="section-content">
-                <p>“হ্যালো বাংলাদেশী” মোবাইল অ্যাপ্লিকেশন, ওয়েব প্ল্যাটফর্ম এবং সংশ্লিষ্ট পরিষেবাদি (যৌথভাবে “প্ল্যাটফর্ম”) ব্যবহারের মাধ্যমে আপনি আইনত সক্ষম ব্যবহারকারী হিসেবে এই সেবা শর্তাবলী (Terms of Service) দ্বারা আবদ্ধ হতে সম্মতি প্রদান করছেন। যদি আপনি সম্পূর্ণ শর্তাবলীর সাথে একমত না হন, তাহলে প্ল্যাটফর্ম ব্যবহার থেকে বিরত থাকুন।</p>
-                <p>আমরা যে কোনো সময়, পূর্ব ঘোষণা ছাড়াই, এই শর্তাবলী সংশোধন বা আপডেট করতে পারি। সংশোধিত সংস্করণ প্ল্যাটফর্মে প্রকাশের সাথে সাথে কার্যকর হবে। প্ল্যাটফর্মের চলমান ব্যবহার আপনার পক্ষ থেকে সংশোধিত শর্তাবলী মেনে নেওয়ার ইঙ্গিত বহন করে। গুরুত্বপূর্ণ পরিবর্তনগুলোর বিষয়ে ইমেইল বা নোটিফিকেশনের মাধ্যমে অবহিত করার চেষ্টা করা হবে।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="account">
-            <h2 class="section-title">২. অ্যাকাউন্ট নিবন্ধন ও নিরাপত্তা</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশীর বেশিরভাগ ফিচার ব্যবহার করতে একটি বৈধ অ্যাকাউন্ট প্রয়োজন। অ্যাকাউন্ট তৈরি ও ব্যবহারের ক্ষেত্রে প্রযোজ্য:</p>
-                <ul>
-                    <li>আপনি যে তথ্য প্রদান করেন (নাম, ইমেইল, মোবাইল নম্বর ইত্যাদি) তা সঠিক, সম্পূর্ণ এবং বর্তমান হতে হবে।</li>
-                    <li>আপনার অ্যাকাউন্টের লগইন তথ্য গোপন রাখা আপনার একান্ত দায়িত্ব। শেয়ার করা বা অন্যের দ্বারা ব্যবহারের অনুমতি দেওয়া যাবে না।</li>
-                    <li>অ্যাকাউন্টের মাধ্যমে সংঘটিত সকল কার্যকলাপের জন্য আপনি সম্পূর্ণ দায়ী। অননুমোদিত ব্যবহার টের পেলে অবিলম্বে আমাদের সাপোর্ট টিমকে জানান।</li>
-                    <li>প্রতিটি ব্যবহারকারী শুধুমাত্র একটি ব্যক্তিগত অ্যাকাউন্ট ধারণ করতে পারবেন; একাধিক অ্যাকাউন্ট তৈরি করা নিষিদ্ধ।</li>
-                    <li>প্ল্যাটফর্ম ব্যবহারের ন্যূনতম বয়স ১৩ বছর। ১৮ বছরের কম ব্যবহারকারীদের অভিভাবকের সম্মতি আবশ্যক।</li>
-                </ul>
-                <p>আমরা সম্পূর্ণ নিজস্ব বিবেচনায়, কোনো কারণ উল্লেখ না করেই, নিয়ম লঙ্ঘন সাপেক্ষে অ্যাকাউন্ট স্থগিত বা স্থায়ীভাবে বাতিলের অধিকার রাখি।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="conduct">
-            <h2 class="section-title">৩. ব্যবহারকারীর আচরণবিধি</h2>
-            <div class="section-content">
-                <p>একটি ইতিবাচক ও নিরাপদ পরিবেশ বজায় রাখতে নিম্নলিখিত আচরণবিধি মেনে চলতে হবে:</p>
-                <ul>
-                    <li><span class="highlight">সম্মান ও সংবেদনশীলতা:</span> সকল সদস্যের প্রতি শ্রদ্ধাশীল, সংযত ও পেশাদার আচরণ আবশ্যক। ব্যক্তিগত আক্রমণ, জাতি-ধর্ম-বর্ণ ভিত্তিক বিদ্বেষমূলক মন্তব্য কঠোরভাবে নিষিদ্ধ।</li>
-                    <li><span class="highlight">হয়রানি নিষিদ্ধ:</span> কোনো ধরনের মানসিক বা শারীরিক হয়রানি, যৌন উত্যক্তকরণ, ঘৃণামূলক ভাষা বা ভয়প্রদর্শন সহ্য করা হবে না।</li>
-                    <li><span class="highlight">আইনগত ব্যবহার:</span> প্ল্যাটফর্ম শুধুমাত্র বৈধ উদ্দেশ্যে ব্যবহার করতে হবে। বাংলাদেশ ও আন্তর্জাতিক আইন লঙ্ঘন করে এমন কোনো কার্যকলাপ অনুমোদিত নয়।</li>
-                    <li><span class="highlight">বুদ্ধিবৃত্তিক সম্পত্তি:</span> তৃতীয় পক্ষের কপিরাইট, ট্রেডমার্ক বা মালিকানাধীন বিষয়বস্তু তাদের লিখিত অনুমতি ছাড়া ব্যবহার করা যাবে না।</li>
-                    <li><span class="highlight">স্প্যাম ও প্রতারণা:</span> অবাঞ্ছিত বাণিজ্যিক বার্তা, চেইন মেসেজ, বা প্রতারণামূলক লিংক পাঠানো সম্পূর্ণ নিষিদ্ধ। মিথ্যা পরিচয়ে অ্যাকাউন্ট খোলা বা কাউকে বিভ্রান্ত করা যাবে না।</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section" id="prohibited">
-            <h2 class="section-title">৪. নিষিদ্ধ কার্যকলাপের তালিকা</h2>
-            <div class="section-content">
-                <p>নিম্নোক্ত কাজগুলো হ্যালো বাংলাদেশীতে সম্পূর্ণ নিষিদ্ধ এবং তাৎক্ষণিক অ্যাকাউন্ট বাতিলের কারণ হবে:</p>
-                <ul>
-                    <li>সন্ত্রাসবাদ, মাদক, মানব পাচার বা অন্য যেকোনো অবৈধ কর্মকাণ্ডের প্রচার/উৎসাহ প্রদান।</li>
-                    <li>অশ্লীল, অমার্জনীয়, বিতর্কিত বা সহিংসতামূলক ছবি/ভিডিও/টেক্সট পোস্ট করা।</li>
-                    <li>অন্যান্য ব্যবহারকারীর ব্যক্তিগত তথ্য (ডক্সিং) সংগ্রহ বা প্রচার করা।</li>
-                    <li>প্ল্যাটফর্মের নিরাপত্তা ভঙ্গ, সার্ভার হ্যাকিং, রিভার্স ইঞ্জিনিয়ারিং বা ক্ষতিকর কোড (ভাইরাস, ওয়ার্ম) প্রবেশ করানো।</li>
-                    <li>স্বয়ংক্রিয় স্ক্রিপ্ট, বট বা অনুমোদনহীন টুল ব্যবহার করে ডেটা স্ক্র্যাপিং বা অটোমেটেড অ্যাক্টিভিটি।</li>
-                    <li>অন্য ব্যবহারকারীর অ্যাকাউন্টে অনুপ্রবেশের চেষ্টা বা পাসওয়ার্ড চুরি।</li>
-                </ul>
-                <p>উল্লিখিত যেকোনো নিয়ম ভঙ্গ করলে, আইনি ব্যবস্থা গ্রহণ সহ প্ল্যাটফর্ম থেকে আজীবন নিষিদ্ধ করা হতে পারে।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="content-ownership">
-            <h2 class="section-title">৫. কন্টেন্টের মালিকানা ও লাইসেন্স</h2>
-            <div class="section-content">
-                <p>আপনি আপনার তৈরি, আপলোড বা পোস্ট করা সকল কন্টেন্টের (যেমন স্ট্যাটাস, ছবি, জব পোস্ট, মন্তব্য) মালিকানা ধরে রাখেন। তবে প্ল্যাটফর্মের কার্যকারিতা ও সেবা প্রদানের স্বার্থে:</p>
-                <ul>
-                    <li>আপনি হ্যালো বাংলাদেশীকে একটি বিশ্বব্যাপী, অ-এক্সক্লুসিভ, রয়্যালটি-মুক্ত লাইসেন্স প্রদান করেন, যা কন্টেন্ট হোস্ট, সংরক্ষণ, প্রদর্শন, পুনরুৎপাদন এবং শুধুমাত্র প্ল্যাটফর্মের সাথে সম্পর্কিত উদ্দেশ্যে বিতরণের সুযোগ দেয়।</li>
-                    <li>আমরা কখনোই আপনার কন্টেন্টের মালিকানা দাবি করি না, তবে অন্য ব্যবহারকারীদের সাথে শেয়ার করার সুবিধার্থে প্রয়োজনীয় স্বীকৃতি সংরক্ষণ করি।</li>
-                    <li>আইনি প্রয়োজনে বা সম্প্রদায়ের নিয়ম লঙ্ঘনের ভিত্তিতে আমরা যেকোনো কন্টেন্ট অপসারণ বা অ্যাক্সেস সীমিত করতে পারি।</li>
-                </ul>
-                <p>আমরা ব্যবহারকারীদের পোস্ট করা কন্টেন্টের সত্যতা, নির্ভুলতা বা মানের জন্য দায়ী নই। যেকোনো সমস্যার জন্য সংশ্লিষ্ট পোস্টকারী ব্যবহারকারী দায়ী থাকবেন।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="job-posting">
-            <h2 class="section-title">৬. চাকরি পোস্টিং সংক্রান্ত বিশেষ শর্ত</h2>
-            <div class="section-content">
-                <p>নিয়োগকর্তা বা প্রতিষ্ঠানের প্রতিনিধিরা “চাকরি” বিভাগে বিজ্ঞাপন দেওয়ার সময় নিম্নোক্ত বিষয় মেনে চলবেন:</p>
-                <ul>
-                    <li>প্রতিটি চাকরির বিজ্ঞাপনে সঠিক পদবি, প্রয়োজনীয় যোগ্যতা, দায়িত্ব ও বেতন কাঠামো (যদি প্রযোজ্য) স্পষ্টভাবে উল্লেখ করতে হবে।</li>
-                    <li>বৈষম্যমূলক (লিঙ্গ, ধর্ম, বয়স, প্রতিবন্ধিতা) শর্তযুক্ত বিজ্ঞাপন কঠোরভাবে নিষিদ্ধ।</li>
-                    <li>মিথ্যা বা বিভ্রান্তিকর নিয়োগ সংক্রান্ত তথ্য প্রদান করলে আইনি শাস্তির আওতায় আনা যেতে পারে।</li>
-                    <li>হ্যালো বাংলাদেশী কেবল একটি সংযোগ স্থাপনকারী মাধ্যম হিসেবে কাজ করে। নিয়োগ প্রক্রিয়া, সাক্ষাৎকার, চুক্তি বা আর্থিক লেনদেন সম্পূর্ণভাবে নিয়োগকর্তা ও আবেদনকারীর নিজস্ব দায়িত্ব।</li>
-                    <li>চাকরির প্রিলোড বা কোনোরূপ ফি দাবি করলে তা সাথে সাথে রিপোর্ট করুন। প্ল্যাটফর্ম প্রতারণামূলক কর্মকাণ্ডের বিরুদ্ধে ব্যবস্থা নেয়ার অধিকার রাখে।</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section" id="disclaimer">
-            <h2 class="section-title">৭. দায়িত্ব অস্বীকার (ওয়ারেন্টি ডিসক্লেইমার)</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশী প্ল্যাটফর্ম “যেমন আছে” (AS IS) এবং “যেমন পাওয়া যায়” (AS AVAILABLE) ভিত্তিতে সরবরাহ করা হয়। প্রযোজ্য আইনের অধীনে সর্বোচ্চ সীমা পর্যন্ত, আমরা নিম্নলিখিত বিষয়ে কোনো স্পষ্ট বা অন্তর্নিহিত ওয়ারেন্টি দেই না:</p>
-                <ul>
-                    <li>সার্ভিসের নিরবচ্ছিন্নতা, ত্রুটিমুক্ততা, নির্ভুলতা বা নিরাপত্তা।</li>
-                    <li>ব্যবহারকারীদের দ্বারা আপলোডকৃত তথ্য, জব পোস্ট বা অন্যান্য বিষয়বস্তুর সত্যতা ও নির্ভরযোগ্যতা।</li>
-                    <li>তৃতীয় পক্ষের লিংক বা বাহ্যিক সাইটের মাধ্যমে প্রদত্ত কন্টেন্টের গ্রহণযোগ্যতা।</li>
-                    <li>অ্যাপ্লিকেশন ব্যবহারজনিত হার্ডওয়্যার, সফটওয়্যার বা ডেটার ক্ষতি।</li>
-                </ul>
-                <p>যেকোনো সময় প্রযুক্তিগত বা ব্যবসায়িক কারণে প্ল্যাটফর্মের কিছু অংশ বা সম্পূর্ণটি নোটিশ ছাড়া সংশোধন, স্থগিত বা বন্ধ করার অধিকার সংরক্ষিত।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="liability">
-            <h2 class="section-title">৮. দায়বদ্ধতার সীমাবদ্ধতা</h2>
-            <div class="section-content">
-                <p>কোনো অবস্থাতেই হ্যালো বাংলাদেশী, এর পরিচালক, কর্মকর্তা বা সহযোগী প্রতিষ্ঠান নিম্নোক্ত ক্ষতির জন্য দায়ী থাকবে না:</p>
-                <ul>
-                    <li>পরোক্ষ, আনুষঙ্গিক, বিশেষ বা ফলস্বরূপ ক্ষতি বা লোকসান, এমনকি যদি সম্ভাব্য ক্ষতি সম্পর্কে আগে থেকে অবহিত করা হয়ে থাকে।</li>
-                    <li>ব্যবহারকারীদের মধ্যে সৃষ্ট কোনো বিরোধ, সংঘর্ষ বা শারীরিক/আর্থিক ক্ষতি।</li>
-                    <li>তৃতীয় পক্ষের অননুমোদিত কার্যকলাপ বা হ্যাকিং জনিত ডেটা লিকেজ (যদিও আমরা যুক্তিসঙ্গত নিরাপত্তা ব্যবস্থা গ্রহণ করি)।</li>
-                    <li>ব্যবসায়িক সুযোগের ক্ষতি, আয় হ্রাস বা খ্যাতির ক্ষতি।</li>
-                </ul>
-                <p>কোনো দাবি বা ক্ষতির ক্ষেত্রে আমাদের সম্মিলিত দায়বদ্ধতা, সর্বোচ্চ ক্ষেত্রে, গত ছয় মাসে আপনি প্ল্যাটফর্মে প্রদত্ত মোট ফি-এর সমপরিমাণ অথবা ১০০ মার্কিন ডলারের (বা সমতুল্য বাংলাদেশী টাকা) মধ্যে সীমাবদ্ধ থাকবে, যা আইনত অনুমোদিত সর্বোচ্চ সীমা।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="termination">
-            <h2 class="section-title">৯. অ্যাকাউন্ট বাতিলকরণ ও মেয়াদ শেষ</h2>
-            <div class="section-content">
-                <p>আপনি যেকোনো সময় অ্যাপের "সেটিংস" থেকে অথবা আমাদের সাপোর্ট টিমের মাধ্যমে আপনার অ্যাকাউন্ট স্থায়ীভাবে বাতিলের অনুরোধ করতে পারেন। অ্যাকাউন্ট বাতিল হলে:</p>
-                <ul>
-                    <li>আপনার প্রোফাইল, পোস্ট, মেসেজ এবং সংরক্ষিত সকল তথ্য আমাদের ডাটাবেস থেকে মুছে ফেলা হবে, যেসব তথ্য আইনগত কারণে সংরক্ষণ করতে হয় তা ব্যতীত।</li>
-                    <li>ভবিষ্যতে একই ইমেইল/মোবাইল নম্বর ব্যবহার করে নতুন অ্যাকাউন্ট খোলার সুযোগ থাকবে।</li>
-                    <li>আমরা এই শর্তাবলী বা সম্প্রদায় নির্দেশিকা লঙ্ঘনের কারণে পূর্বানুমতি ছাড়াই অ্যাকাউন্ট স্থগিত বা বাতিল করতে পারি। জরুরী ক্ষেত্রে (যেমন প্রতারণা, হ্যাকিং) নোটিশ প্রদান বাধ্যতামূলক নয়।</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section" id="governing-law">
-            <h2 class="section-title">১০. প্রযোজ্য আইন ও বিরোধ নিষ্পত্তি</h2>
-            <div class="section-content">
-                <p>এই সেবা শর্তাবলী বাংলাদেশের আইন দ্বারা পরিচালিত হবে। প্ল্যাটফর্ম ব্যবহার সংক্রান্ত যেকোনো বিরোধ বা দাবী প্রথমে আমাদের গ্রাহক সহায়তার মাধ্যমে বন্ধুত্বপূর্ণ সমাধানের চেষ্টা করা হবে। যদি সমাধান সম্ভব না হয়, তবে একমাত্র এখতিয়ার হিসেবে ঢাকা, বাংলাদেশের আদালত সমূহকে গন্য করা হবে।</p>
-                <p>ব্যবহারকারী ও প্ল্যাটফর্মের মধ্যে উদ্ভূত সকল বিবাদে সালিশি বা মধ্যস্থতার মাধ্যমে দ্রুত সমাধানের চেষ্টা করা হবে।</p>
-            </div>
-        </div>
-        
-        <div class="section" id="contact">
-            <h2 class="section-title">১১. যোগাযোগের তথ্য</h2>
-            <div class="section-content">
-                <p>এই শর্তাবলী, আপনার গোপনীয়তা বা অ্যাকাউন্ট সংক্রান্ত যেকোনো প্রশ্ন, অভিযোগ বা পরামর্শের জন্য আমাদের অফিসিয়াল চ্যানেলে যোগাযোগ করুন:</p>
-                <div class="contact-details">
-                    <p><i class="fas fa-envelope"></i> <strong>ইমেইল:</strong> support@hellobangladeshi.com.bd</p>
-                    <p><i class="fas fa-phone-alt"></i> <strong>হটলাইন:</strong> +880 1924449132 (সকাল ৯টা - রাত ৯টা)</p>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>প্রধান কার্যালয়:</strong> সিলেট, বাংলাদেশ (উপশহর, জিন্দাবাজার)</p>
-                    <p><i class="fab fa-whatsapp"></i> <strong>হোয়াটসঅ্যাপ সহায়তা:</strong> +880 1924449132</p>
-                </div>
-                <p style="margin-top: 1rem;">অভিযোগ নিষ্পত্তিতে আমরা ৭ কার্যদিবসের মধ্যে জবাব দিতে প্রতিশ্রুতিবদ্ধ।</p>
-            </div>
-        </div>
-        <hr />
-        <div style="text-align: center; font-size: 0.85rem; margin-top: 1rem; color: #4b6b8f;">
-            <i class="fas fa-check-circle"></i> হ্যালো বাংলাদেশী — সংযোগ, বিশ্বাস এবং সেবার প্রতিশ্রুতি
-        </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-user-plus"></i> ২. অ্যাকাউন্ট নিবন্ধন</div>
+    <div class="stext bangla">
+      <p>হ্যালো বাংলাদেশী সেবা ব্যবহার করতে আপনাকে একটি অ্যাকাউন্ট তৈরি করতে হবে। নিবন্ধনের সময় আপনি নিম্নলিখিত শর্তে সম্মত হচ্ছেন:</p>
+      <ul>
+        <li>সঠিক, সম্পূর্ণ ও আপডেটেড তথ্য প্রদান করবেন</li>
+        <li>আপনার অ্যাকাউন্টের পাসওয়ার্ড ও তথ্য গোপন রাখবেন</li>
+        <li>আপনার অ্যাকাউন্টের সকল কার্যকলাপের জন্য আপনি দায়ী থাকবেন</li>
+        <li>একই ব্যক্তির একাধিক অ্যাকাউন্ট তৈরি করা যাবে না</li>
+        <li>আপনার বয়স কমপক্ষে ১৩ বছর হতে হবে</li>
+        <li>অন্য কারো পরিচয়ে অ্যাকাউন্ট তৈরি করা যাবে না</li>
+      </ul>
+      <p>আমরা যেকোনো সময়, কারণ উল্লেখ ছাড়াই, আপনার অ্যাকাউন্ট স্থগিত বা বাতিল করার অধিকার রাখি।</p>
     </div>
-    
-    <div class="footer">
-        <p>&copy; ২০২৬ হ্যালো বাংলাদেশী (Hello Bangladeshi) — সব অধিকার সংরক্ষিত। <br> “সেবা শর্তাবলী” সর্বশেষ সংস্করণ কার্যকর ২৬ মার্চ, ২০২৬ থেকে।</p>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-users"></i> ৩. ব্যবহারকারীর আচরণবিধি</div>
+    <div class="stext bangla">
+      <p>আমাদের প্ল্যাটফর্ম ব্যবহার করার সময় আপনি নিম্নলিখিত আচরণবিধি মেনে চলতে বাধ্য:</p>
+      <ul>
+        <li>সকল ব্যবহারকারীর সাথে সম্মানজনক ও ভদ্র আচরণ করবেন</li>
+        <li>অন্য ব্যবহারকারীদের হয়রানি বা উত্যক্ত করবেন না</li>
+        <li>শুধুমাত্র বৈধ ও নৈতিক উদ্দেশ্যে প্ল্যাটফর্ম ব্যবহার করবেন</li>
+        <li>অন্যের কপিরাইটযুক্ত উপাদান অনুমতি ছাড়া ব্যবহার করবেন না</li>
+        <li>স্প্যাম বা অবাঞ্ছিত বার্তা পাঠাবেন না</li>
+        <li>মিথ্যা বা বিভ্রান্তিকর তথ্য শেয়ার করবেন না</li>
+        <li>অন্যের ব্যক্তিগত তথ্য তাদের অনুমতি ছাড়া শেয়ার করবেন না</li>
+      </ul>
     </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-ban"></i> ৪. নিষিদ্ধ কার্যকলাপ</div>
+    <div class="stext bangla">
+      <p>হ্যালো বাংলাদেশীতে নিম্নলিখিত কার্যকলাপ সম্পূর্ণ নিষিদ্ধ:</p>
+      <ul>
+        <li>যেকোনো অবৈধ কার্যকলাপ প্রচার, উৎসাহ বা পরিচালনা করা</li>
+        <li>ঘৃণামূলক বক্তব্য, জাতি বৈষম্য বা ধর্মীয় উস্কানি দেওয়া</li>
+        <li>অশ্লীল, যৌন বা অনুপযুক্ত কন্টেন্ট পোস্ট করা</li>
+        <li>অন্য ব্যবহারকারীদের ব্যক্তিগত তথ্য অনুমতি ছাড়া সংগ্রহ করা</li>
+        <li>সিস্টেমে অননুমোদিত অ্যাক্সেসের চেষ্টা করা (হ্যাকিং)</li>
+        <li>ভাইরাস, ম্যালওয়্যার বা ক্ষতিকারক কোড ছড়ানো</li>
+        <li>স্বয়ংক্রিয় বট বা স্ক্র্যাপার ব্যবহার করা</li>
+        <li>মিথ্যা বা প্রতারণামূলক বিজ্ঞাপন পোস্ট করা</li>
+      </ul>
+      <div class="highlight"><i class="fas fa-exclamation-triangle"></i> <strong>সতর্কতা:</strong> এই নিয়ম ভঙ্গ করলে আপনার অ্যাকাউন্ট অবিলম্বে স্থগিত বা স্থায়ীভাবে বাতিল করা হবে। প্রয়োজনে আইনানুগ ব্যবস্থা নেওয়া হতে পারে।</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-briefcase"></i> ৫. চাকরি পোস্টিং নীতি</div>
+    <div class="stext bangla">
+      <p>চাকরির বিজ্ঞাপন পোস্ট করার ক্ষেত্রে নিম্নলিখিত নীতি মেনে চলতে হবে:</p>
+      <ul>
+        <li>চাকরির তথ্য অবশ্যই সঠিক, সম্পূর্ণ ও বৈধ হতে হবে</li>
+        <li>জাতি, ধর্ম, লিঙ্গ বা শারীরিক প্রতিবন্ধিতার ভিত্তিতে বৈষম্যমূলক বিজ্ঞাপন নিষিদ্ধ</li>
+        <li>মিথ্যা বা প্রতারণামূলক চাকরির বিজ্ঞাপন দেওয়া যাবে না</li>
+        <li>অবৈধ কাজের জন্য নিয়োগ বিজ্ঞাপন দেওয়া যাবে না</li>
+        <li>চাকরির প্রক্রিয়ায় হ্যালো বাংলাদেশী কোনো দায়িত্ব বহন করে না</li>
+        <li>নিয়োগকর্তা ও আবেদনকারীর মধ্যে বিরোধে আমরা মধ্যস্থতা করি না</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-copyright"></i> ৬. কন্টেন্টের মালিকানা ও লাইসেন্স</div>
+    <div class="stext bangla">
+      <p>আপনি আপনার পোস্ট করা কন্টেন্টের মালিকানা ধরে রাখেন। তবে, হ্যালো বাংলাদেশী ব্যবহার করে আপনি আমাদের নিম্নলিখিত অনুমতি প্রদান করছেন:</p>
+      <ul>
+        <li>আপনার কন্টেন্ট প্ল্যাটফর্মে প্রদর্শন করার অনুমতি</li>
+        <li>সেবা উন্নয়নে কন্টেন্ট বিশ্লেষণ করার অনুমতি</li>
+        <li>নীতি লঙ্ঘনকারী কন্টেন্ট অপসারণের অধিকার</li>
+      </ul>
+      <p>আমরা আপনার কন্টেন্ট বাণিজ্যিক উদ্দেশ্যে তৃতীয় পক্ষের কাছে বিক্রি করব না।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-exclamation-circle"></i> ৭. দায়িত্ব অস্বীকার</div>
+    <div class="stext bangla">
+      <p>হ্যালো বাংলাদেশী "যেমন আছে" ভিত্তিতে প্রদান করা হয়। আমরা নিম্নলিখিত বিষয়ে কোনো ওয়ারেন্টি দিই না:</p>
+      <ul>
+        <li>অ্যাপের নিরবচ্ছিন্ন বা সম্পূর্ণ ত্রুটিমুক্ত কার্যকারিতা</li>
+        <li>ব্যবহারকারীদের দ্বারা পোস্টকৃত তথ্যের সঠিকতা বা বৈধতা</li>
+        <li>চাকরির আবেদনের সফলতা বা নিয়োগের নিশ্চয়তা</li>
+        <li>ব্যবহারকারীদের মধ্যে লেনদেন বা চুক্তির ফলাফল</li>
+      </ul>
+      <div class="highlight"><i class="fas fa-info-circle"></i> আমরা যেকোনো সময়, নোটিশ ছাড়াই, সেবা পরিবর্তন, আপগ্রেড বা সাময়িকভাবে বন্ধ করার অধিকার রাখি।</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-balance-scale"></i> ৮. দায়বদ্ধতার সীমাবদ্ধতা</div>
+    <div class="stext bangla">
+      <p>আইন দ্বারা অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত, হ্যালো বাংলাদেশী নিম্নলিখিত ক্ষতির জন্য দায়ী থাকবে না:</p>
+      <ul>
+        <li>পরোক্ষ, আকস্মিক বা ফলস্বরূপ ক্ষতি</li>
+        <li>ব্যবসায়িক লাভের ক্ষতি বা ডেটা হারানো</li>
+        <li>ব্যবহারকারীদের মধ্যে বিরোধের ফলে ক্ষতি</li>
+        <li>তৃতীয় পক্ষের কার্যকলাপের ফলে ক্ষতি</li>
+        <li>প্রাকৃতিক দুর্যোগ বা অনিবার্য পরিস্থিতিজনিত ক্ষতি</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-user-slash"></i> ৯. অ্যাকাউন্ট বাতিল</div>
+    <div class="stext bangla">
+      <p>আপনি যেকোনো সময় আপনার অ্যাকাউন্ট বাতিল করতে পারেন। বাতিল করলে:</p>
+      <ul>
+        <li>আপনার সকল ব্যক্তিগত তথ্য ৩০ দিনের মধ্যে মুছে ফেলা হবে</li>
+        <li>আপনার পোস্ট ও কার্যকলাপের ইতিহাস সরানো হবে</li>
+        <li>ভবিষ্যতে আবার নিবন্ধন করার সুযোগ থাকবে</li>
+      </ul>
+      <p>শর্তাবলী লঙ্ঘনের কারণে আমরা কোনো পূর্ব নোটিশ ছাড়াই অ্যাকাউন্ট বাতিল করার অধিকার রাখি।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-gavel"></i> ১০. আইন ও বিচারক্ষেত্র</div>
+    <div class="stext bangla">
+      <p>এই শর্তাবলী বাংলাদেশের আইন অনুযায়ী পরিচালিত হবে। যেকোনো বিরোধের ক্ষেত্রে বাংলাদেশের সক্ষম আদালতে বিচার পরিচালিত হবে।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-envelope"></i> ১১. যোগাযোগ</div>
+    <div class="stext bangla">
+      <p>এই শর্তাবলী সম্পর্কিত কোনো প্রশ্ন বা অভিযোগ থাকলে আমাদের সাথে যোগাযোগ করুন:</p>
+      <ul>
+        <li><i class="fas fa-envelope" style="color:#006A4E"></i> support@hellobangladeshi.com</li>
+        <li><i class="fas fa-envelope" style="color:#006A4E"></i> info.hellobangladeshiltd@gmail.com</li>
+        <li><i class="fas fa-phone" style="color:#006A4E"></i> +880 1924449132</li>
+        <li><i class="fas fa-map-marker-alt" style="color:#006A4E"></i> মৌলভীবাজার, সিলেট, বাংলাদেশ</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer bangla">&copy; 2026 হ্যালো বাংলাদেশী (Hello Bangladesh iLtd) - সকল অধিকার সংরক্ষিত</div>
+</div>
 </body>
 </html>
