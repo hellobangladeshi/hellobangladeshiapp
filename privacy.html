@@ -1,263 +1,184 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গোপনীয়তা নীতি - হ্যালো বাংলাদেশী</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: #f7fafc;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #006A4E, #008060);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: -30px auto 60px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            padding: 40px;
-        }
-        
-        .last-updated {
-            background: #f7fafc;
-            padding: 12px 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #718096;
-            font-size: 14px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #006A4E;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .section-content {
-            color: #4a5568;
-            line-height: 1.8;
-        }
-        
-        .section-content p {
-            margin-bottom: 15px;
-        }
-        
-        .section-content ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .section-content li {
-            margin-bottom: 8px;
-        }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: white;
-            color: #006A4E;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin: 20px;
-            transition: all 0.3s ease;
-            border: 2px solid #006A4E;
-        }
-        
-        .back-button:hover {
-            background: #006A4E;
-            color: white;
-            transform: translateX(-5px);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #718096;
-            background: white;
-            margin-top: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                margin: -20px 20px 40px;
-            }
-            .header h1 {
-                font-size: 28px;
-            }
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>গোপনীয়তা নীতি - হ্যালো বাংলাদেশী</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Hind Siliguri',sans-serif;background:#f7fafc}
+.back{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;background:white;color:#006A4E;border-radius:50px;font-weight:600;margin:18px;transition:all .3s;border:2px solid #006A4E;text-decoration:none;font-size:13px}
+.back:hover{background:#006A4E;color:white;transform:translateX(-4px)}
+.header{background:linear-gradient(135deg,#006A4E,#008060);color:white;padding:50px 20px;text-align:center}
+.header h1{font-size:34px;margin-bottom:8px}.header p{font-size:15px;opacity:.9}
+.container{max-width:900px;margin:-26px auto 60px;background:white;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.08);padding:36px}
+.lastup{background:#f7fafc;padding:10px 16px;border-radius:12px;margin-bottom:28px;text-align:center;color:#718096;font-size:12px;border:1px solid #e2e8f0}
+.sec{margin-bottom:28px}
+.stitle{font-size:20px;font-weight:600;color:#006A4E;margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid #e2e8f0;display:flex;align-items:center;gap:10px}
+.stitle i{width:30px;height:30px;background:rgba(0,106,78,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.stext{color:#4a5568;line-height:1.8;font-size:13px}
+.stext p{margin-bottom:11px}
+.stext ul{margin-left:18px;margin-bottom:11px}
+.stext li{margin-bottom:5px}
+.stext strong{color:#1a1a1a}
+.highlight{background:rgba(0,106,78,.06);border-left:4px solid #006A4E;padding:14px 16px;border-radius:0 12px 12px 0;margin:14px 0;font-size:13px}
+.footer{text-align:center;padding:24px 0 0;border-top:1px solid #e2e8f0;color:#718096;font-size:12px;margin-top:10px}
+@media(max-width:768px){.container{padding:22px;margin:-20px 16px 40px}.header h1{font-size:28px}}
+</style>
 </head>
 <body>
-    <a href="index.html" class="back-button">
-        <i class="fas fa-arrow-left"></i>
-        <span>হোমে ফিরুন</span>
-    </a>
-    
-    <div class="header">
-        <h1>গোপনীয়তা নীতি</h1>
-        <p>আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার</p>
+<a href="index.html" class="back"><i class="fas fa-arrow-left"></i> হোমে ফিরুন</a>
+<div class="header">
+  <h1 class="bangla">গোপনীয়তা নীতি</h1>
+  <p class="bangla">আপনার ডেটা সুরক্ষা আমাদের সর্বোচ্চ অগ্রাধিকার</p>
+</div>
+<div class="container">
+  <div class="lastup bangla"><i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৬ | কার্যকর: ফেব্রুয়ারি ২০২৬</div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-info"></i> ১. ভূমিকা</div>
+    <div class="stext bangla">
+      <p>হ্যালো বাংলাদেশী (Hello Bangladeshi) - Hello Bangladeshi পরিচালিত একটি সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম। আমরা আপনার গোপনীয়তাকে সর্বোচ্চ গুরুত্ব দিই।</p>
+      <p>এই গোপনীয়তা নীতিতে বর্ণনা করা হয়েছে কীভাবে আমরা আপনার ব্যক্তিগত তথ্য সংগ্রহ, ব্যবহার, সংরক্ষণ এবং সুরক্ষিত রাখি। আমাদের অ্যাপ বা ওয়েবসাইট ব্যবহার করে আপনি এই নীতির শর্তাবলীতে সম্মত হচ্ছেন।</p>
+      <div class="highlight"><i class="fas fa-shield-alt"></i> <strong>আমরা কখনো আপনার তথ্য তৃতীয় পক্ষের কাছে বিক্রি করি না।</strong></div>
     </div>
-    
-    <div class="container">
-        <div class="last-updated">
-            <i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৪
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">১. ভূমিকা</h2>
-            <div class="section-content">
-                <p>হ্যালো বাংলাদেশী (Hello Bangladeshi) আপনার গোপনীয়তাকে গুরুত্ব দেয়। এই গোপনীয়তা নীতিতে আমরা ব্যাখ্যা করবো যে আমরা কীভাবে আপনার ব্যক্তিগত তথ্য সংগ্রহ করি, ব্যবহার করি, এবং সুরক্ষিত রাখি।</p>
-                <p>এই অ্যাপ্লিকেশনটি ব্যবহার করে, আপনি এই নীতির শর্তাবলীতে সম্মত হন।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">২. আমরা কী তথ্য সংগ্রহ করি</h2>
-            <div class="section-content">
-                <p>আমরা নিম্নলিখিত তথ্য সংগ্রহ করতে পারি:</p>
-                <ul>
-                    <li><strong>ব্যক্তিগত তথ্য:</strong> নাম, ইমেল ঠিকানা, ফোন নম্বর, প্রোফাইল ছবি</li>
-                    <li><strong>পেশাগত তথ্য:</strong> পেশা, কাজের অভিজ্ঞতা, দক্ষতা</li>
-                    <li><strong>অবস্থানের তথ্য:</strong> শহর, এলাকা (আপনার অনুমতি সাপেক্ষে)</li>
-                    <li><strong>ব্যবহারের তথ্য:</strong> অ্যাপ ব্যবহারের ধরণ, লগ ডেটা</li>
-                    <li><strong>যোগাযোগের তথ্য:</strong> চ্যাট বার্তা, সংযোগের তথ্য</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৩. আমরা কীভাবে তথ্য ব্যবহার করি</h2>
-            <div class="section-content">
-                <p>আমরা আপনার তথ্য নিম্নলিখিত উদ্দেশ্যে ব্যবহার করি:</p>
-                <ul>
-                    <li>অ্যাকাউন্ট তৈরি এবং পরিচালনা করা</li>
-                    <li>ব্যবহারকারীদের মধ্যে সংযোগ স্থাপন করা</li>
-                    <li>চাকরি এবং নেটওয়ার্কিং সুযোগ প্রদান করা</li>
-                    <li>অ্যাপের কার্যকারিতা উন্নত করা</li>
-                    <li>বিজ্ঞপ্তি এবং আপডেট পাঠানো</li>
-                    <li>সুরক্ষা এবং জালিয়াতি প্রতিরোধ করা</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৪. তথ্য শেয়ারিং</h2>
-            <div class="section-content">
-                <p>আমরা আপনার ব্যক্তিগত তথ্য তৃতীয় পক্ষের সাথে নিম্নলিখিত পরিস্থিতিতে শেয়ার করতে পারি:</p>
-                <ul>
-                    <li><strong>আপনার সম্মতিতে:</strong> আপনি যখন তথ্য শেয়ার করতে সম্মত হন</li>
-                    <li><strong>সেবা প্রদানকারীদের সাথে:</strong> যেমন হোস্টিং, অ্যানালাইটিক্স সেবা</li>
-                    <li><strong>আইনগত প্রয়োজন:</strong> আইন প্রয়োগকারী সংস্থার অনুরোধে</li>
-                    <li><strong>ব্যবসায়িক পরিবর্তন:</strong> একীভূতকরণ বা অধিগ্রহণের ক্ষেত্রে</li>
-                </ul>
-                <p>আমরা আপনার তথ্য বিক্রি করি না বা অন্যান্য ব্যবহারকারীদের সাথে শেয়ার করি না আপনার অনুমতি ছাড়া।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৫. ডেটা সুরক্ষা</h2>
-            <div class="section-content">
-                <p>আমরা আপনার তথ্য সুরক্ষিত রাখতে নিম্নলিখিত ব্যবস্থা গ্রহণ করি:</p>
-                <ul>
-                    <li>SSL/TLS এনক্রিপশন</li>
-                    <li>ফায়ারওয়াল সুরক্ষা</li>
-                    <li>নিয়মিত সুরক্ষা অডিট</li>
-                    <li>অ্যাক্সেস কন্ট্রোল</li>
-                </ul>
-                <p>তবে, ইন্টারনেটের মাধ্যমে তথ্য স্থানান্তর সম্পূর্ণ নিরাপদ নয়। আমরা সর্বোত্তম চেষ্টা করলেও ১০০% নিরাপত্তার নিশ্চয়তা দিতে পারি না।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৬. কুকিজ এবং ট্র্যাকিং</h2>
-            <div class="section-content">
-                <p>আমরা আপনার অভিজ্ঞতা উন্নত করতে কুকিজ এবং অনুরূপ প্রযুক্তি ব্যবহার করি:</p>
-                <ul>
-                    <li><strong>অপরিহার্য কুকিজ:</strong> অ্যাপের মৌলিক কার্যকারিতার জন্য</li>
-                    <li><strong>পারফরম্যান্স কুকিজ:</strong> অ্যাপের ব্যবহার বিশ্লেষণের জন্য</li>
-                    <li><strong>ফাংশনাল কুকিজ:</strong> আপনার পছন্দ মনে রাখার জন্য</li>
-                </ul>
-                <p>আপনি আপনার ব্রাউজার সেটিংসে কুকিজ নিয়ন্ত্রণ করতে পারেন।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৭. আপনার অধিকার</h2>
-            <div class="section-content">
-                <p>আপনার নিম্নলিখিত অধিকার রয়েছে:</p>
-                <ul>
-                    <li>আপনার তথ্য অ্যাক্সেস করার অধিকার</li>
-                    <li>তথ্য সংশোধন করার অধিকার</li>
-                    <li>তথ্য মুছে ফেলার অধিকার</li>
-                    <li>তথ্য প্রক্রিয়াকরণে আপত্তি করার অধিকার</li>
-                    <li>ডেটা পোর্টেবিলিটির অধিকার</li>
-                </ul>
-                <p>এই অধিকার প্রয়োগ করতে, আমাদের সাথে যোগাযোগ করুন: privacy@hellobangladeshi.com</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৮. শিশুদের গোপনীয়তা</h2>
-            <div class="section-content">
-                <p>আমাদের সেবা ১৩ বছরের কম বয়সী শিশুদের জন্য নয়। আমরা জেনেশুনে শিশুদের থেকে ব্যক্তিগত তথ্য সংগ্রহ করি না। যদি আমরা জানতে পারি যে আমরা একটি শিশুর তথ্য সংগ্রহ করেছি, আমরা তা অবিলম্বে মুছে ফেলব।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">৯. এই নীতির পরিবর্তন</h2>
-            <div class="section-content">
-                <p>আমরা সময়ে সময়ে এই গোপনীয়তা নীতি আপডেট করতে পারি। কোনো গুরুত্বপূর্ণ পরিবর্তন হলে আমরা আপনাকে ইমেল বা অ্যাপের মাধ্যমে জানাব। এই পৃষ্ঠায় সর্বশেষ সংস্করণ প্রকাশিত থাকবে।</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">১০. যোগাযোগ</h2>
-            <div class="section-content">
-                <p>গোপনীয়তা সম্পর্কিত কোনো প্রশ্ন বা উদ্বেগ থাকলে, আমাদের সাথে যোগাযোগ করুন:</p>
-                <p>
-                    <i class="fas fa-envelope"></i> privacy@hellobangladeshi.com<br>
-                    <i class="fas fa-phone"></i> +880 1924449132<br>
-                    <i class="fas fa-map-marker-alt"></i> সিলেট, বাংলাদেশ
-                </p>
-            </div>
-        </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-database"></i> ২. আমরা কী তথ্য সংগ্রহ করি</div>
+    <div class="stext bangla">
+      <p>আমরা নিম্নলিখিত ধরনের তথ্য সংগ্রহ করতে পারি:</p>
+      <ul>
+        <li><strong>ব্যক্তিগত পরিচিতি:</strong> নাম, ইমেল ঠিকানা, ফোন নম্বর, প্রোফাইল ছবি</li>
+        <li><strong>পেশাগত তথ্য:</strong> পেশা, কাজের অভিজ্ঞতা, শিক্ষাগত যোগ্যতা, দক্ষতা</li>
+        <li><strong>অবস্থানের তথ্য:</strong> শহর, জেলা, বিভাগ (আপনার অনুমতি সাপেক্ষে)</li>
+        <li><strong>ব্যবহারের তথ্য:</strong> অ্যাপ ব্যবহারের ধরণ, পেজ ভিজিট, ক্লিক ডেটা</li>
+        <li><strong>ডিভাইস তথ্য:</strong> ডিভাইসের ধরন, অপারেটিং সিস্টেম, ব্রাউজার তথ্য</li>
+        <li><strong>যোগাযোগের তথ্য:</strong> চ্যাট বার্তা (এনক্রিপ্টেড), সংযোগের তথ্য</li>
+        <li><strong>চাকরির আবেদন:</strong> কভার লেটার, অভিজ্ঞতা, পোর্টফোলিও লিংক</li>
+      </ul>
     </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত</p>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-cogs"></i> ৩. তথ্যের ব্যবহার</div>
+    <div class="stext bangla">
+      <p>আমরা সংগৃহীত তথ্য নিম্নলিখিত উদ্দেশ্যে ব্যবহার করি:</p>
+      <ul>
+        <li>অ্যাকাউন্ট তৈরি, যাচাই ও পরিচালনা করা</li>
+        <li>ব্যবহারকারীদের মধ্যে সংযোগ স্থাপনে সহায়তা করা</li>
+        <li>চাকরি, ইভেন্ট ও নেটওয়ার্কিং সুযোগ প্রদান করা</li>
+        <li>ব্যক্তিগতকৃত কন্টেন্ট ও সুপারিশ প্রদান করা</li>
+        <li>অ্যাপের কার্যকারিতা উন্নয়ন ও বাগ সংশোধন করা</li>
+        <li>বিজ্ঞপ্তি, আপডেট ও প্রাসঙ্গিক তথ্য পাঠানো</li>
+        <li>সুরক্ষা নিশ্চিত করা ও জালিয়াতি প্রতিরোধ করা</li>
+        <li>আইনগত বাধ্যবাধকতা পূরণ করা</li>
+      </ul>
     </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-lock"></i> ৪. তথ্য সুরক্ষা ব্যবস্থা</div>
+    <div class="stext bangla">
+      <p>আমরা আপনার তথ্য সুরক্ষিত রাখতে নিম্নলিখিত প্রযুক্তিগত ব্যবস্থা গ্রহণ করেছি:</p>
+      <ul>
+        <li><strong>SSL/TLS এনক্রিপশন:</strong> সমস্ত ডেটা ট্রান্সফার এনক্রিপ্টেড</li>
+        <li><strong>Firebase Security Rules:</strong> ডেটাবেস অ্যাক্সেস সীমাবদ্ধ ও নিরাপদ</li>
+        <li><strong>Google Authentication:</strong> নিরাপদ লগইন ব্যবস্থা</li>
+        <li><strong>নিয়মিত সুরক্ষা অডিট:</strong> নিরাপত্তা দুর্বলতা পরীক্ষা</li>
+        <li><strong>ডেটা ব্যাকআপ:</strong> নিয়মিত ডেটা ব্যাকআপ ও রিকভারি ব্যবস্থা</li>
+        <li><strong>অ্যাক্সেস কন্ট্রোল:</strong> সীমিত কর্মী অ্যাক্সেস সিস্টেম</li>
+      </ul>
+      <div class="highlight"><i class="fas fa-exclamation-triangle"></i> <strong>সতর্কতা:</strong> ইন্টারনেটের মাধ্যমে ডেটা ট্রান্সফার সম্পূর্ণ নিরাপদ করা সম্ভব নয়। আমরা সর্বোচ্চ চেষ্টা করলেও ১০০% নিরাপত্তার নিশ্চয়তা দিতে পারি না।</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-share-alt"></i> ৫. তৃতীয় পক্ষের সাথে তথ্য শেয়ারিং</div>
+    <div class="stext bangla">
+      <p>আমরা নিম্নলিখিত পরিস্থিতিতে সীমিতভাবে তথ্য শেয়ার করতে পারি:</p>
+      <ul>
+        <li><strong>আপনার সম্মতিতে:</strong> যখন আপনি স্পষ্টভাবে অনুমতি দেন</li>
+        <li><strong>প্রযুক্তি সেবাদাতা:</strong> Firebase (Google), Analytics সেবার সাথে</li>
+        <li><strong>আইনগত কারণে:</strong> আদালতের আদেশ বা সরকারি অনুরোধে</li>
+        <li><strong>ব্যবসায়িক পরিবর্তন:</strong> একীভূতকরণ বা অধিগ্রহণের ক্ষেত্রে</li>
+      </ul>
+      <div class="highlight"><i class="fas fa-ban"></i> <strong>আমরা কখনো বিজ্ঞাপনদাতা বা তৃতীয় পক্ষের কাছে আপনার তথ্য বিক্রি করি না।</strong></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-cookie-bite"></i> ৬. কুকিজ ও ট্র্যাকিং</div>
+    <div class="stext bangla">
+      <p>আমরা আপনার অভিজ্ঞতা উন্নত করতে কুকিজ ব্যবহার করি:</p>
+      <ul>
+        <li><strong>অপরিহার্য কুকিজ:</strong> লগইন সেশন ও মূল কার্যকারিতার জন্য</li>
+        <li><strong>পারফরম্যান্স কুকিজ:</strong> অ্যাপের ব্যবহার বিশ্লেষণের জন্য</li>
+        <li><strong>ফাংশনাল কুকিজ:</strong> আপনার পছন্দ ও সেটিংস মনে রাখার জন্য</li>
+      </ul>
+      <p>আপনি আপনার ব্রাউজার সেটিংসে কুকিজ নিয়ন্ত্রণ করতে পারেন। তবে কিছু ফিচার কাজ না-ও করতে পারে।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-user-shield"></i> ৭. আপনার অধিকার ও নিয়ন্ত্রণ</div>
+    <div class="stext bangla">
+      <p>আপনার নিম্নলিখিত অধিকার রয়েছে:</p>
+      <ul>
+        <li><strong>অ্যাক্সেস অধিকার:</strong> আপনার সম্পর্কে সংরক্ষিত তথ্য দেখার অধিকার</li>
+        <li><strong>সংশোধন অধিকার:</strong> ভুল তথ্য সংশোধন করার অধিকার</li>
+        <li><strong>মুছে ফেলার অধিকার:</strong> "ভুলে যাওয়ার" অধিকার (অ্যাকাউন্ট ডিলিট)</li>
+        <li><strong>পোর্টেবিলিটি অধিকার:</strong> আপনার ডেটা ডাউনলোড করার অধিকার</li>
+        <li><strong>আপত্তির অধিকার:</strong> নির্দিষ্ট ডেটা প্রসেসিংয়ে আপত্তি করার অধিকার</li>
+        <li><strong>সম্মতি প্রত্যাহার:</strong> যেকোনো সময় সম্মতি প্রত্যাহার করার অধিকার</li>
+      </ul>
+      <p>এই অধিকার প্রয়োগ করতে আমাদের সাথে যোগাযোগ করুন: <strong>privacy@hellobangladeshi.com</strong></p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-child"></i> ৮. শিশুদের গোপনীয়তা</div>
+    <div class="stext bangla">
+      <p>আমাদের সেবা ১৩ বছরের কম বয়সী শিশুদের জন্য নয়। আমরা জেনেশুনে শিশুদের ব্যক্তিগত তথ্য সংগ্রহ করি না। যদি আমরা জানতে পারি এমন তথ্য সংগ্রহ হয়েছে, অবিলম্বে তা মুছে ফেলা হবে।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-clock"></i> ৯. তথ্য সংরক্ষণ মেয়াদ</div>
+    <div class="stext bangla">
+      <p>আমরা নিম্নলিখিত নীতি অনুযায়ী আপনার তথ্য সংরক্ষণ করি:</p>
+      <ul>
+        <li>অ্যাকাউন্ট সক্রিয় থাকা পর্যন্ত ব্যক্তিগত তথ্য সংরক্ষণ করা হয়</li>
+        <li>অ্যাকাউন্ট ডিলিট করলে ৩০ দিনের মধ্যে তথ্য মুছে ফেলা হয়</li>
+        <li>আইনগত কারণে কিছু তথ্য দীর্ঘমেয়াদে রাখা হতে পারে</li>
+        <li>বেনামী বিশ্লেষণের ডেটা দীর্ঘমেয়াদে রাখা হয়</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-sync"></i> ১০. নীতি পরিবর্তন</div>
+    <div class="stext bangla">
+      <p>আমরা সময়ে সময়ে এই গোপনীয়তা নীতি আপডেট করতে পারি। গুরুত্বপূর্ণ পরিবর্তন হলে আমরা ইমেল বা অ্যাপের মাধ্যমে আপনাকে জানাবো। এই পৃষ্ঠায় সর্বশেষ সংস্করণ সবসময় পাওয়া যাবে।</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="stitle bangla"><i class="fas fa-envelope"></i> ১১. যোগাযোগ</div>
+    <div class="stext bangla">
+      <p>গোপনীয়তা সম্পর্কিত কোনো প্রশ্ন বা অভিযোগ থাকলে আমাদের সাথে যোগাযোগ করুন:</p>
+      <ul>
+        <li><i class="fas fa-envelope" style="color:#006A4E"></i> <strong>privacy@hellobangladeshi.com</strong></li>
+        <li><i class="fas fa-envelope" style="color:#006A4E"></i> info.hellobangladeshiltd@gmail.com</li>
+        <li><i class="fas fa-phone" style="color:#006A4E"></i> +880 1924449132</li>
+        <li><i class="fas fa-phone" style="color:#006A4E"></i> +880 1751861453</li>
+        <li><i class="fas fa-map-marker-alt" style="color:#006A4E"></i> মৌলভীবাজার, সিলেট, বাংলাদেশ</li>
+      </ul>
+      <p>আমরা সাধারণত ৭ কার্যদিবসের মধ্যে উত্তর প্রদান করি।</p>
+    </div>
+  </div>
+
+  <div class="footer bangla">&copy; 2026 হ্যালো বাংলাদেশী (Hello Bangladesh iLtd) - সকল অধিকার সংরক্ষিত</div>
+</div>
 </body>
 </html>
