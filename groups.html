@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="হ্যালো বাংলাদেশী - গ্রুপ সিস্টেম">
+<meta name="description" content="হ্যালো বাংলাদেশী - রিয়েল-টাইম গ্রুপ সিস্টেম">
 <title>হ্যালো বাংলাদেশী - গ্রুপ</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
 <style>
     /* ===== Base Styles ===== */
     :root {
@@ -15,8 +18,7 @@
         --td: #1A1A1A; --tm: #4A5568; --tl: #718096;
         --bg: #F7FAFC; --wh: #FFFFFF; --bd: #E2E8F0;
         --gP: linear-gradient(135deg, #006A4E, #008060);
-        --gS: linear-gradient(135deg, #F42A41, #FF5C72);
-        --bn: 'Hind Siliguri', sans-serif; --dp: 'Poppins', sans-serif;
+        --bn: 'Hind Siliguri', sans-serif;
         --s1: 0 2px 8px rgba(0,106,78,.08); --s2: 0 6px 16px rgba(0,106,78,.1);
         --s3: 0 12px 32px rgba(0,106,78,.12); --rf: 9999px;
         --tr: .3s ease;
@@ -25,9 +27,12 @@
     body { background: var(--bg); color: var(--td); line-height: 1.6; padding: 20px; }
     .container { max-width: 1200px; margin: 0 auto; }
     
-    /* ===== Header & Navigation ===== */
+    /* ===== Header ===== */
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; background: var(--wh); padding: 15px 20px; border-radius: 16px; box-shadow: var(--s1); }
     .logo h1 { font-size: 24px; color: var(--P); display: flex; align-items: center; gap: 8px; }
+    .user-info { display: flex; align-items: center; gap: 12px; }
+    .user-avatar { width: 40px; height: 40px; background: var(--gP); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+    .login-btn, .logout-btn { background: var(--P); color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; font-weight: 600; }
     .create-group-btn { background: var(--gP); color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: var(--tr); }
     .create-group-btn:hover { transform: translateY(-2px); box-shadow: var(--s2); }
     
@@ -48,7 +53,7 @@
     .join-btn { width: 100%; padding: 8px; border: 2px solid var(--bd); border-radius: 30px; background: var(--bg); font-weight: 600; cursor: pointer; transition: var(--tr); font-size: 13px; }
     .join-btn.joined { background: var(--P); color: white; border-color: var(--P); }
     
-    /* ===== Group Detail View (Modal Style) ===== */
+    /* ===== Group Detail View ===== */
     .group-detail-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
     .group-detail-container { background: var(--wh); border-radius: 24px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--s3); animation: fadeInUp 0.3s ease; }
     .detail-header { background: var(--gP); padding: 25px; color: white; position: relative; border-radius: 24px 24px 0 0; }
@@ -72,19 +77,17 @@
     .add-comment input { flex: 1; padding: 8px 12px; border: 1px solid var(--bd); border-radius: 30px; font-size: 12px; }
     .add-comment button { background: var(--P); color: white; border: none; padding: 6px 15px; border-radius: 30px; cursor: pointer; }
     
-    /* ===== Create Group Modal ===== */
+    /* ===== Modal ===== */
     .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1100; }
     .modal-content { background: white; border-radius: 24px; width: 90%; max-width: 500px; padding: 25px; animation: fadeInUp 0.2s ease; }
     .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 10px; margin: 8px 0 15px; border: 1px solid var(--bd); border-radius: 12px; font-family: var(--bn); }
     .modal-content button { background: var(--P); color: white; border: none; padding: 10px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 10px; }
     .modal-close { float: right; font-size: 24px; cursor: pointer; }
     
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .toast { position: fixed; bottom: 20px; right: 20px; background: var(--td); color: white; padding: 12px 20px; border-radius: 40px; z-index: 1200; animation: fadeIn 0.3s; box-shadow: var(--s3); }
     .empty-state { text-align: center; padding: 40px; color: var(--tl); }
+    .loading { text-align: center; padding: 40px; color: var(--P); }
     .hidden { display: none; }
     button { cursor: pointer; }
 </style>
@@ -95,10 +98,20 @@
         <div class="logo">
             <h1><i class="fas fa-users" style="color: var(--P);"></i> হ্যালো বাংলাদেশী <span style="font-size: 14px;">গ্রুপ</span></h1>
         </div>
+        <div class="user-info" id="userInfo">
+            <div id="authButtons">
+                <button class="login-btn" onclick="showAuthModal()"><i class="fas fa-sign-in-alt"></i> লগইন</button>
+            </div>
+            <div id="userProfile" style="display: none;">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <span id="userName"></span>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> লগআউট</button>
+            </div>
+        </div>
         <button class="create-group-btn" id="openCreateGroupBtn"><i class="fas fa-plus-circle"></i> নতুন গ্রুপ খুলুন</button>
     </div>
     <div id="groupsListContainer" class="groups-grid">
-        <!-- Groups will be loaded here -->
+        <div class="loading"><i class="fas fa-spinner fa-spin"></i> গ্রুপ লোড হচ্ছে...</div>
     </div>
 </div>
 
@@ -122,7 +135,24 @@
     </div>
 </div>
 
-<!-- Group Detail Overlay (একটি গ্রুপের ভিতরের পোস্ট, লাইক, কমেন্ট) -->
+<!-- Auth Modal -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeAuthModal">&times;</span>
+        <h3 style="margin-bottom: 15px;">লগইন করুন</h3>
+        <input type="email" id="loginEmail" placeholder="ইমেল">
+        <input type="password" id="loginPassword" placeholder="পাসওয়ার্ড">
+        <button onclick="login()">লগইন</button>
+        <hr style="margin: 15px 0;">
+        <h4>নতুন অ্যাকাউন্ট তৈরি করুন</h4>
+        <input type="text" id="signupName" placeholder="আপনার নাম">
+        <input type="email" id="signupEmail" placeholder="ইমেল">
+        <input type="password" id="signupPassword" placeholder="পাসওয়ার্ড (৬+ অক্ষর)">
+        <button onclick="signup()">সাইন আপ</button>
+    </div>
+</div>
+
+<!-- Group Detail Overlay -->
 <div id="groupDetailOverlay" class="group-detail-overlay">
     <div class="group-detail-container">
         <div class="detail-header" id="detailHeader">
@@ -136,302 +166,410 @@
                 <button id="submitPostBtn">পোস্ট করুন</button>
             </div>
             <div id="postsListContainer" class="posts-list">
-                <!-- Posts will be loaded here -->
+                <div class="loading">পোস্ট লোড হচ্ছে...</div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// ------------------------------
-// ডেমো ডাটা: গ্রুপ, পোস্ট, কমেন্ট, লাইক
-// ------------------------------
-let groupsData = [
-    { id: 'g1', name: 'বাংলাদেশী শিক্ষার্থী', category: 'শিক্ষা', description: 'শিক্ষার্থীদের জন্য আলোচনা ও তথ্য বিনিময়', icon: '🎓', members: 1245, posts: [], isMember: false },
-    { id: 'g2', name: 'আইটি পেশাজীবী বাংলাদেশ', category: 'প্রযুক্তি', description: 'আইটি নিয়ে কাজ করেন যারা', icon: '💻', members: 3420, posts: [], isMember: false },
-    { id: 'g3', name: 'উদ্যোক্তা নেটওয়ার্ক BD', category: 'ব্যবসা', description: 'ব্যবসা, স্টার্টআপ আইডিয়া', icon: '📈', members: 2100, posts: [], isMember: false }
-];
-
-// পোস্টের জন্য ডিফল্ট ডাটা (ডেমো)
-function initDemoPosts() {
-    groupsData.forEach(group => {
-        if (group.posts.length === 0) {
-            group.posts = [
-                { id: 'p1_' + group.id, userId: 'user1', userName: 'আহমেদ হাসান', content: 'এই গ্রুপে যুক্ত হয়ে ভালো লাগলো! সবাইকে শুভেচ্ছা।', createdAt: new Date().toISOString(), likes: [], comments: [] },
-                { id: 'p2_' + group.id, userId: 'user2', userName: 'ফারহানা আক্তার', content: 'আজকের আলোচনার বিষয়: গ্রুপের কার্যক্রম কীভাবে আরও উন্নত করা যায়?', createdAt: new Date(Date.now() - 86400000).toISOString(), likes: [], comments: [] }
-            ];
-        }
-    });
-}
-initDemoPosts();
-
-// বর্তমান ব্যবহারকারী (ডেমোতে লগইন ধরে নিচ্ছি, আসলে ফায়ারবেস থেকে নেওয়া যাবে)
-let currentUser = {
-    uid: 'current_user_123',
-    name: 'বর্তমান ব্যবহারকারী',
-    avatar: 'ব'
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAGlMCGsQhz_XyQw7s0NZWrD4GXhHRNjww",
+    authDomain: "hellobangladeshi.firebaseapp.com",
+    databaseURL: "https://hellobangladeshi-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "hellobangladeshi",
+    storageBucket: "hellobangladeshi.firebasestorage.app",
+    messagingSenderId: "1068912456284",
+    appId: "1:1068912456284:web:9dbe759a9352ff0a072c99",
+    measurementId: "G-4FLDL5KPRL"
 };
 
-// ------------------------------
-// DOM রেন্ডার ফাংশন
-// ------------------------------
-function renderGroups() {
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+
+let currentUser = null;
+let currentGroupId = null;
+
+// ========== Authentication Functions ==========
+function showAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+    document.getElementById('signupName').value = '';
+    document.getElementById('signupEmail').value = '';
+    document.getElementById('signupPassword').value = '';
+}
+
+async function login() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    if (!email || !password) {
+        showToast('ইমেল এবং পাসওয়ার্ড দিন', 'error');
+        return;
+    }
+    try {
+        const result = await auth.signInWithEmailAndPassword(email, password);
+        showToast('লগইন সফল!', 'success');
+        closeAuthModal();
+    } catch (error) {
+        showToast(error.message, 'error');
+    }
+}
+
+async function signup() {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    if (!name || !email || !password) {
+        showToast('সব তথ্য পূরণ করুন', 'error');
+        return;
+    }
+    if (password.length < 6) {
+        showToast('পাসওয়ার্ড ৬+ অক্ষর হতে হবে', 'error');
+        return;
+    }
+    try {
+        const result = await auth.createUserWithEmailAndPassword(email, password);
+        await result.user.updateProfile({ displayName: name });
+        await db.ref(`users/${result.user.uid}`).set({
+            name: name,
+            email: email,
+            createdAt: Date.now()
+        });
+        showToast('অ্যাকাউন্ট তৈরি সফল!', 'success');
+        closeAuthModal();
+    } catch (error) {
+        showToast(error.message, 'error');
+    }
+}
+
+async function logout() {
+    await auth.signOut();
+    showToast('লগআউট হয়েছে', 'info');
+}
+
+// ========== Auth State Listener ==========
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        currentUser = {
+            uid: user.uid,
+            name: user.displayName || user.email.split('@')[0],
+            email: user.email
+        };
+        document.getElementById('authButtons').style.display = 'none';
+        document.getElementById('userProfile').style.display = 'flex';
+        document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('userName').textContent = currentUser.name;
+    } else {
+        currentUser = null;
+        document.getElementById('authButtons').style.display = 'flex';
+        document.getElementById('userProfile').style.display = 'none';
+    }
+    loadGroups();
+});
+
+// ========== Groups Functions ==========
+async function loadGroups() {
     const container = document.getElementById('groupsListContainer');
-    if (!container) return;
-    if (groupsData.length === 0) {
+    container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> গ্রুপ লোড হচ্ছে...</div>';
+    
+    db.ref('groups').on('value', (snapshot) => {
+        const groups = [];
+        snapshot.forEach((child) => {
+            const group = child.val();
+            group.id = child.key;
+            groups.push(group);
+        });
+        renderGroups(groups);
+    });
+}
+
+function renderGroups(groups) {
+    const container = document.getElementById('groupsListContainer');
+    if (!groups.length) {
         container.innerHTML = '<div class="empty-state"><i class="fas fa-users-slash" style="font-size: 40px;"></i><p>কোন গ্রুপ নেই। প্রথম গ্রুপ তৈরি করুন!</p></div>';
         return;
     }
-    container.innerHTML = groupsData.map(group => `
+    
+    container.innerHTML = groups.map(group => `
         <div class="group-card" data-group-id="${group.id}">
             <div class="group-banner">
-                <div class="group-icon">${group.icon}</div>
+                <div class="group-icon">${group.icon || '👥'}</div>
             </div>
             <div class="group-info">
                 <div class="group-name">${escapeHtml(group.name)}</div>
                 <span class="group-category">${group.category}</span>
-                <div class="group-desc">${escapeHtml(group.description)}</div>
+                <div class="group-desc">${escapeHtml(group.description || 'কোন বিবরণ নেই')}</div>
                 <div class="group-stats">
-                    <div class="stat"><div class="stat-number">${group.members}</div><div class="stat-label">সদস্য</div></div>
-                    <div class="stat"><div class="stat-number">${group.posts.length}</div><div class="stat-label">পোস্ট</div></div>
+                    <div class="stat"><div class="stat-number">${group.members || 0}</div><div class="stat-label">সদস্য</div></div>
+                    <div class="stat"><div class="stat-number">${group.postsCount || 0}</div><div class="stat-label">পোস্ট</div></div>
                 </div>
-                <button class="join-btn ${group.isMember ? 'joined' : ''}" data-group-id="${group.id}">
-                    ${group.isMember ? '<i class="fas fa-check"></i> যুক্ত হয়েছেন' : '<i class="fas fa-user-plus"></i> যোগ দিন'}
+                <button class="join-btn ${group.members && group.members[currentUser?.uid] ? 'joined' : ''}" data-group-id="${group.id}">
+                    ${group.members && group.members[currentUser?.uid] ? '<i class="fas fa-check"></i> যুক্ত হয়েছেন' : '<i class="fas fa-user-plus"></i> যোগ দিন'}
                 </button>
             </div>
         </div>
     `).join('');
     
-    // গ্রুপ কার্ডে ক্লিক করলে বিস্তারিত দেখানো
+    // Add event listeners
     document.querySelectorAll('.group-card').forEach(card => {
         card.addEventListener('click', (e) => {
-            // যদি বাটনে ক্লিক করে তাহলে বাটনের ইভেন্ট চালাবে, এখানে না
             if (e.target.classList.contains('join-btn')) return;
             const groupId = card.getAttribute('data-group-id');
             openGroupDetail(groupId);
         });
     });
     
-    // জয়েন বাটনে ক্লিক
     document.querySelectorAll('.join-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', async (e) => {
             e.stopPropagation();
+            if (!currentUser) {
+                showToast('গ্রুপে যোগ দিতে লগইন করুন', 'error');
+                showAuthModal();
+                return;
+            }
             const groupId = btn.getAttribute('data-group-id');
-            toggleJoinGroup(groupId);
+            await toggleJoinGroup(groupId);
         });
     });
 }
 
-function toggleJoinGroup(groupId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
-    if (group.isMember) {
-        group.isMember = false;
-        group.members--;
-        showToast(`"${group.name}" গ্রুপ ছেড়েছেন।`, 'info');
+async function toggleJoinGroup(groupId) {
+    if (!currentUser) return;
+    
+    const groupRef = db.ref(`groups/${groupId}`);
+    const groupSnapshot = await groupRef.once('value');
+    const group = groupSnapshot.val();
+    
+    if (group.members && group.members[currentUser.uid]) {
+        // Leave group
+        await groupRef.child(`members/${currentUser.uid}`).remove();
+        await groupRef.child('membersCount').transaction(count => (count || 1) - 1);
+        showToast('গ্রুপ ছেড়েছেন', 'info');
     } else {
-        group.isMember = true;
-        group.members++;
-        showToast(`"${group.name}" গ্রুপে যোগ দিয়েছেন! এখন আপনি পোস্ট, লাইক ও কমেন্ট করতে পারবেন।`, 'success');
-    }
-    renderGroups();
-    // যদি ডিটেইল ওপেন থাকে, সেটাও রিফ্রেশ
-    const overlay = document.getElementById('groupDetailOverlay');
-    if (overlay.style.display === 'flex' && window.currentOpenGroupId === groupId) {
-        openGroupDetail(groupId); // রি-ওপেন করে রেন্ডার
+        // Join group
+        await groupRef.child(`members/${currentUser.uid}`).set({
+            name: currentUser.name,
+            joinedAt: Date.now()
+        });
+        await groupRef.child('membersCount').transaction(count => (count || 0) + 1);
+        showToast('গ্রুপে যোগ দিয়েছেন!', 'success');
     }
 }
 
-function openGroupDetail(groupId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
-    window.currentOpenGroupId = groupId;
+async function createGroup() {
+    if (!currentUser) {
+        showToast('গ্রুপ তৈরি করতে লগইন করুন', 'error');
+        showAuthModal();
+        return;
+    }
+    
+    const name = document.getElementById('groupName').value.trim();
+    const category = document.getElementById('groupCategory').value;
+    const description = document.getElementById('groupDesc').value.trim();
+    const icon = document.getElementById('groupIcon').value.trim() || '👥';
+    
+    if (!name) {
+        showToast('গ্রুপের নাম লিখুন', 'error');
+        return;
+    }
+    
+    const newGroupRef = db.ref('groups').push();
+    const groupData = {
+        name: name,
+        category: category,
+        description: description || 'কোন বিবরণ নেই',
+        icon: icon,
+        createdBy: currentUser.uid,
+        createdAt: Date.now(),
+        membersCount: 1,
+        postsCount: 0
+    };
+    
+    groupData[`members/${currentUser.uid}`] = {
+        name: currentUser.name,
+        joinedAt: Date.now()
+    };
+    
+    await newGroupRef.set(groupData);
+    showToast(`"${name}" গ্রুপ তৈরি হয়েছে!`, 'success');
+    closeCreateModal();
+}
+
+// ========== Posts Functions ==========
+async function openGroupDetail(groupId) {
+    if (!currentUser) {
+        showToast('গ্রুপ দেখতে লগইন করুন', 'error');
+        showAuthModal();
+        return;
+    }
+    
+    currentGroupId = groupId;
+    const groupSnapshot = await db.ref(`groups/${groupId}`).once('value');
+    const group = groupSnapshot.val();
+    
+    if (!group) {
+        showToast('গ্রুপ পাওয়া যায়নি', 'error');
+        return;
+    }
     
     document.getElementById('detailGroupName').innerText = group.name;
-    document.getElementById('detailGroupDesc').innerHTML = `<i class="fas fa-tag"></i> ${group.category} | <i class="fas fa-users"></i> ${group.members} সদস্য | ${group.description}`;
-    document.getElementById('detailHeader').style.background = 'linear-gradient(135deg, #006A4E, #008060)';
-    
-    // পোস্ট রেন্ডার
-    renderPosts(groupId);
-    
-    // ওভারলে দেখানো
+    document.getElementById('detailGroupDesc').innerHTML = `<i class="fas fa-tag"></i> ${group.category} | <i class="fas fa-users"></i> ${group.membersCount || 0} সদস্য`;
     document.getElementById('groupDetailOverlay').style.display = 'flex';
+    
+    loadPosts(groupId);
 }
 
-function renderPosts(groupId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
+function loadPosts(groupId) {
     const container = document.getElementById('postsListContainer');
-    if (!group.posts.length) {
+    container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> পোস্ট লোড হচ্ছে...</div>';
+    
+    db.ref(`posts/${groupId}`).orderByChild('createdAt').on('value', (snapshot) => {
+        const posts = [];
+        snapshot.forEach((child) => {
+            const post = child.val();
+            post.id = child.key;
+            posts.push(post);
+        });
+        renderPosts(posts.reverse());
+    });
+}
+
+function renderPosts(posts) {
+    const container = document.getElementById('postsListContainer');
+    if (!posts.length) {
         container.innerHTML = '<div class="empty-state"><i class="fas fa-comment-slash"></i><p>কোন পোস্ট নেই। প্রথম পোস্ট করুন!</p></div>';
         return;
     }
-    // নতুন পোস্ট উপরে দেখানোর জন্য reverse
-    const sortedPosts = [...group.posts].reverse();
-    container.innerHTML = sortedPosts.map(post => `
+    
+    container.innerHTML = posts.map(post => `
         <div class="post-card" data-post-id="${post.id}">
             <div class="post-header">
                 <span><strong>${escapeHtml(post.userName)}</strong> <span style="color: var(--tl);">${formatDate(post.createdAt)}</span></span>
             </div>
             <div class="post-content">${escapeHtml(post.content)}</div>
             <div class="post-actions">
-                <button class="like-btn ${post.likes.includes(currentUser.uid) ? 'liked' : ''}" data-post-id="${post.id}">
-                    <i class="fas fa-heart"></i> ${post.likes.length} লাইক
+                <button class="like-btn ${post.likes && post.likes[currentUser?.uid] ? 'liked' : ''}" onclick="toggleLike('${currentGroupId}', '${post.id}')">
+                    <i class="fas fa-heart"></i> ${Object.keys(post.likes || {}).length} লাইক
                 </button>
-                <button class="comment-btn" data-post-id="${post.id}">
-                    <i class="fas fa-comment"></i> ${post.comments.length} মন্তব্য
+                <button class="comment-btn" onclick="toggleComments('${post.id}')">
+                    <i class="fas fa-comment"></i> ${Object.keys(post.comments || {}).length} মন্তব্য
                 </button>
             </div>
             <div class="comments-section" id="comments-${post.id}" style="display: none;">
-                ${post.comments.map(comment => `
-                    <div class="comment">
-                        <strong>${escapeHtml(comment.userName)}:</strong> ${escapeHtml(comment.text)}
-                        <span style="font-size: 10px; color: var(--tl);">${formatDate(comment.createdAt)}</span>
-                    </div>
-                `).join('')}
+                ${renderComments(post.comments)}
                 <div class="add-comment">
                     <input type="text" id="commentInput-${post.id}" placeholder="মন্তব্য লিখুন...">
-                    <button onclick="addComment('${groupId}', '${post.id}')">পোস্ট</button>
+                    <button onclick="addComment('${currentGroupId}', '${post.id}')">পোস্ট</button>
                 </div>
             </div>
         </div>
     `).join('');
-    
-    // লাইক বাটন ইভেন্ট
-    document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const postId = btn.getAttribute('data-post-id');
-            toggleLike(groupId, postId);
-        });
-    });
-    // কমেন্ট টগল ইভেন্ট
-    document.querySelectorAll('.comment-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const postId = btn.getAttribute('data-post-id');
-            const commentSec = document.getElementById(`comments-${postId}`);
-            if (commentSec.style.display === 'none') commentSec.style.display = 'block';
-            else commentSec.style.display = 'none';
-        });
-    });
 }
 
-function toggleLike(groupId, postId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
-    const post = group.posts.find(p => p.id === postId);
-    if (!post) return;
-    
-    // গ্রুপের সদস্য কিনা চেক
-    if (!group.isMember) {
-        showToast('পোস্ট লাইক করতে প্রথমে গ্রুপে যোগ দিন!', 'error');
-        return;
-    }
-    
-    const idx = post.likes.indexOf(currentUser.uid);
-    if (idx === -1) {
-        post.likes.push(currentUser.uid);
-        showToast('পোস্ট লাইক করেছেন!', 'success');
-    } else {
-        post.likes.splice(idx, 1);
-        showToast('লাইক সরিয়ে নিলেন', 'info');
-    }
-    renderPosts(groupId);
+function renderComments(comments) {
+    if (!comments) return '';
+    return Object.values(comments).map(comment => `
+        <div class="comment">
+            <strong>${escapeHtml(comment.userName)}:</strong> ${escapeHtml(comment.text)}
+            <span style="font-size: 10px; color: var(--tl);">${formatDate(comment.createdAt)}</span>
+        </div>
+    `).join('');
 }
 
-function addComment(groupId, postId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
-    const post = group.posts.find(p => p.id === postId);
-    if (!post) return;
-    
-    if (!group.isMember) {
-        showToast('মন্তব্য করতে গ্রুপে যোগ দিন!', 'error');
+async function createPost() {
+    if (!currentUser) {
+        showToast('পোস্ট করতে লগইন করুন', 'error');
         return;
     }
     
-    const inputField = document.getElementById(`commentInput-${postId}`);
-    const commentText = inputField.value.trim();
-    if (!commentText) {
-        showToast('মন্তব্য লিখুন', 'error');
-        return;
-    }
-    
-    const newComment = {
-        id: Date.now() + Math.random(),
-        userId: currentUser.uid,
-        userName: currentUser.name,
-        text: commentText,
-        createdAt: new Date().toISOString()
-    };
-    post.comments.push(newComment);
-    inputField.value = '';
-    renderPosts(groupId);
-    // কমেন্ট সেকশন খোলা রাখা
-    const commentSec = document.getElementById(`comments-${postId}`);
-    if (commentSec) commentSec.style.display = 'block';
-    showToast('মন্তব্য যোগ হয়েছে', 'success');
-}
-
-// নতুন পোস্ট তৈরি
-function createNewPost(groupId) {
-    const group = groupsData.find(g => g.id === groupId);
-    if (!group) return;
-    if (!group.isMember) {
-        showToast('পোস্ট করতে গ্রুপে যোগ দিন!', 'error');
-        return;
-    }
     const content = document.getElementById('newPostContent').value.trim();
     if (!content) {
         showToast('পোস্টের কন্টেন্ট লিখুন', 'error');
         return;
     }
-    const newPost = {
-        id: 'p_' + Date.now(),
+    
+    // Check if user is member
+    const groupSnapshot = await db.ref(`groups/${currentGroupId}/members/${currentUser.uid}`).once('value');
+    if (!groupSnapshot.exists()) {
+        showToast('পোস্ট করতে গ্রুপে যোগ দিন!', 'error');
+        return;
+    }
+    
+    const newPostRef = db.ref(`posts/${currentGroupId}`).push();
+    const postData = {
         userId: currentUser.uid,
         userName: currentUser.name,
         content: content,
-        createdAt: new Date().toISOString(),
-        likes: [],
-        comments: []
+        createdAt: Date.now(),
+        likes: {},
+        comments: {}
     };
-    group.posts.push(newPost);
+    
+    await newPostRef.set(postData);
+    await db.ref(`groups/${currentGroupId}/postsCount`).transaction(count => (count || 0) + 1);
+    
     document.getElementById('newPostContent').value = '';
-    renderPosts(groupId);
     showToast('পোস্ট শেয়ার হয়েছে!', 'success');
 }
 
-// নতুন গ্রুপ তৈরি
-function createNewGroup() {
-    const name = document.getElementById('groupName').value.trim();
-    const category = document.getElementById('groupCategory').value;
-    const desc = document.getElementById('groupDesc').value.trim();
-    let icon = document.getElementById('groupIcon').value.trim();
-    if (!name) {
-        showToast('গ্রুপের নাম লিখুন', 'error');
+async function toggleLike(groupId, postId) {
+    if (!currentUser) {
+        showToast('লাইক দিতে লগইন করুন', 'error');
         return;
     }
-    if (!icon) icon = '👥';
-    const newGroup = {
-        id: 'g_' + Date.now(),
-        name: name,
-        category: category,
-        description: desc || 'কোন বিবরণ নেই',
-        icon: icon,
-        members: 1,
-        posts: [],
-        isMember: true   // যিনি তৈরি করবেন তিনি সদস্য হবেন
-    };
-    groupsData.unshift(newGroup);
-    renderGroups();
-    closeCreateModal();
-    showToast(`"${name}" গ্রুপ সফলভাবে তৈরি হয়েছে!`, 'success');
-    // নতুন গ্রুপের বিস্তারিত খুলে দেওয়া
-    openGroupDetail(newGroup.id);
+    
+    const likeRef = db.ref(`posts/${groupId}/${postId}/likes/${currentUser.uid}`);
+    const likeSnapshot = await likeRef.once('value');
+    
+    if (likeSnapshot.exists()) {
+        await likeRef.remove();
+        showToast('লাইক সরিয়ে নিলেন', 'info');
+    } else {
+        await likeRef.set(true);
+        showToast('পোস্ট লাইক করেছেন!', 'success');
+    }
 }
 
-// UI টুলস
+async function addComment(groupId, postId) {
+    if (!currentUser) {
+        showToast('মন্তব্য করতে লগইন করুন', 'error');
+        return;
+    }
+    
+    const inputField = document.getElementById(`commentInput-${postId}`);
+    const commentText = inputField.value.trim();
+    if (!commentText) return;
+    
+    const commentRef = db.ref(`posts/${groupId}/${postId}/comments`).push();
+    await commentRef.set({
+        userId: currentUser.uid,
+        userName: currentUser.name,
+        text: commentText,
+        createdAt: Date.now()
+    });
+    
+    inputField.value = '';
+    showToast('মন্তব্য যোগ হয়েছে', 'success');
+}
+
+function toggleComments(postId) {
+    const commentSec = document.getElementById(`comments-${postId}`);
+    if (commentSec.style.display === 'none') {
+        commentSec.style.display = 'block';
+    } else {
+        commentSec.style.display = 'none';
+    }
+}
+
+// ========== Utility Functions ==========
 function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/[&<>]/g, function(m) {
@@ -442,71 +580,77 @@ function escapeHtml(str) {
     });
 }
 
-function formatDate(isoString) {
-    if (!isoString) return 'এখনই';
-    const date = new Date(isoString);
+function formatDate(timestamp) {
+    if (!timestamp) return 'এখনই';
+    const date = new Date(timestamp);
     const now = new Date();
     const diff = Math.floor((now - date) / 1000);
     if (diff < 60) return `${diff} সেকেন্ড আগে`;
     if (diff < 3600) return `${Math.floor(diff / 60)} মিনিট আগে`;
     if (diff < 86400) return `${Math.floor(diff / 3600)} ঘন্টা আগে`;
-    return `${Math.floor(diff / 86400)} দিন আগে`;
+    if (diff < 2592000) return `${Math.floor(diff / 86400)} দিন আগে`;
+    return date.toLocaleDateString('bn-BD');
 }
 
 function showToast(msg, type = 'info') {
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i> ${msg}`;
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+    toast.innerHTML = `<i class="fas ${icon}"></i> ${msg}`;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
 }
 
-// মডাল কন্ট্রোল
 function openCreateModal() {
+    if (!currentUser) {
+        showToast('গ্রুপ তৈরি করতে লগইন করুন', 'error');
+        showAuthModal();
+        return;
+    }
     document.getElementById('createGroupModal').style.display = 'flex';
 }
+
 function closeCreateModal() {
     document.getElementById('createGroupModal').style.display = 'none';
     document.getElementById('groupName').value = '';
     document.getElementById('groupDesc').value = '';
     document.getElementById('groupIcon').value = '👥';
-    document.getElementById('groupCategory').selectedIndex = 0;
-}
-function closeDetailOverlay() {
-    document.getElementById('groupDetailOverlay').style.display = 'none';
-    window.currentOpenGroupId = null;
 }
 
-// ইভেন্ট লিসেনার
+function closeDetailOverlay() {
+    document.getElementById('groupDetailOverlay').style.display = 'none';
+    if (currentGroupId) {
+        db.ref(`posts/${currentGroupId}`).off();
+        currentGroupId = null;
+    }
+}
+
+// ========== Event Listeners ==========
 document.getElementById('openCreateGroupBtn').addEventListener('click', openCreateModal);
 document.getElementById('closeModal').addEventListener('click', closeCreateModal);
-document.getElementById('confirmCreateGroup').addEventListener('click', createNewGroup);
+document.getElementById('confirmCreateGroup').addEventListener('click', createGroup);
 document.getElementById('closeDetailBtn').addEventListener('click', closeDetailOverlay);
-document.getElementById('submitPostBtn').addEventListener('click', () => {
-    if (window.currentOpenGroupId) {
-        createNewPost(window.currentOpenGroupId);
-    } else {
-        showToast('কোন গ্রুপ খোলা নেই', 'error');
-    }
-});
-// ক্লিক করে বাইরে ক্লিক করলে বন্ধ
+document.getElementById('submitPostBtn').addEventListener('click', createPost);
+document.getElementById('closeAuthModal').addEventListener('click', closeAuthModal);
+
 document.getElementById('groupDetailOverlay').addEventListener('click', (e) => {
     if (e.target === document.getElementById('groupDetailOverlay')) closeDetailOverlay();
 });
 document.getElementById('createGroupModal').addEventListener('click', (e) => {
     if (e.target === document.getElementById('createGroupModal')) closeCreateModal();
 });
+document.getElementById('authModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('authModal')) closeAuthModal();
+});
 
-// ইনিশিয়াল রেন্ডার
-renderGroups();
-
-// ফায়ারবেস বা বাস্তব সিস্টেমে সংযুক্তির জন্য: বর্তমানে লোকাল স্টোরেজে ডাটা সংরক্ষণ করতে চাইলে এখানে localStorage ব্যবহার করতে পারি।
-// কিন্তু এই ডেমোতে সবকিছু মেমোরিতে রাখা হয়েছে। তবে নতুন গ্রুপ যোগ, পোস্ট, লাইক, কমেন্ট সব কাজ করে।
-
-// ------------------------------
-// গ্রুপের মধ্যে মেম্বাররা পোস্ট, লাইক, কমেন্ট করতে পারে, এবং নতুন গ্রুপ খোলার বাটনে ক্লিক করলে নতুন গ্রুপ যোগ হয়।
-// ------------------------------
-console.log('গ্রুপ সিস্টেম সম্পূর্ণ প্রস্তুত।');
+// Make functions global for onclick
+window.showAuthModal = showAuthModal;
+window.login = login;
+window.signup = signup;
+window.logout = logout;
+window.toggleLike = toggleLike;
+window.addComment = addComment;
+window.toggleComments = toggleComments;
 </script>
 </body>
 </html>
