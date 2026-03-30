@@ -1,78 +1,512 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>গ্রুপ - হ্যালো বাংলাদেশী</title>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="হ্যালো বাংলাদেশী - গ্রুপ সিস্টেম">
+<title>হ্যালো বাংলাদেশী - গ্রুপ</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Hind Siliguri',sans-serif;background:#f7fafc}
-.back{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;background:white;color:#006A4E;border-radius:50px;font-weight:600;margin:18px;transition:all .3s;border:2px solid #006A4E;text-decoration:none;font-size:13px}
-.back:hover{background:#006A4E;color:white;transform:translateX(-4px)}
-.header{background:linear-gradient(135deg,#006A4E,#008060);color:white;padding:50px 20px;text-align:center}
-.header h1{font-size:34px;margin-bottom:8px}.header p{font-size:15px;opacity:.9}
-.container{max-width:1200px;margin:-26px auto 60px;padding:0 20px}
-.topbar{background:white;border-radius:20px;padding:24px;margin-bottom:28px;box-shadow:0 5px 15px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.topbar-info h3{font-size:18px;margin-bottom:4px;color:#1a1a1a}.topbar-info p{color:#718096;font-size:13px}
-.btn-create{padding:10px 24px;background:linear-gradient(135deg,#006A4E,#008060);color:white;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:13px;transition:all .3s}
-.btn-create:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,106,78,.3)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
-.gcard{background:white;border-radius:22px;overflow:hidden;transition:all .3s;box-shadow:0 5px 15px rgba(0,0,0,.05);border:1px solid #e2e8f0}
-.gcard:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.1);border-color:#006A4E}
-.gbanner{height:100px;background:linear-gradient(135deg,#006A4E,#008060);position:relative}
-.gavicon{position:absolute;bottom:-28px;left:18px;width:60px;height:60px;background:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 5px 15px rgba(0,0,0,.1);border:3px solid white}
-.gbody{padding:40px 18px 18px}
-.gname{font-size:17px;font-weight:700;margin-bottom:5px;color:#1a1a1a}
-.gcat{display:inline-block;padding:3px 11px;background:#f7fafc;border-radius:50px;font-size:11px;color:#006A4E;margin-bottom:9px;border:1px solid rgba(0,106,78,.2)}
-.gdesc{color:#4a5568;font-size:12px;line-height:1.6;margin-bottom:13px}
-.gstats{display:flex;gap:18px;padding:11px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;margin-bottom:13px}
-.gsv{font-size:16px;font-weight:700;color:#006A4E;display:block}.gsl{font-size:10px;color:#718096}
-.bjoin{width:100%;padding:9px;border:2px solid #e2e8f0;border-radius:12px;background:#f7fafc;color:#006A4E;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit;font-size:13px}
-.bjoin:hover,.bjoin.on{background:#006A4E;color:white;border-color:#006A4E}
-@media(max-width:768px){.grid{grid-template-columns:1fr}.topbar{flex-direction:column;text-align:center}}
+    /* ===== Base Styles ===== */
+    :root {
+        --P: #006A4E; --PD: #00563D; --PL: #008060; --S: #F42A41; --SL: #FF5C72;
+        --gold: #FFD700; --green: #27AE60; --blue: #3498DB; --orange: #F39C12; --red: #E74C3C;
+        --td: #1A1A1A; --tm: #4A5568; --tl: #718096;
+        --bg: #F7FAFC; --wh: #FFFFFF; --bd: #E2E8F0;
+        --gP: linear-gradient(135deg, #006A4E, #008060);
+        --gS: linear-gradient(135deg, #F42A41, #FF5C72);
+        --bn: 'Hind Siliguri', sans-serif; --dp: 'Poppins', sans-serif;
+        --s1: 0 2px 8px rgba(0,106,78,.08); --s2: 0 6px 16px rgba(0,106,78,.1);
+        --s3: 0 12px 32px rgba(0,106,78,.12); --rf: 9999px;
+        --tr: .3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--bn); }
+    body { background: var(--bg); color: var(--td); line-height: 1.6; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    /* ===== Header & Navigation ===== */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; background: var(--wh); padding: 15px 20px; border-radius: 16px; box-shadow: var(--s1); }
+    .logo h1 { font-size: 24px; color: var(--P); display: flex; align-items: center; gap: 8px; }
+    .create-group-btn { background: var(--gP); color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: var(--tr); }
+    .create-group-btn:hover { transform: translateY(-2px); box-shadow: var(--s2); }
+    
+    /* ===== Groups Grid ===== */
+    .groups-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .group-card { background: var(--wh); border-radius: 20px; overflow: hidden; box-shadow: var(--s1); transition: var(--tr); cursor: pointer; border: 1px solid var(--bd); }
+    .group-card:hover { transform: translateY(-5px); box-shadow: var(--s3); border-color: var(--P); }
+    .group-banner { height: 100px; background: var(--gP); position: relative; }
+    .group-icon { position: absolute; bottom: -25px; left: 20px; width: 60px; height: 60px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: var(--s2); border: 3px solid white; }
+    .group-info { padding: 35px 18px 18px; }
+    .group-name { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: var(--td); }
+    .group-category { display: inline-block; background: var(--bg); padding: 3px 10px; border-radius: 20px; font-size: 11px; color: var(--P); margin-bottom: 8px; border: 1px solid rgba(0,106,78,.2); }
+    .group-desc { font-size: 12px; color: var(--tm); margin-bottom: 12px; line-height: 1.5; }
+    .group-stats { display: flex; gap: 20px; padding: 10px 0; border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); margin-bottom: 12px; }
+    .stat { text-align: center; flex: 1; }
+    .stat-number { font-weight: 700; color: var(--P); font-size: 14px; }
+    .stat-label { font-size: 10px; color: var(--tl); }
+    .join-btn { width: 100%; padding: 8px; border: 2px solid var(--bd); border-radius: 30px; background: var(--bg); font-weight: 600; cursor: pointer; transition: var(--tr); font-size: 13px; }
+    .join-btn.joined { background: var(--P); color: white; border-color: var(--P); }
+    
+    /* ===== Group Detail View (Modal Style) ===== */
+    .group-detail-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+    .group-detail-container { background: var(--wh); border-radius: 24px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--s3); animation: fadeInUp 0.3s ease; }
+    .detail-header { background: var(--gP); padding: 25px; color: white; position: relative; border-radius: 24px 24px 0 0; }
+    .detail-header h2 { font-size: 24px; margin-bottom: 5px; }
+    .close-detail { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 18px; }
+    .detail-content { padding: 20px; }
+    .create-post { background: var(--bg); padding: 15px; border-radius: 16px; margin-bottom: 25px; border: 1px solid var(--bd); }
+    .create-post textarea { width: 100%; border: 1px solid var(--bd); border-radius: 12px; padding: 12px; font-size: 13px; resize: vertical; margin-bottom: 10px; font-family: var(--bn); }
+    .create-post button { background: var(--P); color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; font-weight: 600; }
+    .posts-list { display: flex; flex-direction: column; gap: 20px; }
+    .post-card { background: var(--wh); border: 1px solid var(--bd); border-radius: 16px; padding: 15px; transition: var(--tr); }
+    .post-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; color: var(--tl); }
+    .post-content { font-size: 14px; margin-bottom: 15px; line-height: 1.6; }
+    .post-actions { display: flex; gap: 15px; border-top: 1px solid var(--bd); padding-top: 12px; }
+    .like-btn, .comment-btn { background: none; border: none; display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 13px; color: var(--tm); transition: var(--tr); }
+    .like-btn.liked { color: var(--S); }
+    .comments-section { margin-top: 15px; padding-left: 20px; border-left: 2px solid var(--bd); }
+    .comment { background: var(--bg); padding: 8px 12px; border-radius: 12px; margin-bottom: 8px; font-size: 12px; }
+    .comment strong { color: var(--P); margin-right: 6px; }
+    .add-comment { display: flex; gap: 8px; margin-top: 10px; }
+    .add-comment input { flex: 1; padding: 8px 12px; border: 1px solid var(--bd); border-radius: 30px; font-size: 12px; }
+    .add-comment button { background: var(--P); color: white; border: none; padding: 6px 15px; border-radius: 30px; cursor: pointer; }
+    
+    /* ===== Create Group Modal ===== */
+    .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1100; }
+    .modal-content { background: white; border-radius: 24px; width: 90%; max-width: 500px; padding: 25px; animation: fadeInUp 0.2s ease; }
+    .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 10px; margin: 8px 0 15px; border: 1px solid var(--bd); border-radius: 12px; font-family: var(--bn); }
+    .modal-content button { background: var(--P); color: white; border: none; padding: 10px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 10px; }
+    .modal-close { float: right; font-size: 24px; cursor: pointer; }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .toast { position: fixed; bottom: 20px; right: 20px; background: var(--td); color: white; padding: 12px 20px; border-radius: 40px; z-index: 1200; animation: fadeIn 0.3s; box-shadow: var(--s3); }
+    .empty-state { text-align: center; padding: 40px; color: var(--tl); }
+    .hidden { display: none; }
+    button { cursor: pointer; }
 </style>
 </head>
 <body>
-<a href="index.html" class="back"><i class="fas fa-arrow-left"></i> হোমে ফিরুন</a>
-<div class="header"><h1 class="bangla">গ্রুপ</h1><p class="bangla">আপনার আগ্রহের গ্রুপে যোগ দিন</p></div>
 <div class="container">
-  <div class="topbar">
-    <div class="topbar-info"><h3 class="bangla">সব গ্রুপ</h3><p class="bangla">আপনার পছন্দের গ্রুপ খুঁজে নিন</p></div>
-    <button class="btn-create bangla" onclick="createGroup()"><i class="fas fa-plus"></i> নতুন গ্রুপ তৈরি করুন</button>
-  </div>
-  <div class="grid" id="groupsGrid"></div>
+    <div class="header">
+        <div class="logo">
+            <h1><i class="fas fa-users" style="color: var(--P);"></i> হ্যালো বাংলাদেশী <span style="font-size: 14px;">গ্রুপ</span></h1>
+        </div>
+        <button class="create-group-btn" id="openCreateGroupBtn"><i class="fas fa-plus-circle"></i> নতুন গ্রুপ খুলুন</button>
+    </div>
+    <div id="groupsListContainer" class="groups-grid">
+        <!-- Groups will be loaded here -->
+    </div>
 </div>
+
+<!-- Create Group Modal -->
+<div id="createGroupModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <h3 style="margin-bottom: 15px;">নতুন গ্রুপ তৈরি করুন</h3>
+        <input type="text" id="groupName" placeholder="গ্রুপের নাম *">
+        <select id="groupCategory">
+            <option value="সাধারণ">সাধারণ</option>
+            <option value="প্রযুক্তি">প্রযুক্তি</option>
+            <option value="শিক্ষা">শিক্ষা</option>
+            <option value="ব্যবসা">ব্যবসা</option>
+            <option value="স্বাস্থ্য">স্বাস্থ্য</option>
+            <option value="সৃজনশীলতা">সৃজনশীলতা</option>
+        </select>
+        <textarea id="groupDesc" rows="3" placeholder="গ্রুপের বিবরণ"></textarea>
+        <input type="text" id="groupIcon" placeholder="আইকন (যেমন: 🚀, 💻, 🎓)" value="👥">
+        <button id="confirmCreateGroup">গ্রুপ তৈরি করুন</button>
+    </div>
+</div>
+
+<!-- Group Detail Overlay (একটি গ্রুপের ভিতরের পোস্ট, লাইক, কমেন্ট) -->
+<div id="groupDetailOverlay" class="group-detail-overlay">
+    <div class="group-detail-container">
+        <div class="detail-header" id="detailHeader">
+            <h2 id="detailGroupName">Group Name</h2>
+            <p id="detailGroupDesc">Description</p>
+            <button class="close-detail" id="closeDetailBtn">&times;</button>
+        </div>
+        <div class="detail-content">
+            <div class="create-post">
+                <textarea id="newPostContent" rows="2" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea>
+                <button id="submitPostBtn">পোস্ট করুন</button>
+            </div>
+            <div id="postsListContainer" class="posts-list">
+                <!-- Posts will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-const groups=[
-  {id:1,nm:'বাংলাদেশী শিক্ষার্থী',ct:'শিক্ষা',ds:'বাংলাদেশের বিভিন্ন শিক্ষাপ্রতিষ্ঠানের শিক্ষার্থীদের জন্য। পড়াশোনা, ক্যারিয়ার ও অভিজ্ঞতা শেয়ার করুন।',mb:1250,po:340,ic:'🎓',jn:false},
-  {id:2,nm:'আইটি পেশাজীবী বাংলাদেশ',ct:'প্রযুক্তি',ds:'আইটি সেক্টরে কর্মরত বাংলাদেশীদের জন্য। নতুন টেকনোলজি, জব ও প্রজেক্ট নিয়ে আলোচনা।',mb:3420,po:890,ic:'💻',jn:true},
-  {id:3,nm:'উদ্যোক্তা নেটওয়ার্ক BD',ct:'ব্যবসা',ds:'উদ্যোক্তা ও ব্যবসায়ীদের নেটওয়ার্ক। সুযোগ, অংশীদারিত্ব ও মার্কেটিং টিপস।',mb:2100,po:560,ic:'📈',jn:false},
-  {id:4,nm:'প্রবাসী বাংলাদেশী',ct:'সম্প্রদায়',ds:'বিদেশে বসবাসরত বাংলাদেশীদের জন্য। অভিজ্ঞতা শেয়ার ও সমস্যার সমাধান।',mb:8900,po:2100,ic:'🌍',jn:false},
-  {id:5,nm:'ফ্রিল্যান্সার কমিউনিটি',ct:'ক্যারিয়ার',ds:'ফ্রিল্যান্সারদের সম্পূর্ণ প্ল্যাটফর্ম। কাজের সুযোগ, ক্লায়েন্ট ম্যানেজমেন্ট ও স্কিল।',mb:4500,po:1250,ic:'💼',jn:true},
-  {id:6,nm:'ক্রিয়েটিভ আর্টিস্ট',ct:'সৃজনশীলতা',ds:'শিল্পী, ডিজাইনার ও ক্রিয়েটিভ ব্যক্তিদের গ্রুপ। আর্ট ও ডিজাইন আইডিয়া শেয়ার।',mb:980,po:420,ic:'🎨',jn:false},
-  {id:7,nm:'মৌলভীবাজার জেলা',ct:'স্থানীয়',ds:'মৌলভীবাজার জেলার মানুষদের জন্য। স্থানীয় খবর, ব্যবসা ও সামাজিক কার্যক্রম।',mb:2300,po:780,ic:'🏡',jn:false},
-  {id:8,nm:'স্বাস্থ্য ও সুস্থতা',ct:'স্বাস্থ্য',ds:'সুস্বাস্থ্য বিষয়ক আলোচনা। ডাক্তার, নার্স ও স্বাস্থ্যকর্মীদের জন্য।',mb:1560,po:640,ic:'🏥',jn:false},
+// ------------------------------
+// ডেমো ডাটা: গ্রুপ, পোস্ট, কমেন্ট, লাইক
+// ------------------------------
+let groupsData = [
+    { id: 'g1', name: 'বাংলাদেশী শিক্ষার্থী', category: 'শিক্ষা', description: 'শিক্ষার্থীদের জন্য আলোচনা ও তথ্য বিনিময়', icon: '🎓', members: 1245, posts: [], isMember: false },
+    { id: 'g2', name: 'আইটি পেশাজীবী বাংলাদেশ', category: 'প্রযুক্তি', description: 'আইটি নিয়ে কাজ করেন যারা', icon: '💻', members: 3420, posts: [], isMember: false },
+    { id: 'g3', name: 'উদ্যোক্তা নেটওয়ার্ক BD', category: 'ব্যবসা', description: 'ব্যবসা, স্টার্টআপ আইডিয়া', icon: '📈', members: 2100, posts: [], isMember: false }
 ];
-function render(){
-  document.getElementById('groupsGrid').innerHTML=groups.map(g=>`
-    <div class="gcard">
-      <div class="gbanner"><div class="gavicon">${g.ic}</div></div>
-      <div class="gbody">
-        <div class="gname bangla">${g.nm}</div>
-        <span class="gcat bangla">${g.ct}</span>
-        <div class="gdesc bangla">${g.ds}</div>
-        <div class="gstats"><div><span class="gsv">${g.mb.toLocaleString()}</span><span class="gsl bangla">সদস্য</span></div><div><span class="gsv">${g.po}</span><span class="gsl bangla">পোস্ট</span></div></div>
-        <button class="bjoin bangla ${g.jn?'on':''}" onclick="toggle(${g.id})"><i class="fas ${g.jn?'fa-check':'fa-user-plus'}"></i> ${g.jn?'যুক্ত হয়েছেন ✓':'যোগ দিন'}</button>
-      </div>
-    </div>`).join('');
+
+// পোস্টের জন্য ডিফল্ট ডাটা (ডেমো)
+function initDemoPosts() {
+    groupsData.forEach(group => {
+        if (group.posts.length === 0) {
+            group.posts = [
+                { id: 'p1_' + group.id, userId: 'user1', userName: 'আহমেদ হাসান', content: 'এই গ্রুপে যুক্ত হয়ে ভালো লাগলো! সবাইকে শুভেচ্ছা।', createdAt: new Date().toISOString(), likes: [], comments: [] },
+                { id: 'p2_' + group.id, userId: 'user2', userName: 'ফারহানা আক্তার', content: 'আজকের আলোচনার বিষয়: গ্রুপের কার্যক্রম কীভাবে আরও উন্নত করা যায়?', createdAt: new Date(Date.now() - 86400000).toISOString(), likes: [], comments: [] }
+            ];
+        }
+    });
 }
-function toggle(id){
-  const g=groups.find(x=>x.id===id);if(!g)return;
-  g.jn=!g.jn;g.jn?g.mb++:g.mb--;
-  render();alert(g.jn?`"${g.nm}" গ্রুপে যোগ দিয়েছেন!`:`"${g.nm}" গ্রুপ থেকে বের হয়ে গেছেন।`);
+initDemoPosts();
+
+// বর্তমান ব্যবহারকারী (ডেমোতে লগইন ধরে নিচ্ছি, আসলে ফায়ারবেস থেকে নেওয়া যাবে)
+let currentUser = {
+    uid: 'current_user_123',
+    name: 'বর্তমান ব্যবহারকারী',
+    avatar: 'ব'
+};
+
+// ------------------------------
+// DOM রেন্ডার ফাংশন
+// ------------------------------
+function renderGroups() {
+    const container = document.getElementById('groupsListContainer');
+    if (!container) return;
+    if (groupsData.length === 0) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-users-slash" style="font-size: 40px;"></i><p>কোন গ্রুপ নেই। প্রথম গ্রুপ তৈরি করুন!</p></div>';
+        return;
+    }
+    container.innerHTML = groupsData.map(group => `
+        <div class="group-card" data-group-id="${group.id}">
+            <div class="group-banner">
+                <div class="group-icon">${group.icon}</div>
+            </div>
+            <div class="group-info">
+                <div class="group-name">${escapeHtml(group.name)}</div>
+                <span class="group-category">${group.category}</span>
+                <div class="group-desc">${escapeHtml(group.description)}</div>
+                <div class="group-stats">
+                    <div class="stat"><div class="stat-number">${group.members}</div><div class="stat-label">সদস্য</div></div>
+                    <div class="stat"><div class="stat-number">${group.posts.length}</div><div class="stat-label">পোস্ট</div></div>
+                </div>
+                <button class="join-btn ${group.isMember ? 'joined' : ''}" data-group-id="${group.id}">
+                    ${group.isMember ? '<i class="fas fa-check"></i> যুক্ত হয়েছেন' : '<i class="fas fa-user-plus"></i> যোগ দিন'}
+                </button>
+            </div>
+        </div>
+    `).join('');
+    
+    // গ্রুপ কার্ডে ক্লিক করলে বিস্তারিত দেখানো
+    document.querySelectorAll('.group-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // যদি বাটনে ক্লিক করে তাহলে বাটনের ইভেন্ট চালাবে, এখানে না
+            if (e.target.classList.contains('join-btn')) return;
+            const groupId = card.getAttribute('data-group-id');
+            openGroupDetail(groupId);
+        });
+    });
+    
+    // জয়েন বাটনে ক্লিক
+    document.querySelectorAll('.join-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const groupId = btn.getAttribute('data-group-id');
+            toggleJoinGroup(groupId);
+        });
+    });
 }
-function createGroup(){alert('গ্রুপ তৈরির জন্য অনুগ্রহ করে লগইন করুন!');}
-render();
+
+function toggleJoinGroup(groupId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    if (group.isMember) {
+        group.isMember = false;
+        group.members--;
+        showToast(`"${group.name}" গ্রুপ ছেড়েছেন।`, 'info');
+    } else {
+        group.isMember = true;
+        group.members++;
+        showToast(`"${group.name}" গ্রুপে যোগ দিয়েছেন! এখন আপনি পোস্ট, লাইক ও কমেন্ট করতে পারবেন।`, 'success');
+    }
+    renderGroups();
+    // যদি ডিটেইল ওপেন থাকে, সেটাও রিফ্রেশ
+    const overlay = document.getElementById('groupDetailOverlay');
+    if (overlay.style.display === 'flex' && window.currentOpenGroupId === groupId) {
+        openGroupDetail(groupId); // রি-ওপেন করে রেন্ডার
+    }
+}
+
+function openGroupDetail(groupId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    window.currentOpenGroupId = groupId;
+    
+    document.getElementById('detailGroupName').innerText = group.name;
+    document.getElementById('detailGroupDesc').innerHTML = `<i class="fas fa-tag"></i> ${group.category} | <i class="fas fa-users"></i> ${group.members} সদস্য | ${group.description}`;
+    document.getElementById('detailHeader').style.background = 'linear-gradient(135deg, #006A4E, #008060)';
+    
+    // পোস্ট রেন্ডার
+    renderPosts(groupId);
+    
+    // ওভারলে দেখানো
+    document.getElementById('groupDetailOverlay').style.display = 'flex';
+}
+
+function renderPosts(groupId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    const container = document.getElementById('postsListContainer');
+    if (!group.posts.length) {
+        container.innerHTML = '<div class="empty-state"><i class="fas fa-comment-slash"></i><p>কোন পোস্ট নেই। প্রথম পোস্ট করুন!</p></div>';
+        return;
+    }
+    // নতুন পোস্ট উপরে দেখানোর জন্য reverse
+    const sortedPosts = [...group.posts].reverse();
+    container.innerHTML = sortedPosts.map(post => `
+        <div class="post-card" data-post-id="${post.id}">
+            <div class="post-header">
+                <span><strong>${escapeHtml(post.userName)}</strong> <span style="color: var(--tl);">${formatDate(post.createdAt)}</span></span>
+            </div>
+            <div class="post-content">${escapeHtml(post.content)}</div>
+            <div class="post-actions">
+                <button class="like-btn ${post.likes.includes(currentUser.uid) ? 'liked' : ''}" data-post-id="${post.id}">
+                    <i class="fas fa-heart"></i> ${post.likes.length} লাইক
+                </button>
+                <button class="comment-btn" data-post-id="${post.id}">
+                    <i class="fas fa-comment"></i> ${post.comments.length} মন্তব্য
+                </button>
+            </div>
+            <div class="comments-section" id="comments-${post.id}" style="display: none;">
+                ${post.comments.map(comment => `
+                    <div class="comment">
+                        <strong>${escapeHtml(comment.userName)}:</strong> ${escapeHtml(comment.text)}
+                        <span style="font-size: 10px; color: var(--tl);">${formatDate(comment.createdAt)}</span>
+                    </div>
+                `).join('')}
+                <div class="add-comment">
+                    <input type="text" id="commentInput-${post.id}" placeholder="মন্তব্য লিখুন...">
+                    <button onclick="addComment('${groupId}', '${post.id}')">পোস্ট</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // লাইক বাটন ইভেন্ট
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const postId = btn.getAttribute('data-post-id');
+            toggleLike(groupId, postId);
+        });
+    });
+    // কমেন্ট টগল ইভেন্ট
+    document.querySelectorAll('.comment-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const postId = btn.getAttribute('data-post-id');
+            const commentSec = document.getElementById(`comments-${postId}`);
+            if (commentSec.style.display === 'none') commentSec.style.display = 'block';
+            else commentSec.style.display = 'none';
+        });
+    });
+}
+
+function toggleLike(groupId, postId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    const post = group.posts.find(p => p.id === postId);
+    if (!post) return;
+    
+    // গ্রুপের সদস্য কিনা চেক
+    if (!group.isMember) {
+        showToast('পোস্ট লাইক করতে প্রথমে গ্রুপে যোগ দিন!', 'error');
+        return;
+    }
+    
+    const idx = post.likes.indexOf(currentUser.uid);
+    if (idx === -1) {
+        post.likes.push(currentUser.uid);
+        showToast('পোস্ট লাইক করেছেন!', 'success');
+    } else {
+        post.likes.splice(idx, 1);
+        showToast('লাইক সরিয়ে নিলেন', 'info');
+    }
+    renderPosts(groupId);
+}
+
+function addComment(groupId, postId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    const post = group.posts.find(p => p.id === postId);
+    if (!post) return;
+    
+    if (!group.isMember) {
+        showToast('মন্তব্য করতে গ্রুপে যোগ দিন!', 'error');
+        return;
+    }
+    
+    const inputField = document.getElementById(`commentInput-${postId}`);
+    const commentText = inputField.value.trim();
+    if (!commentText) {
+        showToast('মন্তব্য লিখুন', 'error');
+        return;
+    }
+    
+    const newComment = {
+        id: Date.now() + Math.random(),
+        userId: currentUser.uid,
+        userName: currentUser.name,
+        text: commentText,
+        createdAt: new Date().toISOString()
+    };
+    post.comments.push(newComment);
+    inputField.value = '';
+    renderPosts(groupId);
+    // কমেন্ট সেকশন খোলা রাখা
+    const commentSec = document.getElementById(`comments-${postId}`);
+    if (commentSec) commentSec.style.display = 'block';
+    showToast('মন্তব্য যোগ হয়েছে', 'success');
+}
+
+// নতুন পোস্ট তৈরি
+function createNewPost(groupId) {
+    const group = groupsData.find(g => g.id === groupId);
+    if (!group) return;
+    if (!group.isMember) {
+        showToast('পোস্ট করতে গ্রুপে যোগ দিন!', 'error');
+        return;
+    }
+    const content = document.getElementById('newPostContent').value.trim();
+    if (!content) {
+        showToast('পোস্টের কন্টেন্ট লিখুন', 'error');
+        return;
+    }
+    const newPost = {
+        id: 'p_' + Date.now(),
+        userId: currentUser.uid,
+        userName: currentUser.name,
+        content: content,
+        createdAt: new Date().toISOString(),
+        likes: [],
+        comments: []
+    };
+    group.posts.push(newPost);
+    document.getElementById('newPostContent').value = '';
+    renderPosts(groupId);
+    showToast('পোস্ট শেয়ার হয়েছে!', 'success');
+}
+
+// নতুন গ্রুপ তৈরি
+function createNewGroup() {
+    const name = document.getElementById('groupName').value.trim();
+    const category = document.getElementById('groupCategory').value;
+    const desc = document.getElementById('groupDesc').value.trim();
+    let icon = document.getElementById('groupIcon').value.trim();
+    if (!name) {
+        showToast('গ্রুপের নাম লিখুন', 'error');
+        return;
+    }
+    if (!icon) icon = '👥';
+    const newGroup = {
+        id: 'g_' + Date.now(),
+        name: name,
+        category: category,
+        description: desc || 'কোন বিবরণ নেই',
+        icon: icon,
+        members: 1,
+        posts: [],
+        isMember: true   // যিনি তৈরি করবেন তিনি সদস্য হবেন
+    };
+    groupsData.unshift(newGroup);
+    renderGroups();
+    closeCreateModal();
+    showToast(`"${name}" গ্রুপ সফলভাবে তৈরি হয়েছে!`, 'success');
+    // নতুন গ্রুপের বিস্তারিত খুলে দেওয়া
+    openGroupDetail(newGroup.id);
+}
+
+// UI টুলস
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
+}
+
+function formatDate(isoString) {
+    if (!isoString) return 'এখনই';
+    const date = new Date(isoString);
+    const now = new Date();
+    const diff = Math.floor((now - date) / 1000);
+    if (diff < 60) return `${diff} সেকেন্ড আগে`;
+    if (diff < 3600) return `${Math.floor(diff / 60)} মিনিট আগে`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} ঘন্টা আগে`;
+    return `${Math.floor(diff / 86400)} দিন আগে`;
+}
+
+function showToast(msg, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i> ${msg}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// মডাল কন্ট্রোল
+function openCreateModal() {
+    document.getElementById('createGroupModal').style.display = 'flex';
+}
+function closeCreateModal() {
+    document.getElementById('createGroupModal').style.display = 'none';
+    document.getElementById('groupName').value = '';
+    document.getElementById('groupDesc').value = '';
+    document.getElementById('groupIcon').value = '👥';
+    document.getElementById('groupCategory').selectedIndex = 0;
+}
+function closeDetailOverlay() {
+    document.getElementById('groupDetailOverlay').style.display = 'none';
+    window.currentOpenGroupId = null;
+}
+
+// ইভেন্ট লিসেনার
+document.getElementById('openCreateGroupBtn').addEventListener('click', openCreateModal);
+document.getElementById('closeModal').addEventListener('click', closeCreateModal);
+document.getElementById('confirmCreateGroup').addEventListener('click', createNewGroup);
+document.getElementById('closeDetailBtn').addEventListener('click', closeDetailOverlay);
+document.getElementById('submitPostBtn').addEventListener('click', () => {
+    if (window.currentOpenGroupId) {
+        createNewPost(window.currentOpenGroupId);
+    } else {
+        showToast('কোন গ্রুপ খোলা নেই', 'error');
+    }
+});
+// ক্লিক করে বাইরে ক্লিক করলে বন্ধ
+document.getElementById('groupDetailOverlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('groupDetailOverlay')) closeDetailOverlay();
+});
+document.getElementById('createGroupModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('createGroupModal')) closeCreateModal();
+});
+
+// ইনিশিয়াল রেন্ডার
+renderGroups();
+
+// ফায়ারবেস বা বাস্তব সিস্টেমে সংযুক্তির জন্য: বর্তমানে লোকাল স্টোরেজে ডাটা সংরক্ষণ করতে চাইলে এখানে localStorage ব্যবহার করতে পারি।
+// কিন্তু এই ডেমোতে সবকিছু মেমোরিতে রাখা হয়েছে। তবে নতুন গ্রুপ যোগ, পোস্ট, লাইক, কমেন্ট সব কাজ করে।
+
+// ------------------------------
+// গ্রুপের মধ্যে মেম্বাররা পোস্ট, লাইক, কমেন্ট করতে পারে, এবং নতুন গ্রুপ খোলার বাটনে ক্লিক করলে নতুন গ্রুপ যোগ হয়।
+// ------------------------------
+console.log('গ্রুপ সিস্টেম সম্পূর্ণ প্রস্তুত।');
 </script>
 </body>
 </html>
