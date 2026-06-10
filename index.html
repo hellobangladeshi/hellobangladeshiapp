@@ -3,41 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="হ্যালো বাংলাদেশী - স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম">
-<title>হ্যালো বাংলাদেশী - Hello Bangladeshi</title>
+<title>হ্যালো বাংলাদেশী - সম্পূর্ণ সোশ্যাল নেটওয়ার্ক</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800;900&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
 <style>
 :root {
   --primary: #EF0479;
   --primary-dark: #c00363;
   --secondary: #FFD93D;
   --accent: #4F46E5;
-  --accent-cyan: #25F4EE;
   --dark: #0a0e27;
   --dark-card: #111117;
   --dark-card2: #16161f;
   --gradient-primary: linear-gradient(135deg, #EF0479, #FFD93D);
-  --gradient-accent: linear-gradient(135deg, #4F46E5, #8B5CF6);
-  --gradient-cyan: linear-gradient(135deg, #25F4EE, #00adaa);
-  --gp: 0 0 22px rgba(239, 4, 121, 0.5);
-  --gc: 0 0 22px rgba(37, 244, 238, 0.5);
-  --gdual: -5px 0 22px rgba(239, 4, 121, 0.3), 5px 0 22px rgba(37, 244, 238, 0.3);
-  --r: 16px;
-  --tr: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --bd: rgba(255,255,255,0.08);
   --tm: #a0a0a0;
   --tl: #888;
   --td: #fff;
+  --tr: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --r: 16px;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Hind Siliguri', 'Poppins', sans-serif;
   background: linear-gradient(135deg, #0a0e27, #1a1d3a, #2d1b4e);
@@ -45,15 +35,12 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-
 .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--dark); }
 ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 3px; }
 
-/* Badge Style */
 .bdg {
   display: inline-flex;
   align-items: center;
@@ -68,20 +55,11 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
-.bdg .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--secondary);
-  animation: blink 1.8s infinite;
-}
-
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+.bdg .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--secondary); animation: blink 1.8s infinite; }
 
 .hidden { display: none !important; }
 
-/* Header */
 header {
   background: rgba(10, 14, 39, 0.95);
   backdrop-filter: blur(20px);
@@ -92,12 +70,7 @@ header {
   z-index: 1000;
   transition: var(--tr);
 }
-
-header.scrolled {
-  background: rgba(10, 14, 39, 0.98);
-  border-bottom-color: var(--primary);
-  box-shadow: 0 4px 30px rgba(239, 4, 121, 0.15);
-}
+header.scrolled { background: rgba(10, 14, 39, 0.98); border-bottom-color: var(--primary); box-shadow: 0 4px 30px rgba(239, 4, 121, 0.15); }
 
 .navbar {
   display: flex;
@@ -108,54 +81,15 @@ header.scrolled {
   margin: 0 auto;
   gap: 15px;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.3s ease; }
 .logo:hover { transform: scale(1.02); }
-
-.logo-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  padding: 2px;
-}
-
-.logo-img img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-.logo-text h3 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px;
-}
-
-.logo-text h3 span {
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+.logo-img { width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 2px; }
+.logo-img img { width: 100%; height: 100%; border-radius: 12px; object-fit: cover; }
+.logo-text h3 { font-size: 1.4rem; font-weight: 800; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+.logo-text h3 span { background: linear-gradient(135deg, var(--secondary), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .logo-text p { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
 
-.nav-center {
-  display: flex;
-  gap: 5px;
-  flex: 1;
-  justify-content: center;
-}
-
+.nav-center { display: flex; gap: 5px; flex: 1; justify-content: center; flex-wrap: wrap; }
 .nav-link {
   color: var(--tm);
   font-weight: 500;
@@ -164,325 +98,11 @@ header.scrolled {
   border-radius: 50px;
   transition: var(--tr);
   cursor: pointer;
-  position: relative;
 }
-
 .nav-link:hover { color: var(--secondary); background: rgba(239, 4, 121, 0.1); }
 .nav-link.active { color: var(--secondary); background: rgba(239, 4, 121, 0.15); font-weight: 600; }
 
-.nbadge {
-  position: absolute;
-  top: 0px;
-  right: 5px;
-  background: var(--primary);
-  color: #fff;
-  font-size: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dl-btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  padding: 8px 16px;
-  border-radius: 50px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 12px;
-  transition: var(--tr);
-  text-decoration: none;
-}
-
-.dl-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(239, 4, 121, 0.4); }
-
-.bicon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--tm);
-  font-size: 16px;
-  cursor: pointer;
-  transition: var(--tr);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bicon:hover { background: var(--primary); color: #fff; }
-
-.umenu-wrap { position: relative; }
-
-.umenu {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: var(--tr);
-}
-
-.umenu:hover { background: rgba(255, 255, 255, 0.05); }
-
-.uavatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.uname {
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--td);
-  max-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.udrop {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: var(--dark-card);
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  min-width: 220px;
-  overflow: hidden;
-  z-index: 400;
-  display: none;
-  border: 1px solid var(--bd);
-}
-
-.udrop.on { display: block; }
-
-.udrop a, .udrop .ddbtn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  color: var(--td);
-  transition: var(--tr);
-  background: none;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  font-size: 13px;
-  font-family: inherit;
-  text-align: left;
-}
-
-.udrop a:hover, .udrop .ddbtn:hover { background: rgba(239, 4, 121, 0.1); color: var(--secondary); }
-
-.udrop hr { margin: 5px 0; border: none; border-top: 1px solid var(--bd); }
-
-.mmBtn { display: none; background: none; border: none; font-size: 22px; color: var(--td); cursor: pointer; }
-
-/* Main Layout */
-.main-content {
-  display: grid;
-  grid-template-columns: 260px 1fr 320px;
-  gap: 20px;
-  padding: 20px 24px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* Sidebar */
-.sidebar {
-  background: var(--dark-card);
-  border-radius: 20px;
-  padding: 20px;
-  height: fit-content;
-  position: sticky;
-  top: 80px;
-  border: 1px solid var(--bd);
-  backdrop-filter: blur(10px);
-}
-
-.sbtitle {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--tl);
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: 1px;
-}
-
-.sbitem {
-  padding: 10px 14px;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: var(--tr);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--tm);
-  font-weight: 500;
-  font-size: 13px;
-}
-
-.sbitem:hover { background: rgba(239, 4, 121, 0.1); color: var(--secondary); transform: translateX(5px); }
-.sbitem.active { background: rgba(239, 4, 121, 0.15); color: var(--secondary); font-weight: 600; }
-
-.sbicon { font-size: 15px; min-width: 20px; text-align: center; }
-.sbbadge { margin-left: auto; background: var(--primary); color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 50px; }
-.sbdiv { height: 1px; background: var(--bd); margin: 12px 0; border: none; }
-
-/* Feed */
-.feed {
-  background: var(--dark-card);
-  border-radius: 20px;
-  padding: 24px;
-  border: 1px solid var(--bd);
-  backdrop-filter: blur(10px);
-  min-height: 500px;
-}
-
-.fhdr {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--bd);
-}
-
-.ftitle { font-size: 22px; font-weight: 700; margin-bottom: 5px; color: var(--td); font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
-.fsub { color: var(--tl); font-size: 13px; }
-
-.gbar {
-  background: rgba(239, 4, 121, 0.1);
-  padding: 12px 16px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--secondary);
-  font-size: 12px;
-  border: 1px solid rgba(239, 4, 121, 0.2);
-}
-
-.ftabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.ftab {
-  padding: 8px 16px;
-  border-radius: 50px;
-  background: none;
-  border: 1px solid var(--bd);
-  color: var(--tm);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--tr);
-  font-family: inherit;
-  font-size: 12px;
-}
-
-.ftab:hover { color: var(--secondary); border-color: var(--secondary); }
-.ftab.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-color: transparent; color: #fff; }
-
-/* User Cards */
-.grid-users {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.ucard {
-  background: var(--dark-card2);
-  border: 1px solid var(--bd);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: var(--tr);
-}
-
-.ucard:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  box-shadow: 0 15px 35px rgba(239, 4, 121, 0.15);
-}
-
-.ucard-hdr {
-  position: relative;
-  height: 100px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-}
-
-.ucard-av {
-  position: absolute;
-  bottom: -32px;
-  left: 16px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 4px solid var(--dark-card2);
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.ucard-dot {
-  position: absolute;
-  bottom: -26px;
-  left: 72px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #2ecc71;
-  border: 3px solid var(--dark-card2);
-}
-
-.ucard-body { padding: 45px 16px 16px; }
-.ucard-name { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: var(--td); }
-.ucard-prof { color: var(--secondary); font-weight: 500; margin-bottom: 8px; font-size: 12px; display: flex; align-items: center; gap: 5px; }
-.ucard-loc { color: var(--tl); font-size: 11px; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
-.ucard-bio { color: var(--tm); font-size: 12px; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-.ucard-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 15px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-}
-
-.sv { font-size: 16px; font-weight: 700; color: var(--secondary); display: block; }
-.sl2 { font-size: 10px; color: var(--tl); margin-top: 2px; }
-
-.ucard-acts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-/* Buttons */
+.nav-right { display: flex; align-items: center; gap: 10px; }
 .btn {
   padding: 10px 18px;
   border: none;
@@ -497,90 +117,106 @@ header.scrolled {
   gap: 8px;
   font-family: inherit;
 }
-
 .btn-p { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; }
 .btn-p:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(239, 4, 121, 0.4); }
 .btn-s { background: rgba(255, 255, 255, 0.05); color: var(--td); border: 1px solid var(--bd); }
 .btn-s:hover { border-color: var(--secondary); color: var(--secondary); }
-.btn-o { background: transparent; color: var(--secondary); border: 2px solid var(--secondary); }
-.btn-o:hover { background: var(--secondary); color: var(--dark); }
-.btn-g { background: linear-gradient(135deg, #27AE60, #2ECC71); color: #fff; }
-.bsm { padding: 7px 14px; font-size: 11px; }
-.bblock { width: 100%; }
-
-/* Job Cards */
-.grid-jobs { display: grid; gap: 16px; }
-.jcard {
-  background: var(--dark-card2);
-  border: 1px solid var(--bd);
-  border-radius: 20px;
-  padding: 20px;
+.bicon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--tm);
+  font-size: 16px;
+  cursor: pointer;
   transition: var(--tr);
-  position: relative;
 }
-.jcard:hover { border-color: var(--primary); transform: translateY(-3px); }
-.jcard-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-.jcard-title { font-size: 17px; font-weight: 700; color: var(--secondary); margin-bottom: 5px; }
-.jcard-co { font-size: 12px; color: var(--tl); margin-bottom: 5px; }
-.jcard-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-.jtag { padding: 3px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 50px; font-size: 10px; color: var(--tm); border: 1px solid var(--bd); }
-.jtag-p { background: rgba(239, 4, 121, 0.1); color: var(--secondary); border-color: rgba(239, 4, 121, 0.3); }
-.jcard-desc { color: var(--tm); line-height: 1.7; margin-bottom: 15px; font-size: 12px; }
-.jcard-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--bd); flex-wrap: wrap; gap: 10px; }
-.jcard-sal { font-size: 16px; font-weight: 700; color: var(--secondary); }
-.jcard-loc { display: flex; align-items: center; gap: 5px; color: var(--tl); font-size: 11px; }
-.jfeat {
-  position: absolute;
-  top: 16px;
-  right: -26px;
-  background: var(--secondary);
-  color: var(--dark);
-  padding: 3px 28px;
-  transform: rotate(45deg);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-/* Events Grid */
-.egrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-.ecard {
-  background: var(--dark-card2);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: var(--tr);
-  border: 1px solid var(--bd);
-}
-.ecard:hover { transform: translateY(-5px); border-color: var(--primary); }
-.ebanner {
-  height: 140px;
+.bicon:hover { background: var(--primary); color: #fff; }
+.umenu-wrap { position: relative; }
+.umenu { display: flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 50px; cursor: pointer; transition: var(--tr); }
+.umenu:hover { background: rgba(255, 255, 255, 0.05); }
+.uavatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 48px;
+  font-weight: 700;
+  font-size: 14px;
 }
-.edbadge {
+.uname { font-weight: 500; font-size: 13px; color: var(--td); max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.udrop {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: calc(100% + 8px);
+  right: 0;
   background: var(--dark-card);
-  padding: 8px 12px;
-  border-radius: 12px;
-  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  min-width: 220px;
+  overflow: hidden;
+  z-index: 400;
+  display: none;
+  border: 1px solid var(--bd);
 }
-.edday { font-size: 20px; font-weight: 700; color: var(--secondary); line-height: 1; }
-.edmon { font-size: 10px; color: var(--tl); }
-.ebody { padding: 16px; }
-.etitle { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--td); }
-.einfo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-.eii { display: flex; align-items: center; gap: 8px; color: var(--tl); font-size: 11px; }
-.eii i { color: var(--secondary); width: 14px; }
-.edesc { color: var(--tm); font-size: 12px; line-height: 1.6; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.eatts { display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); margin-bottom: 12px; }
-.ean { font-size: 14px; font-weight: 700; color: var(--secondary); display: block; }
-.eal { font-size: 10px; color: var(--tl); }
+.udrop.on { display: block; }
+.udrop a, .udrop .ddbtn { display: flex; align-items: center; gap: 10px; padding: 12px 18px; color: var(--td); transition: var(--tr); background: none; border: none; width: 100%; cursor: pointer; font-size: 13px; font-family: inherit; text-align: left; }
+.udrop a:hover, .udrop .ddbtn:hover { background: rgba(239, 4, 121, 0.1); color: var(--secondary); }
+.udrop hr { margin: 5px 0; border: none; border-top: 1px solid var(--bd); }
+.mmBtn { display: none; background: none; border: none; font-size: 22px; color: var(--td); cursor: pointer; }
+
+.main-content { display: grid; grid-template-columns: 260px 1fr 320px; gap: 20px; padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+.sidebar {
+  background: var(--dark-card);
+  border-radius: 20px;
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  border: 1px solid var(--bd);
+}
+.sbtitle { font-size: 11px; text-transform: uppercase; color: var(--tl); font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
+.sbitem { padding: 10px 14px; margin-bottom: 4px; border-radius: 12px; cursor: pointer; transition: var(--tr); display: flex; align-items: center; gap: 12px; color: var(--tm); font-weight: 500; font-size: 13px; }
+.sbitem:hover { background: rgba(239, 4, 121, 0.1); color: var(--secondary); transform: translateX(5px); }
+.sbitem.active { background: rgba(239, 4, 121, 0.15); color: var(--secondary); font-weight: 600; }
+.sbdiv { height: 1px; background: var(--bd); margin: 12px 0; border: none; }
+
+.feed {
+  background: var(--dark-card);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid var(--bd);
+  min-height: 500px;
+}
+.fhdr { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--bd); }
+.ftitle { font-size: 22px; font-weight: 700; margin-bottom: 5px; color: var(--td); font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+.fsub { color: var(--tl); font-size: 13px; }
+
+/* Grids */
+.grid-users { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.ucard {
+  background: var(--dark-card2);
+  border: 1px solid var(--bd);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: var(--tr);
+}
+.ucard:hover { transform: translateY(-5px); border-color: var(--primary); }
+.ucard-hdr { position: relative; height: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+.ucard-av { position: absolute; bottom: -32px; left: 16px; width: 70px; height: 70px; border-radius: 50%; border: 4px solid var(--dark-card2); background: linear-gradient(135deg, var(--accent), var(--primary)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; font-weight: 700; }
+.ucard-body { padding: 45px 16px 16px; }
+.ucard-name { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: var(--td); }
+.ucard-prof { color: var(--secondary); font-weight: 500; margin-bottom: 8px; font-size: 12px; }
+.ucard-loc { color: var(--tl); font-size: 11px; margin-bottom: 10px; }
+.ucard-bio { color: var(--tm); font-size: 12px; line-height: 1.6; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ucard-stats { display: flex; gap: 15px; margin-bottom: 15px; padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; justify-content: space-around; }
+.sv { font-size: 16px; font-weight: 700; color: var(--secondary); display: block; }
+.sl2 { font-size: 10px; color: var(--tl); }
+.ucard-acts { display: flex; gap: 8px; }
+.bsm { padding: 7px 14px; font-size: 11px; }
 
 /* Groups */
 .ggrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
@@ -593,121 +229,79 @@ header.scrolled {
   cursor: pointer;
 }
 .gcard:hover { transform: translateY(-5px); border-color: var(--primary); }
-.gbanner {
-  height: 90px;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  position: relative;
-}
-.gavicon {
-  position: absolute;
-  bottom: -28px;
-  left: 16px;
-  width: 60px;
-  height: 60px;
-  background: var(--dark-card2);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  border: 3px solid var(--bd);
-}
+.gbanner { height: 90px; background: linear-gradient(135deg, var(--accent), var(--primary)); position: relative; }
+.gavicon { position: absolute; bottom: -28px; left: 16px; width: 60px; height: 60px; background: var(--dark-card2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; border: 3px solid var(--bd); }
 .gbody { padding: 38px 16px 16px; }
 .gname { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--td); }
 .gcat { display: inline-block; padding: 2px 10px; background: rgba(239, 4, 121, 0.1); border-radius: 50px; font-size: 10px; color: var(--secondary); margin-bottom: 8px; }
-.gdesc { color: var(--tm); font-size: 12px; line-height: 1.5; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.gdesc { color: var(--tm); font-size: 12px; line-height: 1.5; margin-bottom: 12px; }
 .gstats { display: flex; gap: 20px; padding: 10px 0; border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); margin-bottom: 12px; }
 .gsv { font-size: 14px; font-weight: 700; color: var(--secondary); }
 .gsl { font-size: 10px; color: var(--tl); }
-.bjoin {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--bd);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--secondary);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--tr);
-  font-family: inherit;
-  font-size: 12px;
-}
-.bjoin:hover, .bjoin.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.bjoin { width: 100%; padding: 8px; border: 1px solid var(--bd); border-radius: 12px; background: rgba(255, 255, 255, 0.03); color: var(--secondary); font-weight: 600; cursor: pointer; transition: var(--tr); font-family: inherit; font-size: 12px; }
+.bjoin.on { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-/* Right Sidebar */
-.rsidebar {
-  background: var(--dark-card);
+/* Posts inside group */
+.post-card {
+  background: var(--dark-card2);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--bd);
+}
+.post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.post-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.post-user { font-weight: 600; font-size: 14px; }
+.post-time { font-size: 10px; color: var(--tl); }
+.post-content { margin-bottom: 12px; font-size: 14px; line-height: 1.6; }
+.post-actions { display: flex; gap: 20px; padding-top: 12px; border-top: 1px solid var(--bd); }
+.post-action { background: none; border: none; color: var(--tm); cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 12px; transition: var(--tr); }
+.post-action:hover { color: var(--secondary); }
+.post-action.liked { color: var(--primary); }
+.comments-section { margin-top: 12px; padding-left: 20px; border-left: 2px solid var(--bd); display: none; }
+.comment { margin-bottom: 8px; font-size: 12px; }
+.comment-user { font-weight: 600; color: var(--secondary); }
+.comment-input { display: flex; gap: 8px; margin-top: 10px; }
+.comment-input input { flex: 1; padding: 8px 12px; border: 1px solid var(--bd); border-radius: 50px; background: rgba(255, 255, 255, 0.03); color: var(--td); font-family: inherit; }
+
+/* Events */
+.egrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.ecard {
+  background: var(--dark-card2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: var(--tr);
+  border: 1px solid var(--bd);
+}
+.ecard:hover { transform: translateY(-5px); border-color: var(--primary); }
+.ebanner { height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); position: relative; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.edbadge { position: absolute; top: 12px; right: 12px; background: var(--dark-card); padding: 8px 12px; border-radius: 12px; text-align: center; }
+.edday { font-size: 20px; font-weight: 700; color: var(--secondary); }
+.ebody { padding: 16px; }
+.etitle { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.einfo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; font-size: 11px; color: var(--tl); }
+.einfo i { width: 16px; color: var(--secondary); }
+.edesc { font-size: 12px; color: var(--tm); margin-bottom: 12px; }
+.eatts { display: flex; justify-content: space-around; padding: 8px 0; border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); margin-bottom: 12px; }
+.ean { font-size: 16px; font-weight: 700; color: var(--secondary); display: block; }
+.eal { font-size: 10px; color: var(--tl); }
+
+/* Jobs */
+.grid-jobs { display: grid; gap: 16px; }
+.jcard {
+  background: var(--dark-card2);
+  border: 1px solid var(--bd);
   border-radius: 20px;
   padding: 20px;
-  height: fit-content;
-  position: sticky;
-  top: 80px;
-  border: 1px solid var(--bd);
-}
-
-.rstitle {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: var(--td);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.rstitle a { font-size: 11px; font-weight: normal; color: var(--secondary); cursor: pointer; }
-
-.recitem {
-  padding: 10px;
-  margin-bottom: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  cursor: pointer;
   transition: var(--tr);
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
-.recitem:hover { background: rgba(239, 4, 121, 0.1); transform: translateX(3px); }
-.recav {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-}
-.recinfo h4 { font-weight: 600; font-size: 13px; margin-bottom: 3px; color: var(--td); }
-.recinfo p { font-size: 10px; color: var(--tl); }
-
-.tjob {
-  padding: 10px;
-  margin-bottom: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  transition: var(--tr);
-  cursor: pointer;
-}
-.tjob:hover { background: rgba(239, 4, 121, 0.1); }
-.tjtitle { font-weight: 600; font-size: 13px; margin-bottom: 3px; color: var(--td); }
-.tjcomp { font-size: 10px; color: var(--tl); margin-bottom: 3px; }
-.tjsal { font-weight: 600; color: var(--secondary); font-size: 11px; }
-
-.evitem {
-  padding: 10px;
-  margin-bottom: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  border-left: 3px solid var(--primary);
-  cursor: pointer;
-}
-.evitem:hover { border-left-color: var(--secondary); background: rgba(239, 4, 121, 0.05); }
-.eidate { font-size: 9px; color: var(--tl); margin-bottom: 3px; }
-.eititle { font-weight: 600; font-size: 12px; margin-bottom: 3px; color: var(--td); }
-.eiloc { font-size: 10px; color: var(--tl); display: flex; align-items: center; gap: 4px; }
+.jcard:hover { border-color: var(--primary); }
+.jcard-title { font-size: 18px; font-weight: 700; color: var(--secondary); margin-bottom: 5px; }
+.jcard-co { font-size: 12px; color: var(--tl); margin-bottom: 8px; }
+.jcard-desc { font-size: 12px; color: var(--tm); margin-bottom: 12px; }
+.jcard-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--bd); flex-wrap: wrap; gap: 10px; }
+.jcard-sal { font-size: 16px; font-weight: 700; color: var(--secondary); }
+.applicants-btn { background: none; border: none; color: var(--secondary); cursor: pointer; font-size: 11px; }
 
 /* Profile */
 .phdr {
@@ -718,117 +312,28 @@ header.scrolled {
   position: relative;
   overflow: hidden;
 }
-.phdr::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 280px;
-  height: 280px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-}
 .pav {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: 4px solid #fff;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
+  background: var(--dark-card);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
   font-size: 40px;
-  font-weight: 700;
   margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
-}
-.pname { font-size: 26px; font-weight: 700; margin-bottom: 5px; position: relative; z-index: 1; font-family: 'Bebas Neue', sans-serif; }
-.pprof { font-size: 14px; opacity: 0.9; margin-bottom: 12px; position: relative; z-index: 1; }
-.pstats { display: flex; gap: 30px; position: relative; z-index: 1; flex-wrap: wrap; }
-.psv { font-size: 22px; font-weight: 700; display: block; }
-.psl { font-size: 11px; opacity: 0.8; }
-
-.pcontent { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
-.psec {
-  background: var(--dark-card2);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid var(--bd);
-}
-.psectitle {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: var(--secondary);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--bd);
-  font-family: 'Bebas Neue', sans-serif;
-}
-.pinfoi {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--bd);
-  font-size: 13px;
-}
-.pinfoi:last-child { border-bottom: none; }
-.pinfoi i { color: var(--secondary); width: 18px; }
-
-/* Settings */
-.setcard {
-  background: var(--dark-card2);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid var(--bd);
-}
-.settitle {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: var(--secondary);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--bd);
-  font-family: 'Bebas Neue', sans-serif;
-}
-.togrow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--bd);
-}
-.toginfo { flex: 1; }
-.toglabel { font-weight: 500; font-size: 13px; color: var(--td); margin-bottom: 2px; }
-.togdesc { font-size: 11px; color: var(--tl); }
-.togsw {
-  width: 44px;
-  height: 22px;
-  background: #444;
-  border-radius: 20px;
-  position: relative;
   cursor: pointer;
   transition: var(--tr);
 }
-.togsw.on { background: var(--primary); }
-.togsw::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  border-radius: 50%;
-  top: 2px;
-  left: 3px;
-  transition: var(--tr);
-}
-.togsw.on::after { left: 23px; }
+.pav:hover { transform: scale(1.05); }
+.pname { font-size: 26px; font-weight: 700; font-family: 'Bebas Neue', sans-serif; }
+.pprof { font-size: 14px; opacity: 0.9; margin-bottom: 12px; }
+.pstats { display: flex; gap: 30px; margin-top: 16px; }
+.psv { font-size: 22px; font-weight: 700; display: block; }
+.psl { font-size: 11px; opacity: 0.8; }
 
-/* Modal */
+/* Modals */
 .modal {
   position: fixed;
   inset: 0;
@@ -851,13 +356,10 @@ header.scrolled {
   overflow-y: auto;
   border: 1px solid var(--bd);
 }
-.mbox-lg { max-width: 800px; }
-.mhdr { margin-bottom: 24px; text-align: center; }
-.mtitle { font-size: 24px; font-weight: 700; color: var(--td); margin-bottom: 8px; font-family: 'Bebas Neue', sans-serif; }
-.msub { color: var(--tl); font-size: 13px; }
+.mbox-lg { max-width: 700px; }
+.mtitle { font-size: 24px; font-weight: 700; margin-bottom: 8px; font-family: 'Bebas Neue', sans-serif; }
+.msub { color: var(--tl); font-size: 13px; margin-bottom: 20px; }
 .mclose {
-  position: sticky;
-  top: 0;
   float: right;
   background: rgba(255, 255, 255, 0.05);
   border: none;
@@ -870,25 +372,21 @@ header.scrolled {
   color: var(--td);
 }
 .mclose:hover { background: var(--primary); transform: rotate(90deg); }
-
-/* Forms */
 .fg { margin-bottom: 18px; }
-.flabel { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; color: var(--td); }
+.flabel { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; }
 .finput {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid var(--bd);
   border-radius: 12px;
-  font-family: inherit;
-  font-size: 13px;
-  transition: var(--tr);
   background: rgba(255, 255, 255, 0.05);
   color: var(--td);
+  font-family: inherit;
+  font-size: 13px;
 }
-.finput:focus { outline: none; border-color: var(--primary); background: rgba(255, 255, 255, 0.08); }
+.finput:focus { outline: none; border-color: var(--primary); }
 .ftextarea { resize: vertical; min-height: 100px; }
 .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
 .authtabs { display: flex; gap: 10px; margin-bottom: 24px; }
 .atab {
   flex: 1;
@@ -899,564 +397,139 @@ header.scrolled {
   color: var(--tm);
   font-weight: 600;
   cursor: pointer;
-  transition: var(--tr);
   font-family: inherit;
-  font-size: 13px;
 }
-.atab:hover, .atab.on { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
+.atab.on { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
 
-.soclogin { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-.bgoogle, .bfacebook {
-  padding: 10px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: inherit;
-  font-size: 12px;
-}
-.bgoogle { background: #4285F4; color: #fff; }
-.bgoogle:hover { background: #3367D6; }
-.bfacebook { background: #1877F2; color: #fff; }
-.bfacebook:hover { background: #166FE5; }
-
-/* Toast */
-.toasts {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 2100;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.toast {
+.rsidebar {
   background: var(--dark-card);
-  padding: 12px 18px;
-  border-radius: 16px;
-  min-width: 280px;
-  border-left: 4px solid var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  animation: slideIn 0.3s ease;
-  border: 1px solid var(--bd);
-}
-.toast.s { border-left-color: #27AE60; }
-.toast.e { border-left-color: #E74C3C; }
-.toast.w { border-left-color: #F39C12; }
-.toast.i { border-left-color: #3498DB; }
-.tico { font-size: 18px; }
-.tcont { flex: 1; }
-.ttitle { font-weight: 600; margin-bottom: 2px; color: var(--td); font-size: 13px; }
-.tmsg { font-size: 11px; color: var(--tm); }
-.tclose {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: var(--tl);
-  padding: 3px;
-}
-
-/* Empty/Loading */
-.empty { text-align: center; padding: 60px 20px; color: var(--tl); }
-.emico { font-size: 60px; margin-bottom: 20px; opacity: 0.5; }
-.empty h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--td); }
-.empty p { font-size: 13px; max-width: 300px; margin: 0 auto; }
-
-/* Mobile Menu */
-.mobmenu {
-  position: fixed;
-  inset: 0;
-  background: var(--dark);
-  z-index: 1500;
-  display: none;
-  flex-direction: column;
-  overflow-y: auto;
-}
-.mobmenu.on { display: flex; }
-.mmhdr {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-radius: 20px;
   padding: 20px;
-  border-bottom: 1px solid var(--bd);
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  border: 1px solid var(--bd);
 }
-.mmlogo { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 700; color: var(--td); }
-.mmclose { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--td); }
-.mmnav { display: flex; flex-direction: column; padding: 10px; }
-.mmitem {
-  padding: 14px 16px;
-  border-radius: 12px;
-  color: var(--tm);
-  font-weight: 500;
-  transition: var(--tr);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.mmitem:hover, .mmitem.active { background: rgba(239, 4, 121, 0.1); color: var(--secondary); }
+.rstitle { font-size: 14px; font-weight: 700; margin-bottom: 15px; display: flex; justify-content: space-between; }
+.recitem { padding: 10px; margin-bottom: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.recav { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--primary)); display: flex; align-items: center; justify-content: center; }
+.tjob { padding: 10px; margin-bottom: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; cursor: pointer; }
+.tjtitle { font-weight: 600; font-size: 13px; }
+.evitem { padding: 10px; margin-bottom: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border-left: 3px solid var(--primary); cursor: pointer; }
 
-/* Footer */
-.footer {
-  background: rgba(0, 0, 0, 0.5);
-  margin-top: 50px;
-  padding: 50px 0 25px;
-  border-top: 1px solid var(--bd);
-}
-.ftcont { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-.ftgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
-.ftlogo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-.ftlogo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-}
-.ftlogo-text { font-size: 18px; font-weight: 700; font-family: 'Bebas Neue', sans-serif; }
-.ftdesc { color: #a0a0a0; line-height: 1.6; margin-bottom: 16px; font-size: 12px; }
-.ftsoc { display: flex; gap: 12px; }
-.ftsoc a {
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  transition: var(--tr);
-}
-.ftsoc a:hover { background: var(--primary); transform: translateY(-3px); }
-.fttitle { font-size: 14px; font-weight: 600; margin-bottom: 15px; color: var(--secondary); }
-.ftlinks { list-style: none; }
-.ftlinks li { margin-bottom: 8px; }
-.ftlinks a {
-  color: #a0a0a0;
-  transition: var(--tr);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  text-decoration: none;
-}
-.ftlinks a:hover { color: var(--secondary); transform: translateX(3px); }
-.ftbot { border-top: 1px solid var(--bd); padding-top: 20px; text-align: center; color: #a0a0a0; font-size: 11px; }
-.ftbot a { color: var(--secondary); text-decoration: none; }
+.toasts { position: fixed; bottom: 20px; right: 20px; z-index: 2100; display: flex; flex-direction: column; gap: 8px; }
+.toast { background: var(--dark-card); padding: 12px 18px; border-radius: 16px; min-width: 280px; border-left: 4px solid var(--primary); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-/* Chat */
-.chatcont { display: grid; grid-template-columns: 300px 1fr; gap: 20px; min-height: 500px; }
-.chatside {
-  background: var(--dark-card2);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--bd);
-}
-.chatsrch { padding: 15px; border-bottom: 1px solid var(--bd); position: relative; }
-.chatsrch input {
-  width: 100%;
-  padding: 10px 12px 10px 38px;
-  border: 1px solid var(--bd);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--td);
-  font-family: inherit;
-  font-size: 12px;
-}
-.chatsrch i { position: absolute; left: 28px; top: 50%; transform: translateY(-50%); color: var(--tl); }
-.chatlist { flex: 1; overflow-y: auto; padding: 10px; }
-.chatitem {
-  padding: 12px;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: var(--tr);
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.chatitem:hover { background: rgba(239, 4, 121, 0.1); }
-.chatitem.active { background: rgba(239, 4, 121, 0.15); border-left: 3px solid var(--primary); }
-.chatav {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-}
-.chatinfo { flex: 1; min-width: 0; }
-.chatinfo h4 { font-weight: 600; font-size: 13px; margin-bottom: 3px; color: var(--td); }
-.chatmsg { font-size: 11px; color: var(--tl); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.chattime { font-size: 9px; color: var(--tl); }
-.chatunread {
-  background: var(--primary);
-  color: #fff;
-  font-size: 10px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.chatwin {
-  background: var(--dark-card2);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--bd);
-}
-.chathdr {
-  padding: 15px 20px;
-  border-bottom: 1px solid var(--bd);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(0, 0, 0, 0.2);
-}
-.chatuser { display: flex; align-items: center; gap: 12px; }
-.chatusav {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-}
-.chatstat { font-size: 10px; color: #2ecc71; display: flex; align-items: center; gap: 5px; }
-.chatmsgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; max-height: 420px; }
-.msg { display: flex; max-width: 75%; }
-.msg.recv { align-self: flex-start; }
-.msg.sent { align-self: flex-end; flex-direction: row-reverse; }
-.msgav {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 12px;
-}
-.msg.recv .msgav { margin-right: 8px; }
-.msg.sent .msgav { margin-left: 8px; }
-.msgbub {
-  padding: 10px 14px;
-  border-radius: 18px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.msg.recv .msgbub {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--bd);
-  border-top-left-radius: 4px;
-}
-.msg.sent .msgbub {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
-  border-top-right-radius: 4px;
-}
-.msgt { font-size: 9px; color: var(--tl); margin-top: 4px; text-align: right; }
-.msg.sent .msgt { color: rgba(255, 255, 255, 0.7); }
-.chatinp {
-  padding: 15px;
-  border-top: 1px solid var(--bd);
-  display: flex;
-  gap: 10px;
-}
-.chatinp input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 1px solid var(--bd);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--td);
-  font-family: inherit;
-  font-size: 13px;
-}
-.chatinp input:focus { outline: none; border-color: var(--primary); }
+.footer { background: rgba(0, 0, 0, 0.5); margin-top: 50px; padding: 50px 0 25px; border-top: 1px solid var(--bd); text-align: center; font-size: 12px; color: var(--tl); }
 
-/* Animations */
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .main-content { grid-template-columns: 240px 1fr; }
-  .rsidebar { display: none; }
-}
-@media (max-width: 992px) {
-  .main-content { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .pcontent { grid-template-columns: 1fr; }
-  .chatcont { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .navbar { flex-wrap: wrap; gap: 10px; }
-  .nav-center { display: none; }
-  .mmBtn { display: block; }
-  .uname { display: none; }
-  .grid-users, .egrid, .ggrid { grid-template-columns: 1fr; }
-  .frow { grid-template-columns: 1fr; }
-  .soclogin { grid-template-columns: 1fr; }
-  .dl-btn span { display: none; }
-  .main-content { padding: 15px; }
-  .feed { padding: 16px; }
-}
-@media (max-width: 480px) {
-  .ftgrid { grid-template-columns: 1fr; text-align: center; }
-  .ftlogo { justify-content: center; }
-  .ftsoc { justify-content: center; }
-  .phdr { padding: 20px; text-align: center; }
-  .pav { margin: 0 auto 16px; }
-  .pstats { justify-content: center; }
-}
+@media (max-width: 1200px) { .main-content { grid-template-columns: 240px 1fr; } .rsidebar { display: none; } }
+@media (max-width: 992px) { .main-content { grid-template-columns: 1fr; } .sidebar { display: none; } }
+@media (max-width: 768px) { .navbar { flex-wrap: wrap; } .nav-center { display: none; } .mmBtn { display: block; } .frow { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<div id="splash" class="splash" style="position:fixed;inset:0;background:linear-gradient(135deg,#0a0e27,#1a1d3a);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px">
-  <div style="width:120px;height:120px;background:rgba(239,4,121,0.15);border-radius:30px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;font-size:54px;border:3px solid rgba(239,4,121,0.3);animation:pulse 2s ease-in-out infinite">🇧🇩</div>
-  <h1 style="font-family:'Bebas Neue',sans-serif;font-size:42px;background:linear-gradient(135deg,var(--secondary),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px">হ্যালো বাংলাদেশী</h1>
-  <p style="color:#a0a0a0">স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম</p>
-  <div style="display:flex;gap:30px;margin:30px 0;color:#fff"><div><span style="font-size:26px;font-weight:700;display:block">১০,০০০+</span><span style="font-size:11px;opacity:0.7">সদস্য</span></div><div><span style="font-size:26px;font-weight:700;display:block">৫০০+</span><span style="font-size:11px;opacity:0.7">শহর</span></div><div><span style="font-size:26px;font-weight:700;display:block">৫০,০০০+</span><span style="font-size:11px;opacity:0.7">সংযোগ</span></div></div>
-  <button class="btn btn-p" onclick="document.getElementById('splash').style.display='none';document.getElementById('app').classList.remove('hidden')" style="padding:12px 32px"><i class="fas fa-play"></i> শুরু করুন</button>
+<div id="splash" class="splash" style="position:fixed;inset:0;background:linear-gradient(135deg,#0a0e27,#1a1d3a);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column">
+  <div style="width:100px;height:100px;background:rgba(239,4,121,0.15);border-radius:25px;display:flex;align-items:center;justify-content:center;font-size:48px;border:3px solid rgba(239,4,121,0.3);animation:pulse 2s infinite">🇧🇩</div>
+  <h1 style="font-family:'Bebas Neue',sans-serif;font-size:36px;background:linear-gradient(135deg,var(--secondary),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:20px">হ্যালো বাংলাদেশী</h1>
+  <p style="color:#a0a0a0">স্থানীয় সংযোগের জন্য সোশ্যাল নেটওয়ার্ক</p>
+  <button class="btn btn-p" onclick="document.getElementById('splash').style.display='none';document.getElementById('app').classList.remove('hidden')" style="margin-top:20px">শুরু করুন</button>
+  <style>.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0a0e27,#1a1d3a);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}</style>
 </div>
 
 <div id="app" class="hidden">
 
 <header id="header">
   <div class="navbar">
-    <button class="mmBtn" onclick="A.toggleMM()"><i class="fas fa-bars"></i></button>
-    <div class="logo" onclick="A.go('home')">
+    <button class="mmBtn" onclick="App.toggleMM()"><i class="fas fa-bars"></i></button>
+    <div class="logo" onclick="App.go('home')">
       <div class="logo-img"><img src="https://hellobangladeshi.github.io/hb_logo.png" onerror="this.src='https://placehold.co/50x50/EF0479/FFFFFF?text=HB'"></div>
-      <div class="logo-text"><h3>Hello <span>Bangladeshi</span></h3><p>Connect, Share & Grow Together</p></div>
+      <div class="logo-text"><h3>Hello <span>Bangladeshi</span></h3><p>Connect, Share & Grow</p></div>
     </div>
     <nav class="nav-center">
-      <span class="nav-link active" onclick="A.go('home')"><i class="fas fa-home"></i> হোম</span>
-      <span class="nav-link" onclick="A.go('search')"><i class="fas fa-search"></i> খুঁজুন</span>
-      <span class="nav-link" onclick="A.go('jobs')"><i class="fas fa-briefcase"></i> চাকরি</span>
-      <span class="nav-link" onclick="A.go('chat')"><i class="fas fa-comments"></i> চ্যাট<span class="nbadge">3</span></span>
-      <span class="nav-link" onclick="A.go('events')"><i class="fas fa-calendar-alt"></i> ইভেন্ট</span>
-      <span class="nav-link" onclick="A.go('groups')"><i class="fas fa-users"></i> গ্রুপ</span>
+      <span class="nav-link active" onclick="App.go('home')"><i class="fas fa-home"></i> হোম</span>
+      <span class="nav-link" onclick="App.go('groups')"><i class="fas fa-users"></i> গ্রুপ</span>
+      <span class="nav-link" onclick="App.go('events')"><i class="fas fa-calendar-alt"></i> ইভেন্ট</span>
+      <span class="nav-link" onclick="App.go('jobs')"><i class="fas fa-briefcase"></i> চাকরি</span>
+      <span class="nav-link" onclick="App.go('profile')"><i class="fas fa-user"></i> প্রোফাইল</span>
     </nav>
     <div class="nav-right">
-      <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp" target="_blank" class="dl-btn"><i class="fab fa-google-play"></i><span>অ্যাপ ডাউনলোড</span></a>
-      <button class="bicon" onclick="A.showNotif()"><i class="fas fa-bell"></i></button>
+      <button class="bicon" onclick="App.showNotif()"><i class="fas fa-bell"></i></button>
       <div class="umenu-wrap">
-        <div class="umenu" onclick="A.toggleUD()">
+        <div class="umenu" onclick="App.toggleUD()">
           <div class="uavatar" id="uAvatar">U</div>
           <span class="uname" id="uName">অতিথি</span>
-          <i class="fas fa-chevron-down" style="font-size:9px;color:var(--tl)"></i>
+          <i class="fas fa-chevron-down" style="font-size:9px"></i>
         </div>
         <div id="udrop" class="udrop">
-          <a onclick="A.go('profile');A.closeUD()"><i class="fas fa-user"></i> প্রোফাইল</a>
-          <a onclick="A.go('settings');A.closeUD()"><i class="fas fa-cog"></i> সেটিংস</a>
+          <a onclick="App.go('profile');App.closeUD()"><i class="fas fa-user"></i> প্রোফাইল</a>
           <hr>
-          <a onclick="A.go('privacy');A.closeUD()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
-          <a onclick="A.go('terms');A.closeUD()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
-          <a onclick="A.go('about');A.closeUD()"><i class="fas fa-code"></i> ডেভেলপার</a>
-          <hr>
-          <button class="ddbtn" onclick="A.logout();A.closeUD()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
+          <button class="ddbtn" onclick="App.logout();App.closeUD()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
         </div>
       </div>
     </div>
   </div>
 </header>
 
-<div class="mobmenu" id="mmenu">
-  <div class="mmhdr"><div class="mmlogo"><div class="logo-img"><img src="https://hellobangladeshi.github.io/hb_logo.png" width="40" height="40"></div><span>হ্যালো বাংলাদেশী</span></div><button class="mmclose" onclick="A.toggleMM()"><i class="fas fa-times"></i></button></div>
-  <nav class="mmnav">
-    <div class="mmitem active" onclick="A.go('home');A.toggleMM()"><i class="fas fa-home"></i> হোম</div>
-    <div class="mmitem" onclick="A.go('search');A.toggleMM()"><i class="fas fa-search"></i> খুঁজুন</div>
-    <div class="mmitem" onclick="A.go('jobs');A.toggleMM()"><i class="fas fa-briefcase"></i> চাকরি</div>
-    <div class="mmitem" onclick="A.go('chat');A.toggleMM()"><i class="fas fa-comments"></i> চ্যাট</div>
-    <div class="mmitem" onclick="A.go('events');A.toggleMM()"><i class="fas fa-calendar-alt"></i> ইভেন্ট</div>
-    <div class="mmitem" onclick="A.go('groups');A.toggleMM()"><i class="fas fa-users"></i> গ্রুপ</div>
-    <div class="mmitem" onclick="A.go('profile');A.toggleMM()"><i class="fas fa-user"></i> প্রোফাইল</div>
-    <div class="mmitem" onclick="A.go('settings');A.toggleMM()"><i class="fas fa-cog"></i> সেটিংস</div>
-    <div class="mmitem" onclick="A.go('privacy');A.toggleMM()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</div>
-    <div class="mmitem" onclick="A.go('terms');A.toggleMM()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</div>
-    <div class="mmitem" onclick="A.go('about');A.toggleMM()"><i class="fas fa-code"></i> ডেভেলপার</div>
-    <div class="mmitem" onclick="window.open('https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp','_blank');A.toggleMM()"><i class="fab fa-google-play"></i> অ্যাপ ডাউনলোড</div>
-    <div class="mmitem" onclick="A.logout();A.toggleMM()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</div>
-  </nav>
+<div class="mobmenu" id="mmenu" style="position:fixed;inset:0;background:var(--dark);z-index:1500;display:none;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;padding:20px;border-bottom:1px solid var(--bd)">
+    <span>মেনু</span><button onclick="App.toggleMM()" style="background:none;border:none;color:#fff;font-size:24px">✕</button>
+  </div>
+  <div style="padding:10px">
+    <div class="mmitem" onclick="App.go('home');App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px">🏠 হোম</div>
+    <div class="mmitem" onclick="App.go('groups');App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px">👥 গ্রুপ</div>
+    <div class="mmitem" onclick="App.go('events');App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px">📅 ইভেন্ট</div>
+    <div class="mmitem" onclick="App.go('jobs');App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px">💼 চাকরি</div>
+    <div class="mmitem" onclick="App.go('profile');App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px">👤 প্রোফাইল</div>
+    <div class="mmitem" onclick="App.logout();App.toggleMM()" style="padding:14px;display:flex;align-items:center;gap:12px;color:#E74C3C">🚪 লগ আউট</div>
+  </div>
 </div>
 
 <div class="main-content">
   <aside class="sidebar">
-    <div><div class="sbtitle">মূল মেনু</div>
-      <div class="sbitem active" onclick="A.go('home')"><span class="sbicon"><i class="fas fa-home"></i></span>হোম</div>
-      <div class="sbitem" onclick="A.go('search')"><span class="sbicon"><i class="fas fa-search"></i></span>খুঁজুন</div>
-      <div class="sbitem" onclick="A.go('jobs')"><span class="sbicon"><i class="fas fa-briefcase"></i></span>চাকরি<span class="sbbadge">12</span></div>
-      <div class="sbitem" onclick="A.go('chat')"><span class="sbicon"><i class="fas fa-comments"></i></span>চ্যাট<span class="sbbadge">3</span></div>
-      <div class="sbitem" onclick="A.go('profile')"><span class="sbicon"><i class="fas fa-user"></i></span>প্রোফাইল</div>
-    </div>
+    <div class="sbitem active" onclick="App.go('home')"><span>🏠</span> হোম</div>
+    <div class="sbitem" onclick="App.go('groups')"><span>👥</span> গ্রুপ</div>
+    <div class="sbitem" onclick="App.go('events')"><span>📅</span> ইভেন্ট</div>
+    <div class="sbitem" onclick="App.go('jobs')"><span>💼</span> চাকরি</div>
+    <div class="sbitem" onclick="App.go('profile')"><span>👤</span> প্রোফাইল</div>
     <hr class="sbdiv">
-    <div><div class="sbtitle">অন্বেষণ</div>
-      <div class="sbitem" onclick="A.go('events')"><span class="sbicon"><i class="fas fa-calendar-alt"></i></span>ইভেন্ট</div>
-      <div class="sbitem" onclick="A.go('groups')"><span class="sbicon"><i class="fas fa-users"></i></span>গ্রুপ</div>
-    </div>
-    <hr class="sbdiv">
-    <div><div class="sbtitle">সহায়তা</div>
-      <div class="sbitem" onclick="A.go('privacy')"><span class="sbicon"><i class="fas fa-shield-alt"></i></span>গোপনীয়তা নীতি</div>
-      <div class="sbitem" onclick="A.go('terms')"><span class="sbicon"><i class="fas fa-file-contract"></i></span>সেবা শর্তাবলী</div>
-      <div class="sbitem" onclick="A.go('about')"><span class="sbicon"><i class="fas fa-code"></i></span>ডেভেলপার</div>
-      <div class="sbitem" onclick="A.go('settings')"><span class="sbicon"><i class="fas fa-cog"></i></span>সেটিংস</div>
-    </div>
-    <hr class="sbdiv">
-    <div class="sbitem" onclick="A.logout()" style="color:#E74C3C"><span class="sbicon"><i class="fas fa-sign-out-alt"></i></span>লগ আউট</div>
+    <div class="sbitem" onclick="App.logout()" style="color:#E74C3C"><span>🚪</span> লগ আউট</div>
   </aside>
 
   <main class="feed" id="feed">
-    <div id="vHome">
-      <div class="fhdr"><h1 class="ftitle">আপনার কাছাকাছি মানুষ</h1><p class="fsub">আপনার এলাকায় বাংলাদেশীদের সাথে সংযুক্ত হোন</p></div>
-      <div id="guestBar" class="gbar hidden"><i class="fas fa-info-circle"></i><span>অতিথি মোডে দেখছেন। সংযোগ ও চাকরিতে আবেদন করতে লগইন করুন।</span><button class="btn btn-p bsm" onclick="A.showAuth()" style="margin-left:auto">লগইন</button></div>
-      <div class="ftabs">
-        <button class="ftab active" onclick="A.filterUsers('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterUsers('nearby',this)">কাছাকাছি</button>
-        <button class="ftab" onclick="A.filterUsers('online',this)">অনলাইন</button>
-        <button class="ftab" onclick="A.filterUsers('verified',this)">যাচাইকৃত</button>
-      </div>
-      <div id="usersList" class="grid-users"></div>
-    </div>
-
-    <div id="vSearch" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">অনুসন্ধান</h1><p class="fsub">ব্যক্তি, পেশা বা শহর খুঁজুন</p></div>
-      <div class="fg" style="position:relative"><input type="text" id="srchInput" class="finput" placeholder="নাম, পেশা বা শহর লিখুন..." style="padding-left:44px" oninput="A.doSearch(this.value)"><i class="fas fa-search" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--tl)"></i></div>
-      <div class="fg"><label class="flabel">দূরত্ব ফিল্টার (কিমি)</label><input type="range" id="radiusR" min="1" max="100" value="50" style="width:100%" oninput="document.getElementById('radiusV').textContent=this.value+' কিমি';A.doSearch(document.getElementById('srchInput').value)"><div style="display:flex;justify-content:space-between;margin-top:5px"><span style="font-size:11px;color:var(--tl)">১ কিমি</span><span id="radiusV" style="font-weight:600;color:var(--secondary);font-size:12px">৫০ কিমি</span><span style="font-size:11px;color:var(--tl)">১০০ কিমি</span></div></div>
-      <div id="srchResults" class="grid-users"></div>
-    </div>
-
-    <div id="vJobs" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">চাকরি</h1><p class="fsub">আপনার জন্য সেরা চাকরির সুযোগ</p><button class="btn btn-p mt3" onclick="A.showPostJob()"><i class="fas fa-plus"></i> চাকরি পোস্ট করুন</button></div>
-      <div class="ftabs">
-        <button class="ftab active" onclick="A.filterJobs('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterJobs('full-time',this)">পূর্ণকালীন</button>
-        <button class="ftab" onclick="A.filterJobs('part-time',this)">খণ্ডকালীন</button>
-        <button class="ftab" onclick="A.filterJobs('remote',this)">দূরবর্তী</button>
-        <button class="ftab" onclick="A.filterJobs('internship',this)">ইন্টার্নশিপ</button>
-      </div>
-      <div id="jobsList" class="grid-jobs"></div>
-    </div>
-
-    <div id="vChat" class="hidden"><div class="fhdr"><h1 class="ftitle">চ্যাট</h1><p class="fsub">আপনার বার্তা</p></div><div id="chatArea"></div></div>
-
-    <div id="vEvents" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">আসন্ন ইভেন্ট</h1><p class="fsub">বাংলাদেশী কমিউনিটির সাথে যুক্ত হোন</p></div>
-      <div class="ftabs" id="evTabs">
-        <button class="ftab active" onclick="A.filterEvents('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterEvents('online',this)">অনলাইন</button>
-        <button class="ftab" onclick="A.filterEvents('offline',this)">অফলাইন</button>
-        <button class="ftab" onclick="A.filterEvents('tech',this)">টেক</button>
-        <button class="ftab" onclick="A.filterEvents('business',this)">বিজনেস</button>
-        <button class="ftab" onclick="A.filterEvents('social',this)">সামাজিক</button>
-      </div>
-      <div id="eventsList" class="egrid"></div>
-    </div>
-
-    <div id="vGroups" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">গ্রুপ</h1><p class="fsub">আপনার আগ্রহের গ্রুপে যোগ দিন</p><button class="btn btn-p mt3" onclick="GroupManager.showCreateGroupModal()"><i class="fas fa-plus"></i> নতুন গ্রুপ</button></div>
-      <div id="groupsList" class="ggrid"></div>
-    </div>
-
+    <div id="vHome"><div class="fhdr"><h1 class="ftitle">আপনার কাছাকাছি মানুষ</h1></div><div id="usersList" class="grid-users"><div class="tc mt3"><i class="fas fa-spinner fa-spin"></i> লোড হচ্ছে...</div></div></div>
+    <div id="vGroups" class="hidden"><div class="fhdr"><h1 class="ftitle">গ্রুপ</h1><button class="btn btn-p mt2" onclick="App.showCreateGroupModal()"><i class="fas fa-plus"></i> নতুন গ্রুপ</button></div><div id="groupsList" class="ggrid"></div><div id="groupDetailView" class="hidden"></div></div>
+    <div id="vEvents" class="hidden"><div class="fhdr"><h1 class="ftitle">ইভেন্ট</h1><button class="btn btn-p mt2" onclick="App.showCreateEventModal()"><i class="fas fa-plus"></i> ইভেন্ট তৈরি করুন</button></div><div id="eventsList" class="egrid"></div></div>
+    <div id="vJobs" class="hidden"><div class="fhdr"><h1 class="ftitle">চাকরি</h1><button class="btn btn-p mt2" onclick="App.showPostJobModal()"><i class="fas fa-plus"></i> চাকরি পোস্ট করুন</button></div><div id="jobsList" class="grid-jobs"></div></div>
     <div id="vProfile" class="hidden"><div id="profileArea"></div></div>
-
-    <div id="vSettings" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">সেটিংস</h1><p class="fsub">আপনার অ্যাকাউন্ট পরিচালনা করুন</p></div>
-      <div class="setcard"><div class="settitle">অ্যাকাউন্ট সেটিংস</div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">অনলাইন অবস্থা দেখান</div><div class="togdesc">অন্যরা আপনাকে অনলাইনে দেখতে পাবে</div></div><div class="togsw on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">প্রোফাইল দৃশ্যমানতা</div><div class="togdesc">সকলে আপনার প্রোফাইল দেখতে পাবে</div></div><div class="togsw on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">বার্তা গোপনীয়তা</div><div class="togdesc">শুধু সংযুক্তরা বার্তা পাঠাতে পারবে</div></div><div class="togsw" onclick="this.classList.toggle('on')"></div></div>
-      </div>
-      <div class="setcard"><div class="settitle">বিজ্ঞপ্তি সেটিংস</div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">পুশ বিজ্ঞপ্তি</div><div class="togdesc">নতুন বার্তা ও আপডেট পান</div></div><div class="togsw on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">ইমেল বিজ্ঞপ্তি</div><div class="togdesc">সাপ্তাহিক নিউজলেটার পান</div></div><div class="togsw on" onclick="this.classList.toggle('on')"></div></div>
-        <div class="togrow"><div class="toginfo"><div class="toglabel">চাকরির বিজ্ঞপ্তি</div><div class="togdesc">নতুন চাকরির আপডেট পান</div></div><div class="togsw on" onclick="this.classList.toggle('on')"></div></div>
-      </div>
-      <div class="setcard"><div class="settitle">অ্যাকাউন্ট পরিচালনা</div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <button class="btn btn-s bblock" onclick="A.changePass()"><i class="fas fa-key"></i> পাসওয়ার্ড পরিবর্তন</button>
-          <button class="btn btn-o bblock" onclick="A.deactivate()"><i class="fas fa-user-slash"></i> অ্যাকাউন্ট নিষ্ক্রিয়</button>
-          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.deleteAcc()"><i class="fas fa-trash-alt"></i> অ্যাকাউন্ট মুছুন</button>
-          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="vPrivacy" class="hidden"><div class="fhdr"><h1 class="ftitle">গোপনীয়তা নীতি</h1><p class="fsub">আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার</p></div><div class="lastup" style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;margin-bottom:20px;text-align:center;font-size:12px"><i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৬</div><div id="privacyBody"></div></div>
-
-    <div id="vTerms" class="hidden"><div class="fhdr"><h1 class="ftitle">সেবা শর্তাবলী</h1><p class="fsub">হ্যালো বাংলাদেশী ব্যবহারের শর্তাবলী</p></div><div class="lastup" style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;margin-bottom:20px;text-align:center;font-size:12px"><i class="fas fa-calendar-alt"></i> সর্বশেষ আপডেট: জানুয়ারি ২০২৬</div><div id="termsBody"></div></div>
-
-    <div id="vAbout" class="hidden"><div id="aboutBody"></div></div>
   </main>
 
   <aside class="rsidebar">
-    <div class="rstitle"><span>সুপারিশকৃত ব্যক্তি</span><a onclick="A.viewAllRec()">সকল দেখুন</a></div>
+    <div class="rstitle"><span>সুপারিশকৃত</span></div>
     <div id="recList"></div>
     <hr class="sbdiv">
-    <div class="rstitle"><span>ট্রেন্ডিং চাকরি</span><a onclick="A.viewAllJobs()">সকল দেখুন</a></div>
+    <div class="rstitle"><span>ট্রেন্ডিং চাকরি</span></div>
     <div id="trendJobs"></div>
-    <hr class="sbdiv">
-    <div class="rstitle"><span>আসন্ন ইভেন্ট</span><a onclick="A.viewAllEvents()">সকল দেখুন</a></div>
-    <div id="upEvents"></div>
   </aside>
 </div>
 
-<footer class="footer">
-  <div class="ftcont">
-    <div class="ftgrid">
-      <div><div class="ftlogo"><div class="ftlogo-icon">হেবি</div><span class="ftlogo-text">হ্যালো বাংলাদেশী</span></div><p class="ftdesc">স্থানীয় বাংলাদেশীদের সাথে সংযোগ স্থাপনের জন্য একটি সম্পূর্ণ সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম।</p><div class="ftsoc"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
-      <div><h3 class="fttitle">দ্রুত লিংক</h3><ul class="ftlinks"><li><a onclick="A.go('home')"><i class="fas fa-chevron-right"></i> হোম</a></li><li><a onclick="A.go('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li><li><a onclick="A.go('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li><li><a onclick="A.go('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li></ul></div>
-      <div><h3 class="fttitle">আইনি</h3><ul class="ftlinks"><li><a onclick="A.go('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li><li><a onclick="A.go('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li><li><a onclick="A.go('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li></ul></div>
-      <div><h3 class="fttitle">যোগাযোগ</h3><ul class="ftlinks"><li><span><i class="fas fa-envelope"></i> support@hellobangladeshi.com</span></li><li><span><i class="fas fa-phone"></i> +880 1924449132</span></li><li><span><i class="fas fa-map-marker-alt"></i> সিলেট, বাংলাদেশ</span></li></ul></div>
-    </div>
-    <div class="ftbot">© 2026 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত। Developed with <i class="fas fa-heart" style="color:#EF0479"></i> by <strong>Farabi Walid</strong></div>
-  </div>
-</footer>
+<footer class="footer"><div class="container">© 2026 হ্যালো বাংলাদেশী - Developed by Farabi Walid</div></footer>
 
 </div>
 
-<div id="mAuth" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mAuth')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">হ্যালো বাংলাদেশীতে স্বাগতম</h2><p class="msub">স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হোন</p></div><div class="authtabs"><button class="atab on" onclick="A.showLoginForm()">লগইন</button><button class="atab" onclick="A.showSignupForm()">সাইন আপ</button></div><div id="loginForm"><div class="fg"><label class="flabel">ইমেল</label><input type="email" id="lEmail" class="finput" placeholder="আপনার ইমেল"></div><div class="fg"><label class="flabel">পাসওয়ার্ড</label><input type="password" id="lPass" class="finput" placeholder="পাসওয়ার্ড" onkeypress="if(event.key==='Enter')A.login()"></div><button class="btn btn-p bblock" onclick="A.login()"><i class="fas fa-sign-in-alt"></i> লগইন করুন</button><div class="soclogin"><button class="bgoogle" onclick="A.loginGoogle()"><i class="fab fa-google"></i> গুগল</button><button class="bfacebook" onclick="A.loginFB()"><i class="fab fa-facebook-f"></i> ফেসবুক</button></div><p class="tc mt2" style="color:var(--tl);font-size:11px">ডেমো: <b>demo@test.com</b> / <b>password</b></p></div><div id="signupForm" class="hidden"><div class="frow"><div class="fg"><label class="flabel">পুরো নাম *</label><input type="text" id="sName" class="finput" placeholder="আপনার নাম"></div><div class="fg"><label class="flabel">পেশা *</label><input type="text" id="sProf" class="finput" placeholder="পেশা"></div></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="sEmail" class="finput" placeholder="ইমেল"></div><div class="frow"><div class="fg"><label class="flabel">পাসওয়ার্ড *</label><input type="password" id="sPass" class="finput" placeholder="৬+ অক্ষর"></div><div class="fg"><label class="flabel">শহর *</label><select id="sCity" class="finput"><option value="">নির্বাচন করুন</option><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>বরিশাল</option><option>রংপুর</option><option>ময়মনসিংহ</option><option>মৌলভীবাজার</option></select></div></div><div class="fg"><label class="fchklabel" style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="sTerms" class="fcheck" style="width:16px;height:16px"> সেবা শর্তাবলী ও গোপনীয়তা নীতি মেনে চলতে সম্মত</label></div><button class="btn btn-p bblock" onclick="A.signup()"><i class="fas fa-user-plus"></i> অ্যাকাউন্ট তৈরি করুন</button></div><p id="authErr" style="color:#E74C3C;text-align:center;margin-top:10px;font-size:12px;display:none"></p></div></div>
+<!-- MODALS -->
+<div id="mAuth" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mAuth')">✕</button><div class="authtabs"><button class="atab on" onclick="App.showLoginForm()">লগইন</button><button class="atab" onclick="App.showSignupForm()">সাইনআপ</button></div><div id="loginForm"><div class="fg"><input type="email" id="lEmail" class="finput" placeholder="ইমেল"></div><div class="fg"><input type="password" id="lPass" class="finput" placeholder="পাসওয়ার্ড"></div><button class="btn btn-p bblock" onclick="App.login()">লগইন</button><p class="tc mt2" style="font-size:11px;color:var(--tl)">ডেমো: demo@test.com / password</p></div><div id="signupForm" class="hidden"><div class="frow"><div class="fg"><input type="text" id="sName" class="finput" placeholder="পুরো নাম"></div><div class="fg"><input type="text" id="sProf" class="finput" placeholder="পেশা"></div></div><div class="fg"><input type="email" id="sEmail" class="finput" placeholder="ইমেল"></div><div class="frow"><div class="fg"><input type="password" id="sPass" class="finput" placeholder="পাসওয়ার্ড (৬+ অক্ষর)"></div><div class="fg"><select id="sCity" class="finput"><option>ঢাকা</option><option>সিলেট</option><option>চট্টগ্রাম</option></select></div></div><button class="btn btn-p bblock" onclick="App.signup()">সাইনআপ</button></div><p id="authErr" style="color:#E74C3C;font-size:12px;margin-top:10px;display:none"></p></div></div>
 
-<div id="mPostJob" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mPostJob')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরি পোস্ট করুন</h2><p class="msub">আপনার চাকরির সুযোগ শেয়ার করুন</p></div><div class="frow"><div class="fg"><label class="flabel">চাকরির শিরোনাম *</label><input type="text" id="jTitle" class="finput" placeholder="যেমন: সফটওয়্যার ডেভেলপার"></div><div class="fg"><label class="flabel">কোম্পানির নাম *</label><input type="text" id="jComp" class="finput" placeholder="কোম্পানি"></div></div><div class="frow"><div class="fg"><label class="flabel">চাকরির ধরন *</label><select id="jType" class="finput"><option value="">নির্বাচন করুন</option><option value="full-time">পূর্ণকালীন</option><option value="part-time">খণ্ডকালীন</option><option value="contract">চুক্তিভিত্তিক</option><option value="internship">ইন্টার্নশিপ</option><option value="remote">দূরবর্তী</option></select></div><div class="fg"><label class="flabel">অবস্থান *</label><input type="text" id="jLoc" class="finput" placeholder="শহর/দেশ"></div></div><div class="frow"><div class="fg"><label class="flabel">বেতন</label><input type="text" id="jSal" class="finput" placeholder="৳XX,XXX - ৳XX,XXX"></div><div class="fg"><label class="flabel">শেষ তারিখ</label><input type="date" id="jDead" class="finput"></div></div><div class="fg"><label class="flabel">বিবরণ *</label><textarea id="jDesc" class="finput ftextarea" rows="3" placeholder="চাকরির বিস্তারিত বিবরণ..."></textarea></div><div class="fg"><label class="flabel">প্রয়োজনীয় দক্ষতা</label><input type="text" id="jSkills" class="finput" placeholder="JavaScript, React, Node.js (কমা দিয়ে আলাদা)"></div><button class="btn btn-p bblock" onclick="A.postJob()"><i class="fas fa-paper-plane"></i> চাকরি পোস্ট করুন</button></div></div>
+<div id="mCreateGroup" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mCreateGroup')">✕</button><h2 class="mtitle">নতুন গ্রুপ</h2><div class="fg"><input type="text" id="grpName" class="finput" placeholder="গ্রুপের নাম"></div><div class="fg"><select id="grpCat" class="finput"><option>সাধারণ</option><option>প্রযুক্তি</option><option>শিক্ষা</option><option>ব্যবসা</option></select></div><div class="fg"><input type="text" id="grpIcon" class="finput" placeholder="আইকন ইমোজি" value="👥"></div><div class="fg"><textarea id="grpDesc" class="finput ftextarea" placeholder="গ্রুপের বিবরণ..."></textarea></div><button class="btn btn-p bblock" onclick="App.createGroup()">তৈরি করুন</button></div></div>
 
-<div id="mApply" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mApply')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরিতে আবেদন</h2><p class="msub" id="applyJobName">পদের জন্য আবেদন করুন</p></div><div class="frow"><div class="fg"><label class="flabel">আপনার নাম *</label><input type="text" id="apName" class="finput" placeholder="পুরো নাম"></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="apEmail" class="finput" placeholder="ইমেল"></div></div><div class="frow"><div class="fg"><label class="flabel">ফোন নম্বর *</label><input type="tel" id="apPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div><div class="fg"><label class="flabel">অভিজ্ঞতা (বছর)</label><input type="number" id="apExp" class="finput" placeholder="0" min="0" max="50"></div></div><div class="fg"><label class="flabel">কভার লেটার *</label><textarea id="apCover" class="finput ftextarea" rows="3" placeholder="কেন আপনি এই পদের জন্য উপযুক্ত তা লিখুন..."></textarea></div><div class="fg"><label class="flabel">LinkedIn / পোর্টফোলিও লিংক</label><input type="url" id="apPortfolio" class="finput" placeholder="https://..."></div><button class="btn btn-p bblock" onclick="A.submitApply()"><i class="fas fa-paper-plane"></i> আবেদন জমা দিন</button></div></div>
+<div id="mCreateEvent" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mCreateEvent')">✕</button><h2 class="mtitle">নতুন ইভেন্ট</h2><div class="fg"><input type="text" id="evTitle" class="finput" placeholder="ইভেন্টের নাম"></div><div class="frow"><div class="fg"><input type="date" id="evDate" class="finput"></div><div class="fg"><select id="evType" class="finput"><option value="online">অনলাইন</option><option value="offline">অফলাইন</option></select></div></div><div class="fg"><input type="text" id="evLoc" class="finput" placeholder="অবস্থান"></div><div class="fg"><textarea id="evDesc" class="finput ftextarea" placeholder="বিবরণ..."></textarea></div><button class="btn btn-p bblock" onclick="App.createEvent()">তৈরি করুন</button></div></div>
 
-<div id="mEditProfile" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mEditProfile')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">প্রোফাইল সম্পাদনা</h2><p class="msub">আপনার তথ্য আপডেট করুন</p></div><div class="frow"><div class="fg"><label class="flabel">পুরো নাম</label><input type="text" id="epName" class="finput"></div><div class="fg"><label class="flabel">পেশা</label><input type="text" id="epProf" class="finput"></div></div><div class="fg"><label class="flabel">বায়ো</label><textarea id="epBio" class="finput ftextarea" rows="3"></textarea></div><div class="frow"><div class="fg"><label class="flabel">শহর</label><select id="epCity" class="finput"><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>মৌলভীবাজার</option></select></div><div class="fg"><label class="flabel">ফোন</label><input type="tel" id="epPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div></div><button class="btn btn-p bblock" onclick="A.updateProfile()"><i class="fas fa-save"></i> সংরক্ষণ করুন</button></div></div>
+<div id="mPostJob" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mPostJob')">✕</button><h2 class="mtitle">চাকরি পোস্ট করুন</h2><div class="fg"><input type="text" id="jobTitle" class="finput" placeholder="পদের নাম"></div><div class="fg"><input type="text" id="jobCompany" class="finput" placeholder="কোম্পানির নাম"></div><div class="frow"><div class="fg"><select id="jobType" class="finput"><option>পূর্ণকালীন</option><option>খণ্ডকালীন</option><option>দূরবর্তী</option></select></div><div class="fg"><input type="text" id="jobLoc" class="finput" placeholder="অবস্থান"></div></div><div class="fg"><input type="text" id="jobSal" class="finput" placeholder="বেতন (যেমন: ৫০,০০০-৮০,০০০)"></div><div class="fg"><textarea id="jobDesc" class="finput ftextarea" placeholder="চাকরির বিবরণ..."></textarea></div><button class="btn btn-p bblock" onclick="App.postJob()">পোস্ট করুন</button></div></div>
 
-<div id="mViewAll" class="modal"><div class="mbox mbox-lg"><button class="mclose" onclick="A.closeM('mViewAll')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle" id="vaTitle">সকল দেখুন</h2></div><div id="vaBody" style="max-height:65vh;overflow-y:auto"></div></div></div>
+<div id="mEditProfile" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mEditProfile')">✕</button><h2 class="mtitle">প্রোফাইল সম্পাদনা</h2><div class="fg"><input type="text" id="epName" class="finput" placeholder="আপনার নাম"></div><div class="fg"><input type="text" id="epProf" class="finput" placeholder="পেশা"></div><div class="fg"><input type="text" id="epAvatar" class="finput" placeholder="ইমোজি (যেমন: 😊, 👨‍💻)"></div><div class="fg"><textarea id="epBio" class="finput ftextarea" placeholder="বায়ো"></textarea></div><div class="fg"><select id="epCity" class="finput"><option>ঢাকা</option><option>সিলেট</option><option>চট্টগ্রাম</option></select></div><button class="btn btn-p bblock" onclick="App.updateProfile()">আপডেট করুন</button></div></div>
+
+<div id="mApplicants" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mApplicants')">✕</button><h2 class="mtitle">আবেদনকারীর তালিকা</h2><div id="applicantsList"></div></div></div>
 
 <div class="toasts" id="toasts"></div>
 
@@ -1473,403 +546,312 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// =================== DEMO DATA (Fallback) ===================
-const demoUsers = [
- {id:'u1',nm:'আহমেদ হাসান',pf:'সফটওয়্যার ইঞ্জিনিয়ার',loc:'ঢাকা',bio:'ফুল-স্ট্যাক ডেভেলপার, ৫+ বছর অভিজ্ঞতা',rt:4.8,fw:1245,cn:245,on:true,vf:true,ds:2.5,av:'আ'},
- {id:'u2',nm:'ফারহানা আক্তার',pf:'গ্রাফিক ডিজাইনার',loc:'চট্টগ্রাম',bio:'ক্রিয়েটিভ ডিজাইনার, UI/UX বিশেষজ্ঞ',rt:4.9,fw:856,cn:189,on:true,vf:false,ds:5.2,av:'ফ'},
- {id:'u3',nm:'রাকিবুল ইসলাম',pf:'চিকিৎসক',loc:'সিলেট',bio:'হৃদরোগ বিশেষজ্ঞ',rt:4.7,fw:2340,cn:312,on:false,vf:true,ds:12.8,av:'র'},
- {id:'u4',nm:'সাবরিনা সুলতানা',pf:'অধ্যাপক',loc:'খুলনা',bio:'ইংরেজি সাহিত্যের অধ্যাপক',rt:4.9,fw:567,cn:156,on:true,vf:false,ds:8.4,av:'স'},
- {id:'u5',nm:'জুবায়ের আহমেদ',pf:'উদ্যোক্তা',loc:'রাজশাহী',bio:'আইটি কোম্পানির মালিক',rt:4.6,fw:3240,cn:421,on:true,vf:true,ds:15.3,av:'জ'}
-];
-
-const demoJobs = [
- {id:'j1',ti:'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার',co:'টেকনোভেশন লিমিটেড',tp:'full-time',tl:'পূর্ণকালীন',lc:'ঢাকা',sa:'৳১,৫০,০০০ - ৳২,৫০,০০০',ds:'অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার প্রয়োজন। Node.js, React ও AWS তে দক্ষ।',sk:['Node.js','React','MongoDB','AWS'],ft:true,po:'২ দিন আগে',ap:24},
- {id:'j2',ti:'গ্রাফিক ডিজাইনার',co:'ক্রিয়েটিভ মিডিয়া',tp:'part-time',tl:'খণ্ডকালীন',lc:'চট্টগ্রাম',sa:'৳৪০,০০০ - ৳৬০,০০০',ds:'Adobe Creative Suite তে দক্ষ ডিজাইনার প্রয়োজন।',sk:['Photoshop','Illustrator','Figma'],ft:false,po:'৫ দিন আগে',ap:12},
- {id:'j3',ti:'ডাটা অ্যানালিস্ট',co:'ডাটা সলিউশন্স BD',tp:'remote',tl:'দূরবর্তী',lc:'অনলাইন',sa:'৳৮০,০০০ - ৳১,২০,০০০',ds:'Python ও SQL তে দক্ষ ডাটা অ্যানালিস্ট প্রয়োজন।',sk:['Python','SQL','Tableau'],ft:true,po:'১ দিন আগে',ap:36}
-];
-
-const demoEvents = [
- {id:'e1',ti:'বাংলাদেশী আইটি নেটওয়ার্কিং মিটআপ',dt:'2026-04-15',tm:'১০:০০ AM - ৫:০০ PM',lc:'ঢাকা',tp:'offline',ct:'tech',ds:'বাংলাদেশের আইটি পেশাজীবীদের নেটওয়ার্কিং ইভেন্ট।',at:150,mx:200,ic:'💻',reg:false},
- {id:'e2',ti:'স্টার্টআপ আইডিয়া শেয়ারিং সেশন',dt:'2026-04-20',tm:'৩:০০ PM - ৬:০০ PM',lc:'অনলাইন (Zoom)',tp:'online',ct:'business',ds:'নতুন উদ্যোক্তাদের জন্য আইডিয়া শেয়ারিং সেশন।',at:85,mx:100,ic:'🚀',reg:false}
-];
-
-const demoGroups = [
- {id:'g1',nm:'বাংলাদেশী শিক্ষার্থী',ct:'শিক্ষা',ds:'শিক্ষার্থীদের জন্য গ্রুপ',mb:1250,po:340,ic:'🎓',jn:false},
- {id:'g2',nm:'আইটি পেশাজীবী বাংলাদেশ',ct:'প্রযুক্তি',ds:'আইটি পেশাজীবীদের জন্য',mb:3420,po:890,ic:'💻',jn:true}
-];
-
-const demoRec = [
- {id:'r1',nm:'মোহাম্মদ আলী',pf:'ওয়েব ডেভেলপার',mt:12,av:'ম'},
- {id:'r2',nm:'নুসরাত জাহান',pf:'মার্কেটিং ম্যানেজার',mt:8,av:'ন'}
-];
-
-// =================== MAIN APP ===================
-const A = {
-  cu: null, isG: true, cv: 'home', cjid: null,
+const App = {
+  cu: null, currentGroupId: null, currentJobId: null,
 
   init() {
-    this.setupFB();
-    window.addEventListener('click', e => { if (!e.target.closest('.umenu-wrap')) this.closeUD(); });
-    setInterval(() => { if (this.cv === 'chat') this.loadChat(); }, 30000);
-  },
-
-  setupFB() {
     auth.onAuthStateChanged(user => {
       this.cu = user;
-      this.isG = !user;
-      if (user) { this.updateUILogin(user); this.loadUserData(user.uid); } 
-      else { this.updateUIGuest(); this.loadHome(); this.loadRS(); }
-      if (this.cv === 'groups') GroupManager.loadGroups();
+      if (user) {
+        document.getElementById('uAvatar').textContent = (user.displayName || user.email)[0].toUpperCase();
+        document.getElementById('uName').textContent = (user.displayName || user.email).split('@')[0];
+        this.loadUserData();
+        this.closeM('mAuth');
+      } else {
+        document.getElementById('uAvatar').textContent = 'U';
+        document.getElementById('uName').textContent = 'অতিথি';
+      }
+      if (document.getElementById('vHome').classList.contains('hidden') === false) this.loadUsers();
+      if (document.getElementById('vGroups').classList.contains('hidden') === false) this.loadGroups();
+      if (document.getElementById('vEvents').classList.contains('hidden') === false) this.loadEvents();
+      if (document.getElementById('vJobs').classList.contains('hidden') === false) this.loadJobs();
+      if (document.getElementById('vProfile').classList.contains('hidden') === false) this.loadProfile();
+      this.loadRecommendations();
     });
+    window.addEventListener('click', e => { if (!e.target.closest('.umenu-wrap')) this.closeUD(); });
   },
 
-  async loadUserData(uid) {
-    const doc = await db.collection('users').doc(uid).get();
+  async loadUserData() {
+    const doc = await db.collection('users').doc(this.cu.uid).get();
     if (doc.exists) this.userData = doc.data();
+    else await db.collection('users').doc(this.cu.uid).set({ name: this.cu.displayName || 'নতুন ব্যবহারকারী', profession: 'পেশা লিখুন', avatar: '👤', bio: '', city: 'ঢাকা', createdAt: new Date() });
   },
 
-  updateUILogin(user) {
-    const n = user.displayName || user.email || 'ব্যবহারকারী';
-    document.getElementById('uAvatar').textContent = n.charAt(0).toUpperCase();
-    document.getElementById('uName').textContent = n.split('@')[0].slice(0, 14);
-    document.getElementById('guestBar')?.classList.add('hidden');
-    this.closeM('mAuth');
-    if (this.cv === 'home') this.loadHome();
-    if (this.cv === 'jobs') this.loadJobs();
+  needLogin(msg, cb) { if (!this.cu) { this.toast(`${msg} করতে লগইন করুন`, 'e'); this.showAuth(); return false; } if (cb) cb(); return true; },
+
+  go(page) {
+    document.querySelectorAll('[id^="v"]').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`v${page.charAt(0).toUpperCase()}${page.slice(1)}`).classList.remove('hidden');
+    document.querySelectorAll('.nav-link, .sbitem').forEach(el => el.classList.remove('active'));
+    if (page === 'home') { this.loadUsers(); this.loadRecommendations(); }
+    if (page === 'groups') this.loadGroups();
+    if (page === 'events') this.loadEvents();
+    if (page === 'jobs') this.loadJobs();
+    if (page === 'profile') this.loadProfile();
+    this.cv = page;
+    window.scrollTo(0, 0);
   },
 
-  updateUIGuest() {
-    document.getElementById('uAvatar').textContent = 'U';
-    document.getElementById('uName').textContent = 'অতিথি';
-    document.getElementById('guestBar')?.classList.remove('hidden');
+  async loadUsers() {
+    const snapshot = await db.collection('users').limit(20).get();
+    const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('usersList');
+    if (!users.length) { container.innerHTML = '<div class="empty"><div class="emico">👥</div><h3>কোন ব্যবহারকারী নেই</h3></div>'; return; }
+    container.innerHTML = users.map(u => `
+      <div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.avatar || '👤'}</div></div>
+      <div class="ucard-body"><div class="ucard-name">${u.name}</div><div class="ucard-prof">${u.profession || 'পেশা নেই'}</div><div class="ucard-loc"><i class="fas fa-map-marker-alt"></i> ${u.city || 'অজানা'}</div><div class="ucard-bio">${u.bio || 'বায়ো নেই'}</div>
+      <div class="ucard-acts"><button class="btn btn-p bsm" onclick="App.connect('${u.id}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="App.startChat('${u.id}','${u.name}')"><i class="fas fa-comment"></i> চ্যাট</button></div></div></div>`).join('');
   },
 
-  need(msg, cb) { if (!this.cu) { this.toast(`${msg} করতে লগইন করুন`, 'e'); this.showAuth(); return false; } if (cb) cb(); return true; },
+  connect(id) { if (!this.needLogin('ফলো')) return; this.toast('ফলো অনুরোধ পাঠানো হয়েছে', 's'); },
+  startChat(id, name) { if (!this.needLogin('চ্যাট')) return; this.toast(`"${name}" কে চ্যাট অনুরোধ পাঠানো হয়েছে`, 's'); },
 
-  go(v) {
-    document.querySelectorAll('[id^="v"]').forEach(e => e.classList.add('hidden'));
-    document.querySelectorAll('.nav-link,.sbitem,.mmitem').forEach(e => e.classList.remove('active'));
-    const el = document.getElementById('v' + v.charAt(0).toUpperCase() + v.slice(1));
-    if (el) el.classList.remove('hidden');
-    document.querySelectorAll(`[onclick*="go('${v}')"]`).forEach(e => e.classList.add('active'));
-    this.cv = v;
-    const map = { home: () => this.loadHome(), search: () => this.loadSearch(), jobs: () => this.loadJobs(), chat: () => this.loadChat(), events: () => this.renderEvents('all'), groups: () => GroupManager.loadGroups(), profile: () => this.loadProfile(), privacy: () => this.loadPrivacy(), terms: () => this.loadTerms(), about: () => this.loadAbout() };
-    if (map[v]) map[v]();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // ========== GROUPS ==========
+  async loadGroups() {
+    const snapshot = await db.collection('groups').orderBy('createdAt', 'desc').get();
+    const groups = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('groupsList');
+    if (!groups.length) { container.innerHTML = '<div class="empty"><div class="emico">👥</div><h3>কোন গ্রুপ নেই</h3><button class="btn btn-p mt2" onclick="App.showCreateGroupModal()">প্রথম গ্রুপ তৈরি করুন</button></div>'; return; }
+    container.innerHTML = groups.map(g => `
+      <div class="gcard" onclick="App.openGroup('${g.id}')">
+        <div class="gbanner"><div class="gavicon">${g.icon || '👥'}</div></div>
+        <div class="gbody"><div class="gname">${g.name}</div><span class="gcat">${g.category}</span><div class="gdesc">${g.description}</div>
+        <div class="gstats"><div><div class="gsv">${g.memberCount || 1}</div><div class="gsl">সদস্য</div></div><div><div class="gsv">${g.postCount || 0}</div><div class="gsl">পোস্ট</div></div></div>
+        <button class="bjoin" onclick="event.stopPropagation();App.joinGroup('${g.id}', this)">যোগ দিন</button></div></div>`).join('');
   },
 
-  loadHome() { this.renderUsers(demoUsers); },
-
-  renderUsers(users) {
-    const c = document.getElementById('usersList'); if (!c) return;
-    if (!users.length) { c.innerHTML = '<div class="empty"><div class="emico">👥</div><h3>কোন ব্যবহারকারী নেই</h3></div>'; return; }
-    c.innerHTML = users.map(u => `
-      <div class="ucard">
-        <div class="ucard-hdr"><div class="ucard-av">${u.av}</div>${u.on ? '<div class="ucard-dot"></div>' : ''}</div>
-        <div class="ucard-body">
-          <div class="ucard-name">${u.nm}</div>
-          <div class="ucard-prof"><i class="fas fa-briefcase"></i>${u.pf}${u.vf ? ' <i class="fas fa-check-circle" style="color:#2ecc71;font-size:11px"></i>' : ''}</div>
-          <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.loc} &nbsp;<i class="fas fa-road"></i>${u.ds} কিমি</div>
-          <div class="ucard-bio">${u.bio}</div>
-          <div class="ucard-stats"><div class="tc"><span class="sv">${u.fw}</span><span class="sl2">ফলোয়ার</span></div><div class="tc"><span class="sv">${u.cn}</span><span class="sl2">সংযোগ</span></div><div class="tc"><span class="sv">${u.rt}</span><span class="sl2">রেটিং</span></div></div>
-          <div class="ucard-acts"><button class="btn btn-p bsm" onclick="A.connect('${u.id}','${u.nm}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="A.startChat('${u.id}','${u.nm}','${u.av}')"><i class="fas fa-comment"></i> চ্যাট</button></div>
-        </div>
-      </div>`).join('');
+  async joinGroup(groupId, btn) {
+    if (!this.needLogin('গ্রুপে যোগ দিতে')) return;
+    const memberRef = db.collection('groups').doc(groupId).collection('members').doc(this.cu.uid);
+    const member = await memberRef.get();
+    if (member.exists) { await memberRef.delete(); await db.collection('groups').doc(groupId).update({ memberCount: firebase.firestore.FieldValue.increment(-1) }); btn.innerHTML = 'যোগ দিন'; btn.classList.remove('on'); this.toast('গ্রুপ ছেড়েছেন', 's'); }
+    else { await memberRef.set({ uid: this.cu.uid, name: this.userData?.name, joinedAt: new Date() }); await db.collection('groups').doc(groupId).update({ memberCount: firebase.firestore.FieldValue.increment(1) }); btn.innerHTML = 'যুক্ত হয়েছেন ✓'; btn.classList.add('on'); this.toast('গ্রুপে যুক্ত হয়েছেন!', 's'); }
+    this.loadGroups();
   },
 
-  filterUsers(f, el) {
-    document.querySelectorAll('#vHome .ftab').forEach(t => t.classList.remove('active'));
-    if (el) el.classList.add('active');
-    const maps = { all: demoUsers, nearby: demoUsers.filter(u => u.ds < 10), online: demoUsers.filter(u => u.on), verified: demoUsers.filter(u => u.vf) };
-    this.renderUsers(maps[f] || demoUsers);
+  async openGroup(groupId) {
+    this.currentGroupId = groupId;
+    const groupDoc = await db.collection('groups').doc(groupId).get();
+    const group = groupDoc.data();
+    const isMember = (await db.collection('groups').doc(groupId).collection('members').doc(this.cu?.uid).get()).exists;
+    document.getElementById('groupsList').classList.add('hidden');
+    document.getElementById('groupDetailView').classList.remove('hidden');
+    document.getElementById('groupDetailView').innerHTML = `
+      <div><button class="btn btn-s" onclick="App.backToGroups()"><i class="fas fa-arrow-left"></i> গ্রুপে ফিরুন</button>
+      <div class="gcard mt3" style="margin-bottom:20px"><div class="gbanner"><div class="gavicon">${group.icon || '👥'}</div></div>
+      <div class="gbody"><div class="gname">${group.name}</div><div class="gdesc">${group.description}</div><div class="gstats"><div><div class="gsv">${group.memberCount || 1}</div><div class="gsl">সদস্য</div></div><div><div class="gsv">${group.postCount || 0}</div><div class="gsl">পোস্ট</div></div></div></div></div>
+      ${isMember ? `<div style="margin-bottom:20px"><textarea id="postContent" class="finput ftextarea" rows="2" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea><button class="btn btn-p" onclick="App.createPost('${groupId}')"><i class="fas fa-paper-plane"></i> পোস্ট করুন</button></div>` : '<div class="gbar" style="background:rgba(239,4,121,0.1);padding:12px;border-radius:12px;margin-bottom:20px"><i class="fas fa-lock"></i> পোস্ট দেখতে গ্রুপে যোগ দিন</div>'}
+      <div id="groupPosts"></div></div>`;
+    this.loadGroupPosts(groupId);
   },
 
-  connect(id, nm) { if (!this.need('ফলো')) return; this.toast(`${nm}-কে ফলো অনুরোধ পাঠানো হয়েছে!`, 's'); },
-  startChat(id, nm, av) { if (!this.need('চ্যাট')) return; this.go('chat'); setTimeout(() => this.openChat({ id, nm, av, lm: 'নতুন চ্যাট', tm: 'এখন', ur: 0 }), 300); },
-
-  loadSearch() { this.doSearch(''); },
-  doSearch(q) {
-    const r = parseInt(document.getElementById('radiusR')?.value || 100);
-    const f = demoUsers.filter(u => ( !q.trim() || u.nm.includes(q) || u.pf.toLowerCase().includes(q.toLowerCase()) || u.loc.includes(q) ) && u.ds <= r);
-    const c = document.getElementById('srchResults'); if (!c) return;
-    if (!f.length) { c.innerHTML = `<div class="empty"><div class="emico">🔍</div><h3>কোন ফলাফল নেই</h3><p>"${q || 'এই ফিল্টারে'}" কোনো মিল পাওয়া যায়নি</p></div>`; return; }
-    c.innerHTML = f.map(u => `
-      <div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.av}</div></div>
-      <div class="ucard-body"><div class="ucard-name">${u.nm}</div><div class="ucard-prof"><i class="fas fa-briefcase"></i>${u.pf}</div>
-      <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.loc}</div><div class="ucard-bio">${u.bio}</div>
-      <div class="ucard-acts"><button class="btn btn-p bsm" onclick="A.connect('${u.id}','${u.nm}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="A.startChat('${u.id}','${u.nm}','${u.av}')"><i class="fas fa-comment"></i> চ্যাট</button></div></div></div>`).join('');
+  async loadGroupPosts(groupId) {
+    const snapshot = await db.collection('groups').doc(groupId).collection('posts').orderBy('createdAt', 'desc').get();
+    const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('groupPosts');
+    if (!posts.length) { container.innerHTML = '<div class="empty"><div class="emico">📝</div><p>কোন পোস্ট নেই। প্রথম পোস্ট করুন!</p></div>'; return; }
+    container.innerHTML = posts.map(post => `
+      <div class="post-card"><div class="post-header"><div class="post-avatar">${post.userAvatar || '👤'}</div><div><div class="post-user">${post.userName}</div><div class="post-time">${new Date(post.createdAt?.toDate()).toLocaleString()}</div></div></div>
+      <div class="post-content">${post.text}</div>
+      <div class="post-actions"><button class="post-action ${post.likes && post.likes[this.cu?.uid] ? 'liked' : ''}" onclick="App.toggleLike('${groupId}','${post.id}')"><i class="fas fa-heart"></i> ${Object.keys(post.likes || {}).length} লাইক</button>
+      <button class="post-action" onclick="App.toggleComments('${post.id}')"><i class="fas fa-comment"></i> ${Object.keys(post.comments || {}).length} মন্তব্য</button></div>
+      <div id="comments-${post.id}" class="comments-section"><div id="commentsList-${post.id}"></div><div class="comment-input"><input type="text" id="commentInput-${post.id}" placeholder="মন্তব্য লিখুন..."><button class="btn btn-p bsm" onclick="App.addComment('${groupId}','${post.id}')">পোস্ট</button></div></div></div>`).join('');
+    posts.forEach(p => this.loadComments(groupId, p.id));
   },
 
-  loadJobs() { this.renderJobs(demoJobs); },
-  renderJobs(jobs) {
-    const c = document.getElementById('jobsList'); if (!c) return;
-    if (!jobs.length) { c.innerHTML = '<div class="empty"><div class="emico">💼</div><h3>কোন চাকরি নেই</h3><p>শীঘ্রই নতুন চাকরি যোগ হবে</p></div>'; return; }
-    c.innerHTML = jobs.map(j => `
-      <div class="jcard">${j.ft ? '<div class="jfeat">ফিচার্ড</div>' : ''}
-        <div class="jcard-hdr"><div><div class="jcard-title">${j.ti}</div><div class="jcard-co"><i class="fas fa-building"></i> ${j.co} &nbsp;|&nbsp; <i class="fas fa-clock"></i> ${j.po}</div></div><span class="badge" style="background:rgba(239,4,121,0.2);color:var(--secondary);padding:4px 12px;border-radius:50px;font-size:11px">${j.tl}</span></div>
-        <div class="jcard-tags"><span class="jtag jtag-p">${j.tl}</span>${j.sk.map(s => `<span class="jtag">${s}</span>`).join('')}</div>
-        <p class="jcard-desc">${j.ds}</p>
-        <div class="jcard-foot"><div><div class="jcard-sal">${j.sa}</div><div class="jcard-loc"><i class="fas fa-map-marker-alt"></i>${j.lc}&nbsp;<i class="fas fa-users"></i>${j.ap} আবেদনকারী</div></div><button class="btn btn-p bsm" onclick="A.showApply('${j.id}','${j.ti}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button></div>
-      </div>`).join('');
+  async loadComments(groupId, postId) {
+    const snapshot = await db.collection('groups').doc(groupId).collection('posts').doc(postId).collection('comments').orderBy('createdAt', 'asc').get();
+    const comments = snapshot.docs.map(doc => doc.data());
+    const container = document.getElementById(`commentsList-${postId}`);
+    if (!container) return;
+    if (!comments.length) { container.innerHTML = '<div style="color:var(--tl);font-size:11px">কোন মন্তব্য নেই</div>'; return; }
+    container.innerHTML = comments.map(c => `<div class="comment"><span class="comment-user">${c.userName}:</span> ${c.text}</div>`).join('');
   },
 
-  filterJobs(tp, el) {
-    document.querySelectorAll('#vJobs .ftab').forEach(t => t.classList.remove('active'));
-    if (el) el.classList.add('active');
-    this.renderJobs(tp === 'all' ? demoJobs : demoJobs.filter(j => j.tp === tp));
+  async createPost(groupId) {
+    const text = document.getElementById('postContent').value.trim();
+    if (!text) { this.toast('পোস্টের কন্টেন্ট লিখুন', 'e'); return; }
+    const postData = { userId: this.cu.uid, userName: this.userData?.name || this.cu.email, userAvatar: this.userData?.avatar || '👤', text, createdAt: new Date(), likes: {}, comments: {} };
+    await db.collection('groups').doc(groupId).collection('posts').add(postData);
+    await db.collection('groups').doc(groupId).update({ postCount: firebase.firestore.FieldValue.increment(1) });
+    document.getElementById('postContent').value = '';
+    this.loadGroupPosts(groupId);
+    this.toast('পোস্ট শেয়ার হয়েছে!', 's');
   },
 
-  showPostJob() { if (!this.need('চাকরি পোস্ট')) return; this.openM('mPostJob'); },
-  postJob() {
-    if (!this.cu) { this.need('চাকরি পোস্ট'); return; }
-    const ti = document.getElementById('jTitle').value, co = document.getElementById('jComp').value, tp = document.getElementById('jType').value, lc = document.getElementById('jLoc').value, ds = document.getElementById('jDesc').value;
-    if (!ti || !co || !tp || !lc || !ds) { this.toast('সব প্রয়োজনীয় তথ্য পূরণ করুন', 'e'); return; }
-    const tmap = { 'full-time': 'পূর্ণকালীন', 'part-time': 'খণ্ডকালীন', 'contract': 'চুক্তিভিত্তিক', 'internship': 'ইন্টার্নশিপ', 'remote': 'দূরবর্তী' };
-    demoJobs.unshift({ id: 'j' + Date.now(), ti, co, tp, tl: tmap[tp] || tp, lc, sa: document.getElementById('jSal').value || 'আলোচনা সাপেক্ষ', ds, sk: (document.getElementById('jSkills').value || '').split(',').map(s => s.trim()).filter(Boolean), ft: false, po: 'এইমাত্র', ap: 0 });
+  async toggleLike(groupId, postId) {
+    if (!this.needLogin('লাইক দিতে')) return;
+    const postRef = db.collection('groups').doc(groupId).collection('posts').doc(postId);
+    const post = (await postRef.get()).data();
+    const likes = post.likes || {};
+    if (likes[this.cu.uid]) { delete likes[this.cu.uid]; await postRef.update({ likes }); }
+    else { likes[this.cu.uid] = true; await postRef.update({ likes }); }
+    this.loadGroupPosts(groupId);
+  },
+
+  async addComment(groupId, postId) {
+    const text = document.getElementById(`commentInput-${postId}`).value.trim();
+    if (!text) return;
+    await db.collection('groups').doc(groupId).collection('posts').doc(postId).collection('comments').add({ userId: this.cu.uid, userName: this.userData?.name || this.cu.email, text, createdAt: new Date() });
+    document.getElementById(`commentInput-${postId}`).value = '';
+    this.loadComments(groupId, postId);
+    this.toast('মন্তব্য যোগ হয়েছে', 's');
+  },
+
+  toggleComments(postId) { const sec = document.getElementById(`comments-${postId}`); sec.style.display = sec.style.display === 'none' ? 'block' : 'none'; },
+  backToGroups() { document.getElementById('groupsList').classList.remove('hidden'); document.getElementById('groupDetailView').classList.add('hidden'); this.loadGroups(); },
+
+  async createGroup() {
+    const name = document.getElementById('grpName').value.trim();
+    if (!name) { this.toast('গ্রুপের নাম লিখুন', 'e'); return; }
+    await db.collection('groups').add({ name, category: document.getElementById('grpCat').value, icon: document.getElementById('grpIcon').value, description: document.getElementById('grpDesc').value, createdAt: new Date(), memberCount: 1, postCount: 0, createdBy: this.cu.uid });
+    await db.collection('groups').doc().collection('members').doc(this.cu.uid).set({ uid: this.cu.uid, name: this.userData?.name, joinedAt: new Date() });
+    this.closeM('mCreateGroup');
+    document.getElementById('grpName').value = ''; document.getElementById('grpDesc').value = '';
+    this.loadGroups();
+    this.toast('গ্রুপ তৈরি হয়েছে!', 's');
+  },
+
+  // ========== EVENTS ==========
+  async loadEvents() {
+    const snapshot = await db.collection('events').orderBy('date', 'asc').get();
+    const events = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('eventsList');
+    if (!events.length) { container.innerHTML = '<div class="empty"><div class="emico">📅</div><h3>কোন ইভেন্ট নেই</h3><button class="btn btn-p mt2" onclick="App.showCreateEventModal()">প্রথম ইভেন্ট তৈরি করুন</button></div>'; return; }
+    container.innerHTML = events.map(e => `
+      <div class="ecard"><div class="ebanner">🎉<div class="edbadge"><div class="edday">${new Date(e.date).getDate()}</div><div class="edmon">${new Date(e.date).toLocaleString('default', { month: 'short' })}</div></div></div>
+      <div class="ebody"><div class="etitle">${e.title}</div><div class="einfo"><div><i class="fas fa-calendar"></i> ${new Date(e.date).toLocaleDateString()}</div><div><i class="fas fa-map-marker-alt"></i> ${e.location}</div><div><i class="fas ${e.type === 'online' ? 'fa-wifi' : 'fa-building'}"></i> ${e.type === 'online' ? 'অনলাইন' : 'অফলাইন'}</div></div>
+      <div class="edesc">${e.description}</div><div class="eatts"><div><span class="ean">${e.registeredCount || 0}</span><span class="eal">নিবন্ধিত</span></div><div><span class="ean">${e.capacity || 100}</span><span class="eal">আসন</span></div></div>
+      <button class="btn ${e.attendees && e.attendees[this.cu?.uid] ? 'btn-s' : 'btn-p'} bblock" onclick="App.registerEvent('${e.id}', this)">${e.attendees && e.attendees[this.cu?.uid] ? 'নিবন্ধিত ✓' : 'নিবন্ধন করুন'}</button></div></div>`).join('');
+  },
+
+  async registerEvent(eventId, btn) {
+    if (!this.needLogin('ইভেন্টে নিবন্ধন করতে')) return;
+    const eventRef = db.collection('events').doc(eventId);
+    const event = (await eventRef.get()).data();
+    const attendees = event.attendees || {};
+    if (attendees[this.cu.uid]) { delete attendees[this.cu.uid]; await eventRef.update({ attendees, registeredCount: firebase.firestore.FieldValue.increment(-1) }); this.toast('নিবন্ধন বাতিল', 'i'); }
+    else { attendees[this.cu.uid] = true; await eventRef.update({ attendees, registeredCount: firebase.firestore.FieldValue.increment(1) }); this.toast('ইভেন্টে নিবন্ধিত!', 's'); }
+    this.loadEvents();
+  },
+
+  async createEvent() {
+    const title = document.getElementById('evTitle').value.trim();
+    if (!title) { this.toast('ইভেন্টের নাম লিখুন', 'e'); return; }
+    await db.collection('events').add({ title, date: document.getElementById('evDate').value, type: document.getElementById('evType').value, location: document.getElementById('evLoc').value, description: document.getElementById('evDesc').value, createdAt: new Date(), registeredCount: 0, attendees: {}, createdBy: this.cu.uid });
+    this.closeM('mCreateEvent');
+    document.getElementById('evTitle').value = ''; document.getElementById('evDesc').value = '';
+    this.loadEvents();
+    this.toast('ইভেন্ট তৈরি হয়েছে!', 's');
+  },
+
+  // ========== JOBS ==========
+  async loadJobs() {
+    const snapshot = await db.collection('jobs').orderBy('createdAt', 'desc').get();
+    const jobs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('jobsList');
+    if (!jobs.length) { container.innerHTML = '<div class="empty"><div class="emico">💼</div><h3>কোন চাকরি নেই</h3><button class="btn btn-p mt2" onclick="App.showPostJobModal()">প্রথম চাকরি পোস্ট করুন</button></div>'; return; }
+    container.innerHTML = jobs.map(j => `
+      <div class="jcard"><div class="jcard-title">${j.title}</div><div class="jcard-co"><i class="fas fa-building"></i> ${j.company}</div>
+      <div class="jcard-desc">${j.description}</div><div class="jcard-foot"><div><div class="jcard-sal">${j.salary || 'আলোচনা সাপেক্ষ'}</div><div><i class="fas fa-map-marker-alt"></i> ${j.location} | <i class="fas fa-briefcase"></i> ${j.type}</div></div>
+      <div><button class="btn btn-p bsm" onclick="App.applyJob('${j.id}','${j.title}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button>
+      ${j.postedBy === this.cu?.uid ? `<button class="btn btn-s bsm" onclick="App.viewApplicants('${j.id}')"><i class="fas fa-users"></i> আবেদনকারী (${j.applicantsCount || 0})</button>` : ''}</div></div></div>`).join('');
+  },
+
+  async applyJob(jobId, title) {
+    if (!this.needLogin('আবেদন করতে')) return;
+    const name = prompt('আপনার পুরো নাম লিখুন:');
+    if (!name) return;
+    const email = prompt('আপনার ইমেল লিখুন:');
+    if (!email) return;
+    await db.collection('jobs').doc(jobId).collection('applications').add({ jobTitle: title, name, email, phone: prompt('ফোন নম্বর:'), coverLetter: prompt('কভার লেটার (সংক্ষেপে):'), appliedAt: new Date(), userId: this.cu.uid });
+    await db.collection('jobs').doc(jobId).update({ applicantsCount: firebase.firestore.FieldValue.increment(1) });
+    this.toast('আবেদন জমা হয়েছে!', 's');
+  },
+
+  async viewApplicants(jobId) {
+    const snapshot = await db.collection('jobs').doc(jobId).collection('applications').get();
+    const apps = snapshot.docs.map(doc => doc.data());
+    const container = document.getElementById('applicantsList');
+    if (!apps.length) container.innerHTML = '<p>কোন আবেদনকারী নেই</p>';
+    else container.innerHTML = apps.map(a => `<div class="jcard" style="margin-bottom:8px"><strong>${a.name}</strong><br>📧 ${a.email}<br>📞 ${a.phone}<br>📝 ${a.coverLetter}</div>`).join('');
+    this.openM('mApplicants');
+  },
+
+  async postJob() {
+    const title = document.getElementById('jobTitle').value.trim();
+    if (!title) { this.toast('চাকরির শিরোনাম লিখুন', 'e'); return; }
+    await db.collection('jobs').add({ title, company: document.getElementById('jobCompany').value, type: document.getElementById('jobType').value, location: document.getElementById('jobLoc').value, salary: document.getElementById('jobSal').value, description: document.getElementById('jobDesc').value, createdAt: new Date(), postedBy: this.cu.uid, applicantsCount: 0 });
     this.closeM('mPostJob');
-    ['jTitle','jComp','jLoc','jSal','jDesc','jSkills'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-    document.getElementById('jType').selectedIndex = 0;
-    this.go('jobs');
-    this.toast('চাকরি সফলভাবে পোস্ট হয়েছে!', 's');
+    document.getElementById('jobTitle').value = ''; document.getElementById('jobDesc').value = '';
+    this.loadJobs();
+    this.toast('চাকরি পোস্ট হয়েছে!', 's');
   },
 
-  showApply(jid, ti) { if (!this.need('আবেদন')) return; this.cjid = jid; document.getElementById('applyJobName').textContent = ti + ' পদের জন্য আবেদন করুন'; if (this.cu) { document.getElementById('apName').value = this.cu.displayName || ''; document.getElementById('apEmail').value = this.cu.email || ''; } this.openM('mApply'); },
-  submitApply() {
-    const nm = document.getElementById('apName').value, em = document.getElementById('apEmail').value, ph = document.getElementById('apPhone').value, cv = document.getElementById('apCover').value;
-    if (!nm || !em || !ph || !cv) { this.toast('সব প্রয়োজনীয় তথ্য পূরণ করুন', 'e'); return; }
-    const job = demoJobs.find(x => x.id === this.cjid);
-    if (job) job.ap++;
-    this.closeM('mApply');
-    ['apName','apEmail','apPhone','apCover','apPortfolio','apExp'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-    this.toast('আবেদন সফলভাবে জমা হয়েছে!', 's');
-    if (this.cv === 'jobs') this.renderJobs(demoJobs);
+  // ========== PROFILE ==========
+  async loadProfile() {
+    if (!this.cu) { document.getElementById('profileArea').innerHTML = '<div class="empty"><div class="emico">🔒</div><h3>লগইন করুন</h3><button class="btn btn-p" onclick="App.showAuth()">লগইন</button></div>'; return; }
+    const doc = await db.collection('users').doc(this.cu.uid).get();
+    const u = doc.data() || { name: this.cu.displayName || 'নতুন ব্যবহারকারী', profession: 'পেশা লিখুন', avatar: '👤', bio: '', city: 'ঢাকা' };
+    const jobCount = (await db.collection('jobs').where('postedBy', '==', this.cu.uid).get()).size;
+    document.getElementById('profileArea').innerHTML = `
+      <div class="phdr"><div class="pav" onclick="App.showEditProfile()">${u.avatar || '👤'}</div><div class="pname">${u.name}</div><div class="pprof">${u.profession}</div><div class="pstats"><div><span class="psv">${jobCount}</span><span class="psl">চাকরি পোস্ট</span></div><div><span class="psv">0</span><span class="psl">ফলোয়ার</span></div></div></div>
+      <div class="psec" style="background:var(--dark-card2);border-radius:16px;padding:20px;margin-bottom:15px"><div class="psectitle" style="font-weight:700;margin-bottom:12px">📝 বায়ো</div><p>${u.bio || 'বায়ো নেই'}</p></div>
+      <div class="psec" style="background:var(--dark-card2);border-radius:16px;padding:20px"><div class="psectitle" style="font-weight:700;margin-bottom:12px">📍 অবস্থান</div><p><i class="fas fa-map-marker-alt"></i> ${u.city || 'ঢাকা'}</p></div>
+      <button class="btn btn-p bblock mt3" onclick="App.showEditProfile()"><i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা করুন</button>`;
   },
 
-  loadChat() {
-    const c = document.getElementById('chatArea');
-    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico"><i class="fas fa-lock"></i></div><h3>চ্যাট করতে লগইন করুন</h3><p>লগইন করে অন্যদের সাথে চ্যাট করুন</p><button class="btn btn-p mt3" onclick="A.showAuth()">লগইন করুন</button></div>'; return; }
-    c.innerHTML = `<div class="chatcont"><div class="chatside"><div class="chatsrch"><i class="fas fa-search"></i><input type="text" placeholder="চ্যাট খুঁজুন..." oninput="A.filterChats(this.value)"></div><div class="chatlist" id="chatList"><div class="tc mt3">লোডিং...</div></div></div><div id="chatWin" class="chatwin" style="display:none"><div class="chathdr"><div class="chatuser"><div class="chatusav" id="cwAv">A</div><div><div id="cwName" style="font-weight:600;font-size:14px"></div><div class="chatstat"><i class="fas fa-circle" style="font-size:7px"></i><span>অনলাইন</span></div></div></div><button class="bicon" onclick="A.closeChat()"><i class="fas fa-times"></i></button></div><div class="chatmsgs" id="chatMsgs"></div><div class="chatinp"><input type="text" id="chatIn" placeholder="বার্তা লিখুন..." onkeypress="if(event.key==='Enter')A.sendMsg()"><button class="btn btn-p" onclick="A.sendMsg()"><i class="fas fa-paper-plane"></i></button></div></div><div id="chatEmpty" class="chatwin" style="display:flex;align-items:center;justify-content:center"><div class="empty"><div class="emico"><i class="fas fa-comments"></i></div><h3>একটি চ্যাট নির্বাচন করুন</h3><p>বাম দিক থেকে কাউকে বেছে নিন</p></div></div></div>`;
-    this.loadChatList();
+  async updateProfile() {
+    const avatar = document.getElementById('epAvatar').value.trim() || '👤';
+    const name = document.getElementById('epName').value.trim();
+    if (!name) { this.toast('নাম লিখুন', 'e'); return; }
+    await db.collection('users').doc(this.cu.uid).update({ name, profession: document.getElementById('epProf').value, avatar, bio: document.getElementById('epBio').value, city: document.getElementById('epCity').value });
+    this.closeM('mEditProfile');
+    this.loadProfile();
+    this.toast('প্রোফাইল আপডেট হয়েছে!', 's');
   },
 
-  loadChatList() {
-    const chats = [
-      { id: 'c1', nm: 'আহমেদ হাসান', lm: 'কেমন আছেন? কাল দেখা হবে?', tm: '১০:৩০ AM', ur: 2, av: 'আ' },
-      { id: 'c2', nm: 'ফারহানা আক্তার', lm: 'ধন্যবাদ আপনার সাহায্যের জন্য!', tm: 'গতকাল', ur: 0, av: 'ফ' },
-      { id: 'c3', nm: 'রাকিবুল ইসলাম', lm: 'ডকুমেন্টগুলো পাঠিয়েছি', tm: '২ দিন আগে', ur: 1, av: 'র' }
-    ];
-    const c = document.getElementById('chatList'); if (!c) return;
-    c.innerHTML = chats.map(ch => `<div class="chatitem" onclick='A.openChat(${JSON.stringify(ch)})'><div class="chatav">${ch.av}</div><div class="chatinfo"><h4>${ch.nm}</h4><p class="chatmsg">${ch.lm}</p></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px"><span class="chattime">${ch.tm}</span>${ch.ur > 0 ? `<span class="chatunread">${ch.ur}</span>` : ''}</div></div>`).join('');
+  async loadRecommendations() {
+    const snapshot = await db.collection('users').limit(5).get();
+    const recs = snapshot.docs.map(doc => doc.data());
+    document.getElementById('recList').innerHTML = recs.map(r => `<div class="recitem"><div class="recav">${r.avatar || '👤'}</div><div class="recinfo"><h4>${r.name}</h4><p>${r.profession}</p></div></div>`).join('');
+    const jobs = (await db.collection('jobs').limit(3).get()).docs.map(d => d.data());
+    document.getElementById('trendJobs').innerHTML = jobs.map(j => `<div class="tjob" onclick="App.go('jobs')"><div class="tjtitle">${j.title}</div><div class="tjcomp">${j.company}</div><div class="tjsal">${j.salary || 'আলোচনা সাপেক্ষ'}</div></div>`).join('');
   },
 
-  filterChats(q) {
-    const chats = [
-      { id: 'c1', nm: 'আহমেদ হাসান', lm: 'কেমন আছেন? কাল দেখা হবে?', tm: '১০:৩০ AM', ur: 2, av: 'আ' },
-      { id: 'c2', nm: 'ফারহানা আক্তার', lm: 'ধন্যবাদ আপনার সাহায্যের জন্য!', tm: 'গতকাল', ur: 0, av: 'ফ' }
-    ];
-    const c = document.getElementById('chatList'); if (!c) return;
-    c.innerHTML = chats.filter(ch => ch.nm.includes(q) || ch.lm.includes(q)).map(ch => `<div class="chatitem" onclick='A.openChat(${JSON.stringify(ch)})'><div class="chatav">${ch.av}</div><div class="chatinfo"><h4>${ch.nm}</h4><p class="chatmsg">${ch.lm}</p></div><div><span class="chattime">${ch.tm}</span>${ch.ur > 0 ? `<span class="chatunread">${ch.ur}</span>` : ''}</div></div>`).join('');
-  },
-
-  openChat(ch) {
-    const cw = document.getElementById('chatWin'), ce = document.getElementById('chatEmpty');
-    if (cw) cw.style.display = 'flex'; if (ce) ce.style.display = 'none';
-    document.getElementById('cwAv').textContent = ch.av;
-    document.getElementById('cwName').textContent = ch.nm;
-    const msgs = [{ t: 'হ্যালো! কেমন আছেন?', s: 'recv', tm: '১০:১৫ AM' }, { t: 'আলহামদুলিল্লাহ, ভালো। আপনি?', s: 'sent', tm: '১০:১৬ AM' }, { t: ch.lm, s: 'recv', tm: ch.tm }];
-    const c = document.getElementById('chatMsgs');
-    c.innerHTML = msgs.map(m => `<div class="msg ${m.s}"><div class="msgav">${m.s === 'sent' ? 'আ' : ch.av}</div><div><div class="msgbub">${m.t}</div><div class="msgt">${m.tm}</div></div></div>`).join('');
-    c.scrollTop = c.scrollHeight;
-  },
-
-  closeChat() { const cw = document.getElementById('chatWin'), ce = document.getElementById('chatEmpty'); if (cw) cw.style.display = 'none'; if (ce) ce.style.display = 'flex'; },
-  sendMsg() {
-    const inp = document.getElementById('chatIn'), msg = inp?.value.trim();
-    if (!msg) return;
-    const c = document.getElementById('chatMsgs'), t = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-    c.innerHTML += `<div class="msg sent"><div class="msgav">আ</div><div><div class="msgbub">${msg}</div><div class="msgt">${t}</div></div></div>`;
-    inp.value = ''; c.scrollTop = c.scrollHeight;
-    setTimeout(() => { c.innerHTML += `<div class="msg recv"><div class="msgav">অ</div><div><div class="msgbub">ধন্যবাদ বার্তার জন্য! শীঘ্রই উত্তর দেবো।</div><div class="msgt">${new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' })}</div></div></div>`; c.scrollTop = c.scrollHeight; }, 1000);
-  },
-
-  renderEvents(f) {
-    const c = document.getElementById('eventsList'); if (!c) return;
-    const ev = f === 'all' ? demoEvents : demoEvents.filter(e => e.tp === f || e.ct === f);
-    if (!ev.length) { c.innerHTML = '<div class="empty"><div class="emico">📅</div><h3>কোন ইভেন্ট নেই</h3></div>'; return; }
-    c.innerHTML = ev.map(e => { const d = new Date(e.dt); return `<div class="ecard"><div class="ebanner">${e.ic}<div class="edbadge"><div class="edday">${d.getDate()}</div><div class="edmon">${d.toLocaleString('bn-BD', { month: 'short' })}</div></div></div><div class="ebody"><div class="etitle">${e.ti}</div><div class="einfo"><div class="eii"><i class="far fa-calendar-alt"></i><span>${d.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' })} | ${e.tm}</span></div><div class="eii"><i class="fas fa-map-marker-alt"></i><span>${e.lc}</span></div></div><div class="edesc">${e.ds}</div><div class="eatts"><div class="tc"><span class="ean">${e.at}</span><span class="eal">নিবন্ধিত</span></div><div class="tc"><span class="ean">${e.mx - e.at}</span><span class="eal">খালি আসন</span></div></div><button class="btn ${e.reg ? 'btn-s' : 'btn-p'} bblock" onclick="A.toggleEvent('${e.id}',this)"><i class="fas ${e.reg ? 'fa-check' : 'fa-ticket-alt'}"></i> ${e.reg ? 'নিবন্ধিত ✓' : 'নিবন্ধন করুন'}</button></div></div>`; }).join('');
-  },
-
-  filterEvents(f, el) {
-    document.querySelectorAll('#evTabs .ftab').forEach(t => t.classList.remove('active'));
-    if (el) el.classList.add('active');
-    this.renderEvents(f);
-  },
-
-  toggleEvent(id, btn) {
-    if (!this.need('ইভেন্টে নিবন্ধন')) return;
-    const e = demoEvents.find(x => x.id === id); if (!e) return;
-    e.reg = !e.reg;
-    e.reg ? (e.at++, this.toast(`"${e.ti}" ইভেন্টে নিবন্ধন সফল!`, 's')) : (e.at--, this.toast('নিবন্ধন বাতিল করা হয়েছে', 'i'));
-    this.renderEvents('all');
-  },
-
-  loadRS() {
-    const recC = document.getElementById('recList'); if (recC) recC.innerHTML = demoRec.map(r => `<div class="recitem"><div class="recav">${r.av}</div><div class="recinfo"><h4>${r.nm}</h4><p>${r.pf}</p><p style="font-size:10px;color:var(--secondary)">${r.mt} mutual</p></div><button class="bicon" style="width:32px;height:32px" onclick="A.connect('${r.id}','${r.nm}')"><i class="fas fa-user-plus" style="font-size:12px"></i></button></div>`).join('');
-    const tjC = document.getElementById('trendJobs'); if (tjC) tjC.innerHTML = demoJobs.slice(0, 3).map(j => `<div class="tjob" onclick="A.go('jobs')"><div class="tjtitle">${j.ti}</div><div class="tjcomp">${j.co}</div><div class="tjsal">${j.sa}</div></div>`).join('');
-    const ueC = document.getElementById('upEvents'); if (ueC) ueC.innerHTML = demoEvents.slice(0, 3).map(e => `<div class="evitem" onclick="A.go('events')"><div class="eidate">${new Date(e.dt).toLocaleDateString('bn-BD', { month: 'long', day: 'numeric' })}</div><div class="eititle">${e.ti}</div><div class="eiloc"><i class="fas fa-map-marker-alt"></i>${e.lc}</div></div>`).join('');
-  },
-
-  viewAllRec() { document.getElementById('vaTitle').textContent = 'সুপারিশকৃত ব্যক্তি'; document.getElementById('vaBody').innerHTML = `<div class="grid-users">${demoUsers.map(u => `<div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.av}</div></div><div class="ucard-body"><div class="ucard-name">${u.nm}</div><div class="ucard-prof">${u.pf}</div><div class="ucard-loc">${u.loc}</div><div class="ucard-bio">${u.bio}</div></div></div>`).join('')}</div>`; this.openM('mViewAll'); },
-  viewAllJobs() { document.getElementById('vaTitle').textContent = 'সকল চাকরি'; document.getElementById('vaBody').innerHTML = `<div class="grid-jobs">${demoJobs.map(j => `<div style="padding:15px;background:var(--dark-card2);border-radius:16px"><div style="font-weight:700;color:var(--secondary);margin-bottom:5px">${j.ti}</div><div style="font-size:12px;color:var(--tl)">${j.co} • ${j.lc} • ${j.sa}</div><button class="btn btn-p bsm mt2" onclick="A.showApply('${j.id}','${j.ti}');A.closeM('mViewAll')">আবেদন</button></div>`).join('')}</div>`; this.openM('mViewAll'); },
-  viewAllEvents() { document.getElementById('vaTitle').textContent = 'সকল ইভেন্ট'; document.getElementById('vaBody').innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px">${demoEvents.map(e => `<div style="padding:15px;background:var(--dark-card2);border-radius:16px"><div style="font-size:36px;margin-bottom:10px">${e.ic}</div><div style="font-weight:700;margin-bottom:5px">${e.ti}</div><div style="font-size:11px;color:var(--tl)">${new Date(e.dt).toLocaleDateString('bn-BD', { month: 'long', day: 'numeric' })} • ${e.lc}</div><button class="btn btn-p bsm mt2" onclick="A.toggleEvent('${e.id}',this);A.closeM('mViewAll')">নিবন্ধন</button></div>`).join('')}</div>`; this.openM('mViewAll'); },
-
-  loadProfile() {
-    const c = document.getElementById('profileArea');
-    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico"><i class="fas fa-user-circle"></i></div><h3>লগইন করুন</h3><p>প্রোফাইল দেখতে লগইন করুন</p><button class="btn btn-p mt3" onclick="A.showAuth()">লগইন করুন</button></div>'; return; }
-    const u = demoUsers[0], nm = this.cu.displayName || this.cu.email.split('@')[0], fw = this.cu.uid === 'demo123' ? 1245 : Math.floor(Math.random() * 500 + 100);
-    c.innerHTML = `<div class="phdr"><div class="pav">${nm.charAt(0).toUpperCase()}</div><div class="pname">${nm}</div><div class="pprof">${u.pf}</div><div class="pstats"><div><span class="psv">${fw}</span><span class="psl">ফলোয়ার</span></div><div><span class="psv">${Math.floor(fw / 3)}</span><span class="psl">সংযোগ</span></div><div><span class="psv">৪.৮</span><span class="psl">রেটিং</span></div></div></div><div class="pcontent"><div><div class="psec"><div class="psectitle">আমার সম্পর্কে</div><p style="line-height:1.8;color:var(--tm);font-size:13px">${u.bio}</p></div><div class="psec"><div class="psectitle">যোগাযোগ তথ্য</div><div class="pinfoi"><i class="fas fa-envelope"></i>${this.cu.email}</div><div class="pinfoi"><i class="fas fa-map-marker-alt"></i>${u.loc}, বাংলাদেশ</div><div class="pinfoi"><i class="fas fa-calendar-alt"></i>যোগদান: ${new Date().toLocaleDateString('bn-BD')}</div></div></div></div><div><div class="psec"><div class="psectitle">দ্রুত কাজ</div><div style="display:flex;flex-direction:column;gap:10px"><button class="btn btn-p bblock" onclick="A.showEditProfile()"><i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা</button><button class="btn btn-s bblock" onclick="A.go('settings')"><i class="fas fa-cog"></i> সেটিংস</button><button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button></div></div></div></div></div>`;
-  },
-
-  showEditProfile() { if (!this.need('প্রোফাইল সম্পাদনা')) return; this.openM('mEditProfile'); },
-  updateProfile() { this.toast('প্রোফাইল আপডেট হয়েছে!', 's'); this.closeM('mEditProfile'); this.loadProfile(); },
-
-  loadPrivacy() {
-    const sections = [['১. ভূমিকা', '<p>হ্যালো বাংলাদেশী আপনার গোপনীয়তাকে গুরুত্ব দেয়। এই নীতিতে ব্যাখ্যা করা হয়েছে কীভাবে আমরা আপনার তথ্য সংগ্রহ, ব্যবহার ও সুরক্ষিত রাখি।</p>'], ['২. আমরা কী তথ্য সংগ্রহ করি', '<ul><li><strong>ব্যক্তিগত তথ্য:</strong> নাম, ইমেল, ফোন নম্বর, প্রোফাইল ছবি</li><li><strong>পেশাগত তথ্য:</strong> পেশা, অভিজ্ঞতা, দক্ষতা</li><li><strong>অবস্থানের তথ্য:</strong> শহর, এলাকা (আপনার অনুমতি সাপেক্ষে)</li></ul>'], ['৩. তথ্যের ব্যবহার', '<ul><li>অ্যাকাউন্ট তৈরি ও পরিচালনা</li><li>ব্যবহারকারীদের মধ্যে সংযোগ স্থাপন</li><li>চাকরি ও নেটওয়ার্কিং সুযোগ প্রদান</li></ul>'], ['৪. তথ্য সুরক্ষা', '<ul><li>SSL/TLS এনক্রিপশন ব্যবহার</li><li>Firebase Security Rules দ্বারা সুরক্ষিত</li><li>নিয়মিত সুরক্ষা অডিট</li></ul>'], ['৫. যোগাযোগ', '<p><i class="fas fa-envelope"></i> privacy@hellobangladeshi.com<br><i class="fas fa-phone"></i> +880 1924449132</p>']];
-    document.getElementById('privacyBody').innerHTML = sections.map(([t, b]) => `<div class="polsec" style="margin-bottom:25px"><div class="poltitle" style="font-size:17px;font-weight:600;color:var(--secondary);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bd)">${t}</div><div class="poltext" style="color:var(--tm);line-height:1.8;font-size:13px">${b}</div></div>`).join('');
-  },
-
-  loadTerms() {
-    const sections = [['১. শর্তাবলীর গ্রহণযোগ্যতা', '<p>হ্যালো বাংলাদেশী ব্যবহার করে আপনি এই শর্তাবলী মেনে চলতে সম্মত হন।</p>'], ['২. অ্যাকাউন্ট নিবন্ধন', '<ul><li>সঠিক ও সম্পূর্ণ তথ্য প্রদান করতে হবে</li><li>অ্যাকাউন্টের তথ্য গোপন রাখতে হবে</li><li>বয়স কমপক্ষে ১৩ বছর হতে হবে</li></ul>'], ['৩. ব্যবহারকারীর আচরণবিধি', '<ul><li>অন্য ব্যবহারকারীদের সাথে সম্মানজনক আচরণ</li><li>হয়রানি, উত্যক্তকরণ নিষিদ্ধ</li><li>স্প্যাম বা অবাঞ্ছিত বার্তা পাঠানো নিষিদ্ধ</li></ul>'], ['৪. যোগাযোগ', '<p><i class="fas fa-envelope"></i> support@hellobangladeshi.com<br><i class="fas fa-phone"></i> +880 1924449132</p>']];
-    document.getElementById('termsBody').innerHTML = sections.map(([t, b]) => `<div class="polsec" style="margin-bottom:25px"><div class="poltitle" style="font-size:17px;font-weight:600;color:var(--secondary);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bd)">${t}</div><div class="poltext" style="color:var(--tm);line-height:1.8;font-size:13px">${b}</div></div>`).join('');
-  },
-
-  loadAbout() {
-    document.getElementById('aboutBody').innerHTML = `<div class="phdr" style="background:linear-gradient(135deg,var(--primary),var(--secondary))"><div class="pav" style="width:100px;height:100px;margin:0 auto 16px">FW</div><div class="pname" style="text-align:center">ফারাবি ওয়ালিদ</div><div class="pprof" style="text-align:center">ফুল স্ট্যাক ডেভেলপার | Android ডেভেলপার</div></div><div class="psec"><div class="psectitle">আমার সম্পর্কে</div><p style="color:var(--tm);font-size:13px;line-height:1.8">আমি ফারাবি ওয়ালিদ, একজন পেশাদার ফুল স্ট্যাক ও অ্যান্ড্রয়েড ডেভেলপার। "হ্যালো বাংলাদেশী" আমার বিশেষ প্রজেক্ট যা বাংলাদেশী কমিউনিটিকে ডিজিটালভাবে সংযুক্ত করার লক্ষ্যে তৈরি।</p><div class="skillwrap" style="display:flex;flex-wrap:wrap;gap:8px;margin:15px 0">${['JavaScript','React.js','Node.js','Firebase','Android','Flutter'].map(s => `<span style="background:rgba(239,4,121,0.1);color:var(--secondary);padding:5px 15px;border-radius:50px;font-size:12px">${s}</span>`).join('')}</div></div><div class="psec"><div class="psectitle">যোগাযোগ করুন</div><div class="socrow" style="display:flex;justify-content:center;gap:15px;margin-top:15px"><a href="#" class="soclink" style="width:42px;height:42px;background:rgba(255,255,255,0.05);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:18px"><i class="fab fa-facebook-f"></i></a><a href="#" class="soclink"><i class="fab fa-linkedin-in"></i></a><a href="#" class="soclink"><i class="fab fa-github"></i></a><a href="mailto:info.hellobangladeshi@gmail.com" class="soclink"><i class="fas fa-envelope"></i></a></div><div class="tc mt3"><p style="color:var(--tl);font-size:13px"><i class="fas fa-envelope"></i> info.hellobangladeshi@gmail.com<br><i class="fas fa-phone"></i> +880 1751861453<br><i class="fas fa-map-marker-alt"></i> মৌলভীবাজার, সিলেট</p></div></div>`;
-  },
-
+  // ========== AUTH ==========
   showAuth() { this.openM('mAuth'); },
-  login() {
-    const em = document.getElementById('lEmail').value, ps = document.getElementById('lPass').value;
-    if (!em || !ps) { this.showAuthErr('ইমেল ও পাসওয়ার্ড দিন'); return; }
-    if (em === 'demo@test.com' && ps === 'password') {
-      const demo = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
-      this.cu = demo; this.isG = false; this.updateUILogin(demo);
-      this.toast('ডেমো অ্যাকাউন্টে লগইন সফল!', 's'); this.loadRS(); this.closeM('mAuth'); return;
-    }
-    this.toast('লগইন হচ্ছে...', 'i');
-    auth.signInWithEmailAndPassword(em, ps).then(() => this.toast('লগইন সফল!', 's')).catch(e => this.showAuthErr(this.authMsg(e)));
-  },
+  showLoginForm() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.querySelectorAll('.atab').forEach(t => t.classList.remove('on')); document.querySelector('.atab:first-child').classList.add('on'); },
+  showSignupForm() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.querySelectorAll('.atab').forEach(t => t.classList.remove('on')); document.querySelector('.atab:last-child').classList.add('on'); },
+  async login() { const em = document.getElementById('lEmail').value, ps = document.getElementById('lPass').value; if (!em || !ps) { this.toast('ইমেল ও পাসওয়ার্ড দিন', 'e'); return; } if (em === 'demo@test.com' && ps === 'password') { this.cu = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ইউজার' }; this.updateUILogin(); this.closeM('mAuth'); return; } try { await auth.signInWithEmailAndPassword(em, ps); } catch(e) { this.toast(e.message, 'e'); } },
+  async signup() { const name = document.getElementById('sName').value, email = document.getElementById('sEmail').value, pass = document.getElementById('sPass').value; if (!name || !email || !pass) { this.toast('সব তথ্য পূরণ করুন', 'e'); return; } try { const r = await auth.createUserWithEmailAndPassword(email, pass); await r.user.updateProfile({ displayName: name }); await db.collection('users').doc(r.user.uid).set({ name, profession: document.getElementById('sProf').value, city: document.getElementById('sCity').value, avatar: '👤', bio: '', createdAt: new Date() }); this.closeM('mAuth'); } catch(e) { this.toast(e.message, 'e'); } },
+  async logout() { if (this.cu?.uid === 'demo123') { this.cu = null; this.updateUIGuest(); this.go('home'); return; } await auth.signOut(); this.go('home'); },
+  updateUILogin() { document.getElementById('uAvatar').textContent = (this.cu.displayName || this.cu.email)[0].toUpperCase(); document.getElementById('uName').textContent = (this.cu.displayName || this.cu.email).split('@')[0]; },
+  updateUIGuest() { document.getElementById('uAvatar').textContent = 'U'; document.getElementById('uName').textContent = 'অতিথি'; },
 
-  signup() {
-    const nm = document.getElementById('sName').value, pf = document.getElementById('sProf').value, em = document.getElementById('sEmail').value, ps = document.getElementById('sPass').value, ct = document.getElementById('sCity').value, ag = document.getElementById('sTerms').checked;
-    if (!nm || !pf || !em || !ps || !ct) { this.showAuthErr('সব তথ্য পূরণ করুন'); return; }
-    if (!ag) { this.showAuthErr('শর্তাবলী মেনে চলুন'); return; }
-    if (ps.length < 6) { this.showAuthErr('পাসওয়ার্ড ৬+ অক্ষর হতে হবে'); return; }
-    this.toast('অ্যাকাউন্ট তৈরি হচ্ছে...', 'i');
-    auth.createUserWithEmailAndPassword(em, ps).then(r => r.user.updateProfile({ displayName: nm }).then(() => db.collection('users').doc(r.user.uid).set({ name: nm, email: em, profession: pf, city: ct, createdAt: firebase.firestore.FieldValue.serverTimestamp() }))).then(() => this.toast('অ্যাকাউন্ট তৈরি সফল!', 's')).catch(e => this.showAuthErr(this.authMsg(e)));
-  },
+  showCreateGroupModal() { if (!this.needLogin('গ্রুপ তৈরি করতে')) return; this.openM('mCreateGroup'); },
+  showCreateEventModal() { if (!this.needLogin('ইভেন্ট তৈরি করতে')) return; this.openM('mCreateEvent'); },
+  showPostJobModal() { if (!this.needLogin('চাকরি পোস্ট করতে')) return; this.openM('mPostJob'); },
+  showEditProfile() { if (!this.needLogin('প্রোফাইল সম্পাদনা করতে')) return; this.openM('mEditProfile'); },
 
-  loginGoogle() { this.toast('গুগল লগইন শীঘ্রই আসছে!', 'i'); },
-  loginFB() { this.toast('ফেসবুক লগইন শীঘ্রই আসছে!', 'i'); },
-
-  logout() {
-    if (this.cu?.uid === 'demo123') { this.cu = null; this.isG = true; this.updateUIGuest(); this.toast('লগ আউট হয়েছে', 'i'); this.go('home'); return; }
-    auth.signOut().then(() => { this.cu = null; this.isG = true; this.updateUIGuest(); this.toast('সফলভাবে লগ আউট হয়েছে', 's'); this.go('home'); }).catch(e => this.toast('লগ আউট সমস্যা: ' + e.message, 'e'));
-  },
-
-  authMsg(e) { const m = { 'auth/user-not-found': 'এই ইমেলে অ্যাকাউন্ট নেই', 'auth/wrong-password': 'ভুল পাসওয়ার্ড', 'auth/email-already-in-use': 'ইমেল ইতিমধ্যে ব্যবহৃত', 'auth/weak-password': 'পাসওয়ার্ড দুর্বল' }; return m[e.code] || 'সমস্যা হয়েছে: ' + e.message; },
-  showAuthErr(msg) { const e = document.getElementById('authErr'); if (e) { e.textContent = msg; e.style.display = 'block'; setTimeout(() => e.style.display = 'none', 5000); } this.toast(msg, 'e'); },
-  showLoginForm() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.getElementById('loginTab').classList.add('on'); document.getElementById('signupTab').classList.remove('on'); },
-  showSignupForm() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.getElementById('loginTab').classList.remove('on'); document.getElementById('signupTab').classList.add('on'); },
-
-  changePass() { if (!this.need('পাসওয়ার্ড পরিবর্তন')) return; this.toast('পাসওয়ার্ড রিসেট ইমেল পাঠানো হয়েছে', 's'); },
-  deactivate() { if (!this.need('অ্যাকাউন্ট নিষ্ক্রিয়')) return; if (confirm('আপনি কি নিশ্চিত?')) this.toast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে', 'i'); },
-  deleteAcc() { if (!this.need('অ্যাকাউন্ট মুছুন')) return; if (confirm('এই কাজটি অপরিবর্তনীয়! নিশ্চিত?')) { this.toast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 's'); setTimeout(() => this.logout(), 2000); } },
-  showNotif() { if (!this.need('বিজ্ঞপ্তি')) return; this.toast('কোন নতুন বিজ্ঞপ্তি নেই', 'i'); },
-
-  openM(id) { const m = document.getElementById(id); if (m) m.classList.add('on'); },
-  closeM(id) { const m = document.getElementById(id); if (m) m.classList.remove('on'); },
+  openM(id) { document.getElementById(id).classList.add('on'); },
+  closeM(id) { document.getElementById(id).classList.remove('on'); },
   toggleUD() { document.getElementById('udrop').classList.toggle('on'); },
-  closeUD() { document.getElementById('udrop')?.classList.remove('on'); },
+  closeUD() { document.getElementById('udrop').classList.remove('on'); },
   toggleMM() { document.getElementById('mmenu').classList.toggle('on'); },
+  showNotif() { this.toast('কোন নতুন বিজ্ঞপ্তি নেই', 'i'); },
 
   toast(msg, tp = 'i') {
-    const tc = document.getElementById('toasts'), id = 't' + Date.now();
-    const ic = { s: 'fas fa-check-circle', e: 'fas fa-exclamation-circle', w: 'fas fa-exclamation-triangle', i: 'fas fa-info-circle' };
-    const tt = { s: 'সফল', e: 'ত্রুটি', w: 'সতর্কতা', i: 'তথ্য' };
-    const el = document.createElement('div'); el.id = id; el.className = `toast ${tp}`;
-    el.innerHTML = `<div class="tico"><i class="${ic[tp] || ic.i}"></i></div><div class="tcont"><div class="ttitle">${tt[tp] || 'তথ্য'}</div><div class="tmsg">${msg}</div></div><button class="tclose" onclick="document.getElementById('${id}').remove()">×</button>`;
-    tc.appendChild(el);
-    setTimeout(() => { const e = document.getElementById(id); if (e) { e.style.opacity = '0'; e.style.transition = 'opacity .3s'; setTimeout(() => e.remove(), 300); } }, 4000);
+    const id = 't' + Date.now();
+    const icon = { s: '✅', e: '❌', w: '⚠️', i: 'ℹ️' };
+    const el = document.createElement('div'); el.className = `toast ${tp}`; el.innerHTML = `<div class="tico">${icon[tp] || 'ℹ️'}</div><div>${msg}</div><button class="tclose" onclick="this.parentElement.remove()">✕</button>`;
+    document.getElementById('toasts').appendChild(el);
+    setTimeout(() => el.remove(), 4000);
   }
 };
 
-// =================== GROUP MANAGER ===================
-const GroupManager = {
-  currentGroupId: null, currentGroupData: null, groupPostsListener: null,
-
-  loadGroups() {
-    const container = document.getElementById('groupsList');
-    if (!container) return;
-    container.innerHTML = '<div class="tc mt3"><i class="fas fa-spinner fa-spin"></i> গ্রুপ লোড হচ্ছে...</div>';
-    setTimeout(() => {
-      const groups = demoGroups.map(g => ({ ...g, joined: A.cu ? g.jn : false }));
-      this.renderGroups(groups);
-    }, 500);
-  },
-
-  renderGroups(groups) {
-    const container = document.getElementById('groupsList');
-    if (!container) return;
-    if (!groups.length) { container.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="emico">👥</div><h3>কোন গ্রুপ নেই</h3><button class="btn btn-p mt3" onclick="GroupManager.showCreateGroupModal()">প্রথম গ্রুপ তৈরি করুন</button></div>`; return; }
-    container.innerHTML = groups.map(group => `<div class="gcard" onclick="GroupManager.openGroupDetail('${group.id}')"><div class="gbanner"><div class="gavicon">${group.ic || '👥'}</div></div><div class="gbody"><div class="gname">${group.nm}</div><span class="gcat">${group.ct}</span><div class="gdesc">${group.ds}</div><div class="gstats"><div><div class="gsv">${group.mb}</div><div class="gsl">সদস্য</div></div><div><div class="gsv">${group.po}</div><div class="gsl">পোস্ট</div></div></div><button class="bjoin ${group.joined ? 'on' : ''}" onclick="event.stopPropagation(); GroupManager.toggleGroupMembership('${group.id}', this, ${group.joined})"><i class="fas ${group.joined ? 'fa-check' : 'fa-user-plus'}"></i> ${group.joined ? 'যুক্ত হয়েছেন ✓' : 'যোগ দিন'}</button></div></div>`).join('');
-  },
-
-  async toggleGroupMembership(groupId, btn, isJoined) {
-    if (!A.cu) { A.toast('গ্রুপে যোগ দিতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const group = demoGroups.find(g => g.id === groupId);
-    if (group) {
-      if (isJoined) { group.mb--; group.jn = false; if (btn) { btn.innerHTML = '<i class="fas fa-user-plus"></i> যোগ দিন'; btn.classList.remove('on'); } A.toast('গ্রুপ থেকে বেরিয়ে গেছেন', 'success'); }
-      else { group.mb++; group.jn = true; if (btn) { btn.innerHTML = '<i class="fas fa-check"></i> যুক্ত হয়েছেন ✓'; btn.classList.add('on'); } A.toast('গ্রুপে যুক্ত হয়েছেন!', 'success'); }
-      this.renderGroups(demoGroups);
-    }
-  },
-
-  openGroupDetail(groupId) {
-    if (!A.cu) { A.toast('গ্রুপ দেখতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const group = demoGroups.find(g => g.id === groupId);
-    if (!group) return;
-    const isMember = group.jn;
-    const modalHTML = `<div id="groupDetailModal" class="modal" style="display:flex;z-index:2000"><div class="mbox mbox-lg" style="max-width:700px;max-height:85vh;overflow-y:auto;padding:0"><button class="mclose" onclick="GroupManager.closeGroupDetailModal()" style="top:20px;right:20px;background:rgba(0,0,0,0.5);color:white;z-index:10"><i class="fas fa-times"></i></button><div style="background:linear-gradient(135deg,var(--primary),var(--secondary));padding:30px 25px;color:white;border-radius:24px 24px 0 0"><div style="display:flex;align-items:center;gap:15px"><div style="width:60px;height:60px;background:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px">${group.ic || '👥'}</div><div><h2 style="font-size:22px;margin-bottom:5px">${group.nm}</h2><p style="font-size:12px;opacity:0.9"><i class="fas fa-tag"></i> ${group.ct} | <i class="fas fa-users"></i> ${group.mb} সদস্য</p></div></div></div><div style="padding:20px"><div id="groupPostFormSection" style="background:rgba(255,255,255,0.03);padding:15px;border-radius:16px;margin-bottom:20px;${!isMember ? 'display:none' : ''}"><textarea id="groupPostContent" rows="2" style="width:100%;border:1px solid var(--bd);border-radius:12px;padding:12px;background:rgba(255,255,255,0.03);color:var(--td);font-size:13px;margin-bottom:10px" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea><button class="btn btn-p" onclick="GroupManager.createGroupPost('${groupId}')"><i class="fas fa-paper-plane"></i> পোস্ট করুন</button></div><div id="groupPostsContainer"><div class="tc"><i class="fas fa-spinner fa-spin"></i> পোস্ট লোড হচ্ছে...</div></div></div></div></div>`;
-    const existing = document.getElementById('groupDetailModal');
-    if (existing) existing.remove();
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    setTimeout(() => { const c = document.getElementById('groupPostsContainer'); if (c) c.innerHTML = '<div class="empty"><div class="emico">💬</div><p>কোন পোস্ট নেই। প্রথম পোস্ট করুন!</p></div>'; }, 500);
-  },
-
-  async createGroupPost(groupId) {
-    if (!A.cu) { A.toast('পোস্ট করতে লগইন করুন', 'error'); return; }
-    const content = document.getElementById('groupPostContent')?.value.trim();
-    if (!content) { A.toast('পোস্টের কন্টেন্ট লিখুন', 'error'); return; }
-    A.toast('পোস্ট শেয়ার হয়েছে!', 'success');
-    document.getElementById('groupPostContent').value = '';
-  },
-
-  closeGroupDetailModal() { const modal = document.getElementById('groupDetailModal'); if (modal) modal.remove(); this.currentGroupId = null; },
-
-  showCreateGroupModal() {
-    if (!A.cu) { A.toast('গ্রুপ তৈরি করতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const modalHTML = `<div id="createGroupModal" class="modal" style="display:flex;z-index:2000"><div class="mbox" style="max-width:500px"><button class="mclose" onclick="GroupManager.closeCreateGroupModal()"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">নতুন গ্রুপ তৈরি করুন</h2></div><div class="fg"><label class="flabel">গ্রুপের নাম *</label><input type="text" id="newGroupName" class="finput"></div><div class="frow"><div class="fg"><label class="flabel">ক্যাটাগরি</label><select id="newGroupCategory" class="finput"><option>সাধারণ</option><option>প্রযুক্তি</option><option>শিক্ষা</option><option>ব্যবসা</option></select></div><div class="fg"><label class="flabel">আইকন</label><input type="text" id="newGroupIcon" class="finput" placeholder="ইমোজি যেমন 👥" value="👥"></div></div><div class="fg"><label class="flabel">বিবরণ</label><textarea id="newGroupDesc" class="finput ftextarea" rows="3"></textarea></div><button class="btn btn-p bblock" onclick="GroupManager.createNewGroup()"><i class="fas fa-plus-circle"></i> গ্রুপ তৈরি করুন</button></div></div>`;
-    const existing = document.getElementById('createGroupModal');
-    if (existing) existing.remove();
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-  },
-
-  closeCreateGroupModal() { const modal = document.getElementById('createGroupModal'); if (modal) modal.remove(); },
-  createNewGroup() { A.toast('গ্রুপ তৈরি হয়েছে!', 'success'); this.closeCreateGroupModal(); this.loadGroups(); }
-};
-
-window.addEventListener('DOMContentLoaded', () => { A.init(); window.A = A; window.GroupManager = GroupManager; });
+window.App = App;
+App.init();
 </script>
 </body>
 </html>
