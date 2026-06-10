@@ -1258,37 +1258,37 @@ header.scrolled {
 
 <header id="header">
   <div class="navbar">
-    <button class="mmBtn" onclick="A.toggleMM()"><i class="fas fa-bars"></i></button>
-    <div class="logo" onclick="A.go('home')">
+    <button class="mmBtn" onclick="App.toggleMM()"><i class="fas fa-bars"></i></button>
+    <div class="logo" onclick="App.go('home')">
       <div class="logo-img"><img src="https://hellobangladeshi.github.io/hb_logo.png" onerror="this.src='https://placehold.co/50x50/EF0479/FFFFFF?text=HB'"></div>
       <div class="logo-text"><h3>Hello <span>Bangladeshi</span></h3><p>Connect, Share & Grow Together</p></div>
     </div>
     <nav class="nav-center">
-      <span class="nav-link active" onclick="A.go('home')"><i class="fas fa-home"></i> হোম</span>
-      <span class="nav-link" onclick="A.go('search')"><i class="fas fa-search"></i> খুঁজুন</span>
-      <span class="nav-link" onclick="A.go('jobs')"><i class="fas fa-briefcase"></i> চাকরি</span>
-      <span class="nav-link" onclick="A.go('chat')"><i class="fas fa-comments"></i> চ্যাট<span class="nbadge">3</span></span>
-      <span class="nav-link" onclick="A.go('events')"><i class="fas fa-calendar-alt"></i> ইভেন্ট</span>
-      <span class="nav-link" onclick="A.go('groups')"><i class="fas fa-users"></i> গ্রুপ</span>
+      <span class="nav-link active" onclick="App.go('home')"><i class="fas fa-home"></i> হোম</span>
+      <span class="nav-link" onclick="App.go('search')"><i class="fas fa-search"></i> খুঁজুন</span>
+      <span class="nav-link" onclick="App.go('jobs')"><i class="fas fa-briefcase"></i> চাকরি</span>
+      <span class="nav-link" onclick="App.go('chat')"><i class="fas fa-comments"></i> চ্যাট<span class="nbadge">3</span></span>
+      <span class="nav-link" onclick="App.go('events')"><i class="fas fa-calendar-alt"></i> ইভেন্ট</span>
+      <span class="nav-link" onclick="App.go('groups')"><i class="fas fa-users"></i> গ্রুপ</span>
     </nav>
     <div class="nav-right">
       <a href="https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp" target="_blank" class="dl-btn"><i class="fab fa-google-play"></i><span>অ্যাপ ডাউনলোড</span></a>
-      <button class="bicon" onclick="A.showNotif()"><i class="fas fa-bell"></i></button>
+      <button class="bicon" onclick="App.showNotif()"><i class="fas fa-bell"></i></button>
       <div class="umenu-wrap">
-        <div class="umenu" onclick="A.toggleUD()">
+        <div class="umenu" onclick="App.toggleUD()">
           <div class="uavatar" id="uAvatar">U</div>
           <span class="uname" id="uName">অতিথি</span>
           <i class="fas fa-chevron-down" style="font-size:9px;color:var(--tl)"></i>
         </div>
         <div id="udrop" class="udrop">
-          <a onclick="A.go('profile');A.closeUD()"><i class="fas fa-user"></i> প্রোফাইল</a>
-          <a onclick="A.go('settings');A.closeUD()"><i class="fas fa-cog"></i> সেটিংস</a>
+          <a onclick="App.go('profile');App.closeUD()"><i class="fas fa-user"></i> প্রোফাইল</a>
+          <a onclick="App.go('settings');App.closeUD()"><i class="fas fa-cog"></i> সেটিংস</a>
           <hr>
-          <a onclick="A.go('privacy');A.closeUD()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
-          <a onclick="A.go('terms');A.closeUD()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
-          <a onclick="A.go('about');A.closeUD()"><i class="fas fa-code"></i> ডেভেলপার</a>
+          <a onclick="App.go('privacy');App.closeUD()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</a>
+          <a onclick="App.go('terms');App.closeUD()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</a>
+          <a onclick="App.go('about');App.closeUD()"><i class="fas fa-code"></i> ডেভেলপার</a>
           <hr>
-          <button class="ddbtn" onclick="A.logout();A.closeUD()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
+          <button class="ddbtn" onclick="App.logout();App.closeUD()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
         </div>
       </div>
     </div>
@@ -1296,77 +1296,77 @@ header.scrolled {
 </header>
 
 <div class="mobmenu" id="mmenu">
-  <div class="mmhdr"><div class="mmlogo"><div class="logo-img"><img src="https://hellobangladeshi.github.io/hb_logo.png" width="40" height="40"></div><span>হ্যালো বাংলাদেশী</span></div><button class="mmclose" onclick="A.toggleMM()"><i class="fas fa-times"></i></button></div>
+  <div class="mmhdr"><div class="mmlogo"><div class="logo-img"><img src="https://hellobangladeshi.github.io/hb_logo.png" width="40" height="40"></div><span>হ্যালো বাংলাদেশী</span></div><button class="mmclose" onclick="App.toggleMM()"><i class="fas fa-times"></i></button></div>
   <nav class="mmnav">
-    <div class="mmitem active" onclick="A.go('home');A.toggleMM()"><i class="fas fa-home"></i> হোম</div>
-    <div class="mmitem" onclick="A.go('search');A.toggleMM()"><i class="fas fa-search"></i> খুঁজুন</div>
-    <div class="mmitem" onclick="A.go('jobs');A.toggleMM()"><i class="fas fa-briefcase"></i> চাকরি</div>
-    <div class="mmitem" onclick="A.go('chat');A.toggleMM()"><i class="fas fa-comments"></i> চ্যাট</div>
-    <div class="mmitem" onclick="A.go('events');A.toggleMM()"><i class="fas fa-calendar-alt"></i> ইভেন্ট</div>
-    <div class="mmitem" onclick="A.go('groups');A.toggleMM()"><i class="fas fa-users"></i> গ্রুপ</div>
-    <div class="mmitem" onclick="A.go('profile');A.toggleMM()"><i class="fas fa-user"></i> প্রোফাইল</div>
-    <div class="mmitem" onclick="A.go('settings');A.toggleMM()"><i class="fas fa-cog"></i> সেটিংস</div>
-    <div class="mmitem" onclick="A.go('privacy');A.toggleMM()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</div>
-    <div class="mmitem" onclick="A.go('terms');A.toggleMM()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</div>
-    <div class="mmitem" onclick="A.go('about');A.toggleMM()"><i class="fas fa-code"></i> ডেভেলপার</div>
-    <div class="mmitem" onclick="window.open('https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp','_blank');A.toggleMM()"><i class="fab fa-google-play"></i> অ্যাপ ডাউনলোড</div>
-    <div class="mmitem" onclick="A.logout();A.toggleMM()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</div>
+    <div class="mmitem active" onclick="App.go('home');App.toggleMM()"><i class="fas fa-home"></i> হোম</div>
+    <div class="mmitem" onclick="App.go('search');App.toggleMM()"><i class="fas fa-search"></i> খুঁজুন</div>
+    <div class="mmitem" onclick="App.go('jobs');App.toggleMM()"><i class="fas fa-briefcase"></i> চাকরি</div>
+    <div class="mmitem" onclick="App.go('chat');App.toggleMM()"><i class="fas fa-comments"></i> চ্যাট</div>
+    <div class="mmitem" onclick="App.go('events');App.toggleMM()"><i class="fas fa-calendar-alt"></i> ইভেন্ট</div>
+    <div class="mmitem" onclick="App.go('groups');App.toggleMM()"><i class="fas fa-users"></i> গ্রুপ</div>
+    <div class="mmitem" onclick="App.go('profile');App.toggleMM()"><i class="fas fa-user"></i> প্রোফাইল</div>
+    <div class="mmitem" onclick="App.go('settings');App.toggleMM()"><i class="fas fa-cog"></i> সেটিংস</div>
+    <div class="mmitem" onclick="App.go('privacy');App.toggleMM()"><i class="fas fa-shield-alt"></i> গোপনীয়তা নীতি</div>
+    <div class="mmitem" onclick="App.go('terms');App.toggleMM()"><i class="fas fa-file-contract"></i> সেবা শর্তাবলী</div>
+    <div class="mmitem" onclick="App.go('about');App.toggleMM()"><i class="fas fa-code"></i> ডেভেলপার</div>
+    <div class="mmitem" onclick="window.open('https://play.google.com/store/apps/details?id=com.hellobangladeshi.hellobangladeshiapp','_blank');App.toggleMM()"><i class="fab fa-google-play"></i> অ্যাপ ডাউনলোড</div>
+    <div class="mmitem" onclick="App.logout();App.toggleMM()" style="color:#E74C3C"><i class="fas fa-sign-out-alt"></i> লগ আউট</div>
   </nav>
 </div>
 
 <div class="main-content">
   <aside class="sidebar">
     <div><div class="sbtitle">মূল মেনু</div>
-      <div class="sbitem active" onclick="A.go('home')"><span class="sbicon"><i class="fas fa-home"></i></span>হোম</div>
-      <div class="sbitem" onclick="A.go('search')"><span class="sbicon"><i class="fas fa-search"></i></span>খুঁজুন</div>
-      <div class="sbitem" onclick="A.go('jobs')"><span class="sbicon"><i class="fas fa-briefcase"></i></span>চাকরি<span class="sbbadge">12</span></div>
-      <div class="sbitem" onclick="A.go('chat')"><span class="sbicon"><i class="fas fa-comments"></i></span>চ্যাট<span class="sbbadge">3</span></div>
-      <div class="sbitem" onclick="A.go('profile')"><span class="sbicon"><i class="fas fa-user"></i></span>প্রোফাইল</div>
+      <div class="sbitem active" onclick="App.go('home')"><span class="sbicon"><i class="fas fa-home"></i></span>হোম</div>
+      <div class="sbitem" onclick="App.go('search')"><span class="sbicon"><i class="fas fa-search"></i></span>খুঁজুন</div>
+      <div class="sbitem" onclick="App.go('jobs')"><span class="sbicon"><i class="fas fa-briefcase"></i></span>চাকরি<span class="sbbadge">12</span></div>
+      <div class="sbitem" onclick="App.go('chat')"><span class="sbicon"><i class="fas fa-comments"></i></span>চ্যাট<span class="sbbadge">3</span></div>
+      <div class="sbitem" onclick="App.go('profile')"><span class="sbicon"><i class="fas fa-user"></i></span>প্রোফাইল</div>
     </div>
     <hr class="sbdiv">
     <div><div class="sbtitle">অন্বেষণ</div>
-      <div class="sbitem" onclick="A.go('events')"><span class="sbicon"><i class="fas fa-calendar-alt"></i></span>ইভেন্ট</div>
-      <div class="sbitem" onclick="A.go('groups')"><span class="sbicon"><i class="fas fa-users"></i></span>গ্রুপ</div>
+      <div class="sbitem" onclick="App.go('events')"><span class="sbicon"><i class="fas fa-calendar-alt"></i></span>ইভেন্ট</div>
+      <div class="sbitem" onclick="App.go('groups')"><span class="sbicon"><i class="fas fa-users"></i></span>গ্রুপ</div>
     </div>
     <hr class="sbdiv">
     <div><div class="sbtitle">সহায়তা</div>
-      <div class="sbitem" onclick="A.go('privacy')"><span class="sbicon"><i class="fas fa-shield-alt"></i></span>গোপনীয়তা নীতি</div>
-      <div class="sbitem" onclick="A.go('terms')"><span class="sbicon"><i class="fas fa-file-contract"></i></span>সেবা শর্তাবলী</div>
-      <div class="sbitem" onclick="A.go('about')"><span class="sbicon"><i class="fas fa-code"></i></span>ডেভেলপার</div>
-      <div class="sbitem" onclick="A.go('settings')"><span class="sbicon"><i class="fas fa-cog"></i></span>সেটিংস</div>
+      <div class="sbitem" onclick="App.go('privacy')"><span class="sbicon"><i class="fas fa-shield-alt"></i></span>গোপনীয়তা নীতি</div>
+      <div class="sbitem" onclick="App.go('terms')"><span class="sbicon"><i class="fas fa-file-contract"></i></span>সেবা শর্তাবলী</div>
+      <div class="sbitem" onclick="App.go('about')"><span class="sbicon"><i class="fas fa-code"></i></span>ডেভেলপার</div>
+      <div class="sbitem" onclick="App.go('settings')"><span class="sbicon"><i class="fas fa-cog"></i></span>সেটিংস</div>
     </div>
     <hr class="sbdiv">
-    <div class="sbitem" onclick="A.logout()" style="color:#E74C3C"><span class="sbicon"><i class="fas fa-sign-out-alt"></i></span>লগ আউট</div>
+    <div class="sbitem" onclick="App.logout()" style="color:#E74C3C"><span class="sbicon"><i class="fas fa-sign-out-alt"></i></span>লগ আউট</div>
   </aside>
 
   <main class="feed" id="feed">
     <div id="vHome">
       <div class="fhdr"><h1 class="ftitle">আপনার কাছাকাছি মানুষ</h1><p class="fsub">আপনার এলাকায় বাংলাদেশীদের সাথে সংযুক্ত হোন</p></div>
-      <div id="guestBar" class="gbar hidden"><i class="fas fa-info-circle"></i><span>অতিথি মোডে দেখছেন। সংযোগ ও চাকরিতে আবেদন করতে লগইন করুন।</span><button class="btn btn-p bsm" onclick="A.showAuth()" style="margin-left:auto">লগইন</button></div>
+      <div id="guestBar" class="gbar hidden"><i class="fas fa-info-circle"></i><span>অতিথি মোডে দেখছেন। সংযোগ ও চাকরিতে আবেদন করতে লগইন করুন।</span><button class="btn btn-p bsm" onclick="App.showAuth()" style="margin-left:auto">লগইন</button></div>
       <div class="ftabs">
-        <button class="ftab active" onclick="A.filterUsers('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterUsers('nearby',this)">কাছাকাছি</button>
-        <button class="ftab" onclick="A.filterUsers('online',this)">অনলাইন</button>
-        <button class="ftab" onclick="A.filterUsers('verified',this)">যাচাইকৃত</button>
+        <button class="ftab active" onclick="App.filterUsers('all',this)">সকল</button>
+        <button class="ftab" onclick="App.filterUsers('nearby',this)">কাছাকাছি</button>
+        <button class="ftab" onclick="App.filterUsers('online',this)">অনলাইন</button>
+        <button class="ftab" onclick="App.filterUsers('verified',this)">যাচাইকৃত</button>
       </div>
       <div id="usersList" class="grid-users"></div>
     </div>
 
     <div id="vSearch" class="hidden">
       <div class="fhdr"><h1 class="ftitle">অনুসন্ধান</h1><p class="fsub">ব্যক্তি, পেশা বা শহর খুঁজুন</p></div>
-      <div class="fg" style="position:relative"><input type="text" id="srchInput" class="finput" placeholder="নাম, পেশা বা শহর লিখুন..." style="padding-left:44px" oninput="A.doSearch(this.value)"><i class="fas fa-search" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--tl)"></i></div>
-      <div class="fg"><label class="flabel">দূরত্ব ফিল্টার (কিমি)</label><input type="range" id="radiusR" min="1" max="100" value="50" style="width:100%" oninput="document.getElementById('radiusV').textContent=this.value+' কিমি';A.doSearch(document.getElementById('srchInput').value)"><div style="display:flex;justify-content:space-between;margin-top:5px"><span style="font-size:11px;color:var(--tl)">১ কিমি</span><span id="radiusV" style="font-weight:600;color:var(--secondary);font-size:12px">৫০ কিমি</span><span style="font-size:11px;color:var(--tl)">১০০ কিমি</span></div></div>
+      <div class="fg" style="position:relative"><input type="text" id="srchInput" class="finput" placeholder="নাম, পেশা বা শহর লিখুন..." style="padding-left:44px" oninput="App.doSearch(this.value)"><i class="fas fa-search" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--tl)"></i></div>
+      <div class="fg"><label class="flabel">দূরত্ব ফিল্টার (কিমি)</label><input type="range" id="radiusR" min="1" max="100" value="50" style="width:100%" oninput="document.getElementById('radiusV').textContent=this.value+' কিমি';App.doSearch(document.getElementById('srchInput').value)"><div style="display:flex;justify-content:space-between;margin-top:5px"><span style="font-size:11px;color:var(--tl)">১ কিমি</span><span id="radiusV" style="font-weight:600;color:var(--secondary);font-size:12px">৫০ কিমি</span><span style="font-size:11px;color:var(--tl)">১০০ কিমি</span></div></div>
       <div id="srchResults" class="grid-users"></div>
     </div>
 
     <div id="vJobs" class="hidden">
-      <div class="fhdr"><h1 class="ftitle">চাকরি</h1><p class="fsub">আপনার জন্য সেরা চাকরির সুযোগ</p><button class="btn btn-p mt3" onclick="A.showPostJob()"><i class="fas fa-plus"></i> চাকরি পোস্ট করুন</button></div>
+      <div class="fhdr"><h1 class="ftitle">চাকরি</h1><p class="fsub">আপনার জন্য সেরা চাকরির সুযোগ</p><button class="btn btn-p mt3" onclick="App.showPostJob()"><i class="fas fa-plus"></i> চাকরি পোস্ট করুন</button></div>
       <div class="ftabs">
-        <button class="ftab active" onclick="A.filterJobs('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterJobs('full-time',this)">পূর্ণকালীন</button>
-        <button class="ftab" onclick="A.filterJobs('part-time',this)">খণ্ডকালীন</button>
-        <button class="ftab" onclick="A.filterJobs('remote',this)">দূরবর্তী</button>
-        <button class="ftab" onclick="A.filterJobs('internship',this)">ইন্টার্নশিপ</button>
+        <button class="ftab active" onclick="App.filterJobs('all',this)">সকল</button>
+        <button class="ftab" onclick="App.filterJobs('full-time',this)">পূর্ণকালীন</button>
+        <button class="ftab" onclick="App.filterJobs('part-time',this)">খণ্ডকালীন</button>
+        <button class="ftab" onclick="App.filterJobs('remote',this)">দূরবর্তী</button>
+        <button class="ftab" onclick="App.filterJobs('internship',this)">ইন্টার্নশিপ</button>
       </div>
       <div id="jobsList" class="grid-jobs"></div>
     </div>
@@ -1376,12 +1376,12 @@ header.scrolled {
     <div id="vEvents" class="hidden">
       <div class="fhdr"><h1 class="ftitle">আসন্ন ইভেন্ট</h1><p class="fsub">বাংলাদেশী কমিউনিটির সাথে যুক্ত হোন</p></div>
       <div class="ftabs" id="evTabs">
-        <button class="ftab active" onclick="A.filterEvents('all',this)">সকল</button>
-        <button class="ftab" onclick="A.filterEvents('online',this)">অনলাইন</button>
-        <button class="ftab" onclick="A.filterEvents('offline',this)">অফলাইন</button>
-        <button class="ftab" onclick="A.filterEvents('tech',this)">টেক</button>
-        <button class="ftab" onclick="A.filterEvents('business',this)">বিজনেস</button>
-        <button class="ftab" onclick="A.filterEvents('social',this)">সামাজিক</button>
+        <button class="ftab active" onclick="App.filterEvents('all',this)">সকল</button>
+        <button class="ftab" onclick="App.filterEvents('online',this)">অনলাইন</button>
+        <button class="ftab" onclick="App.filterEvents('offline',this)">অফলাইন</button>
+        <button class="ftab" onclick="App.filterEvents('tech',this)">টেক</button>
+        <button class="ftab" onclick="App.filterEvents('business',this)">বিজনেস</button>
+        <button class="ftab" onclick="App.filterEvents('social',this)">সামাজিক</button>
       </div>
       <div id="eventsList" class="egrid"></div>
     </div>
@@ -1407,10 +1407,10 @@ header.scrolled {
       </div>
       <div class="setcard"><div class="settitle">অ্যাকাউন্ট পরিচালনা</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <button class="btn btn-s bblock" onclick="A.changePass()"><i class="fas fa-key"></i> পাসওয়ার্ড পরিবর্তন</button>
-          <button class="btn btn-o bblock" onclick="A.deactivate()"><i class="fas fa-user-slash"></i> অ্যাকাউন্ট নিষ্ক্রিয়</button>
-          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.deleteAcc()"><i class="fas fa-trash-alt"></i> অ্যাকাউন্ট মুছুন</button>
-          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
+          <button class="btn btn-s bblock" onclick="App.changePass()"><i class="fas fa-key"></i> পাসওয়ার্ড পরিবর্তন</button>
+          <button class="btn btn-o bblock" onclick="App.deactivate()"><i class="fas fa-user-slash"></i> অ্যাকাউন্ট নিষ্ক্রিয়</button>
+          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="App.deleteAcc()"><i class="fas fa-trash-alt"></i> অ্যাকাউন্ট মুছুন</button>
+          <button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="App.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button>
         </div>
       </div>
     </div>
@@ -1423,13 +1423,13 @@ header.scrolled {
   </main>
 
   <aside class="rsidebar">
-    <div class="rstitle"><span>সুপারিশকৃত ব্যক্তি</span><a onclick="A.viewAllRec()">সকল দেখুন</a></div>
+    <div class="rstitle"><span>সুপারিশকৃত ব্যক্তি</span><a onclick="App.viewAllRec()">সকল দেখুন</a></div>
     <div id="recList"></div>
     <hr class="sbdiv">
-    <div class="rstitle"><span>ট্রেন্ডিং চাকরি</span><a onclick="A.viewAllJobs()">সকল দেখুন</a></div>
+    <div class="rstitle"><span>ট্রেন্ডিং চাকরি</span><a onclick="App.viewAllJobs()">সকল দেখুন</a></div>
     <div id="trendJobs"></div>
     <hr class="sbdiv">
-    <div class="rstitle"><span>আসন্ন ইভেন্ট</span><a onclick="A.viewAllEvents()">সকল দেখুন</a></div>
+    <div class="rstitle"><span>আসন্ন ইভেন্ট</span><a onclick="App.viewAllEvents()">সকল দেখুন</a></div>
     <div id="upEvents"></div>
   </aside>
 </div>
@@ -1438,8 +1438,8 @@ header.scrolled {
   <div class="ftcont">
     <div class="ftgrid">
       <div><div class="ftlogo"><div class="ftlogo-icon">হেবি</div><span class="ftlogo-text">হ্যালো বাংলাদেশী</span></div><p class="ftdesc">স্থানীয় বাংলাদেশীদের সাথে সংযোগ স্থাপনের জন্য একটি সম্পূর্ণ সোশ্যাল নেটওয়ার্কিং প্ল্যাটফর্ম।</p><div class="ftsoc"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
-      <div><h3 class="fttitle">দ্রুত লিংক</h3><ul class="ftlinks"><li><a onclick="A.go('home')"><i class="fas fa-chevron-right"></i> হোম</a></li><li><a onclick="A.go('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li><li><a onclick="A.go('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li><li><a onclick="A.go('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li></ul></div>
-      <div><h3 class="fttitle">আইনি</h3><ul class="ftlinks"><li><a onclick="A.go('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li><li><a onclick="A.go('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li><li><a onclick="A.go('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li></ul></div>
+      <div><h3 class="fttitle">দ্রুত লিংক</h3><ul class="ftlinks"><li><a onclick="App.go('home')"><i class="fas fa-chevron-right"></i> হোম</a></li><li><a onclick="App.go('jobs')"><i class="fas fa-chevron-right"></i> চাকরি</a></li><li><a onclick="App.go('events')"><i class="fas fa-chevron-right"></i> ইভেন্ট</a></li><li><a onclick="App.go('groups')"><i class="fas fa-chevron-right"></i> গ্রুপ</a></li></ul></div>
+      <div><h3 class="fttitle">আইনি</h3><ul class="ftlinks"><li><a onclick="App.go('privacy')"><i class="fas fa-chevron-right"></i> গোপনীয়তা নীতি</a></li><li><a onclick="App.go('terms')"><i class="fas fa-chevron-right"></i> সেবা শর্তাবলী</a></li><li><a onclick="App.go('about')"><i class="fas fa-chevron-right"></i> ডেভেলপার</a></li></ul></div>
       <div><h3 class="fttitle">যোগাযোগ</h3><ul class="ftlinks"><li><span><i class="fas fa-envelope"></i> support@hellobangladeshi.com</span></li><li><span><i class="fas fa-phone"></i> +880 1924449132</span></li><li><span><i class="fas fa-map-marker-alt"></i> সিলেট, বাংলাদেশ</span></li></ul></div>
     </div>
     <div class="ftbot">© 2026 হ্যালো বাংলাদেশী - সকল অধিকার সংরক্ষিত। Developed with <i class="fas fa-heart" style="color:#EF0479"></i> by <strong>Farabi Walid</strong></div>
@@ -1448,19 +1448,21 @@ header.scrolled {
 
 </div>
 
-<div id="mAuth" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mAuth')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">হ্যালো বাংলাদেশীতে স্বাগতম</h2><p class="msub">স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হোন</p></div><div class="authtabs"><button class="atab on" onclick="A.showLoginForm()">লগইন</button><button class="atab" onclick="A.showSignupForm()">সাইন আপ</button></div><div id="loginForm"><div class="fg"><label class="flabel">ইমেল</label><input type="email" id="lEmail" class="finput" placeholder="আপনার ইমেল"></div><div class="fg"><label class="flabel">পাসওয়ার্ড</label><input type="password" id="lPass" class="finput" placeholder="পাসওয়ার্ড" onkeypress="if(event.key==='Enter')A.login()"></div><button class="btn btn-p bblock" onclick="A.login()"><i class="fas fa-sign-in-alt"></i> লগইন করুন</button><div class="soclogin"><button class="bgoogle" onclick="A.loginGoogle()"><i class="fab fa-google"></i> গুগল</button><button class="bfacebook" onclick="A.loginFB()"><i class="fab fa-facebook-f"></i> ফেসবুক</button></div><p class="tc mt2" style="color:var(--tl);font-size:11px">ডেমো: <b>demo@test.com</b> / <b>password</b></p></div><div id="signupForm" class="hidden"><div class="frow"><div class="fg"><label class="flabel">পুরো নাম *</label><input type="text" id="sName" class="finput" placeholder="আপনার নাম"></div><div class="fg"><label class="flabel">পেশা *</label><input type="text" id="sProf" class="finput" placeholder="পেশা"></div></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="sEmail" class="finput" placeholder="ইমেল"></div><div class="frow"><div class="fg"><label class="flabel">পাসওয়ার্ড *</label><input type="password" id="sPass" class="finput" placeholder="৬+ অক্ষর"></div><div class="fg"><label class="flabel">শহর *</label><select id="sCity" class="finput"><option value="">নির্বাচন করুন</option><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>বরিশাল</option><option>রংপুর</option><option>ময়মনসিংহ</option><option>মৌলভীবাজার</option></select></div></div><div class="fg"><label class="fchklabel" style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="sTerms" class="fcheck" style="width:16px;height:16px"> সেবা শর্তাবলী ও গোপনীয়তা নীতি মেনে চলতে সম্মত</label></div><button class="btn btn-p bblock" onclick="A.signup()"><i class="fas fa-user-plus"></i> অ্যাকাউন্ট তৈরি করুন</button></div><p id="authErr" style="color:#E74C3C;text-align:center;margin-top:10px;font-size:12px;display:none"></p></div></div>
+<!-- Modals -->
+<div id="mAuth" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mAuth')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">হ্যালো বাংলাদেশীতে স্বাগতম</h2><p class="msub">স্থানীয় বাংলাদেশীদের সাথে সংযুক্ত হোন</p></div><div class="authtabs"><button class="atab on" onclick="App.showLoginForm()">লগইন</button><button class="atab" onclick="App.showSignupForm()">সাইন আপ</button></div><div id="loginForm"><div class="fg"><label class="flabel">ইমেল</label><input type="email" id="lEmail" class="finput" placeholder="আপনার ইমেল"></div><div class="fg"><label class="flabel">পাসওয়ার্ড</label><input type="password" id="lPass" class="finput" placeholder="পাসওয়ার্ড" onkeypress="if(event.key==='Enter')App.login()"></div><button class="btn btn-p bblock" onclick="App.login()"><i class="fas fa-sign-in-alt"></i> লগইন করুন</button><div class="soclogin"><button class="bgoogle" onclick="App.loginGoogle()"><i class="fab fa-google"></i> গুগল</button><button class="bfacebook" onclick="App.loginFB()"><i class="fab fa-facebook-f"></i> ফেসবুক</button></div><p class="tc mt2" style="color:var(--tl);font-size:11px">ডেমো: <b>demo@test.com</b> / <b>password</b></p></div><div id="signupForm" class="hidden"><div class="frow"><div class="fg"><label class="flabel">পুরো নাম *</label><input type="text" id="sName" class="finput" placeholder="আপনার নাম"></div><div class="fg"><label class="flabel">পেশা *</label><input type="text" id="sProf" class="finput" placeholder="পেশা"></div></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="sEmail" class="finput" placeholder="ইমেল"></div><div class="frow"><div class="fg"><label class="flabel">পাসওয়ার্ড *</label><input type="password" id="sPass" class="finput" placeholder="৬+ অক্ষর"></div><div class="fg"><label class="flabel">শহর *</label><select id="sCity" class="finput"><option value="">নির্বাচন করুন</option><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>বরিশাল</option><option>রংপুর</option><option>ময়মনসিংহ</option><option>মৌলভীবাজার</option></select></div></div><div class="fg"><label class="fchklabel" style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="sTerms" class="fcheck" style="width:16px;height:16px"> সেবা শর্তাবলী ও গোপনীয়তা নীতি মেনে চলতে সম্মত</label></div><button class="btn btn-p bblock" onclick="App.signup()"><i class="fas fa-user-plus"></i> অ্যাকাউন্ট তৈরি করুন</button></div><p id="authErr" style="color:#E74C3C;text-align:center;margin-top:10px;font-size:12px;display:none"></p></div></div>
 
-<div id="mPostJob" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mPostJob')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরি পোস্ট করুন</h2><p class="msub">আপনার চাকরির সুযোগ শেয়ার করুন</p></div><div class="frow"><div class="fg"><label class="flabel">চাকরির শিরোনাম *</label><input type="text" id="jTitle" class="finput" placeholder="যেমন: সফটওয়্যার ডেভেলপার"></div><div class="fg"><label class="flabel">কোম্পানির নাম *</label><input type="text" id="jComp" class="finput" placeholder="কোম্পানি"></div></div><div class="frow"><div class="fg"><label class="flabel">চাকরির ধরন *</label><select id="jType" class="finput"><option value="">নির্বাচন করুন</option><option value="full-time">পূর্ণকালীন</option><option value="part-time">খণ্ডকালীন</option><option value="contract">চুক্তিভিত্তিক</option><option value="internship">ইন্টার্নশিপ</option><option value="remote">দূরবর্তী</option></select></div><div class="fg"><label class="flabel">অবস্থান *</label><input type="text" id="jLoc" class="finput" placeholder="শহর/দেশ"></div></div><div class="frow"><div class="fg"><label class="flabel">বেতন</label><input type="text" id="jSal" class="finput" placeholder="৳XX,XXX - ৳XX,XXX"></div><div class="fg"><label class="flabel">শেষ তারিখ</label><input type="date" id="jDead" class="finput"></div></div><div class="fg"><label class="flabel">বিবরণ *</label><textarea id="jDesc" class="finput ftextarea" rows="3" placeholder="চাকরির বিস্তারিত বিবরণ..."></textarea></div><div class="fg"><label class="flabel">প্রয়োজনীয় দক্ষতা</label><input type="text" id="jSkills" class="finput" placeholder="JavaScript, React, Node.js (কমা দিয়ে আলাদা)"></div><button class="btn btn-p bblock" onclick="A.postJob()"><i class="fas fa-paper-plane"></i> চাকরি পোস্ট করুন</button></div></div>
+<div id="mPostJob" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mPostJob')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরি পোস্ট করুন</h2><p class="msub">আপনার চাকরির সুযোগ শেয়ার করুন</p></div><div class="frow"><div class="fg"><label class="flabel">চাকরির শিরোনাম *</label><input type="text" id="jTitle" class="finput" placeholder="যেমন: সফটওয়্যার ডেভেলপার"></div><div class="fg"><label class="flabel">কোম্পানির নাম *</label><input type="text" id="jComp" class="finput" placeholder="কোম্পানি"></div></div><div class="frow"><div class="fg"><label class="flabel">চাকরির ধরন *</label><select id="jType" class="finput"><option value="">নির্বাচন করুন</option><option value="full-time">পূর্ণকালীন</option><option value="part-time">খণ্ডকালীন</option><option value="contract">চুক্তিভিত্তিক</option><option value="internship">ইন্টার্নশিপ</option><option value="remote">দূরবর্তী</option></select></div><div class="fg"><label class="flabel">অবস্থান *</label><input type="text" id="jLoc" class="finput" placeholder="শহর/দেশ"></div></div><div class="frow"><div class="fg"><label class="flabel">বেতন</label><input type="text" id="jSal" class="finput" placeholder="৳XX,XXX - ৳XX,XXX"></div><div class="fg"><label class="flabel">শেষ তারিখ</label><input type="date" id="jDead" class="finput"></div></div><div class="fg"><label class="flabel">বিবরণ *</label><textarea id="jDesc" class="finput ftextarea" rows="3" placeholder="চাকরির বিস্তারিত বিবরণ..."></textarea></div><div class="fg"><label class="flabel">প্রয়োজনীয় দক্ষতা</label><input type="text" id="jSkills" class="finput" placeholder="JavaScript, React, Node.js (কমা দিয়ে আলাদা)"></div><button class="btn btn-p bblock" onclick="App.postJob()"><i class="fas fa-paper-plane"></i> চাকরি পোস্ট করুন</button></div></div>
 
-<div id="mApply" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mApply')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরিতে আবেদন</h2><p class="msub" id="applyJobName">পদের জন্য আবেদন করুন</p></div><div class="frow"><div class="fg"><label class="flabel">আপনার নাম *</label><input type="text" id="apName" class="finput" placeholder="পুরো নাম"></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="apEmail" class="finput" placeholder="ইমেল"></div></div><div class="frow"><div class="fg"><label class="flabel">ফোন নম্বর *</label><input type="tel" id="apPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div><div class="fg"><label class="flabel">অভিজ্ঞতা (বছর)</label><input type="number" id="apExp" class="finput" placeholder="0" min="0" max="50"></div></div><div class="fg"><label class="flabel">কভার লেটার *</label><textarea id="apCover" class="finput ftextarea" rows="3" placeholder="কেন আপনি এই পদের জন্য উপযুক্ত তা লিখুন..."></textarea></div><div class="fg"><label class="flabel">LinkedIn / পোর্টফোলিও লিংক</label><input type="url" id="apPortfolio" class="finput" placeholder="https://..."></div><button class="btn btn-p bblock" onclick="A.submitApply()"><i class="fas fa-paper-plane"></i> আবেদন জমা দিন</button></div></div>
+<div id="mApply" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mApply')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">চাকরিতে আবেদন</h2><p class="msub" id="applyJobName">পদের জন্য আবেদন করুন</p></div><div class="frow"><div class="fg"><label class="flabel">আপনার নাম *</label><input type="text" id="apName" class="finput" placeholder="পুরো নাম"></div><div class="fg"><label class="flabel">ইমেল *</label><input type="email" id="apEmail" class="finput" placeholder="ইমেল"></div></div><div class="frow"><div class="fg"><label class="flabel">ফোন নম্বর *</label><input type="tel" id="apPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div><div class="fg"><label class="flabel">অভিজ্ঞতা (বছর)</label><input type="number" id="apExp" class="finput" placeholder="0" min="0" max="50"></div></div><div class="fg"><label class="flabel">কভার লেটার *</label><textarea id="apCover" class="finput ftextarea" rows="3" placeholder="কেন আপনি এই পদের জন্য উপযুক্ত তা লিখুন..."></textarea></div><div class="fg"><label class="flabel">LinkedIn / পোর্টফোলিও লিংক</label><input type="url" id="apPortfolio" class="finput" placeholder="https://..."></div><button class="btn btn-p bblock" onclick="App.submitApply()"><i class="fas fa-paper-plane"></i> আবেদন জমা দিন</button></div></div>
 
-<div id="mEditProfile" class="modal"><div class="mbox"><button class="mclose" onclick="A.closeM('mEditProfile')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">প্রোফাইল সম্পাদনা</h2><p class="msub">আপনার তথ্য আপডেট করুন</p></div><div class="frow"><div class="fg"><label class="flabel">পুরো নাম</label><input type="text" id="epName" class="finput"></div><div class="fg"><label class="flabel">পেশা</label><input type="text" id="epProf" class="finput"></div></div><div class="fg"><label class="flabel">বায়ো</label><textarea id="epBio" class="finput ftextarea" rows="3"></textarea></div><div class="frow"><div class="fg"><label class="flabel">শহর</label><select id="epCity" class="finput"><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>মৌলভীবাজার</option></select></div><div class="fg"><label class="flabel">ফোন</label><input type="tel" id="epPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div></div><button class="btn btn-p bblock" onclick="A.updateProfile()"><i class="fas fa-save"></i> সংরক্ষণ করুন</button></div></div>
+<div id="mEditProfile" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mEditProfile')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">প্রোফাইল সম্পাদনা</h2><p class="msub">আপনার তথ্য আপডেট করুন</p></div><div class="frow"><div class="fg"><label class="flabel">পুরো নাম</label><input type="text" id="epName" class="finput"></div><div class="fg"><label class="flabel">পেশা</label><input type="text" id="epProf" class="finput"></div></div><div class="fg"><label class="flabel">বায়ো</label><textarea id="epBio" class="finput ftextarea" rows="3"></textarea></div><div class="frow"><div class="fg"><label class="flabel">শহর</label><select id="epCity" class="finput"><option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>খুলনা</option><option>রাজশাহী</option><option>মৌলভীবাজার</option></select></div><div class="fg"><label class="flabel">ফোন</label><input type="tel" id="epPhone" class="finput" placeholder="+880 XXXXXXXXXX"></div></div><button class="btn btn-p bblock" onclick="App.updateProfile()"><i class="fas fa-save"></i> সংরক্ষণ করুন</button></div></div>
 
-<div id="mViewAll" class="modal"><div class="mbox mbox-lg"><button class="mclose" onclick="A.closeM('mViewAll')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle" id="vaTitle">সকল দেখুন</h2></div><div id="vaBody" style="max-height:65vh;overflow-y:auto"></div></div></div>
+<div id="mViewAll" class="modal"><div class="mbox mbox-lg"><button class="mclose" onclick="App.closeM('mViewAll')"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle" id="vaTitle">সকল দেখুন</h2></div><div id="vaBody" style="max-height:65vh;overflow-y:auto"></div></div></div>
 
 <div class="toasts" id="toasts"></div>
 
 <script>
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDpY4y-miVjE7P4sa2XxoG596LLRWcQ61w",
   authDomain: "hello-bangladeshi.firebaseapp.com",
@@ -1473,59 +1475,62 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// =================== DEMO DATA (Fallback) ===================
+// =================== DEMO DATA (Fallback only) ===================
 const demoUsers = [
- {id:'u1',nm:'আহমেদ হাসান',pf:'সফটওয়্যার ইঞ্জিনিয়ার',loc:'ঢাকা',bio:'ফুল-স্ট্যাক ডেভেলপার, ৫+ বছর অভিজ্ঞতা',rt:4.8,fw:1245,cn:245,on:true,vf:true,ds:2.5,av:'আ'},
- {id:'u2',nm:'ফারহানা আক্তার',pf:'গ্রাফিক ডিজাইনার',loc:'চট্টগ্রাম',bio:'ক্রিয়েটিভ ডিজাইনার, UI/UX বিশেষজ্ঞ',rt:4.9,fw:856,cn:189,on:true,vf:false,ds:5.2,av:'ফ'},
- {id:'u3',nm:'রাকিবুল ইসলাম',pf:'চিকিৎসক',loc:'সিলেট',bio:'হৃদরোগ বিশেষজ্ঞ',rt:4.7,fw:2340,cn:312,on:false,vf:true,ds:12.8,av:'র'},
- {id:'u4',nm:'সাবরিনা সুলতানা',pf:'অধ্যাপক',loc:'খুলনা',bio:'ইংরেজি সাহিত্যের অধ্যাপক',rt:4.9,fw:567,cn:156,on:true,vf:false,ds:8.4,av:'স'},
- {id:'u5',nm:'জুবায়ের আহমেদ',pf:'উদ্যোক্তা',loc:'রাজশাহী',bio:'আইটি কোম্পানির মালিক',rt:4.6,fw:3240,cn:421,on:true,vf:true,ds:15.3,av:'জ'}
-];
-
-const demoJobs = [
- {id:'j1',ti:'সিনিয়র সফটওয়্যার ইঞ্জিনিয়ার',co:'টেকনোভেশন লিমিটেড',tp:'full-time',tl:'পূর্ণকালীন',lc:'ঢাকা',sa:'৳১,৫০,০০০ - ৳২,৫০,০০০',ds:'অভিজ্ঞ সফটওয়্যার ইঞ্জিনিয়ার প্রয়োজন। Node.js, React ও AWS তে দক্ষ।',sk:['Node.js','React','MongoDB','AWS'],ft:true,po:'২ দিন আগে',ap:24},
- {id:'j2',ti:'গ্রাফিক ডিজাইনার',co:'ক্রিয়েটিভ মিডিয়া',tp:'part-time',tl:'খণ্ডকালীন',lc:'চট্টগ্রাম',sa:'৳৪০,০০০ - ৳৬০,০০০',ds:'Adobe Creative Suite তে দক্ষ ডিজাইনার প্রয়োজন।',sk:['Photoshop','Illustrator','Figma'],ft:false,po:'৫ দিন আগে',ap:12},
- {id:'j3',ti:'ডাটা অ্যানালিস্ট',co:'ডাটা সলিউশন্স BD',tp:'remote',tl:'দূরবর্তী',lc:'অনলাইন',sa:'৳৮০,০০০ - ৳১,২০,০০০',ds:'Python ও SQL তে দক্ষ ডাটা অ্যানালিস্ট প্রয়োজন।',sk:['Python','SQL','Tableau'],ft:true,po:'১ দিন আগে',ap:36}
-];
-
-const demoEvents = [
- {id:'e1',ti:'বাংলাদেশী আইটি নেটওয়ার্কিং মিটআপ',dt:'2026-04-15',tm:'১০:০০ AM - ৫:০০ PM',lc:'ঢাকা',tp:'offline',ct:'tech',ds:'বাংলাদেশের আইটি পেশাজীবীদের নেটওয়ার্কিং ইভেন্ট।',at:150,mx:200,ic:'💻',reg:false},
- {id:'e2',ti:'স্টার্টআপ আইডিয়া শেয়ারিং সেশন',dt:'2026-04-20',tm:'৩:০০ PM - ৬:০০ PM',lc:'অনলাইন (Zoom)',tp:'online',ct:'business',ds:'নতুন উদ্যোক্তাদের জন্য আইডিয়া শেয়ারিং সেশন।',at:85,mx:100,ic:'🚀',reg:false}
-];
-
-const demoGroups = [
- {id:'g1',nm:'বাংলাদেশী শিক্ষার্থী',ct:'শিক্ষা',ds:'শিক্ষার্থীদের জন্য গ্রুপ',mb:1250,po:340,ic:'🎓',jn:false},
- {id:'g2',nm:'আইটি পেশাজীবী বাংলাদেশ',ct:'প্রযুক্তি',ds:'আইটি পেশাজীবীদের জন্য',mb:3420,po:890,ic:'💻',jn:true}
-];
-
-const demoRec = [
- {id:'r1',nm:'মোহাম্মদ আলী',pf:'ওয়েব ডেভেলপার',mt:12,av:'ম'},
- {id:'r2',nm:'নুসরাত জাহান',pf:'মার্কেটিং ম্যানেজার',mt:8,av:'ন'}
+ {id:'u1',nm:'আহমেদ হাসান',pf:'সফটওয়্যার ইঞ্জিনিয়ার',loc:'ঢাকা',bio:'ফুল-স্ট্যাক ডেভেলপার',rt:4.8,fw:1245,cn:245,on:true,vf:true,ds:2.5,av:'আ'},
+ {id:'u2',nm:'ফারহানা আক্তার',pf:'গ্রাফিক ডিজাইনার',loc:'চট্টগ্রাম',bio:'ক্রিয়েটিভ ডিজাইনার',rt:4.9,fw:856,cn:189,on:true,vf:false,ds:5.2,av:'ফ'}
 ];
 
 // =================== MAIN APP ===================
-const A = {
-  cu: null, isG: true, cv: 'home', cjid: null,
+const App = {
+  cu: null, isG: true, cv: 'home', cjid: null, userData: null,
 
   init() {
     this.setupFB();
     window.addEventListener('click', e => { if (!e.target.closest('.umenu-wrap')) this.closeUD(); });
-    setInterval(() => { if (this.cv === 'chat') this.loadChat(); }, 30000);
   },
 
   setupFB() {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(async user => {
       this.cu = user;
       this.isG = !user;
-      if (user) { this.updateUILogin(user); this.loadUserData(user.uid); } 
-      else { this.updateUIGuest(); this.loadHome(); this.loadRS(); }
-      if (this.cv === 'groups') GroupManager.loadGroups();
+      if (user) {
+        this.updateUILogin(user);
+        await this.loadUserData(user.uid);
+        this.loadHome();
+        this.loadJobs();
+        this.loadEvents();
+        this.loadGroups();
+      } else {
+        this.updateUIGuest();
+        this.loadHome();
+        this.loadJobs();
+        this.loadEvents();
+        this.loadGroups();
+      }
+      this.loadRS();
+      if (this.cv === 'groups') this.loadGroups();
     });
   },
 
   async loadUserData(uid) {
     const doc = await db.collection('users').doc(uid).get();
-    if (doc.exists) this.userData = doc.data();
+    if (doc.exists) {
+      this.userData = doc.data();
+    } else {
+      // Create user profile if not exists
+      const defaultData = {
+        name: this.cu.displayName || this.cu.email.split('@')[0],
+        email: this.cu.email,
+        profession: 'পেশা লিখুন',
+        avatar: '👤',
+        bio: '',
+        city: 'ঢাকা',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+      await db.collection('users').doc(uid).set(defaultData);
+      this.userData = defaultData;
+    }
   },
 
   updateUILogin(user) {
@@ -1534,8 +1539,6 @@ const A = {
     document.getElementById('uName').textContent = n.split('@')[0].slice(0, 14);
     document.getElementById('guestBar')?.classList.add('hidden');
     this.closeM('mAuth');
-    if (this.cv === 'home') this.loadHome();
-    if (this.cv === 'jobs') this.loadJobs();
   },
 
   updateUIGuest() {
@@ -1544,7 +1547,7 @@ const A = {
     document.getElementById('guestBar')?.classList.remove('hidden');
   },
 
-  need(msg, cb) { if (!this.cu) { this.toast(`${msg} করতে লগইন করুন`, 'e'); this.showAuth(); return false; } if (cb) cb(); return true; },
+  needLogin(msg, cb) { if (!this.cu) { this.toast(`${msg} করতে লগইন করুন`, 'e'); this.showAuth(); return false; } if (cb) cb(); return true; },
 
   go(v) {
     document.querySelectorAll('[id^="v"]').forEach(e => e.classList.add('hidden'));
@@ -1553,26 +1556,33 @@ const A = {
     if (el) el.classList.remove('hidden');
     document.querySelectorAll(`[onclick*="go('${v}')"]`).forEach(e => e.classList.add('active'));
     this.cv = v;
-    const map = { home: () => this.loadHome(), search: () => this.loadSearch(), jobs: () => this.loadJobs(), chat: () => this.loadChat(), events: () => this.renderEvents('all'), groups: () => GroupManager.loadGroups(), profile: () => this.loadProfile(), privacy: () => this.loadPrivacy(), terms: () => this.loadTerms(), about: () => this.loadAbout() };
+    const map = { home: () => this.loadHome(), search: () => this.loadSearch(), jobs: () => this.loadJobs(), chat: () => this.loadChat(), events: () => this.loadEvents(), groups: () => this.loadGroups(), profile: () => this.loadProfile(), privacy: () => this.loadPrivacy(), terms: () => this.loadTerms(), about: () => this.loadAbout(), settings: () => this.loadSettings() };
     if (map[v]) map[v]();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 
-  loadHome() { this.renderUsers(demoUsers); },
+  // ==================== HOME & USERS ====================
+  async loadHome() {
+    try {
+      const snapshot = await db.collection('users').limit(20).get();
+      const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      if (users.length === 0) this.renderUsers(demoUsers);
+      else this.renderUsers(users);
+    } catch(e) { this.renderUsers(demoUsers); }
+  },
 
   renderUsers(users) {
     const c = document.getElementById('usersList'); if (!c) return;
     if (!users.length) { c.innerHTML = '<div class="empty"><div class="emico">👥</div><h3>কোন ব্যবহারকারী নেই</h3></div>'; return; }
     c.innerHTML = users.map(u => `
       <div class="ucard">
-        <div class="ucard-hdr"><div class="ucard-av">${u.av}</div>${u.on ? '<div class="ucard-dot"></div>' : ''}</div>
+        <div class="ucard-hdr"><div class="ucard-av">${u.avatar || '👤'}</div></div>
         <div class="ucard-body">
-          <div class="ucard-name">${u.nm}</div>
-          <div class="ucard-prof"><i class="fas fa-briefcase"></i>${u.pf}${u.vf ? ' <i class="fas fa-check-circle" style="color:#2ecc71;font-size:11px"></i>' : ''}</div>
-          <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.loc} &nbsp;<i class="fas fa-road"></i>${u.ds} কিমি</div>
-          <div class="ucard-bio">${u.bio}</div>
-          <div class="ucard-stats"><div class="tc"><span class="sv">${u.fw}</span><span class="sl2">ফলোয়ার</span></div><div class="tc"><span class="sv">${u.cn}</span><span class="sl2">সংযোগ</span></div><div class="tc"><span class="sv">${u.rt}</span><span class="sl2">রেটিং</span></div></div>
-          <div class="ucard-acts"><button class="btn btn-p bsm" onclick="A.connect('${u.id}','${u.nm}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="A.startChat('${u.id}','${u.nm}','${u.av}')"><i class="fas fa-comment"></i> চ্যাট</button></div>
+          <div class="ucard-name">${u.name || u.nm}</div>
+          <div class="ucard-prof"><i class="fas fa-briefcase"></i>${u.profession || u.pf || 'পেশা নেই'}</div>
+          <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.city || u.loc || 'অজানা'}</div>
+          <div class="ucard-bio">${u.bio || 'বায়ো নেই'}</div>
+          <div class="ucard-acts"><button class="btn btn-p bsm" onclick="App.connect('${u.id}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="App.startChat('${u.id}','${u.name || u.nm}')"><i class="fas fa-comment"></i> চ্যাট</button></div>
         </div>
       </div>`).join('');
   },
@@ -1580,212 +1590,460 @@ const A = {
   filterUsers(f, el) {
     document.querySelectorAll('#vHome .ftab').forEach(t => t.classList.remove('active'));
     if (el) el.classList.add('active');
-    const maps = { all: demoUsers, nearby: demoUsers.filter(u => u.ds < 10), online: demoUsers.filter(u => u.on), verified: demoUsers.filter(u => u.vf) };
-    this.renderUsers(maps[f] || demoUsers);
+    this.loadHome();
   },
 
-  connect(id, nm) { if (!this.need('ফলো')) return; this.toast(`${nm}-কে ফলো অনুরোধ পাঠানো হয়েছে!`, 's'); },
-  startChat(id, nm, av) { if (!this.need('চ্যাট')) return; this.go('chat'); setTimeout(() => this.openChat({ id, nm, av, lm: 'নতুন চ্যাট', tm: 'এখন', ur: 0 }), 300); },
+  connect(id) { if (!this.needLogin('ফলো')) return; this.toast('ফলো অনুরোধ পাঠানো হয়েছে', 's'); },
+  startChat(id, nm) { if (!this.needLogin('চ্যাট')) return; this.go('chat'); this.toast(`"${nm}" কে চ্যাট অনুরোধ পাঠানো হয়েছে`, 's'); },
 
+  // ==================== SEARCH ====================
   loadSearch() { this.doSearch(''); },
-  doSearch(q) {
-    const r = parseInt(document.getElementById('radiusR')?.value || 100);
-    const f = demoUsers.filter(u => ( !q.trim() || u.nm.includes(q) || u.pf.toLowerCase().includes(q.toLowerCase()) || u.loc.includes(q) ) && u.ds <= r);
-    const c = document.getElementById('srchResults'); if (!c) return;
-    if (!f.length) { c.innerHTML = `<div class="empty"><div class="emico">🔍</div><h3>কোন ফলাফল নেই</h3><p>"${q || 'এই ফিল্টারে'}" কোনো মিল পাওয়া যায়নি</p></div>`; return; }
-    c.innerHTML = f.map(u => `
-      <div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.av}</div></div>
-      <div class="ucard-body"><div class="ucard-name">${u.nm}</div><div class="ucard-prof"><i class="fas fa-briefcase"></i>${u.pf}</div>
-      <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.loc}</div><div class="ucard-bio">${u.bio}</div>
-      <div class="ucard-acts"><button class="btn btn-p bsm" onclick="A.connect('${u.id}','${u.nm}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="A.startChat('${u.id}','${u.nm}','${u.av}')"><i class="fas fa-comment"></i> চ্যাট</button></div></div></div>`).join('');
+  async doSearch(q) {
+    try {
+      const snapshot = await db.collection('users').get();
+      let users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      if (q.trim()) users = users.filter(u => (u.name || '').includes(q) || (u.profession || '').includes(q) || (u.city || '').includes(q));
+      const c = document.getElementById('srchResults'); if (!c) return;
+      if (!users.length) { c.innerHTML = '<div class="empty"><div class="emico">🔍</div><h3>কোন ফলাফল নেই</h3></div>'; return; }
+      c.innerHTML = users.map(u => `
+        <div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.avatar || '👤'}</div></div>
+        <div class="ucard-body"><div class="ucard-name">${u.name}</div><div class="ucard-prof">${u.profession}</div>
+        <div class="ucard-loc"><i class="fas fa-map-marker-alt"></i>${u.city}</div><div class="ucard-bio">${u.bio || ''}</div>
+        <div class="ucard-acts"><button class="btn btn-p bsm" onclick="App.connect('${u.id}')"><i class="fas fa-user-plus"></i> ফলো</button><button class="btn btn-s bsm" onclick="App.startChat('${u.id}','${u.name}')"><i class="fas fa-comment"></i> চ্যাট</button></div></div></div>`).join('');
+    } catch(e) { this.toast('সার্চ করতে সমস্যা', 'e'); }
   },
 
-  loadJobs() { this.renderJobs(demoJobs); },
+  // ==================== JOBS (Firebase Permanent) ====================
+  async loadJobs() {
+    try {
+      const snapshot = await db.collection('jobs').orderBy('createdAt', 'desc').get();
+      const jobs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      this.renderJobs(jobs);
+    } catch(e) { this.renderJobs([]); }
+  },
+
   renderJobs(jobs) {
     const c = document.getElementById('jobsList'); if (!c) return;
-    if (!jobs.length) { c.innerHTML = '<div class="empty"><div class="emico">💼</div><h3>কোন চাকরি নেই</h3><p>শীঘ্রই নতুন চাকরি যোগ হবে</p></div>'; return; }
+    if (!jobs.length) { c.innerHTML = '<div class="empty"><div class="emico">💼</div><h3>কোন চাকরি নেই</h3><button class="btn btn-p mt2" onclick="App.showPostJob()">প্রথম চাকরি পোস্ট করুন</button></div>'; return; }
     c.innerHTML = jobs.map(j => `
-      <div class="jcard">${j.ft ? '<div class="jfeat">ফিচার্ড</div>' : ''}
-        <div class="jcard-hdr"><div><div class="jcard-title">${j.ti}</div><div class="jcard-co"><i class="fas fa-building"></i> ${j.co} &nbsp;|&nbsp; <i class="fas fa-clock"></i> ${j.po}</div></div><span class="badge" style="background:rgba(239,4,121,0.2);color:var(--secondary);padding:4px 12px;border-radius:50px;font-size:11px">${j.tl}</span></div>
-        <div class="jcard-tags"><span class="jtag jtag-p">${j.tl}</span>${j.sk.map(s => `<span class="jtag">${s}</span>`).join('')}</div>
-        <p class="jcard-desc">${j.ds}</p>
-        <div class="jcard-foot"><div><div class="jcard-sal">${j.sa}</div><div class="jcard-loc"><i class="fas fa-map-marker-alt"></i>${j.lc}&nbsp;<i class="fas fa-users"></i>${j.ap} আবেদনকারী</div></div><button class="btn btn-p bsm" onclick="A.showApply('${j.id}','${j.ti}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button></div>
+      <div class="jcard">
+        <div class="jcard-hdr"><div><div class="jcard-title">${j.title}</div><div class="jcard-co"><i class="fas fa-building"></i> ${j.company}</div></div><span class="badge" style="background:rgba(239,4,121,0.2);color:var(--secondary);padding:4px 12px;border-radius:50px;font-size:11px">${j.type}</span></div>
+        <div class="jcard-tags">${(j.skills || '').split(',').map(s => `<span class="jtag">${s.trim()}</span>`).join('')}</div>
+        <p class="jcard-desc">${j.description}</p>
+        <div class="jcard-foot"><div><div class="jcard-sal">${j.salary || 'আলোচনা সাপেক্ষ'}</div><div class="jcard-loc"><i class="fas fa-map-marker-alt"></i>${j.location}</div></div>
+        <button class="btn btn-p bsm" onclick="App.showApply('${j.id}','${j.title}')"><i class="fas fa-paper-plane"></i> আবেদন করুন</button></div>
       </div>`).join('');
   },
 
   filterJobs(tp, el) {
     document.querySelectorAll('#vJobs .ftab').forEach(t => t.classList.remove('active'));
     if (el) el.classList.add('active');
-    this.renderJobs(tp === 'all' ? demoJobs : demoJobs.filter(j => j.tp === tp));
+    this.loadJobs();
   },
 
-  showPostJob() { if (!this.need('চাকরি পোস্ট')) return; this.openM('mPostJob'); },
-  postJob() {
-    if (!this.cu) { this.need('চাকরি পোস্ট'); return; }
-    const ti = document.getElementById('jTitle').value, co = document.getElementById('jComp').value, tp = document.getElementById('jType').value, lc = document.getElementById('jLoc').value, ds = document.getElementById('jDesc').value;
-    if (!ti || !co || !tp || !lc || !ds) { this.toast('সব প্রয়োজনীয় তথ্য পূরণ করুন', 'e'); return; }
-    const tmap = { 'full-time': 'পূর্ণকালীন', 'part-time': 'খণ্ডকালীন', 'contract': 'চুক্তিভিত্তিক', 'internship': 'ইন্টার্নশিপ', 'remote': 'দূরবর্তী' };
-    demoJobs.unshift({ id: 'j' + Date.now(), ti, co, tp, tl: tmap[tp] || tp, lc, sa: document.getElementById('jSal').value || 'আলোচনা সাপেক্ষ', ds, sk: (document.getElementById('jSkills').value || '').split(',').map(s => s.trim()).filter(Boolean), ft: false, po: 'এইমাত্র', ap: 0 });
-    this.closeM('mPostJob');
-    ['jTitle','jComp','jLoc','jSal','jDesc','jSkills'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-    document.getElementById('jType').selectedIndex = 0;
-    this.go('jobs');
-    this.toast('চাকরি সফলভাবে পোস্ট হয়েছে!', 's');
+  showPostJob() { if (!this.needLogin('চাকরি পোস্ট')) return; this.openM('mPostJob'); },
+  
+  async postJob() {
+    if (!this.cu) { this.needLogin('চাকরি পোস্ট'); return; }
+    const title = document.getElementById('jTitle').value.trim();
+    const company = document.getElementById('jComp').value.trim();
+    const type = document.getElementById('jType').value;
+    const location = document.getElementById('jLoc').value.trim();
+    const description = document.getElementById('jDesc').value.trim();
+    const salary = document.getElementById('jSal').value;
+    const skills = document.getElementById('jSkills').value;
+    
+    if (!title || !company || !type || !location || !description) {
+      this.toast('সব প্রয়োজনীয় তথ্য পূরণ করুন', 'e'); return;
+    }
+    
+    try {
+      await db.collection('jobs').add({
+        title, company, type, location, description, salary,
+        skills: skills,
+        postedBy: this.cu.uid,
+        postedByName: this.userData?.name || this.cu.displayName,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        applicantsCount: 0
+      });
+      this.closeM('mPostJob');
+      document.getElementById('jTitle').value = '';
+      document.getElementById('jComp').value = '';
+      document.getElementById('jDesc').value = '';
+      document.getElementById('jSkills').value = '';
+      document.getElementById('jSal').value = '';
+      document.getElementById('jLoc').value = '';
+      document.getElementById('jType').selectedIndex = 0;
+      this.toast('চাকরি সফলভাবে পোস্ট হয়েছে!', 's');
+      this.loadJobs();
+    } catch(e) { this.toast('চাকরি পোস্ট করতে সমস্যা', 'e'); }
   },
 
-  showApply(jid, ti) { if (!this.need('আবেদন')) return; this.cjid = jid; document.getElementById('applyJobName').textContent = ti + ' পদের জন্য আবেদন করুন'; if (this.cu) { document.getElementById('apName').value = this.cu.displayName || ''; document.getElementById('apEmail').value = this.cu.email || ''; } this.openM('mApply'); },
-  submitApply() {
-    const nm = document.getElementById('apName').value, em = document.getElementById('apEmail').value, ph = document.getElementById('apPhone').value, cv = document.getElementById('apCover').value;
-    if (!nm || !em || !ph || !cv) { this.toast('সব প্রয়োজনীয় তথ্য পূরণ করুন', 'e'); return; }
-    const job = demoJobs.find(x => x.id === this.cjid);
-    if (job) job.ap++;
-    this.closeM('mApply');
-    ['apName','apEmail','apPhone','apCover','apPortfolio','apExp'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-    this.toast('আবেদন সফলভাবে জমা হয়েছে!', 's');
-    if (this.cv === 'jobs') this.renderJobs(demoJobs);
+  showApply(jid, ti) { if (!this.needLogin('আবেদন')) return; this.cjid = jid; document.getElementById('applyJobName').textContent = ti + ' পদের জন্য আবেদন করুন'; if (this.cu) { document.getElementById('apName').value = this.userData?.name || this.cu.displayName || ''; document.getElementById('apEmail').value = this.cu.email || ''; } this.openM('mApply'); },
+  
+  async submitApply() {
+    const name = document.getElementById('apName').value.trim();
+    const email = document.getElementById('apEmail').value.trim();
+    const phone = document.getElementById('apPhone').value.trim();
+    const cover = document.getElementById('apCover').value.trim();
+    if (!name || !email || !phone || !cover) { this.toast('সব তথ্য পূরণ করুন', 'e'); return; }
+    try {
+      await db.collection('jobs').doc(this.cjid).collection('applications').add({
+        name, email, phone, coverLetter: cover,
+        experience: document.getElementById('apExp').value,
+        portfolio: document.getElementById('apPortfolio').value,
+        appliedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        userId: this.cu.uid
+      });
+      await db.collection('jobs').doc(this.cjid).update({ applicantsCount: firebase.firestore.FieldValue.increment(1) });
+      this.closeM('mApply');
+      document.getElementById('apName').value = '';
+      document.getElementById('apEmail').value = '';
+      document.getElementById('apPhone').value = '';
+      document.getElementById('apCover').value = '';
+      this.toast('আবেদন জমা হয়েছে!', 's');
+      this.loadJobs();
+    } catch(e) { this.toast('আবেদন জমাতে সমস্যা', 'e'); }
   },
 
-  loadChat() {
-    const c = document.getElementById('chatArea');
-    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico"><i class="fas fa-lock"></i></div><h3>চ্যাট করতে লগইন করুন</h3><p>লগইন করে অন্যদের সাথে চ্যাট করুন</p><button class="btn btn-p mt3" onclick="A.showAuth()">লগইন করুন</button></div>'; return; }
-    c.innerHTML = `<div class="chatcont"><div class="chatside"><div class="chatsrch"><i class="fas fa-search"></i><input type="text" placeholder="চ্যাট খুঁজুন..." oninput="A.filterChats(this.value)"></div><div class="chatlist" id="chatList"><div class="tc mt3">লোডিং...</div></div></div><div id="chatWin" class="chatwin" style="display:none"><div class="chathdr"><div class="chatuser"><div class="chatusav" id="cwAv">A</div><div><div id="cwName" style="font-weight:600;font-size:14px"></div><div class="chatstat"><i class="fas fa-circle" style="font-size:7px"></i><span>অনলাইন</span></div></div></div><button class="bicon" onclick="A.closeChat()"><i class="fas fa-times"></i></button></div><div class="chatmsgs" id="chatMsgs"></div><div class="chatinp"><input type="text" id="chatIn" placeholder="বার্তা লিখুন..." onkeypress="if(event.key==='Enter')A.sendMsg()"><button class="btn btn-p" onclick="A.sendMsg()"><i class="fas fa-paper-plane"></i></button></div></div><div id="chatEmpty" class="chatwin" style="display:flex;align-items:center;justify-content:center"><div class="empty"><div class="emico"><i class="fas fa-comments"></i></div><h3>একটি চ্যাট নির্বাচন করুন</h3><p>বাম দিক থেকে কাউকে বেছে নিন</p></div></div></div>`;
-    this.loadChatList();
+  // ==================== EVENTS (Firebase Permanent) ====================
+  async loadEvents() {
+    try {
+      const snapshot = await db.collection('events').orderBy('date', 'asc').get();
+      const events = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      this.renderEvents(events);
+    } catch(e) { this.renderEvents([]); }
   },
 
-  loadChatList() {
-    const chats = [
-      { id: 'c1', nm: 'আহমেদ হাসান', lm: 'কেমন আছেন? কাল দেখা হবে?', tm: '১০:৩০ AM', ur: 2, av: 'আ' },
-      { id: 'c2', nm: 'ফারহানা আক্তার', lm: 'ধন্যবাদ আপনার সাহায্যের জন্য!', tm: 'গতকাল', ur: 0, av: 'ফ' },
-      { id: 'c3', nm: 'রাকিবুল ইসলাম', lm: 'ডকুমেন্টগুলো পাঠিয়েছি', tm: '২ দিন আগে', ur: 1, av: 'র' }
-    ];
-    const c = document.getElementById('chatList'); if (!c) return;
-    c.innerHTML = chats.map(ch => `<div class="chatitem" onclick='A.openChat(${JSON.stringify(ch)})'><div class="chatav">${ch.av}</div><div class="chatinfo"><h4>${ch.nm}</h4><p class="chatmsg">${ch.lm}</p></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px"><span class="chattime">${ch.tm}</span>${ch.ur > 0 ? `<span class="chatunread">${ch.ur}</span>` : ''}</div></div>`).join('');
-  },
-
-  filterChats(q) {
-    const chats = [
-      { id: 'c1', nm: 'আহমেদ হাসান', lm: 'কেমন আছেন? কাল দেখা হবে?', tm: '১০:৩০ AM', ur: 2, av: 'আ' },
-      { id: 'c2', nm: 'ফারহানা আক্তার', lm: 'ধন্যবাদ আপনার সাহায্যের জন্য!', tm: 'গতকাল', ur: 0, av: 'ফ' }
-    ];
-    const c = document.getElementById('chatList'); if (!c) return;
-    c.innerHTML = chats.filter(ch => ch.nm.includes(q) || ch.lm.includes(q)).map(ch => `<div class="chatitem" onclick='A.openChat(${JSON.stringify(ch)})'><div class="chatav">${ch.av}</div><div class="chatinfo"><h4>${ch.nm}</h4><p class="chatmsg">${ch.lm}</p></div><div><span class="chattime">${ch.tm}</span>${ch.ur > 0 ? `<span class="chatunread">${ch.ur}</span>` : ''}</div></div>`).join('');
-  },
-
-  openChat(ch) {
-    const cw = document.getElementById('chatWin'), ce = document.getElementById('chatEmpty');
-    if (cw) cw.style.display = 'flex'; if (ce) ce.style.display = 'none';
-    document.getElementById('cwAv').textContent = ch.av;
-    document.getElementById('cwName').textContent = ch.nm;
-    const msgs = [{ t: 'হ্যালো! কেমন আছেন?', s: 'recv', tm: '১০:১৫ AM' }, { t: 'আলহামদুলিল্লাহ, ভালো। আপনি?', s: 'sent', tm: '১০:১৬ AM' }, { t: ch.lm, s: 'recv', tm: ch.tm }];
-    const c = document.getElementById('chatMsgs');
-    c.innerHTML = msgs.map(m => `<div class="msg ${m.s}"><div class="msgav">${m.s === 'sent' ? 'আ' : ch.av}</div><div><div class="msgbub">${m.t}</div><div class="msgt">${m.tm}</div></div></div>`).join('');
-    c.scrollTop = c.scrollHeight;
-  },
-
-  closeChat() { const cw = document.getElementById('chatWin'), ce = document.getElementById('chatEmpty'); if (cw) cw.style.display = 'none'; if (ce) ce.style.display = 'flex'; },
-  sendMsg() {
-    const inp = document.getElementById('chatIn'), msg = inp?.value.trim();
-    if (!msg) return;
-    const c = document.getElementById('chatMsgs'), t = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-    c.innerHTML += `<div class="msg sent"><div class="msgav">আ</div><div><div class="msgbub">${msg}</div><div class="msgt">${t}</div></div></div>`;
-    inp.value = ''; c.scrollTop = c.scrollHeight;
-    setTimeout(() => { c.innerHTML += `<div class="msg recv"><div class="msgav">অ</div><div><div class="msgbub">ধন্যবাদ বার্তার জন্য! শীঘ্রই উত্তর দেবো।</div><div class="msgt">${new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' })}</div></div></div>`; c.scrollTop = c.scrollHeight; }, 1000);
-  },
-
-  renderEvents(f) {
+  renderEvents(events) {
     const c = document.getElementById('eventsList'); if (!c) return;
-    const ev = f === 'all' ? demoEvents : demoEvents.filter(e => e.tp === f || e.ct === f);
-    if (!ev.length) { c.innerHTML = '<div class="empty"><div class="emico">📅</div><h3>কোন ইভেন্ট নেই</h3></div>'; return; }
-    c.innerHTML = ev.map(e => { const d = new Date(e.dt); return `<div class="ecard"><div class="ebanner">${e.ic}<div class="edbadge"><div class="edday">${d.getDate()}</div><div class="edmon">${d.toLocaleString('bn-BD', { month: 'short' })}</div></div></div><div class="ebody"><div class="etitle">${e.ti}</div><div class="einfo"><div class="eii"><i class="far fa-calendar-alt"></i><span>${d.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' })} | ${e.tm}</span></div><div class="eii"><i class="fas fa-map-marker-alt"></i><span>${e.lc}</span></div></div><div class="edesc">${e.ds}</div><div class="eatts"><div class="tc"><span class="ean">${e.at}</span><span class="eal">নিবন্ধিত</span></div><div class="tc"><span class="ean">${e.mx - e.at}</span><span class="eal">খালি আসন</span></div></div><button class="btn ${e.reg ? 'btn-s' : 'btn-p'} bblock" onclick="A.toggleEvent('${e.id}',this)"><i class="fas ${e.reg ? 'fa-check' : 'fa-ticket-alt'}"></i> ${e.reg ? 'নিবন্ধিত ✓' : 'নিবন্ধন করুন'}</button></div></div>`; }).join('');
+    if (!events.length) { c.innerHTML = '<div class="empty"><div class="emico">📅</div><h3>কোন ইভেন্ট নেই</h3><button class="btn btn-p mt2" onclick="App.showCreateEvent()">প্রথম ইভেন্ট তৈরি করুন</button></div>'; return; }
+    c.innerHTML = events.map(e => {
+      const d = new Date(e.date);
+      const isRegistered = e.attendees && e.attendees[this.cu?.uid];
+      return `<div class="ecard"><div class="ebanner">🎉<div class="edbadge"><div class="edday">${d.getDate()}</div><div class="edmon">${d.toLocaleString('bn-BD', { month: 'short' })}</div></div></div>
+      <div class="ebody"><div class="etitle">${e.title}</div><div class="einfo"><div><i class="fas fa-calendar"></i> ${new Date(e.date).toLocaleDateString()}</div><div><i class="fas fa-map-marker-alt"></i> ${e.location}</div></div>
+      <div class="edesc">${e.description}</div><div class="eatts"><div><span class="ean">${e.registeredCount || 0}</span><span class="eal">নিবন্ধিত</span></div></div>
+      <button class="btn ${isRegistered ? 'btn-s' : 'btn-p'} bblock" onclick="App.registerEvent('${e.id}')">${isRegistered ? 'নিবন্ধিত ✓' : 'নিবন্ধন করুন'}</button></div></div>`;
+    }).join('');
   },
 
   filterEvents(f, el) {
     document.querySelectorAll('#evTabs .ftab').forEach(t => t.classList.remove('active'));
     if (el) el.classList.add('active');
-    this.renderEvents(f);
+    this.loadEvents();
   },
 
-  toggleEvent(id, btn) {
-    if (!this.need('ইভেন্টে নিবন্ধন')) return;
-    const e = demoEvents.find(x => x.id === id); if (!e) return;
-    e.reg = !e.reg;
-    e.reg ? (e.at++, this.toast(`"${e.ti}" ইভেন্টে নিবন্ধন সফল!`, 's')) : (e.at--, this.toast('নিবন্ধন বাতিল করা হয়েছে', 'i'));
-    this.renderEvents('all');
+  showCreateEvent() { if (!this.needLogin('ইভেন্ট তৈরি')) return; this.openM('mCreateEvent'); },
+  
+  async createEvent() {
+    const title = document.getElementById('evTitle').value.trim();
+    const date = document.getElementById('evDate').value;
+    const location = document.getElementById('evLoc').value.trim();
+    const description = document.getElementById('evDesc').value.trim();
+    if (!title || !date || !location || !description) { this.toast('সব তথ্য পূরণ করুন', 'e'); return; }
+    try {
+      await db.collection('events').add({
+        title, date, location, description,
+        type: document.getElementById('evType').value,
+        createdBy: this.cu.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        registeredCount: 0,
+        attendees: {}
+      });
+      this.closeM('mCreateEvent');
+      document.getElementById('evTitle').value = '';
+      document.getElementById('evDesc').value = '';
+      this.toast('ইভেন্ট তৈরি হয়েছে!', 's');
+      this.loadEvents();
+    } catch(e) { this.toast('ইভেন্ট তৈরি করতে সমস্যা', 'e'); }
   },
 
-  loadRS() {
-    const recC = document.getElementById('recList'); if (recC) recC.innerHTML = demoRec.map(r => `<div class="recitem"><div class="recav">${r.av}</div><div class="recinfo"><h4>${r.nm}</h4><p>${r.pf}</p><p style="font-size:10px;color:var(--secondary)">${r.mt} mutual</p></div><button class="bicon" style="width:32px;height:32px" onclick="A.connect('${r.id}','${r.nm}')"><i class="fas fa-user-plus" style="font-size:12px"></i></button></div>`).join('');
-    const tjC = document.getElementById('trendJobs'); if (tjC) tjC.innerHTML = demoJobs.slice(0, 3).map(j => `<div class="tjob" onclick="A.go('jobs')"><div class="tjtitle">${j.ti}</div><div class="tjcomp">${j.co}</div><div class="tjsal">${j.sa}</div></div>`).join('');
-    const ueC = document.getElementById('upEvents'); if (ueC) ueC.innerHTML = demoEvents.slice(0, 3).map(e => `<div class="evitem" onclick="A.go('events')"><div class="eidate">${new Date(e.dt).toLocaleDateString('bn-BD', { month: 'long', day: 'numeric' })}</div><div class="eititle">${e.ti}</div><div class="eiloc"><i class="fas fa-map-marker-alt"></i>${e.lc}</div></div>`).join('');
+  async registerEvent(eventId) {
+    if (!this.needLogin('ইভেন্টে নিবন্ধন')) return;
+    const eventRef = db.collection('events').doc(eventId);
+    const event = (await eventRef.get()).data();
+    const attendees = event.attendees || {};
+    if (attendees[this.cu.uid]) {
+      delete attendees[this.cu.uid];
+      await eventRef.update({ attendees, registeredCount: firebase.firestore.FieldValue.increment(-1) });
+      this.toast('নিবন্ধন বাতিল', 'i');
+    } else {
+      attendees[this.cu.uid] = true;
+      await eventRef.update({ attendees, registeredCount: firebase.firestore.FieldValue.increment(1) });
+      this.toast('ইভেন্টে নিবন্ধিত!', 's');
+    }
+    this.loadEvents();
   },
 
-  viewAllRec() { document.getElementById('vaTitle').textContent = 'সুপারিশকৃত ব্যক্তি'; document.getElementById('vaBody').innerHTML = `<div class="grid-users">${demoUsers.map(u => `<div class="ucard"><div class="ucard-hdr"><div class="ucard-av">${u.av}</div></div><div class="ucard-body"><div class="ucard-name">${u.nm}</div><div class="ucard-prof">${u.pf}</div><div class="ucard-loc">${u.loc}</div><div class="ucard-bio">${u.bio}</div></div></div>`).join('')}</div>`; this.openM('mViewAll'); },
-  viewAllJobs() { document.getElementById('vaTitle').textContent = 'সকল চাকরি'; document.getElementById('vaBody').innerHTML = `<div class="grid-jobs">${demoJobs.map(j => `<div style="padding:15px;background:var(--dark-card2);border-radius:16px"><div style="font-weight:700;color:var(--secondary);margin-bottom:5px">${j.ti}</div><div style="font-size:12px;color:var(--tl)">${j.co} • ${j.lc} • ${j.sa}</div><button class="btn btn-p bsm mt2" onclick="A.showApply('${j.id}','${j.ti}');A.closeM('mViewAll')">আবেদন</button></div>`).join('')}</div>`; this.openM('mViewAll'); },
-  viewAllEvents() { document.getElementById('vaTitle').textContent = 'সকল ইভেন্ট'; document.getElementById('vaBody').innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px">${demoEvents.map(e => `<div style="padding:15px;background:var(--dark-card2);border-radius:16px"><div style="font-size:36px;margin-bottom:10px">${e.ic}</div><div style="font-weight:700;margin-bottom:5px">${e.ti}</div><div style="font-size:11px;color:var(--tl)">${new Date(e.dt).toLocaleDateString('bn-BD', { month: 'long', day: 'numeric' })} • ${e.lc}</div><button class="btn btn-p bsm mt2" onclick="A.toggleEvent('${e.id}',this);A.closeM('mViewAll')">নিবন্ধন</button></div>`).join('')}</div>`; this.openM('mViewAll'); },
+  // ==================== GROUPS (Firebase Permanent) ====================
+  async loadGroups() {
+    try {
+      const snapshot = await db.collection('groups').orderBy('createdAt', 'desc').get();
+      const groups = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      this.renderGroups(groups);
+    } catch(e) { this.renderGroups([]); }
+  },
 
-  loadProfile() {
+  renderGroups(groups) {
+    const container = document.getElementById('groupsList');
+    if (!container) return;
+    if (!groups.length) { container.innerHTML = `<div class="empty"><div class="emico">👥</div><h3>কোন গ্রুপ নেই</h3><button class="btn btn-p mt2" onclick="App.showCreateGroup()">প্রথম গ্রুপ তৈরি করুন</button></div>`; return; }
+    container.innerHTML = groups.map(g => `
+      <div class="gcard" onclick="App.openGroupDetail('${g.id}')">
+        <div class="gbanner"><div class="gavicon">${g.icon || '👥'}</div></div>
+        <div class="gbody"><div class="gname">${g.name}</div><span class="gcat">${g.category}</span>
+        <div class="gdesc">${g.description}</div><div class="gstats"><div><div class="gsv">${g.memberCount || 1}</div><div class="gsl">সদস্য</div></div><div><div class="gsv">${g.postCount || 0}</div><div class="gsl">পোস্ট</div></div></div>
+        <button class="bjoin" onclick="event.stopPropagation();App.joinGroup('${g.id}', this)">যোগ দিন</button></div></div>`).join('');
+  },
+
+  showCreateGroup() { if (!this.needLogin('গ্রুপ তৈরি')) return; this.openM('mCreateGroup'); },
+  
+  async createGroup() {
+    const name = document.getElementById('grpName').value.trim();
+    if (!name) { this.toast('গ্রুপের নাম লিখুন', 'e'); return; }
+    try {
+      const groupRef = await db.collection('groups').add({
+        name, category: document.getElementById('grpCat').value,
+        icon: document.getElementById('grpIcon').value, description: document.getElementById('grpDesc').value,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: this.cu.uid, memberCount: 1, postCount: 0
+      });
+      await db.collection('groups').doc(groupRef.id).collection('members').doc(this.cu.uid).set({
+        uid: this.cu.uid, name: this.userData?.name, joinedAt: new Date()
+      });
+      this.closeM('mCreateGroup');
+      document.getElementById('grpName').value = '';
+      this.toast('গ্রুপ তৈরি হয়েছে!', 's');
+      this.loadGroups();
+    } catch(e) { this.toast('গ্রুপ তৈরি করতে সমস্যা', 'e'); }
+  },
+
+  async joinGroup(groupId, btn) {
+    if (!this.needLogin('গ্রুপে যোগ দিতে')) return;
+    const memberRef = db.collection('groups').doc(groupId).collection('members').doc(this.cu.uid);
+    const member = await memberRef.get();
+    if (member.exists) {
+      await memberRef.delete();
+      await db.collection('groups').doc(groupId).update({ memberCount: firebase.firestore.FieldValue.increment(-1) });
+      btn.innerHTML = 'যোগ দিন'; btn.classList.remove('on');
+      this.toast('গ্রুপ ছেড়েছেন', 's');
+    } else {
+      await memberRef.set({ uid: this.cu.uid, name: this.userData?.name, joinedAt: new Date() });
+      await db.collection('groups').doc(groupId).update({ memberCount: firebase.firestore.FieldValue.increment(1) });
+      btn.innerHTML = 'যুক্ত হয়েছেন ✓'; btn.classList.add('on');
+      this.toast('গ্রুপে যুক্ত হয়েছেন!', 's');
+    }
+    this.loadGroups();
+  },
+
+  async openGroupDetail(groupId) {
+    if (!this.needLogin('গ্রুপ দেখতে')) return;
+    const groupDoc = await db.collection('groups').doc(groupId).get();
+    const group = groupDoc.data();
+    const isMember = (await db.collection('groups').doc(groupId).collection('members').doc(this.cu.uid).get()).exists;
+    
+    const modalHTML = `<div id="groupDetailModal" class="modal" style="display:flex;z-index:2000"><div class="mbox mbox-lg" style="max-width:700px;max-height:85vh;overflow-y:auto;padding:0"><button class="mclose" onclick="document.getElementById('groupDetailModal').remove()">✕</button>
+    <div style="background:linear-gradient(135deg,var(--primary),var(--secondary));padding:30px;color:white"><div style="display:flex;align-items:center;gap:15px"><div style="width:60px;height:60px;background:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px">${group.icon || '👥'}</div><div><h2 style="font-size:22px">${group.name}</h2><p><i class="fas fa-tag"></i> ${group.category} | <i class="fas fa-users"></i> ${group.memberCount} সদস্য</p></div></div></div>
+    <div style="padding:20px">${isMember ? `<textarea id="groupPostContent" class="finput ftextarea" rows="2" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea><button class="btn btn-p" onclick="App.createGroupPost('${groupId}')">পোস্ট করুন</button><div id="groupPostsList" style="margin-top:20px"></div>` : '<div style="text-align:center;padding:40px"><i class="fas fa-lock"></i> পোস্ট দেখতে গ্রুপে যোগ দিন</div>'}</div></div></div>`;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    if (isMember) this.loadGroupPosts(groupId);
+  },
+
+  async createGroupPost(groupId) {
+    const text = document.getElementById('groupPostContent').value.trim();
+    if (!text) { this.toast('পোস্ট লিখুন', 'e'); return; }
+    try {
+      await db.collection('groups').doc(groupId).collection('posts').add({
+        text, userId: this.cu.uid, userName: this.userData?.name,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        likes: {}, commentsCount: 0
+      });
+      await db.collection('groups').doc(groupId).update({ postCount: firebase.firestore.FieldValue.increment(1) });
+      document.getElementById('groupPostContent').value = '';
+      this.loadGroupPosts(groupId);
+      this.toast('পোস্ট শেয়ার হয়েছে!', 's');
+    } catch(e) { this.toast('পোস্ট করতে সমস্যা', 'e'); }
+  },
+
+  async loadGroupPosts(groupId) {
+    const snapshot = await db.collection('groups').doc(groupId).collection('posts').orderBy('createdAt', 'desc').get();
+    const posts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const container = document.getElementById('groupPostsList');
+    if (!container) return;
+    if (!posts.length) { container.innerHTML = '<div class="empty"><p>কোন পোস্ট নেই</p></div>'; return; }
+    container.innerHTML = posts.map(p => `
+      <div class="post-card" style="background:var(--dark-card2);border-radius:16px;padding:15px;margin-bottom:15px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div class="uavatar" style="width:35px;height:35px">${(p.userName || 'U').charAt(0)}</div><div><strong>${p.userName}</strong><div style="font-size:10px;color:var(--tl)">${new Date(p.createdAt?.toDate()).toLocaleString()}</div></div></div>
+        <p>${p.text}</p>
+        <div style="display:flex;gap:15px;margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)">
+          <button class="post-action" onclick="App.toggleLike('${groupId}','${p.id}')"><i class="fas fa-heart"></i> ${Object.keys(p.likes || {}).length}</button>
+          <button class="post-action" onclick="App.toggleCommentBox('${p.id}')"><i class="fas fa-comment"></i> মন্তব্য</button>
+        </div>
+        <div id="commentBox-${p.id}" style="display:none;margin-top:12px"><input type="text" id="commentInput-${p.id}" placeholder="মন্তব্য লিখুন..." style="width:calc(100% - 80px);padding:8px;border-radius:50px;border:1px solid var(--bd);background:rgba(255,255,255,0.03);color:#fff"><button class="btn btn-p bsm" onclick="App.addComment('${groupId}','${p.id}')">পোস্ট</button></div>
+        <div id="commentsList-${p.id}" style="margin-top:10px"></div>
+      </div>`).join('');
+    posts.forEach(p => this.loadComments(groupId, p.id));
+  },
+
+  async toggleLike(groupId, postId) {
+    if (!this.needLogin('লাইক দিতে')) return;
+    const postRef = db.collection('groups').doc(groupId).collection('posts').doc(postId);
+    const post = (await postRef.get()).data();
+    const likes = post.likes || {};
+    if (likes[this.cu.uid]) delete likes[this.cu.uid];
+    else likes[this.cu.uid] = true;
+    await postRef.update({ likes });
+    this.loadGroupPosts(groupId);
+  },
+
+  async addComment(groupId, postId) {
+    const text = document.getElementById(`commentInput-${postId}`).value.trim();
+    if (!text) return;
+    await db.collection('groups').doc(groupId).collection('posts').doc(postId).collection('comments').add({
+      text, userId: this.cu.uid, userName: this.userData?.name,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    document.getElementById(`commentInput-${postId}`).value = '';
+    this.loadComments(groupId, postId);
+  },
+
+  async loadComments(groupId, postId) {
+    const snapshot = await db.collection('groups').doc(groupId).collection('posts').doc(postId).collection('comments').orderBy('createdAt', 'asc').get();
+    const comments = snapshot.docs.map(doc => doc.data());
+    const container = document.getElementById(`commentsList-${postId}`);
+    if (!container) return;
+    if (!comments.length) { container.innerHTML = '<div style="color:var(--tl);font-size:11px">কোন মন্তব্য নেই</div>'; return; }
+    container.innerHTML = comments.map(c => `<div style="font-size:12px;margin-bottom:5px"><strong>${c.userName}:</strong> ${c.text}</div>`).join('');
+  },
+
+  toggleCommentBox(postId) {
+    const box = document.getElementById(`commentBox-${postId}`);
+    if (box) box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  },
+
+  // ==================== CHAT ====================
+  loadChat() {
+    const c = document.getElementById('chatArea');
+    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico">🔒</div><h3>চ্যাট করতে লগইন করুন</h3><button class="btn btn-p" onclick="App.showAuth()">লগইন করুন</button></div>'; return; }
+    c.innerHTML = `<div class="chatcont"><div class="chatside"><div class="chatsrch"><i class="fas fa-search"></i><input type="text" placeholder="চ্যাট খুঁজুন..."></div><div class="chatlist"><div class="tc mt3">চ্যাট লোড হচ্ছে...</div></div></div><div class="chatwin" style="display:flex;align-items:center;justify-content:center"><div class="empty"><i class="fas fa-comments"></i><p>একটি চ্যাট নির্বাচন করুন</p></div></div></div>`;
+  },
+
+  // ==================== PROFILE ====================
+  async loadProfile() {
     const c = document.getElementById('profileArea');
-    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico"><i class="fas fa-user-circle"></i></div><h3>লগইন করুন</h3><p>প্রোফাইল দেখতে লগইন করুন</p><button class="btn btn-p mt3" onclick="A.showAuth()">লগইন করুন</button></div>'; return; }
-    const u = demoUsers[0], nm = this.cu.displayName || this.cu.email.split('@')[0], fw = this.cu.uid === 'demo123' ? 1245 : Math.floor(Math.random() * 500 + 100);
-    c.innerHTML = `<div class="phdr"><div class="pav">${nm.charAt(0).toUpperCase()}</div><div class="pname">${nm}</div><div class="pprof">${u.pf}</div><div class="pstats"><div><span class="psv">${fw}</span><span class="psl">ফলোয়ার</span></div><div><span class="psv">${Math.floor(fw / 3)}</span><span class="psl">সংযোগ</span></div><div><span class="psv">৪.৮</span><span class="psl">রেটিং</span></div></div></div><div class="pcontent"><div><div class="psec"><div class="psectitle">আমার সম্পর্কে</div><p style="line-height:1.8;color:var(--tm);font-size:13px">${u.bio}</p></div><div class="psec"><div class="psectitle">যোগাযোগ তথ্য</div><div class="pinfoi"><i class="fas fa-envelope"></i>${this.cu.email}</div><div class="pinfoi"><i class="fas fa-map-marker-alt"></i>${u.loc}, বাংলাদেশ</div><div class="pinfoi"><i class="fas fa-calendar-alt"></i>যোগদান: ${new Date().toLocaleDateString('bn-BD')}</div></div></div></div><div><div class="psec"><div class="psectitle">দ্রুত কাজ</div><div style="display:flex;flex-direction:column;gap:10px"><button class="btn btn-p bblock" onclick="A.showEditProfile()"><i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা</button><button class="btn btn-s bblock" onclick="A.go('settings')"><i class="fas fa-cog"></i> সেটিংস</button><button class="btn bblock" style="background:rgba(231,76,60,0.2);color:#E74C3C;border:1px solid #E74C3C" onclick="A.logout()"><i class="fas fa-sign-out-alt"></i> লগ আউট</button></div></div></div></div></div>`;
+    if (!this.cu) { c.innerHTML = '<div class="empty"><div class="emico">🔒</div><h3>লগইন করুন</h3><button class="btn btn-p" onclick="App.showAuth()">লগইন</button></div>'; return; }
+    const user = await db.collection('users').doc(this.cu.uid).get();
+    const u = user.data() || { name: this.cu.displayName, profession: 'পেশা লিখুন', avatar: '👤', bio: '', city: 'ঢাকা' };
+    const jobsCount = (await db.collection('jobs').where('postedBy', '==', this.cu.uid).get()).size;
+    c.innerHTML = `<div class="phdr"><div class="pav" onclick="App.showEditProfile()">${u.avatar || '👤'}</div><div class="pname">${u.name}</div><div class="pprof">${u.profession}</div><div class="pstats"><div><span class="psv">${jobsCount}</span><span class="psl">চাকরি পোস্ট</span></div></div></div>
+    <div class="psec"><div class="psectitle">📝 বায়ো</div><p>${u.bio || 'বায়ো নেই'}</p></div>
+    <div class="psec"><div class="psectitle">📍 অবস্থান</div><p><i class="fas fa-map-marker-alt"></i> ${u.city}</p></div>
+    <button class="btn btn-p bblock" onclick="App.showEditProfile()"><i class="fas fa-edit"></i> প্রোফাইল সম্পাদনা করুন</button>`;
   },
 
-  showEditProfile() { if (!this.need('প্রোফাইল সম্পাদনা')) return; this.openM('mEditProfile'); },
-  updateProfile() { this.toast('প্রোফাইল আপডেট হয়েছে!', 's'); this.closeM('mEditProfile'); this.loadProfile(); },
+  showEditProfile() { if (!this.needLogin('প্রোফাইল সম্পাদনা')) return; this.openM('mEditProfile'); },
+  
+  async updateProfile() {
+    const name = document.getElementById('epName').value.trim();
+    if (!name) { this.toast('নাম লিখুন', 'e'); return; }
+    await db.collection('users').doc(this.cu.uid).update({
+      name, profession: document.getElementById('epProf').value,
+      avatar: document.getElementById('epAvatar').value || '👤',
+      bio: document.getElementById('epBio').value,
+      city: document.getElementById('epCity').value
+    });
+    this.closeM('mEditProfile');
+    this.loadProfile();
+    this.toast('প্রোফাইল আপডেট হয়েছে!', 's');
+  },
 
+  // ==================== SETTINGS ====================
+  loadSettings() { /* Settings page - UI only */ },
+
+  // ==================== STATIC PAGES ====================
   loadPrivacy() {
-    const sections = [['১. ভূমিকা', '<p>হ্যালো বাংলাদেশী আপনার গোপনীয়তাকে গুরুত্ব দেয়। এই নীতিতে ব্যাখ্যা করা হয়েছে কীভাবে আমরা আপনার তথ্য সংগ্রহ, ব্যবহার ও সুরক্ষিত রাখি।</p>'], ['২. আমরা কী তথ্য সংগ্রহ করি', '<ul><li><strong>ব্যক্তিগত তথ্য:</strong> নাম, ইমেল, ফোন নম্বর, প্রোফাইল ছবি</li><li><strong>পেশাগত তথ্য:</strong> পেশা, অভিজ্ঞতা, দক্ষতা</li><li><strong>অবস্থানের তথ্য:</strong> শহর, এলাকা (আপনার অনুমতি সাপেক্ষে)</li></ul>'], ['৩. তথ্যের ব্যবহার', '<ul><li>অ্যাকাউন্ট তৈরি ও পরিচালনা</li><li>ব্যবহারকারীদের মধ্যে সংযোগ স্থাপন</li><li>চাকরি ও নেটওয়ার্কিং সুযোগ প্রদান</li></ul>'], ['৪. তথ্য সুরক্ষা', '<ul><li>SSL/TLS এনক্রিপশন ব্যবহার</li><li>Firebase Security Rules দ্বারা সুরক্ষিত</li><li>নিয়মিত সুরক্ষা অডিট</li></ul>'], ['৫. যোগাযোগ', '<p><i class="fas fa-envelope"></i> privacy@hellobangladeshi.com<br><i class="fas fa-phone"></i> +880 1924449132</p>']];
-    document.getElementById('privacyBody').innerHTML = sections.map(([t, b]) => `<div class="polsec" style="margin-bottom:25px"><div class="poltitle" style="font-size:17px;font-weight:600;color:var(--secondary);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bd)">${t}</div><div class="poltext" style="color:var(--tm);line-height:1.8;font-size:13px">${b}</div></div>`).join('');
+    document.getElementById('privacyBody').innerHTML = `<div class="polsec"><div class="poltitle">গোপনীয়তা নীতি</div><p>আপনার ডেটা সুরক্ষা আমাদের অগ্রাধিকার। আমরা আপনার তথ্য শেয়ার করি না।</p></div>`;
   },
-
   loadTerms() {
-    const sections = [['১. শর্তাবলীর গ্রহণযোগ্যতা', '<p>হ্যালো বাংলাদেশী ব্যবহার করে আপনি এই শর্তাবলী মেনে চলতে সম্মত হন।</p>'], ['২. অ্যাকাউন্ট নিবন্ধন', '<ul><li>সঠিক ও সম্পূর্ণ তথ্য প্রদান করতে হবে</li><li>অ্যাকাউন্টের তথ্য গোপন রাখতে হবে</li><li>বয়স কমপক্ষে ১৩ বছর হতে হবে</li></ul>'], ['৩. ব্যবহারকারীর আচরণবিধি', '<ul><li>অন্য ব্যবহারকারীদের সাথে সম্মানজনক আচরণ</li><li>হয়রানি, উত্যক্তকরণ নিষিদ্ধ</li><li>স্প্যাম বা অবাঞ্ছিত বার্তা পাঠানো নিষিদ্ধ</li></ul>'], ['৪. যোগাযোগ', '<p><i class="fas fa-envelope"></i> support@hellobangladeshi.com<br><i class="fas fa-phone"></i> +880 1924449132</p>']];
-    document.getElementById('termsBody').innerHTML = sections.map(([t, b]) => `<div class="polsec" style="margin-bottom:25px"><div class="poltitle" style="font-size:17px;font-weight:600;color:var(--secondary);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bd)">${t}</div><div class="poltext" style="color:var(--tm);line-height:1.8;font-size:13px">${b}</div></div>`).join('');
+    document.getElementById('termsBody').innerHTML = `<div class="polsec"><div class="poltitle">সেবা শর্তাবলী</div><p>সেবা ব্যবহারের মাধ্যমে আপনি আমাদের শর্তাবলীতে সম্মত হন।</p></div>`;
   },
-
   loadAbout() {
-    document.getElementById('aboutBody').innerHTML = `<div class="phdr" style="background:linear-gradient(135deg,var(--primary),var(--secondary))"><div class="pav" style="width:100px;height:100px;margin:0 auto 16px">FW</div><div class="pname" style="text-align:center">ফারাবি ওয়ালিদ</div><div class="pprof" style="text-align:center">ফুল স্ট্যাক ডেভেলপার | Android ডেভেলপার</div></div><div class="psec"><div class="psectitle">আমার সম্পর্কে</div><p style="color:var(--tm);font-size:13px;line-height:1.8">আমি ফারাবি ওয়ালিদ, একজন পেশাদার ফুল স্ট্যাক ও অ্যান্ড্রয়েড ডেভেলপার। "হ্যালো বাংলাদেশী" আমার বিশেষ প্রজেক্ট যা বাংলাদেশী কমিউনিটিকে ডিজিটালভাবে সংযুক্ত করার লক্ষ্যে তৈরি।</p><div class="skillwrap" style="display:flex;flex-wrap:wrap;gap:8px;margin:15px 0">${['JavaScript','React.js','Node.js','Firebase','Android','Flutter'].map(s => `<span style="background:rgba(239,4,121,0.1);color:var(--secondary);padding:5px 15px;border-radius:50px;font-size:12px">${s}</span>`).join('')}</div></div><div class="psec"><div class="psectitle">যোগাযোগ করুন</div><div class="socrow" style="display:flex;justify-content:center;gap:15px;margin-top:15px"><a href="#" class="soclink" style="width:42px;height:42px;background:rgba(255,255,255,0.05);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:18px"><i class="fab fa-facebook-f"></i></a><a href="#" class="soclink"><i class="fab fa-linkedin-in"></i></a><a href="#" class="soclink"><i class="fab fa-github"></i></a><a href="mailto:info.hellobangladeshi@gmail.com" class="soclink"><i class="fas fa-envelope"></i></a></div><div class="tc mt3"><p style="color:var(--tl);font-size:13px"><i class="fas fa-envelope"></i> info.hellobangladeshi@gmail.com<br><i class="fas fa-phone"></i> +880 1751861453<br><i class="fas fa-map-marker-alt"></i> মৌলভীবাজার, সিলেট</p></div></div>`;
+    document.getElementById('aboutBody').innerHTML = `<div class="phdr" style="text-align:center"><div class="pav" style="margin:0 auto">FW</div><div class="pname">ফারাবি ওয়ালিদ</div><div class="pprof">ফুল স্ট্যাক ডেভেলপার</div></div><div class="psec"><p>আমি ফারাবি ওয়ালিদ, হ্যালো বাংলাদেশী প্রজেক্টের ডেভেলপার।</p></div>`;
   },
 
+  // ==================== RIGHT SIDEBAR ====================
+  async loadRS() {
+    try {
+      const users = (await db.collection('users').limit(5).get()).docs.map(d => d.data());
+      document.getElementById('recList').innerHTML = users.map(u => `<div class="recitem"><div class="recav">${u.avatar || '👤'}</div><div><h4>${u.name}</h4><p>${u.profession}</p></div></div>`).join('');
+      const jobs = (await db.collection('jobs').limit(3).get()).docs.map(d => d.data());
+      document.getElementById('trendJobs').innerHTML = jobs.map(j => `<div class="tjob" onclick="App.go('jobs')"><div class="tjtitle">${j.title}</div><div class="tjcomp">${j.company}</div></div>`).join('');
+    } catch(e) {}
+  },
+
+  viewAllRec() { this.openM('mViewAll'); document.getElementById('vaBody').innerHTML = '<div class="tc">লোড হচ্ছে...</div>'; this.loadHome(); },
+  viewAllJobs() { this.go('jobs'); this.closeM('mViewAll'); },
+  viewAllEvents() { this.go('events'); this.closeM('mViewAll'); },
+
+  // ==================== AUTH ====================
   showAuth() { this.openM('mAuth'); },
-  login() {
+  showLoginForm() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.querySelectorAll('.atab').forEach(t => t.classList.remove('on')); document.querySelector('.atab:first-child').classList.add('on'); },
+  showSignupForm() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.querySelectorAll('.atab').forEach(t => t.classList.remove('on')); document.querySelector('.atab:last-child').classList.add('on'); },
+  
+  async login() {
     const em = document.getElementById('lEmail').value, ps = document.getElementById('lPass').value;
-    if (!em || !ps) { this.showAuthErr('ইমেল ও পাসওয়ার্ড দিন'); return; }
+    if (!em || !ps) { this.toast('ইমেল ও পাসওয়ার্ড দিন', 'e'); return; }
     if (em === 'demo@test.com' && ps === 'password') {
-      const demo = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ব্যবহারকারী' };
-      this.cu = demo; this.isG = false; this.updateUILogin(demo);
-      this.toast('ডেমো অ্যাকাউন্টে লগইন সফল!', 's'); this.loadRS(); this.closeM('mAuth'); return;
+      this.cu = { uid: 'demo123', email: 'demo@test.com', displayName: 'ডেমো ইউজার' };
+      this.updateUILogin(this.cu);
+      this.closeM('mAuth');
+      this.toast('ডেমো অ্যাকাউন্টে লগইন সফল!', 's');
+      return;
     }
     this.toast('লগইন হচ্ছে...', 'i');
-    auth.signInWithEmailAndPassword(em, ps).then(() => this.toast('লগইন সফল!', 's')).catch(e => this.showAuthErr(this.authMsg(e)));
+    try {
+      await auth.signInWithEmailAndPassword(em, ps);
+      this.toast('লগইন সফল!', 's');
+    } catch(e) { this.toast(e.message, 'e'); }
   },
 
-  signup() {
-    const nm = document.getElementById('sName').value, pf = document.getElementById('sProf').value, em = document.getElementById('sEmail').value, ps = document.getElementById('sPass').value, ct = document.getElementById('sCity').value, ag = document.getElementById('sTerms').checked;
-    if (!nm || !pf || !em || !ps || !ct) { this.showAuthErr('সব তথ্য পূরণ করুন'); return; }
-    if (!ag) { this.showAuthErr('শর্তাবলী মেনে চলুন'); return; }
-    if (ps.length < 6) { this.showAuthErr('পাসওয়ার্ড ৬+ অক্ষর হতে হবে'); return; }
+  async signup() {
+    const name = document.getElementById('sName').value.trim();
+    const email = document.getElementById('sEmail').value.trim();
+    const pass = document.getElementById('sPass').value;
+    const city = document.getElementById('sCity').value;
+    if (!name || !email || !pass || !city) { this.toast('সব তথ্য পূরণ করুন', 'e'); return; }
+    if (pass.length < 6) { this.toast('পাসওয়ার্ড ৬+ অক্ষর হতে হবে', 'e'); return; }
+    if (!document.getElementById('sTerms').checked) { this.toast('শর্তাবলী মেনে চলুন', 'e'); return; }
     this.toast('অ্যাকাউন্ট তৈরি হচ্ছে...', 'i');
-    auth.createUserWithEmailAndPassword(em, ps).then(r => r.user.updateProfile({ displayName: nm }).then(() => db.collection('users').doc(r.user.uid).set({ name: nm, email: em, profession: pf, city: ct, createdAt: firebase.firestore.FieldValue.serverTimestamp() }))).then(() => this.toast('অ্যাকাউন্ট তৈরি সফল!', 's')).catch(e => this.showAuthErr(this.authMsg(e)));
+    try {
+      const r = await auth.createUserWithEmailAndPassword(email, pass);
+      await r.user.updateProfile({ displayName: name });
+      await db.collection('users').doc(r.user.uid).set({
+        name, email, profession: document.getElementById('sProf').value, city,
+        avatar: '👤', bio: '', createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      this.closeM('mAuth');
+      this.toast('অ্যাকাউন্ট তৈরি সফল!', 's');
+    } catch(e) { this.toast(e.message, 'e'); }
   },
 
   loginGoogle() { this.toast('গুগল লগইন শীঘ্রই আসছে!', 'i'); },
   loginFB() { this.toast('ফেসবুক লগইন শীঘ্রই আসছে!', 'i'); },
 
-  logout() {
-    if (this.cu?.uid === 'demo123') { this.cu = null; this.isG = true; this.updateUIGuest(); this.toast('লগ আউট হয়েছে', 'i'); this.go('home'); return; }
-    auth.signOut().then(() => { this.cu = null; this.isG = true; this.updateUIGuest(); this.toast('সফলভাবে লগ আউট হয়েছে', 's'); this.go('home'); }).catch(e => this.toast('লগ আউট সমস্যা: ' + e.message, 'e'));
+  async logout() {
+    if (this.cu?.uid === 'demo123') {
+      this.cu = null; this.updateUIGuest(); this.toast('লগ আউট হয়েছে', 'i'); this.go('home'); return;
+    }
+    await auth.signOut();
+    this.toast('লগ আউট হয়েছে', 's'); this.go('home');
   },
 
-  authMsg(e) { const m = { 'auth/user-not-found': 'এই ইমেলে অ্যাকাউন্ট নেই', 'auth/wrong-password': 'ভুল পাসওয়ার্ড', 'auth/email-already-in-use': 'ইমেল ইতিমধ্যে ব্যবহৃত', 'auth/weak-password': 'পাসওয়ার্ড দুর্বল' }; return m[e.code] || 'সমস্যা হয়েছে: ' + e.message; },
-  showAuthErr(msg) { const e = document.getElementById('authErr'); if (e) { e.textContent = msg; e.style.display = 'block'; setTimeout(() => e.style.display = 'none', 5000); } this.toast(msg, 'e'); },
-  showLoginForm() { document.getElementById('loginForm').classList.remove('hidden'); document.getElementById('signupForm').classList.add('hidden'); document.getElementById('loginTab').classList.add('on'); document.getElementById('signupTab').classList.remove('on'); },
-  showSignupForm() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); document.getElementById('loginTab').classList.remove('on'); document.getElementById('signupTab').classList.add('on'); },
-
-  changePass() { if (!this.need('পাসওয়ার্ড পরিবর্তন')) return; this.toast('পাসওয়ার্ড রিসেট ইমেল পাঠানো হয়েছে', 's'); },
-  deactivate() { if (!this.need('অ্যাকাউন্ট নিষ্ক্রিয়')) return; if (confirm('আপনি কি নিশ্চিত?')) this.toast('অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে', 'i'); },
-  deleteAcc() { if (!this.need('অ্যাকাউন্ট মুছুন')) return; if (confirm('এই কাজটি অপরিবর্তনীয়! নিশ্চিত?')) { this.toast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 's'); setTimeout(() => this.logout(), 2000); } },
-  showNotif() { if (!this.need('বিজ্ঞপ্তি')) return; this.toast('কোন নতুন বিজ্ঞপ্তি নেই', 'i'); },
+  changePass() { if (!this.needLogin('পাসওয়ার্ড পরিবর্তন')) return; this.toast('পাসওয়ার্ড রিসেট ইমেল পাঠানো হয়েছে', 's'); },
+  deactivate() { if (!this.needLogin('অ্যাকাউন্ট নিষ্ক্রিয়')) return; if (confirm('নিশ্চিত?')) this.toast('অ্যাকাউন্ট নিষ্ক্রিয়', 'i'); },
+  deleteAcc() { if (!this.needLogin('অ্যাকাউন্ট মুছুন')) return; if (confirm('এই কাজটি অপরিবর্তনীয়! নিশ্চিত?')) { this.toast('অ্যাকাউন্ট মুছে ফেলা হয়েছে', 's'); setTimeout(() => this.logout(), 2000); } },
+  showNotif() { this.toast('কোন নতুন বিজ্ঞপ্তি নেই', 'i'); },
 
   openM(id) { const m = document.getElementById(id); if (m) m.classList.add('on'); },
   closeM(id) { const m = document.getElementById(id); if (m) m.classList.remove('on'); },
@@ -1795,81 +2053,21 @@ const A = {
 
   toast(msg, tp = 'i') {
     const tc = document.getElementById('toasts'), id = 't' + Date.now();
-    const ic = { s: 'fas fa-check-circle', e: 'fas fa-exclamation-circle', w: 'fas fa-exclamation-triangle', i: 'fas fa-info-circle' };
-    const tt = { s: 'সফল', e: 'ত্রুটি', w: 'সতর্কতা', i: 'তথ্য' };
-    const el = document.createElement('div'); el.id = id; el.className = `toast ${tp}`;
-    el.innerHTML = `<div class="tico"><i class="${ic[tp] || ic.i}"></i></div><div class="tcont"><div class="ttitle">${tt[tp] || 'তথ্য'}</div><div class="tmsg">${msg}</div></div><button class="tclose" onclick="document.getElementById('${id}').remove()">×</button>`;
+    const icons = { s: '✅', e: '❌', w: '⚠️', i: 'ℹ️' };
+    const el = document.createElement('div'); el.className = `toast ${tp}`;
+    el.innerHTML = `<div class="tico">${icons[tp] || 'ℹ️'}</div><div>${msg}</div><button class="tclose" onclick="this.parentElement.remove()">✕</button>`;
     tc.appendChild(el);
-    setTimeout(() => { const e = document.getElementById(id); if (e) { e.style.opacity = '0'; e.style.transition = 'opacity .3s'; setTimeout(() => e.remove(), 300); } }, 4000);
+    setTimeout(() => el.remove(), 4000);
   }
 };
 
-// =================== GROUP MANAGER ===================
-const GroupManager = {
-  currentGroupId: null, currentGroupData: null, groupPostsListener: null,
+// Additional modals for events and groups
+document.body.insertAdjacentHTML('beforeend', `<div id="mCreateEvent" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mCreateEvent')">✕</button><h2 class="mtitle">নতুন ইভেন্ট</h2><div class="fg"><input type="text" id="evTitle" class="finput" placeholder="ইভেন্টের নাম"></div><div class="frow"><div class="fg"><input type="date" id="evDate" class="finput"></div><div class="fg"><select id="evType" class="finput"><option value="online">অনলাইন</option><option value="offline">অফলাইন</option></select></div></div><div class="fg"><input type="text" id="evLoc" class="finput" placeholder="অবস্থান"></div><div class="fg"><textarea id="evDesc" class="finput ftextarea" placeholder="বিবরণ..."></textarea></div><button class="btn btn-p bblock" onclick="App.createEvent()">তৈরি করুন</button></div></div>`);
+document.body.insertAdjacentHTML('beforeend', `<div id="mCreateGroup" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mCreateGroup')">✕</button><h2 class="mtitle">নতুন গ্রুপ</h2><div class="fg"><input type="text" id="grpName" class="finput" placeholder="গ্রুপের নাম"></div><div class="frow"><div class="fg"><select id="grpCat" class="finput"><option>সাধারণ</option><option>প্রযুক্তি</option><option>শিক্ষা</option><option>ব্যবসা</option></select></div><div class="fg"><input type="text" id="grpIcon" class="finput" placeholder="আইকন ইমোজি" value="👥"></div></div><div class="fg"><textarea id="grpDesc" class="finput ftextarea" placeholder="বিবরণ..."></textarea></div><button class="btn btn-p bblock" onclick="App.createGroup()">তৈরি করুন</button></div></div>`);
+document.body.insertAdjacentHTML('beforeend', `<div id="mCreateGroupPost" class="modal"><div class="mbox"><button class="mclose" onclick="App.closeM('mCreateGroupPost')">✕</button><h2 class="mtitle">নতুন পোস্ট</h2><div class="fg"><textarea id="groupPostText" class="finput ftextarea" rows="4" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea></div><button class="btn btn-p bblock" onclick="App.submitGroupPost()">পোস্ট করুন</button></div></div>`);
 
-  loadGroups() {
-    const container = document.getElementById('groupsList');
-    if (!container) return;
-    container.innerHTML = '<div class="tc mt3"><i class="fas fa-spinner fa-spin"></i> গ্রুপ লোড হচ্ছে...</div>';
-    setTimeout(() => {
-      const groups = demoGroups.map(g => ({ ...g, joined: A.cu ? g.jn : false }));
-      this.renderGroups(groups);
-    }, 500);
-  },
-
-  renderGroups(groups) {
-    const container = document.getElementById('groupsList');
-    if (!container) return;
-    if (!groups.length) { container.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="emico">👥</div><h3>কোন গ্রুপ নেই</h3><button class="btn btn-p mt3" onclick="GroupManager.showCreateGroupModal()">প্রথম গ্রুপ তৈরি করুন</button></div>`; return; }
-    container.innerHTML = groups.map(group => `<div class="gcard" onclick="GroupManager.openGroupDetail('${group.id}')"><div class="gbanner"><div class="gavicon">${group.ic || '👥'}</div></div><div class="gbody"><div class="gname">${group.nm}</div><span class="gcat">${group.ct}</span><div class="gdesc">${group.ds}</div><div class="gstats"><div><div class="gsv">${group.mb}</div><div class="gsl">সদস্য</div></div><div><div class="gsv">${group.po}</div><div class="gsl">পোস্ট</div></div></div><button class="bjoin ${group.joined ? 'on' : ''}" onclick="event.stopPropagation(); GroupManager.toggleGroupMembership('${group.id}', this, ${group.joined})"><i class="fas ${group.joined ? 'fa-check' : 'fa-user-plus'}"></i> ${group.joined ? 'যুক্ত হয়েছেন ✓' : 'যোগ দিন'}</button></div></div>`).join('');
-  },
-
-  async toggleGroupMembership(groupId, btn, isJoined) {
-    if (!A.cu) { A.toast('গ্রুপে যোগ দিতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const group = demoGroups.find(g => g.id === groupId);
-    if (group) {
-      if (isJoined) { group.mb--; group.jn = false; if (btn) { btn.innerHTML = '<i class="fas fa-user-plus"></i> যোগ দিন'; btn.classList.remove('on'); } A.toast('গ্রুপ থেকে বেরিয়ে গেছেন', 'success'); }
-      else { group.mb++; group.jn = true; if (btn) { btn.innerHTML = '<i class="fas fa-check"></i> যুক্ত হয়েছেন ✓'; btn.classList.add('on'); } A.toast('গ্রুপে যুক্ত হয়েছেন!', 'success'); }
-      this.renderGroups(demoGroups);
-    }
-  },
-
-  openGroupDetail(groupId) {
-    if (!A.cu) { A.toast('গ্রুপ দেখতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const group = demoGroups.find(g => g.id === groupId);
-    if (!group) return;
-    const isMember = group.jn;
-    const modalHTML = `<div id="groupDetailModal" class="modal" style="display:flex;z-index:2000"><div class="mbox mbox-lg" style="max-width:700px;max-height:85vh;overflow-y:auto;padding:0"><button class="mclose" onclick="GroupManager.closeGroupDetailModal()" style="top:20px;right:20px;background:rgba(0,0,0,0.5);color:white;z-index:10"><i class="fas fa-times"></i></button><div style="background:linear-gradient(135deg,var(--primary),var(--secondary));padding:30px 25px;color:white;border-radius:24px 24px 0 0"><div style="display:flex;align-items:center;gap:15px"><div style="width:60px;height:60px;background:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px">${group.ic || '👥'}</div><div><h2 style="font-size:22px;margin-bottom:5px">${group.nm}</h2><p style="font-size:12px;opacity:0.9"><i class="fas fa-tag"></i> ${group.ct} | <i class="fas fa-users"></i> ${group.mb} সদস্য</p></div></div></div><div style="padding:20px"><div id="groupPostFormSection" style="background:rgba(255,255,255,0.03);padding:15px;border-radius:16px;margin-bottom:20px;${!isMember ? 'display:none' : ''}"><textarea id="groupPostContent" rows="2" style="width:100%;border:1px solid var(--bd);border-radius:12px;padding:12px;background:rgba(255,255,255,0.03);color:var(--td);font-size:13px;margin-bottom:10px" placeholder="আপনার মনের কথা শেয়ার করুন..."></textarea><button class="btn btn-p" onclick="GroupManager.createGroupPost('${groupId}')"><i class="fas fa-paper-plane"></i> পোস্ট করুন</button></div><div id="groupPostsContainer"><div class="tc"><i class="fas fa-spinner fa-spin"></i> পোস্ট লোড হচ্ছে...</div></div></div></div></div>`;
-    const existing = document.getElementById('groupDetailModal');
-    if (existing) existing.remove();
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    setTimeout(() => { const c = document.getElementById('groupPostsContainer'); if (c) c.innerHTML = '<div class="empty"><div class="emico">💬</div><p>কোন পোস্ট নেই। প্রথম পোস্ট করুন!</p></div>'; }, 500);
-  },
-
-  async createGroupPost(groupId) {
-    if (!A.cu) { A.toast('পোস্ট করতে লগইন করুন', 'error'); return; }
-    const content = document.getElementById('groupPostContent')?.value.trim();
-    if (!content) { A.toast('পোস্টের কন্টেন্ট লিখুন', 'error'); return; }
-    A.toast('পোস্ট শেয়ার হয়েছে!', 'success');
-    document.getElementById('groupPostContent').value = '';
-  },
-
-  closeGroupDetailModal() { const modal = document.getElementById('groupDetailModal'); if (modal) modal.remove(); this.currentGroupId = null; },
-
-  showCreateGroupModal() {
-    if (!A.cu) { A.toast('গ্রুপ তৈরি করতে লগইন করুন', 'error'); A.showAuth(); return; }
-    const modalHTML = `<div id="createGroupModal" class="modal" style="display:flex;z-index:2000"><div class="mbox" style="max-width:500px"><button class="mclose" onclick="GroupManager.closeCreateGroupModal()"><i class="fas fa-times"></i></button><div class="mhdr"><h2 class="mtitle">নতুন গ্রুপ তৈরি করুন</h2></div><div class="fg"><label class="flabel">গ্রুপের নাম *</label><input type="text" id="newGroupName" class="finput"></div><div class="frow"><div class="fg"><label class="flabel">ক্যাটাগরি</label><select id="newGroupCategory" class="finput"><option>সাধারণ</option><option>প্রযুক্তি</option><option>শিক্ষা</option><option>ব্যবসা</option></select></div><div class="fg"><label class="flabel">আইকন</label><input type="text" id="newGroupIcon" class="finput" placeholder="ইমোজি যেমন 👥" value="👥"></div></div><div class="fg"><label class="flabel">বিবরণ</label><textarea id="newGroupDesc" class="finput ftextarea" rows="3"></textarea></div><button class="btn btn-p bblock" onclick="GroupManager.createNewGroup()"><i class="fas fa-plus-circle"></i> গ্রুপ তৈরি করুন</button></div></div>`;
-    const existing = document.getElementById('createGroupModal');
-    if (existing) existing.remove();
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-  },
-
-  closeCreateGroupModal() { const modal = document.getElementById('createGroupModal'); if (modal) modal.remove(); },
-  createNewGroup() { A.toast('গ্রুপ তৈরি হয়েছে!', 'success'); this.closeCreateGroupModal(); this.loadGroups(); }
-};
-
-window.addEventListener('DOMContentLoaded', () => { A.init(); window.A = A; window.GroupManager = GroupManager; });
+window.App = App;
+App.init();
 </script>
 </body>
 </html>
